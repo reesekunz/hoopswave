@@ -1,0 +1,150 @@
+/* Header.css - Hoops Wave Basketball Theme */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #4ECDC4;
+  }
+  
+  .logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .logo a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .logo h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.2s ease;
+    letter-spacing: -0.5px;
+  }
+  
+  .logo h2:hover {
+    transform: scale(1.05);
+  }
+  
+  .logo-image {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease;
+  }
+  
+  .logo a:hover .logo-image {
+    transform: rotate(15deg) scale(1.1);
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+  }
+  
+  nav li {
+    margin: 0;
+  }
+  
+  nav button {
+    background: none;
+    border: 2px solid transparent;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  nav button:hover {
+    border-color: #4ECDC4;
+    background-color: rgba(78, 205, 196, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.3);
+  }
+  
+  nav button:active {
+    transform: translateY(-1px);
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  nav button:hover a {
+    color: #4ECDC4;
+  }
+  
+  /* Active state for current page */
+  nav button.active {
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+    border-color: #4ECDC4;
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+  }
+  
+  nav button.active a {
+    color: white;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .logo h2 {
+      font-size: 1.5rem;
+    }
+    
+    nav ul {
+      gap: 0.5rem;
+    }
+    
+    nav button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    nav ul {
+      justify-content: center;
+      width: 100%;
+    }
+  }

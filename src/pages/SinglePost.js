@@ -2,9 +2,10 @@ import { useState, useEffect } from "react"
 import client from "../client"
 import { Link, useParams } from "react-router-dom"
 import { PortableText } from "@portabletext/react"
+import './SinglePost.css'  // Add this import
 
 export default function SinglePost() {
-    const [singlePost, setSinglePost] = useState(null) // Changed from [] to null
+    const [singlePost, setSinglePost] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const { slug } = useParams()
 
@@ -16,6 +17,10 @@ export default function SinglePost() {
                     `*[slug.current == $slug][0] {
                         title,
                         body,
+                        publishedAt,
+                        author-> {
+                            name
+                        },
                         mainImage {
                             asset -> {
                                 _id,
@@ -24,10 +29,10 @@ export default function SinglePost() {
                             alt
                         }
                     }`,
-                    { slug } // Using parameterized query for security
+                    { slug }
                 )
                 
-                console.log('Fetched post data:', data) // Debug log
+                console.log('Fetched post data:', data)
                 setSinglePost(data)
             } catch (error) {
                 console.error('Error fetching post:', error)
@@ -41,57 +46,98 @@ export default function SinglePost() {
         }
     }, [slug])
 
+    const formatDate = (dateString) => {
+        if (!dateString) return 'Recent'
+        const date = new Date(dateString)
+        return date.toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        })
+    }
+
     if (isLoading) {
-        return <div><h1>Loading...</h1></div>
+        return (
+            <div className="loading-container">
+                <h1>🏀 Loading article...</h1>
+            </div>
+        )
     }
 
     if (!singlePost) {
-        return <div><h1>Error 404 | Page not found</h1>
-        <Link to="/">Back to homepage</Link>
-        </div>
+        return (
+            <div className="error-container">
+                <h1>Error 404 | Page not found</h1>
+                <p>The article you're looking for doesn't exist.</p>
+                <Link to="/" className="error-link">Back to homepage</Link>
+            </div>
+        )
     }
 
     return (
-        <div>
-            <h1>{singlePost.title}</h1>
-            
-            {/* Safe image rendering with fallbacks */}
+        <article className="single-post-container">
+            <header className="single-post-header">
+                <h1 className="single-post-title">{singlePost.title}</h1>
+                
+                <div className="single-post-meta">
+                    <span className="single-post-category">Hoops Wave News</span>
+                    <span className="single-post-author">
+                        By {singlePost.author?.name || 'Reesey'}
+                    </span>
+                    <span className="single-post-date">
+                        {formatDate(singlePost.publishedAt)}
+                    </span>
+                </div>
+            </header>
+
             {singlePost.mainImage?.asset?.url ? (
                 <img 
                     src={singlePost.mainImage.asset.url} 
                     alt={singlePost.mainImage.alt || singlePost.title || 'Blog post image'} 
-                    title={singlePost.title} 
+                    title={singlePost.title}
+                    className="single-post-image"
                 />
             ) : (
-                <div>No image available</div>
+                <div className="no-image">No image available</div>
             )}
             
-            <p>By Reesey</p>
-            
-            {/* Render body content using PortableText (modern approach) */}
             {singlePost.body && (
-                <div>
+                <div className="single-post-content">
                     <PortableText 
                         value={singlePost.body}
                         components={{
-                            // Optional: Custom components for different block types
                             block: {
-                                h1: ({children}) => <h1 className="text-3xl font-bold">{children}</h1>,
-                                h2: ({children}) => <h2 className="text-2xl font-semibold">{children}</h2>,
-                                normal: ({children}) => <p className="mb-4">{children}</p>
+                                h1: ({children}) => <h1>{children}</h1>,
+                                h2: ({children}) => <h2>{children}</h2>,
+                                h3: ({children}) => <h3>{children}</h3>,
+                                normal: ({children}) => <p>{children}</p>,
+                                blockquote: ({children}) => <blockquote>{children}</blockquote>
                             },
                             marks: {
-                                strong: ({children}) => <strong className="font-bold">{children}</strong>,
-                                em: ({children}) => <em className="italic">{children}</em>
+                                strong: ({children}) => <strong>{children}</strong>,
+                                em: ({children}) => <em>{children}</em>,
+                                code: ({children}) => <code>{children}</code>
+                            },
+                            list: {
+                                bullet: ({children}) => <ul>{children}</ul>,
+                                number: ({children}) => <ol>{children}</ol>
+                            },
+                            listItem: {
+                                bullet: ({children}) => <li>{children}</li>,
+                                number: ({children}) => <li>{children}</li>
                             }
                         }}
                     />
                 </div>
             )}
             
-            <button>
-                <Link to="/blog">Read more articles</Link>
-            </button>
-        </div>
+            <footer className="single-post-footer">
+                <button className="back-to-blog-btn">
+                    <Link to="/blog" className="back-to-blog-link">
+                        Read More Articles
+                    </Link>
+                </button>
+            </footer>
+        </article>
     )
 }
