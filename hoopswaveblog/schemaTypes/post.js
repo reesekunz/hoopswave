@@ -26,6 +26,13 @@ export default defineType({
       to: {type: 'author'},
     }),
     defineField({
+      name: 'team',
+      title: 'NBA Team',
+      type: 'reference',
+      to: [{type: 'team'}],
+      validation: Rule => Rule.required()
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
@@ -55,11 +62,15 @@ export default defineType({
     select: {
       title: 'title',
       author: 'author.name',
+      team: 'team.name',
       media: 'mainImage',
     },
     prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
+      const {author, team} = selection
+      return {
+        ...selection, 
+        subtitle: `${team ? `${team} • ` : ''}${author ? `by ${author}` : ''}`
+      }
     },
   },
 })

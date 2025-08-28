@@ -1,0 +1,40 @@
+.team-header {
+  display: flex;
+  align-items: center;
+}
+
+.team-logo {
+  border-radius: 50%;
+}
+
+.team-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
+
+.breadcrumb-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: #666;
+}
+
+.back-to-all-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.back-to-all {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}

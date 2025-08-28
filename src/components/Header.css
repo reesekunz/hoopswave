@@ -1,150 +1,323 @@
 /* Header.css - Hoops Wave Basketball Theme */
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 2px solid #4ECDC4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid #4ecdc4;
+}
+
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform 0.2s ease;
+  letter-spacing: -0.5px;
+}
+
+.logo h2:hover {
+  transform: scale(1.05);
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.logo a:hover .logo-image {
+  transform: rotate(15deg) scale(1.1);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav button {
+  background: none;
+  border: 2px solid transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+nav button:hover {
+  border-color: #4ecdc4;
+  background-color: rgba(78, 205, 196, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.3);
+}
+
+nav button:active {
+  transform: translateY(-1px);
+}
+
+nav a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: inherit;
+  transition: color 0.3s ease;
+}
+
+nav button:hover a {
+  color: #4ecdc4;
+}
+
+/* Active state for current page */
+nav button.active {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  border-color: #4ecdc4;
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+nav button.active a {
+  color: white;
+}
+
+/* Teams Dropdown Styles */
+.teams-dropdown-container {
+  position: relative;
+}
+
+.teams-button {
+  background: none;
+  border: 2px solid transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #2c3e50;
+}
+
+.teams-button:hover {
+  border-color: #4ecdc4;
+  background-color: rgba(78, 205, 196, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.3);
+  color: #4ecdc4;
+}
+
+.teams-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background: white;
+  border: 2px solid #4ecdc4;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(78, 205, 196, 0.2);
+  min-width: 450px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: dropdownSlideIn 0.3s ease-out;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .logo {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .logo a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .logo h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2c3e50;
-    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: transform 0.2s ease;
-    letter-spacing: -0.5px;
-  }
-  
-  .logo h2:hover {
-    transform: scale(1.05);
-  }
-  
-  .logo-image {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.2s ease;
-  }
-  
-  .logo a:hover .logo-image {
-    transform: rotate(15deg) scale(1.1);
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+}
+
+.dropdown-header {
+  padding: 15px 20px;
+  border-bottom: 2px solid #f0f8ff;
+  font-weight: bold;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  border-radius: 13px 13px 0 0;
+}
+
+.dropdown-header a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.dropdown-header a:hover {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.team-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #2c3e50;
+  border-bottom: 1px solid #f0f8ff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.team-link:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(78, 205, 196, 0.1) 0%,
+    rgba(68, 160, 141, 0.1) 100%
+  );
+  transform: translateX(5px);
+  border-left: 3px solid #4ecdc4;
+}
+
+.team-link:nth-child(even) {
+  border-right: 1px solid #f0f8ff;
+}
+
+.team-abbreviation {
+  font-weight: bold;
+  color: #4ecdc4;
+  min-width: 45px;
+  margin-right: 12px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.team-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.team-link:hover .team-name {
+  color: #44a08d;
+  font-weight: 600;
+}
+
+.team-link:hover .team-abbreviation {
+  color: #44a08d;
+  text-shadow: 0 1px 3px rgba(78, 205, 196, 0.3);
+}
+
+/* Custom scrollbar for teams dropdown */
+.teams-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.teams-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.teams-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  border-radius: 10px;
+}
+
+.teams-grid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #44a08d 0%, #4ecdc4 100%);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+    flex-wrap: wrap;
     gap: 1rem;
   }
-  
-  nav li {
-    margin: 0;
+
+  .logo h2 {
+    font-size: 1.5rem;
   }
-  
-  nav button {
-    background: none;
-    border: 2px solid transparent;
-    padding: 0.75rem 1.5rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+
+  nav ul {
+    gap: 0.5rem;
   }
-  
-  nav button:hover {
-    border-color: #4ECDC4;
-    background-color: rgba(78, 205, 196, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.3);
+
+  nav button,
+  .teams-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
-  
-  nav button:active {
-    transform: translateY(-1px);
+
+  .teams-dropdown {
+    min-width: 350px;
+    left: -100px;
   }
-  
-  nav a {
-    text-decoration: none;
-    color: #2c3e50;
-    font-weight: inherit;
-    transition: color 0.3s ease;
+
+  .teams-grid {
+    grid-template-columns: 1fr;
   }
-  
-  nav button:hover a {
-    color: #4ECDC4;
+
+  .team-link:nth-child(even) {
+    border-right: none;
   }
-  
-  /* Active state for current page */
-  nav button.active {
-    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-    border-color: #4ECDC4;
-    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
   }
-  
-  nav button.active a {
-    color: white;
+
+  nav ul {
+    justify-content: center;
+    width: 100%;
   }
-  
-  /* Mobile responsive */
-  @media (max-width: 768px) {
-    header {
-      padding: 1rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    
-    .logo h2 {
-      font-size: 1.5rem;
-    }
-    
-    nav ul {
-      gap: 0.5rem;
-    }
-    
-    nav button {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
+
+  .teams-dropdown {
+    min-width: 300px;
+    left: -150px;
   }
-  
-  @media (max-width: 480px) {
-    header {
-      flex-direction: column;
-      text-align: center;
-    }
-    
-    nav ul {
-      justify-content: center;
-      width: 100%;
-    }
-  }
+}

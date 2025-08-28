@@ -1,57 +1,87 @@
 import { useState, useEffect } from "react"
+import { useParams, Link } from "react-router-dom"
 import client from "../client"
-import {Link} from "react-router-dom"
-import './Blog.css'
+import './TeamPage.css' // Reuse your existing blog styles
 
-export default function Blog() {
+export default function TeamPage() {
+    const { teamSlug } = useParams() // Get team slug from URL
     const [posts, setPosts] = useState([])
+    const [team, setTeam] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchTeamAndPosts = async () => {
             try {
                 setLoading(true)
-                const data = await client.fetch(
-                    `*[_type == "post"] {
-                        title,
-                        slug,
-                        body,
-                        publishedAt,
-                        categories[]-> {
-                            title
-                        },
-                        author-> {
-                            name
-                        },
-                        team-> {
+                
+                // Fetch team info and posts in parallel
+                const [teamData, postsData] = await Promise.all([
+                    // Get team information
+                    client.fetch(
+                        `*[_type == "team" && slug.current == $teamSlug][0] {
                             name,
                             slug,
                             city,
                             abbreviation,
-                            primaryColor
-                        },
-                        mainImage {
-                            asset -> {
-                                _id,
-                                url 
+                            primaryColor,
+                            logo {
+                                asset -> {
+                                    url
+                                }
+                            }
+                        }`,
+                        { teamSlug }
+                    ),
+                    
+                    // Get posts for this team
+                    client.fetch(
+                        `*[_type == "post" && team->slug.current == $teamSlug] {
+                            title,
+                            slug,
+                            body,
+                            publishedAt,
+                            categories[]-> {
+                                title
                             },
-                            alt
-                        }
-                    } | order(publishedAt desc)`
-                )
-                console.log('Fetched data:', data)
-                setPosts(data)
+                            author-> {
+                                name
+                            },
+                            team-> {
+                                name,
+                                slug,
+                                city,
+                                abbreviation,
+                                primaryColor
+                            },
+                            mainImage {
+                                asset -> {
+                                    _id,
+                                    url 
+                                },
+                                alt
+                            }
+                        } | order(publishedAt desc)`,
+                        { teamSlug }
+                    )
+                ])
+
+                console.log('Fetched team:', teamData)
+                console.log('Fetched posts:', postsData)
+                
+                setTeam(teamData)
+                setPosts(postsData)
+                
             } catch (err) {
-                console.error('Error fetching posts:', err)
+                console.error('Error fetching data:', err)
                 setError(err.message)
             } finally {
                 setLoading(false)
             }
         }
 
-        fetchPosts()
-    }, [])
+        fetchTeamAndPosts()
+    }, [teamSlug])
 
     const formatDate = (dateString) => {
         const date = new Date(dateString)
@@ -63,8 +93,9 @@ export default function Blog() {
     }
 
     if (loading) return <div className="loading">Loading...</div>
-    if (error) return <div className="error">Error loading posts: {error}</div>
-   
+    if (error) return <div className="error">Error loading content: {error}</div>
+    if (!team) return <div className="error">Team not found</div>
+
     const featuredPost = posts[0]
     const sidebarPosts = posts.slice(1, 4)
     const olderPosts = posts.slice(4)
@@ -84,9 +115,7 @@ export default function Blog() {
                 />
             )}
             <div className="section-content">
-                <div className="section-category">
-                    {post.team?.name ? `${post.team.name} News` : 'Hoops Wave News'}
-                </div>
+                <div className="section-category">{team.name} News</div>
                 <Link 
                     to={`/${post.slug.current}`} 
                     className={`section-title-link ${isRed ? 'red' : ''}`}
@@ -102,15 +131,40 @@ export default function Blog() {
 
     return (
         <div className="blog-container">
+            {/* Team Header */}
             <div className="blog-header">
-                <h1 className="blog-title">Hoops Wave News</h1>
+                <div className="team-header">
+                    {team.logo && (
+                        <img 
+                            src={team.logo.asset.url} 
+                            alt={`${team.name} logo`} 
+                            className="team-logo"
+                            style={{ width: '60px', height: '60px', marginRight: '15px' }}
+                        />
+                    )}
+                    <div>
+                        <h1 className="blog-title">{team.name} News</h1>
+                        <p className="team-subtitle">{team.city} {team.name}</p>
+                    </div>
+                </div>
                 <p className="blog-count">
                     {posts.length} {posts.length === 1 ? 'Article' : 'Articles'}
                 </p>
             </div>
             
+            {/* Breadcrumb Navigation */}
+            <div className="breadcrumb">
+                <Link to="/" className="breadcrumb-link">All Teams</Link>
+                <span className="breadcrumb-separator"> > </span>
+                <span className="breadcrumb-current">{team.name}</span>
+            </div>
+            
             {posts.length === 0 && (
-                <p className="no-posts">No posts found. Check back soon for fresh basketball content!</p>
+                <div className="no-posts">
+                    <p>No articles found for the {team.name} yet.</p>
+                    <p>Check back soon for the latest {team.name} news and updates!</p>
+                    <Link to="/" className="back-to-all">← Back to All Teams</Link>
+                </div>
             )}
             
             {posts.length > 0 && (
@@ -124,9 +178,7 @@ export default function Blog() {
                                 className="featured-image"
                             />
                             <div className="featured-overlay">
-                                <div className="featured-category">
-                                    {featuredPost.team?.name ? `${featuredPost.team.name} News` : 'Hoops Wave News'}
-                                </div>
+                                <div className="featured-category">{team.name} News</div>
                                 <h2 className="featured-title">{featuredPost.title}</h2>
                                 <div className="featured-meta">
                                     {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
@@ -140,24 +192,24 @@ export default function Blog() {
                         </article>
 
                         {/* Sidebar Articles */}
-                        <aside className="sidebar-articles">
-                            <h3 className="sidebar-title">More Stories</h3>
-                            {sidebarPosts.map((post) => (
-                                <article key={post.slug.current} className="sidebar-article">
-                                    <div className="sidebar-category">
-                                        {post.team?.name ? `${post.team.name} News` : 'Hoops Wave News'}
-                                    </div>
-                                    <h4 className="sidebar-article-title">
-                                        <Link to={`/${post.slug.current}`}>
-                                            {post.title}
-                                        </Link>
-                                    </h4>
-                                    <div className="sidebar-meta">
-                                        {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
-                                    </div>
-                                </article>
-                            ))}
-                        </aside>
+                        {sidebarPosts.length > 0 && (
+                            <aside className="sidebar-articles">
+                                <h3 className="sidebar-title">More {team.name} Stories</h3>
+                                {sidebarPosts.map((post) => (
+                                    <article key={post.slug.current} className="sidebar-article">
+                                        <div className="sidebar-category">{team.name} News</div>
+                                        <h4 className="sidebar-article-title">
+                                            <Link to={`/${post.slug.current}`}>
+                                                {post.title}
+                                            </Link>
+                                        </h4>
+                                        <div className="sidebar-meta">
+                                            {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                                        </div>
+                                    </article>
+                                ))}
+                            </aside>
+                        )}
                     </div>
 
                     {/* Content Sections */}
@@ -166,8 +218,7 @@ export default function Blog() {
                         {rumorsPosts.length > 0 && (
                             <section className="content-section">
                                 <div className="section-header">
-                                    <h2 className="section-title">Rumors</h2>
-                                    <a href="#" className="see-more">See more</a>
+                                    <h2 className="section-title">{team.name} Rumors</h2>
                                 </div>
                                 <div className="section-grid mixed-layout">
                                     {rumorsPosts[0] && <SectionArticle post={rumorsPosts[0]} size="large" />}
@@ -182,8 +233,7 @@ export default function Blog() {
                         {freeAgencyPosts.length > 0 && (
                             <section className="content-section">
                                 <div className="section-header">
-                                    <h2 className="section-title">Free Agency</h2>
-                                    <a href="#" className="see-more">See more</a>
+                                    <h2 className="section-title">{team.name} Free Agency</h2>
                                 </div>
                                 <div className="section-grid mixed-layout">
                                     {freeAgencyPosts[0] && <SectionArticle post={freeAgencyPosts[0]} size="large" />}
@@ -198,8 +248,7 @@ export default function Blog() {
                         {moreStoriesPosts.length > 0 && (
                             <section className="content-section">
                                 <div className="section-header">
-                                    <h2 className="section-title">More Stories</h2>
-                                    <a href="#" className="see-more">See more</a>
+                                    <h2 className="section-title">More {team.name} Stories</h2>
                                 </div>
                                 <div className="section-grid three-column">
                                     {moreStoriesPosts.slice(0, 3).map((post) => (
@@ -218,9 +267,7 @@ export default function Blog() {
                                     className="bottom-featured-image"
                                 />
                                 <div className="bottom-featured-content">
-                                    <div className="bottom-featured-category">
-                                        {olderPosts[6].team?.name ? `${olderPosts[6].team.name} News` : 'Hoops Wave News'}
-                                    </div>
+                                    <div className="bottom-featured-category">{team.name} News</div>
                                     <h2 className="bottom-featured-title">{olderPosts[6].title}</h2>
                                     <div className="bottom-featured-meta">
                                         {olderPosts[6].author?.name || 'Staff'} | {formatDate(olderPosts[6].publishedAt) || 'Recent'}
@@ -233,6 +280,11 @@ export default function Blog() {
                                 </div>
                             </article>
                         )}
+                    </div>
+
+                    {/* Back to All Teams Link */}
+                    <div className="back-to-all-container">
+                        <Link to="/" className="back-to-all">← Back to All Teams</Link>
                     </div>
                 </>
             )}
