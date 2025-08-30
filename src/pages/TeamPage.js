@@ -92,18 +92,52 @@ export default function TeamPage() {
         })
     }
 
+    const categorizePost = (post) => {
+        // Look for exact category matches first
+        const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
+        
+        if (categoryTitles.includes('trades')) return 'trades'
+        if (categoryTitles.includes('free agency')) return 'freeAgency'
+        if (categoryTitles.includes('draft')) return 'draft'
+        if (categoryTitles.includes('rumors')) return 'rumors'
+        if (categoryTitles.includes('news')) return 'news'
+        
+        // Default to news if no category matches
+        return 'news'
+    }
+
+    const getCategorizedPosts = () => {
+        const categorized = {
+            trades: [],
+            freeAgency: [],
+            draft: [],
+            news: [],
+            rumors: []
+        }
+
+        posts.forEach(post => {
+            const category = categorizePost(post)
+            categorized[category].push(post)
+        })
+
+        return categorized
+    }
+
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading content: {error}</div>
     if (!team) return <div className="error">Team not found</div>
 
     const featuredPost = posts[0]
     const sidebarPosts = posts.slice(1, 4)
-    const olderPosts = posts.slice(4)
+    const categorizedPosts = getCategorizedPosts()
 
-    // Group posts by categories for sections
-    const rumorsPosts = olderPosts.filter((post, index) => index % 3 === 0).slice(0, 4)
-    const freeAgencyPosts = olderPosts.filter((post, index) => index % 3 === 1).slice(0, 4)
-    const moreStoriesPosts = olderPosts.filter((post, index) => index % 3 === 2).slice(0, 6)
+    const categories = [
+        { key: 'trades', label: 'Trades', color: '#e74c3c' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#3498db' },
+        { key: 'draft', label: 'Draft', color: '#9b59b6' },
+        { key: 'news', label: 'News', color: '#2ecc71' },
+        { key: 'rumors', label: 'Rumors', color: '#f39c12' }
+    ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
         <article className={`section-article ${size}`}>
@@ -115,7 +149,7 @@ export default function TeamPage() {
                 />
             )}
             <div className="section-content">
-                <div className="section-category">{team.name} News</div>
+                <div className="section-category">{team.city} {team.name} News</div>
                 <Link 
                     to={`/${post.slug.current}`} 
                     className={`section-title-link ${isRed ? 'red' : ''}`}
@@ -128,6 +162,42 @@ export default function TeamPage() {
             </div>
         </article>
     )
+
+    const renderCategorySection = (category) => {
+        const categoryPosts = categorizedPosts[category.key]
+        if (!categoryPosts || categoryPosts.length === 0) return null
+
+        return (
+            <section key={category.key} className="content-section">
+                <div className="section-header">
+                    <h2 className="section-title" style={{ color: category.color }}>
+                        {team.name} {category.label}
+                    </h2>
+                    <Link 
+                        to={`/teams/${teamSlug}/${category.key}`} 
+                        className="see-more"
+                        style={{ color: category.color }}
+                    >
+                        See more
+                    </Link>
+                </div>
+                <div className={`section-grid ${categoryPosts.length === 1 ? 'single-article' : 'mixed-layout'}`}>
+                    {categoryPosts.length === 1 ? (
+                        <SectionArticle post={categoryPosts[0]} size="large" />
+                    ) : (
+                        <>
+                            <SectionArticle post={categoryPosts[0]} size="large" />
+                            <div className="sidebar-section-articles">
+                                {categoryPosts.slice(1, 4).map((post) => (
+                                    <SectionArticle key={post.slug.current} post={post} size="small" />
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </section>
+        )
+    }
 
     return (
         <div className="blog-container">
@@ -143,8 +213,8 @@ export default function TeamPage() {
                         />
                     )}
                     <div>
-                        <h1 className="blog-title">{team.name} News</h1>
-                        <p className="team-subtitle">{team.city} {team.name}</p>
+                        <h1 className="blog-title">{team.city} {team.name}</h1>
+                        <p className="team-subtitle">Latest news and updates</p>
                     </div>
                 </div>
                 <p className="blog-count">
@@ -156,12 +226,12 @@ export default function TeamPage() {
             <div className="breadcrumb">
                 <Link to="/" className="breadcrumb-link">All Teams</Link>
                 <span className="breadcrumb-separator"> > </span>
-                <span className="breadcrumb-current">{team.name}</span>
+                <span className="breadcrumb-current">{team.city} {team.name}</span>
             </div>
             
             {posts.length === 0 && (
                 <div className="no-posts">
-                    <p>No articles found for the {team.name} yet.</p>
+                    <p>No articles found for the {team.city} {team.name} yet.</p>
                     <p>Check back soon for the latest {team.name} news and updates!</p>
                     <Link to="/" className="back-to-all">← Back to All Teams</Link>
                 </div>
@@ -169,117 +239,55 @@ export default function TeamPage() {
             
             {posts.length > 0 && (
                 <>
-                    <div className="posts-layout">
-                        {/* Featured Article */}
-                        <article className="featured-article">
-                            <img 
-                                src={featuredPost.mainImage.asset.url} 
-                                alt={featuredPost.title} 
-                                className="featured-image"
-                            />
-                            <div className="featured-overlay">
-                                <div className="featured-category">{team.name} News</div>
-                                <h2 className="featured-title">{featuredPost.title}</h2>
-                                <div className="featured-meta">
-                                    {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
-                                </div>
-                                <button className="read-more-btn">
-                                    <Link to={`/${featuredPost.slug.current}`} className="read-more-link">
-                                        Read Full Article
-                                    </Link>
-                                </button>
-                            </div>
-                        </article>
-
-                        {/* Sidebar Articles */}
-                        {sidebarPosts.length > 0 && (
-                            <aside className="sidebar-articles">
-                                <h3 className="sidebar-title">More {team.name} Stories</h3>
-                                {sidebarPosts.map((post) => (
-                                    <article key={post.slug.current} className="sidebar-article">
-                                        <div className="sidebar-category">{team.name} News</div>
-                                        <h4 className="sidebar-article-title">
-                                            <Link to={`/${post.slug.current}`}>
-                                                {post.title}
-                                            </Link>
-                                        </h4>
-                                        <div className="sidebar-meta">
-                                            {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
-                                        </div>
-                                    </article>
-                                ))}
-                            </aside>
-                        )}
-                    </div>
-
-                    {/* Content Sections */}
-                    <div className="content-sections">
-                        {/* Rumors Section */}
-                        {rumorsPosts.length > 0 && (
-                            <section className="content-section">
-                                <div className="section-header">
-                                    <h2 className="section-title">{team.name} Rumors</h2>
-                                </div>
-                                <div className="section-grid mixed-layout">
-                                    {rumorsPosts[0] && <SectionArticle post={rumorsPosts[0]} size="large" />}
-                                    {rumorsPosts.slice(1, 3).map((post) => (
-                                        <SectionArticle key={post.slug.current} post={post} size="small" />
-                                    ))}
-                                </div>
-                            </section>
-                        )}
-
-                        {/* Free Agency Section */}
-                        {freeAgencyPosts.length > 0 && (
-                            <section className="content-section">
-                                <div className="section-header">
-                                    <h2 className="section-title">{team.name} Free Agency</h2>
-                                </div>
-                                <div className="section-grid mixed-layout">
-                                    {freeAgencyPosts[0] && <SectionArticle post={freeAgencyPosts[0]} size="large" />}
-                                    {freeAgencyPosts.slice(1, 3).map((post) => (
-                                        <SectionArticle key={post.slug.current} post={post} size="small" />
-                                    ))}
-                                </div>
-                            </section>
-                        )}
-
-                        {/* More Stories Section */}
-                        {moreStoriesPosts.length > 0 && (
-                            <section className="content-section">
-                                <div className="section-header">
-                                    <h2 className="section-title">More {team.name} Stories</h2>
-                                </div>
-                                <div className="section-grid three-column">
-                                    {moreStoriesPosts.slice(0, 3).map((post) => (
-                                        <SectionArticle key={post.slug.current} post={post} size="small" />
-                                    ))}
-                                </div>
-                            </section>
-                        )}
-
-                        {/* Bottom Featured Article */}
-                        {olderPosts.length > 6 && (
-                            <article className="bottom-featured">
+                    {/* Only show featured/sidebar if we have posts */}
+                    {featuredPost && (
+                        <div className="posts-layout">
+                            {/* Featured Article */}
+                            <article className="featured-article">
                                 <img 
-                                    src={olderPosts[6].mainImage.asset.url} 
-                                    alt={olderPosts[6].title} 
-                                    className="bottom-featured-image"
+                                    src={featuredPost.mainImage.asset.url} 
+                                    alt={featuredPost.title} 
+                                    className="featured-image"
                                 />
-                                <div className="bottom-featured-content">
-                                    <div className="bottom-featured-category">{team.name} News</div>
-                                    <h2 className="bottom-featured-title">{olderPosts[6].title}</h2>
-                                    <div className="bottom-featured-meta">
-                                        {olderPosts[6].author?.name || 'Staff'} | {formatDate(olderPosts[6].publishedAt) || 'Recent'}
+                                <div className="featured-overlay">
+                                    <div className="featured-category">{team.city} {team.name} News</div>
+                                    <h2 className="featured-title">{featuredPost.title}</h2>
+                                    <div className="featured-meta">
+                                        {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
                                     </div>
                                     <button className="read-more-btn">
-                                        <Link to={`/${olderPosts[6].slug.current}`} className="read-more-link">
+                                        <Link to={`/${featuredPost.slug.current}`} className="read-more-link">
                                             Read Full Article
                                         </Link>
                                     </button>
                                 </div>
                             </article>
-                        )}
+
+                            {/* Sidebar Articles */}
+                            {sidebarPosts.length > 0 && (
+                                <aside className="sidebar-articles">
+                                    <h3 className="sidebar-title">More {team.name} Stories</h3>
+                                    {sidebarPosts.map((post) => (
+                                        <article key={post.slug.current} className="sidebar-article">
+                                            <div className="sidebar-category">{team.city} {team.name} News</div>
+                                            <h4 className="sidebar-article-title">
+                                                <Link to={`/${post.slug.current}`}>
+                                                    {post.title}
+                                                </Link>
+                                            </h4>
+                                            <div className="sidebar-meta">
+                                                {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                                            </div>
+                                        </article>
+                                    ))}
+                                </aside>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Category Sections */}
+                    <div className="content-sections">
+                        {categories.map(category => renderCategorySection(category))}
                     </div>
 
                     {/* Back to All Teams Link */}

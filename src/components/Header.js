@@ -31,6 +31,32 @@ export default function Header () {
         fetchTeams()
     }, [])
 
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('.teams-dropdown-container')) {
+                setShowTeamsDropdown(false)
+            }
+        }
+
+        if (showTeamsDropdown) {
+            document.addEventListener('click', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [showTeamsDropdown])
+
+    const toggleDropdown = (e) => {
+        e.stopPropagation()
+        setShowTeamsDropdown(!showTeamsDropdown)
+    }
+
+    const closeDropdown = () => {
+        setShowTeamsDropdown(false)
+    }
+
     return (
         <>
         <header>
@@ -42,21 +68,23 @@ export default function Header () {
             </div>
             <nav>
                 <ul>
-                    {/* <li>
-                        <button><Link to="/">Home</Link></button>
-                    </li> */}
                     <li 
                         className="teams-dropdown-container"
-                        onMouseEnter={() => setShowTeamsDropdown(true)}
-                        onMouseLeave={() => setShowTeamsDropdown(false)}
                     >
-                        <button className="teams-button">
+                        <button 
+                            className="teams-button"
+                            onClick={toggleDropdown}
+                            onMouseEnter={() => setShowTeamsDropdown(true)}
+                        >
                             Teams ▼
                         </button>
                         {showTeamsDropdown && !loading && (
-                            <div className="teams-dropdown">
+                            <div 
+                                className="teams-dropdown"
+                                onMouseLeave={() => setShowTeamsDropdown(false)}
+                            >
                                 <div className="dropdown-header">
-                                    <Link to="/" onClick={() => setShowTeamsDropdown(false)}>
+                                    <Link to="/" onClick={closeDropdown}>
                                         All Teams
                                     </Link>
                                 </div>
@@ -66,7 +94,7 @@ export default function Header () {
                                             key={team.slug.current}
                                             to={`/teams/${team.slug.current}`}
                                             className="team-link"
-                                            onClick={() => setShowTeamsDropdown(false)}
+                                            onClick={closeDropdown}
                                         >
                                             <span className="team-abbreviation">
                                                 {team.abbreviation}
@@ -80,9 +108,6 @@ export default function Header () {
                             </div>
                         )}
                     </li>
-                    {/* <li>
-                        <button><Link to="/">Blog</Link></button>
-                    </li> */}
                 </ul>
             </nav>
         </header>

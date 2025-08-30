@@ -146,17 +146,32 @@ nav button.active a {
 
 .teams-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
+  top: calc(100% + 5px); /* Reduced gap from 10px to 5px */
+  right: 0; /* Changed from left: 0 to right: 0 */
   background: white;
   border: 2px solid #4ecdc4;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(78, 205, 196, 0.2);
-  min-width: 450px;
+  min-width: 550px;
   max-height: 400px;
   overflow-y: auto;
-  z-index: 1000;
+  overflow-x: hidden; /* Remove horizontal scroll */
+  z-index: 1001; /* Increased z-index */
   animation: dropdownSlideIn 0.3s ease-out;
+  /* Add padding-top to create seamless hover area */
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Add invisible bridge to prevent gap issues */
+.teams-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: transparent;
 }
 
 @keyframes dropdownSlideIn {
@@ -197,6 +212,8 @@ nav button.active a {
   gap: 0;
   max-height: 320px;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100%; /* Ensure it fits container */
 }
 
 .team-link {
@@ -208,6 +225,8 @@ nav button.active a {
   border-bottom: 1px solid #f0f8ff;
   transition: all 0.3s ease;
   position: relative;
+  min-width: 0; /* Allow flex items to shrink */
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .team-link:hover {
@@ -238,6 +257,10 @@ nav button.active a {
   font-size: 0.9rem;
   font-weight: 500;
   transition: color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ... if text is too long */
+  flex: 1; /* Take remaining space */
 }
 
 .team-link:hover .team-name {
@@ -292,8 +315,8 @@ nav button.active a {
   }
 
   .teams-dropdown {
-    min-width: 350px;
-    left: -100px;
+    min-width: 450px;
+    right: -50px; /* Adjusted for mobile */
   }
 
   .teams-grid {
@@ -318,6 +341,16 @@ nav button.active a {
 
   .teams-dropdown {
     min-width: 300px;
-    left: -150px;
+    right: -100px; /* Adjusted for small mobile */
+    left: auto;
+  }
+}
+
+/* Additional fix for very small screens */
+@media (max-width: 400px) {
+  .teams-dropdown {
+    min-width: 280px;
+    right: -120px;
+    max-width: calc(100vw - 40px);
   }
 }

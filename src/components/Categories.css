@@ -1,0 +1,276 @@
+/* Categories.css */
+
+.categories-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.team-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.team-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.categories-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.category-section {
+  width: 100%;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid currentColor;
+  padding-bottom: 0.5rem;
+}
+
+.category-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.see-more-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  border: 2px solid currentColor;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.see-more-link:hover {
+  background-color: currentColor;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  min-height: 400px;
+}
+
+.article-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.article-card.large {
+  grid-column: 1;
+}
+
+.sidebar-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  grid-column: 2;
+}
+
+.article-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.article-card.small .article-image {
+  height: 120px;
+}
+
+.article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-image img {
+  transform: scale(1.05);
+}
+
+.category-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(78, 205, 196, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+}
+
+.article-content {
+  padding: 1.5rem;
+}
+
+.article-card.small .article-content {
+  padding: 1rem;
+}
+
+.article-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card.small .article-title {
+  font-size: 1.1rem;
+  -webkit-line-clamp: 2;
+  margin-bottom: 0.75rem;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.article-author {
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+.article-date {
+  font-weight: 400;
+}
+
+/* Single article layout */
+.articles-grid.single-article {
+  grid-template-columns: 1fr;
+  max-width: 600px;
+}
+
+.articles-grid.single-article .article-card {
+  grid-column: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sidebar-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .category-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-container {
+    padding: 1rem;
+  }
+
+  .team-title {
+    font-size: 2.5rem;
+  }
+
+  .category-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .category-title {
+    font-size: 1.8rem;
+  }
+
+  .see-more-link {
+    align-self: flex-end;
+  }
+
+  .sidebar-articles {
+    grid-template-columns: 1fr;
+  }
+
+  .article-image {
+    height: 200px;
+  }
+
+  .article-card.small .article-image {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .team-title {
+    font-size: 2rem;
+  }
+
+  .category-title {
+    font-size: 1.5rem;
+  }
+
+  .article-title {
+    font-size: 1.2rem;
+  }
+
+  .article-card.small .article-title {
+    font-size: 1rem;
+  }
+
+  .article-content {
+    padding: 1rem;
+  }
+
+  .article-card.small .article-content {
+    padding: 0.75rem;
+  }
+}
