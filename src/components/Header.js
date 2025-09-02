@@ -9,6 +9,15 @@ export default function Header () {
     const [showTeamsDropdown, setShowTeamsDropdown] = useState(false)
     const [loading, setLoading] = useState(true)
 
+     // Categories data
+     const categories = [
+        { key: 'trades', label: 'Trades', color: '#e74c3c' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#3498db' },
+        { key: 'draft', label: 'Draft', color: '#9b59b6' },
+        { key: 'news', label: 'News', color: '#2ecc71' },
+        { key: 'rumors', label: 'Rumors', color: '#f39c12' }
+    ]
+
     useEffect(() => {
         const fetchTeams = async () => {
             try {
@@ -68,6 +77,18 @@ export default function Header () {
             </div>
             <nav>
                 <ul>
+                     {/* Category Links */}
+                     {categories.map((category) => (
+                        <li key={category.key}>
+                            <Link 
+                                to={`/${category.key}`} 
+                                className={`category-link category-${category.key}`}
+                                data-category={category.key}
+                            >
+                                {category.label}
+                            </Link>
+                        </li>
+                    ))}
                     <li 
                         className="teams-dropdown-container"
                     >
