@@ -93,11 +93,27 @@ export default function Blog() {
         return categorized
     }
 
+    const getCategoryLabel = (post) => {
+        const category = categorizePost(post)
+        const categoryLabels = {
+            trades: 'Trades',
+            freeAgency: 'Free Agency', 
+            draft: 'Draft',
+            rumors: 'Rumors',
+            news: 'News'
+        }
+        
+        const categoryName = categoryLabels[category] || 'News'
+        const teamName = post.team?.name ? `${post.team.city} ${post.team.name}` : 'Hoops Wave'
+        
+        return `${teamName} ${categoryName}`
+    }
+
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading posts: {error}</div>
    
     const featuredPost = posts[0]
-    const sidebarPosts = posts.slice(1, 4)
+    const sidebarPosts = posts.slice(1, 5)
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
@@ -119,7 +135,7 @@ export default function Blog() {
             )}
             <div className="section-content">
                 <div className="section-category">
-                    {post.team?.name ? `${post.team.city} ${post.team.name} News` : 'Hoops Wave News'}
+                    {getCategoryLabel(post)}
                 </div>
                 <Link 
                     to={`/${post.slug.current}`} 
@@ -172,13 +188,6 @@ export default function Blog() {
 
     return (
         <div className="blog-container">
-            <div className="blog-header">
-                <h1 className="blog-title">Hoops Wave News</h1>
-                <p className="blog-count">
-                    {posts.length} {posts.length === 1 ? 'Article' : 'Articles'}
-                </p>
-            </div>
-            
             {posts.length === 0 && (
                 <p className="no-posts">No posts found. Check back soon for fresh basketball content!</p>
             )}
@@ -187,27 +196,24 @@ export default function Blog() {
                 <>
                     <div className="posts-layout">
                         {/* Featured Article */}
-                        <article className="featured-article">
-                            <img 
-                                src={featuredPost.mainImage.asset.url} 
-                                alt={featuredPost.title} 
-                                className="featured-image"
-                            />
-                            <div className="featured-overlay">
-                                <div className="featured-category">
-                                    {featuredPost.team?.name ? `${featuredPost.team.city} ${featuredPost.team.name} News` : 'Hoops Wave News'}
+                        <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
+                            <article className="featured-article">
+                                <img 
+                                    src={featuredPost.mainImage.asset.url} 
+                                    alt={featuredPost.title} 
+                                    className="featured-image"
+                                />
+                                <div className="featured-overlay">
+                                    <div className="featured-category">
+                                        {getCategoryLabel(featuredPost)}
+                                    </div>
+                                    <h2 className="featured-title">{featuredPost.title}</h2>
+                                    <div className="featured-meta">
+                                        {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
+                                    </div>
                                 </div>
-                                <h2 className="featured-title">{featuredPost.title}</h2>
-                                <div className="featured-meta">
-                                    {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
-                                </div>
-                                <button className="read-more-btn">
-                                    <Link to={`/${featuredPost.slug.current}`} className="read-more-link">
-                                        Read Full Article
-                                    </Link>
-                                </button>
-                            </div>
-                        </article>
+                            </article>
+                        </Link>
 
                         {/* Sidebar Articles */}
                         <aside className="sidebar-articles">
@@ -215,7 +221,7 @@ export default function Blog() {
                             {sidebarPosts.map((post) => (
                                 <article key={post.slug.current} className="sidebar-article">
                                     <div className="sidebar-category">
-                                        {post.team?.name ? `${post.team.city} ${post.team.name} News` : 'Hoops Wave News'}
+                                        {getCategoryLabel(post)}
                                     </div>
                                     <h4 className="sidebar-article-title">
                                         <Link to={`/${post.slug.current}`}>

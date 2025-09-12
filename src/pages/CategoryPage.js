@@ -37,11 +37,11 @@ export default function CategoryPage() {
 
     // Map for colors
     const categoryColors = {
-        'trades': '#e74c3c',
-        'freeAgency': '#3498db',
-        'draft': '#9b59b6',
-        'news': '#2ecc71',
-        'rumors': '#f39c12'
+        'trades': '#4ecdc4',
+        'freeAgency': '#4ecdc4',
+        'draft': '#4ecdc4',
+        'news': '#4ecdc4',
+        'rumors': '#4ecdc4'
     }
 
     // Function to categorize posts (same logic as Blog.js)
