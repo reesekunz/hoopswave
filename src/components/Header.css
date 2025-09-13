@@ -7,13 +7,13 @@ header {
   padding: 0 2rem;
   background-color: #2d2d2d;
   background-color: #ffffff;
-
   position: sticky;
   top: 0;
   z-index: 100;
   height: 75px;
   min-height: 75px;
-  border-bottom: 1px solid #404040;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* Left section with hamburger and logo */
@@ -21,7 +21,7 @@ header {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  /* gap: 1rem; */
+  width: 250px; /* Fixed width to balance the header */
 }
 
 .logo a {
@@ -29,7 +29,6 @@ header {
   color: inherit;
   display: flex;
   align-items: center;
-  /* gap: 0.5rem; */
 }
 
 /* Hamburger menu icon */
@@ -55,7 +54,7 @@ header {
   color: #ffffff;
   color: #4ecdc4;
   letter-spacing: -0.5px;
-  /* text-transform: uppercase; */
+  white-space: nowrap;
 }
 
 .logo-image {
@@ -70,11 +69,15 @@ header {
   opacity: 0.8;
 }
 
-/* Center navigation */
+/* Center navigation - Perfect centering */
 nav {
   flex: 1;
   display: flex;
   justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
 }
 
 nav ul {
@@ -84,6 +87,7 @@ nav ul {
   padding: 0;
   gap: 0;
   align-items: center;
+  white-space: nowrap;
 }
 
 nav li {
@@ -161,7 +165,8 @@ nav li {
 .teams-dropdown {
   position: absolute;
   top: calc(100%);
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background: #2d2d2d;
   border: 1px solid #404040;
   border-radius: 4px;
@@ -265,6 +270,14 @@ nav li {
 }
 
 /* Right section with social icons */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 250px; /* Fixed width to balance the header */
+  justify-content: flex-end;
+}
+
 .social-icons {
   display: flex;
   align-items: center;
@@ -287,12 +300,6 @@ nav li {
 }
 
 /* Search and more menu icons */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 .more-menu {
   color: #cccccc;
   color: black;
@@ -312,7 +319,6 @@ nav li {
   color: #cccccc;
   color: black;
   color: #4ecdc4;
-
   font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -346,6 +352,20 @@ nav li {
 @media (max-width: 768px) {
   header {
     padding: 0 1rem;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .header-actions {
+    width: auto;
+  }
+
+  nav {
+    position: static;
+    transform: none;
+    left: auto;
   }
 
   .logo h2 {

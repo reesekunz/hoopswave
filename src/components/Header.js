@@ -70,11 +70,13 @@ export default function Header() {
         <header>
             {/* Left section with logo as menu */}
             <div className='logo'>
-                <img src={HoopsWave} alt="Hoops Wave" className="logo-image" onClick={() => {/* Add menu toggle logic here */}} />
-                <Link to="/">
-                    <h2>hoops wave</h2>
-                </Link>
-            </div>
+    <Link to="/">
+        <img src={HoopsWave} alt="Hoops Wave" className="logo-image" />
+    </Link>
+    <Link to="/">
+        <h2>hoops wave</h2>
+    </Link>
+</div>
 
             {/* Center navigation */}
             <nav>
