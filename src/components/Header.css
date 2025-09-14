@@ -175,18 +175,14 @@ nav li {
   max-height: 400px;
   overflow: hidden;
   z-index: 1001;
-  animation: dropdownFadeIn 0.2s ease-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
 }
 
-@keyframes dropdownFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.teams-dropdown-container:hover .teams-dropdown {
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-header {
@@ -384,7 +380,11 @@ nav li {
 
   .teams-dropdown {
     min-width: 400px;
-    right: -20px;
+    /* Removed conflicting right positioning */
+    /* Use viewport-aware positioning for mobile */
+    left: auto;
+    right: 0;
+    transform: none;
   }
 
   .teams-grid {
@@ -413,8 +413,11 @@ nav li {
 
   .teams-dropdown {
     min-width: 300px;
-    right: -50px;
     max-width: calc(100vw - 20px);
+    /* Keep consistent positioning */
+    right: 0;
+    left: auto;
+    transform: none;
   }
 
   .social-icons {

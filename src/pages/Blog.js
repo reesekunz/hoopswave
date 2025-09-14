@@ -217,7 +217,7 @@ export default function Blog() {
 
                         {/* Sidebar Articles */}
                         <aside className="sidebar-articles">
-                            <h3 className="sidebar-title">More Stories</h3>
+                            <h3 className="sidebar-title">Top Stories</h3>
                             {sidebarPosts.map((post) => (
                                 <article key={post.slug.current} className="sidebar-article">
                                     <div className="sidebar-category">
