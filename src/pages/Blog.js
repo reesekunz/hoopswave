@@ -109,6 +109,7 @@ export default function Blog() {
         return `${teamName} ${categoryName}`
     }
 
+
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading posts: {error}</div>
    
@@ -117,51 +118,55 @@ export default function Blog() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'trades', label: 'Trades', color: '#e74c3c' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#3498db' },
-        { key: 'draft', label: 'Draft', color: '#9b59b6' },
-        { key: 'news', label: 'News', color: '#2ecc71' },
-        { key: 'rumors', label: 'Rumors', color: '#f39c12' }
+        { key: 'trades', label: 'Trades', color: '#4ecdc4' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#4ecdc4' },
+        { key: 'draft', label: 'Draft', color: '#4ecdc4' },
+        { key: 'news', label: 'News', color: '#4ecdc4' },
+        { key: 'rumors', label: 'Rumors', color: '#4ecdc4' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
-        <article className={`section-article ${size}`}>
-            {post.mainImage && (
-                <img 
-                    src={post.mainImage.asset.url} 
-                    alt={post.title} 
-                    className="section-image"
-                />
-            )}
-            <div className="section-content">
-                <div className="section-category">
-                    {getCategoryLabel(post)}
+        <Link
+            to={`/${post.slug.current}`}
+            className={`section-article-link ${size}`}
+        >
+            <article className={`section-article ${size}`}>
+                {/* Only show images for large articles, not small ones */}
+                {size === 'large' && post.mainImage && (
+                    <img
+                        src={post.mainImage.asset.url}
+                        alt={post.title}
+                        className="section-image"
+                    />
+                )}
+                <div className="section-content">
+                    <div className="section-category">
+                        {getCategoryLabel(post)}
+                    </div>
+                    <h4 className={`section-title ${isRed ? 'red' : ''}`}>
+                        {post.title}
+                    </h4>
+                    <div className="section-meta">
+                        {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                    </div>
                 </div>
-                <Link 
-                    to={`/${post.slug.current}`} 
-                    className={`section-title-link ${isRed ? 'red' : ''}`}
-                >
-                    {post.title}
-                </Link>
-                <div className="section-meta">
-                    {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
-                </div>
-            </div>
-        </article>
+            </article>
+        </Link>
     )
 
     const renderCategorySection = (category) => {
         const categoryPosts = categorizedPosts[category.key]
         if (!categoryPosts || categoryPosts.length === 0) return null
 
+        // Standard rendering for all categories including trades
         return (
             <section key={category.key} className="content-section">
                 <div className="section-header">
                     <h2 className="section-title" style={{ color: category.color }}>
                         {category.label}
                     </h2>
-                    <Link 
-                        to={`/${category.key}`} 
+                    <Link
+                        to={`/${category.key}`}
                         className="see-more"
                         style={{ color: category.color }}
                     >
@@ -198,9 +203,9 @@ export default function Blog() {
                         {/* Featured Article */}
                         <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
                             <article className="featured-article">
-                                <img 
-                                    src={featuredPost.mainImage.asset.url} 
-                                    alt={featuredPost.title} 
+                                <img
+                                    src={featuredPost.mainImage.asset.url}
+                                    alt={featuredPost.title}
                                     className="featured-image"
                                 />
                                 <div className="featured-overlay">
@@ -219,19 +224,19 @@ export default function Blog() {
                         <aside className="sidebar-articles">
                             <h3 className="sidebar-title">Top Stories</h3>
                             {sidebarPosts.map((post) => (
-                                <article key={post.slug.current} className="sidebar-article">
-                                    <div className="sidebar-category">
-                                        {getCategoryLabel(post)}
-                                    </div>
-                                    <h4 className="sidebar-article-title">
-                                        <Link to={`/${post.slug.current}`}>
+                                <Link key={post.slug.current} to={`/${post.slug.current}`} className="sidebar-article-link">
+                                    <article className="sidebar-article">
+                                        <div className="sidebar-category">
+                                            {getCategoryLabel(post)}
+                                        </div>
+                                        <h4 className="sidebar-article-title">
                                             {post.title}
-                                        </Link>
-                                    </h4>
-                                    <div className="sidebar-meta">
-                                        {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
-                                    </div>
-                                </article>
+                                        </h4>
+                                        <div className="sidebar-meta">
+                                            {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                                        </div>
+                                    </article>
+                                </Link>
                             ))}
                         </aside>
                     </div>
