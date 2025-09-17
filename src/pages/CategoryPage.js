@@ -37,11 +37,11 @@ export default function CategoryPage() {
 
     // Map for colors
     const categoryColors = {
-        'trades': '#4ecdc4',
-        'freeAgency': '#4ecdc4',
-        'draft': '#4ecdc4',
-        'news': '#4ecdc4',
-        'rumors': '#4ecdc4'
+        'trades': '#2c8aa6',
+        'freeAgency': '#2c8aa6',
+        'draft': '#2c8aa6',
+        'news': '#2c8aa6',
+        'rumors': '#2c8aa6'
     }
 
     // Function to categorize posts (same logic as Blog.js)
@@ -163,7 +163,7 @@ export default function CategoryPage() {
     
     // Get teams that actually have posts in this category
     const teamsWithPosts = teams.filter(team => {
-        return posts.some(post => post.team?.slug?.current === team.slug.current)
+        return posts.some(post => post.team?.slug?.current === team.slug?.current)
     })
 
     return (
@@ -179,9 +179,9 @@ export default function CategoryPage() {
                     {filteredPosts.length} {filteredPosts.length === 1 ? 'Article' : 'Articles'}
                     {selectedTeam !== 'all' && (
                         <span className="filter-indicator">
-                            {selectedTeam === 'no-team' 
+                            {selectedTeam === 'no-team'
                                 ? ' with no team assigned'
-                                : ` for ${teams.find(t => t.slug.current === selectedTeam)?.city} ${teams.find(t => t.slug.current === selectedTeam)?.name}`
+                                : ` for ${teams.find(t => t.slug?.current === selectedTeam)?.city} ${teams.find(t => t.slug?.current === selectedTeam)?.name}`
                             }
                         </span>
                     )}
@@ -200,9 +200,10 @@ export default function CategoryPage() {
                     >
                         <option value="all">All Teams ({posts.length})</option>
                         {teamsWithPosts.map(team => {
-                            const teamPostCount = posts.filter(post => post.team?.slug?.current === team.slug.current).length
+                            const teamPostCount = posts.filter(post => post.team?.slug?.current === team.slug?.current).length
+                            const teamSlug = team.slug?.current || team._id || team.name?.toLowerCase().replace(/\s+/g, '-')
                             return (
-                                <option key={team.slug.current} value={team.slug.current}>
+                                <option key={teamSlug} value={teamSlug}>
                                     {team.city} {team.name} ({teamPostCount})
                                 </option>
                             )
@@ -228,7 +229,7 @@ export default function CategoryPage() {
                         </>
                     ) : (
                         <>
-                            <p>No {displayTitle.toLowerCase()} articles found for {teams.find(t => t.slug.current === selectedTeam)?.city} {teams.find(t => t.slug.current === selectedTeam)?.name}.</p>
+                            <p>No {displayTitle.toLowerCase()} articles found for {teams.find(t => t.slug?.current === selectedTeam)?.city} {teams.find(t => t.slug?.current === selectedTeam)?.name}.</p>
                             <p>Try selecting a different team or check back later!</p>
                         </>
                     )}

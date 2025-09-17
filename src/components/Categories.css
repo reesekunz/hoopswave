@@ -15,7 +15,7 @@
   font-size: 3rem;
   font-weight: 700;
   color: #2c3e50;
-  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  background: linear-gradient(135deg, #2c8aa6 0%, #44a08d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -174,7 +174,7 @@
 
 .article-author {
   font-weight: 600;
-  color: #4ecdc4;
+  color: #2c8aa6;
 }
 
 .article-date {

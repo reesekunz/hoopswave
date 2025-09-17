@@ -132,19 +132,19 @@ export default function TeamPage() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'trades', label: 'Trades', color: '#e74c3c' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#3498db' },
-        { key: 'draft', label: 'Draft', color: '#9b59b6' },
-        { key: 'news', label: 'News', color: '#2ecc71' },
-        { key: 'rumors', label: 'Rumors', color: '#f39c12' }
+        { key: 'trades', label: 'Trades', color: '#2c8aa6' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' },
+        { key: 'draft', label: 'Draft', color: '#2c8aa6' },
+        { key: 'news', label: 'News', color: '#2c8aa6' },
+        { key: 'rumors', label: 'Rumors', color: '#2c8aa6' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
         <article className={`section-article ${size}`}>
-            {post.mainImage && (
-                <img 
-                    src={post.mainImage.asset.url} 
-                    alt={post.title} 
+            {post.mainImage && post.mainImage.asset && (
+                <img
+                    src={post.mainImage.asset.url}
+                    alt={post.title}
                     className="section-image"
                 />
             )}
@@ -204,10 +204,10 @@ export default function TeamPage() {
             {/* Team Header */}
             <div className="blog-header">
                 <div className="team-header">
-                    {team.logo && (
-                        <img 
-                            src={team.logo.asset.url} 
-                            alt={`${team.name} logo`} 
+                    {team.logo && team.logo.asset && (
+                        <img
+                            src={team.logo.asset.url}
+                            alt={`${team.name} logo`}
                             className="team-logo"
                             style={{ width: '60px', height: '60px', marginRight: '15px' }}
                         />
@@ -244,11 +244,13 @@ export default function TeamPage() {
                         <div className="posts-layout">
                             {/* Featured Article */}
                             <article className="featured-article">
-                                <img 
-                                    src={featuredPost.mainImage.asset.url} 
-                                    alt={featuredPost.title} 
-                                    className="featured-image"
-                                />
+                                {featuredPost.mainImage && featuredPost.mainImage.asset && (
+                                    <img
+                                        src={featuredPost.mainImage.asset.url}
+                                        alt={featuredPost.title}
+                                        className="featured-image"
+                                    />
+                                )}
                                 <div className="featured-overlay">
                                     <div className="featured-category">{team.city} {team.name} News</div>
                                     <h2 className="featured-title">{featuredPost.title}</h2>

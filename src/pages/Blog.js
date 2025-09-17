@@ -119,11 +119,11 @@ export default function Blog() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'news', label: 'News', color: '#4ecdc4' },
-        { key: 'rumors', label: 'Rumors', color: '#4ecdc4' },
-        { key: 'trades', label: 'Trades', color: '#4ecdc4' },
-        { key: 'draft', label: 'Draft', color: '#4ecdc4' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#4ecdc4' }
+        { key: 'news', label: 'News', color: '#2c8aa6' },
+        { key: 'rumors', label: 'Rumors', color: '#2c8aa6' },
+        { key: 'trades', label: 'Trades', color: '#2c8aa6' },
+        { key: 'draft', label: 'Draft', color: '#2c8aa6' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (

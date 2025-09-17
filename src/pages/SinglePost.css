@@ -35,7 +35,7 @@
 }
 
 .single-post-category {
-  background: #4ecdc4;
+  background: #2c8aa6;
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 4px;
@@ -120,7 +120,7 @@
 
 .single-post-content em {
   font-style: italic;
-  color: #4ecdc4;
+  color: #2c8aa6;
 }
 
 .single-post-content ul,
@@ -134,7 +134,7 @@
 }
 
 .single-post-content blockquote {
-  border-left: 4px solid #4ecdc4;
+  border-left: 4px solid #2c8aa6;
   margin: 2rem 0;
   padding: 1rem 2rem;
   background: #f8fdfc;
@@ -174,7 +174,7 @@
 }
 
 .back-to-blog-btn {
-  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  background: linear-gradient(135deg, #2c8aa6 0%, #44a08d 100%);
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -231,12 +231,12 @@
 
 .error-container h1 {
   font-size: 2rem;
-  color: #e74c3c;
+  color: #2c8aa6;
   margin: 0 0 1rem 0;
 }
 
 .error-link {
-  color: #4ecdc4;
+  color: #2c8aa6;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
