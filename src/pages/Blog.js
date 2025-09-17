@@ -114,15 +114,16 @@ export default function Blog() {
     if (error) return <div className="error">Error loading posts: {error}</div>
    
     const featuredPost = posts[0]
-    const sidebarPosts = posts.slice(1, 5)
+    const trendingPosts = posts.slice(1, 5) // Posts 2-5 for right sidebar (Top Stories)
+    const latestPosts = posts.slice(5, 10) // Posts 6-10 for left sidebar
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'trades', label: 'Trades', color: '#4ecdc4' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#4ecdc4' },
-        { key: 'draft', label: 'Draft', color: '#4ecdc4' },
         { key: 'news', label: 'News', color: '#4ecdc4' },
-        { key: 'rumors', label: 'Rumors', color: '#4ecdc4' }
+        { key: 'rumors', label: 'Rumors', color: '#4ecdc4' },
+        { key: 'trades', label: 'Trades', color: '#4ecdc4' },
+        { key: 'draft', label: 'Draft', color: '#4ecdc4' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#4ecdc4' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
@@ -131,8 +132,8 @@ export default function Blog() {
             className={`section-article-link ${size}`}
         >
             <article className={`section-article ${size}`}>
-                {/* Only show images for large articles, not small ones */}
-                {size === 'large' && post.mainImage && (
+                {/* Show images for large and medium articles */}
+                {(size === 'large' || size === 'medium') && post.mainImage && (
                     <img
                         src={post.mainImage.asset.url}
                         alt={post.title}
@@ -154,11 +155,23 @@ export default function Blog() {
         </Link>
     )
 
+    const getLayoutType = (categoryKey) => {
+        const layoutMap = {
+            'news': 'image-focus',      // Layout A: Large image + 3 text
+            'trades': 'image-focus',    // Layout A: Large image + 3 text
+            'rumors': 'text-focus',     // Layout B: 4 text articles in grid
+            'draft': 'text-focus',      // Layout B: 4 text articles in grid
+            'freeAgency': 'mixed'       // Layout C: 2 with images, 2 text
+        }
+        return layoutMap[categoryKey] || 'image-focus'
+    }
+
     const renderCategorySection = (category) => {
         const categoryPosts = categorizedPosts[category.key]
         if (!categoryPosts || categoryPosts.length === 0) return null
 
-        // Standard rendering for all categories including trades
+        const layoutType = getLayoutType(category.key)
+
         return (
             <section key={category.key} className="content-section">
                 <div className="section-header">
@@ -173,20 +186,49 @@ export default function Blog() {
                         See more
                     </Link>
                 </div>
-                <div className={`section-grid ${categoryPosts.length === 1 ? 'single-article' : 'mixed-layout'}`}>
-                    {categoryPosts.length === 1 ? (
-                        <SectionArticle post={categoryPosts[0]} size="large" />
-                    ) : (
-                        <>
+
+                {/* Layout A: Image Focus (News, Trades) */}
+                {layoutType === 'image-focus' && (
+                    <div className="section-grid layout-image-focus">
+                        {categoryPosts.length === 1 ? (
                             <SectionArticle post={categoryPosts[0]} size="large" />
-                            <div className="sidebar-section-articles">
-                                {categoryPosts.slice(1, 4).map((post) => (
-                                    <SectionArticle key={post.slug.current} post={post} size="small" />
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </div>
+                        ) : (
+                            <>
+                                <SectionArticle post={categoryPosts[0]} size="large" />
+                                <div className="sidebar-section-articles">
+                                    {categoryPosts.slice(1, 4).map((post) => (
+                                        <SectionArticle key={post.slug.current} post={post} size="small" />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                )}
+
+                {/* Layout B: Text Focus (Rumors, Draft) */}
+                {layoutType === 'text-focus' && (
+                    <div className="section-grid layout-text-focus">
+                        {categoryPosts.slice(0, 4).map((post) => (
+                            <SectionArticle key={post.slug.current} post={post} size="text-only" />
+                        ))}
+                    </div>
+                )}
+
+                {/* Layout C: Mixed (Free Agency) */}
+                {layoutType === 'mixed' && (
+                    <div className="section-grid layout-mixed">
+                        <div className="mixed-top-row">
+                            {categoryPosts.slice(0, 2).map((post) => (
+                                <SectionArticle key={post.slug.current} post={post} size="medium" />
+                            ))}
+                        </div>
+                        <div className="mixed-bottom-row">
+                            {categoryPosts.slice(2, 4).map((post) => (
+                                <SectionArticle key={post.slug.current} post={post} size="text-only" />
+                            ))}
+                        </div>
+                    </div>
+                )}
             </section>
         )
     }
@@ -199,41 +241,78 @@ export default function Blog() {
             
             {posts.length > 0 && (
                 <>
-                    <div className="posts-layout">
-                        {/* Featured Article */}
-                        <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
-                            <article className="featured-article">
-                                <img
-                                    src={featuredPost.mainImage.asset.url}
-                                    alt={featuredPost.title}
-                                    className="featured-image"
-                                />
-                                <div className="featured-overlay">
-                                    <div className="featured-category">
-                                        {getCategoryLabel(featuredPost)}
-                                    </div>
-                                    <h2 className="featured-title">{featuredPost.title}</h2>
-                                    <div className="featured-meta">
-                                        {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
-                                    </div>
-                                </div>
-                            </article>
-                        </Link>
-
-                        {/* Sidebar Articles */}
-                        <aside className="sidebar-articles">
-                            <h3 className="sidebar-title">Top Stories</h3>
-                            {sidebarPosts.map((post) => (
-                                <Link key={post.slug.current} to={`/${post.slug.current}`} className="sidebar-article-link">
-                                    <article className="sidebar-article">
-                                        <div className="sidebar-category">
+                    <div className="three-column-layout">
+                        {/* Left Sidebar - Latest Articles */}
+                        <aside className="left-sidebar">
+                            {latestPosts.map((post, index) => (
+                                <Link key={post.slug.current} to={`/${post.slug.current}`} className="left-sidebar-link">
+                                    <article className="left-sidebar-article">
+                                        <div className="left-sidebar-category">
                                             {getCategoryLabel(post)}
                                         </div>
-                                        <h4 className="sidebar-article-title">
+                                        <h4 className="left-sidebar-title">
                                             {post.title}
                                         </h4>
-                                        <div className="sidebar-meta">
-                                            {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                                        <div className="left-sidebar-meta">
+                                            <span className="left-sidebar-author">{post.author?.name || 'Staff'}</span>
+                                            <span className="left-sidebar-timestamp">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                        </div>
+                                    </article>
+                                </Link>
+                            ))}
+                        </aside>
+
+                        {/* Center Featured Article */}
+                        <main className="center-featured">
+                            <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
+                                <article className="featured-article">
+                                    <div className="featured-image-container">
+                                        <img
+                                            src={featuredPost.mainImage.asset.url}
+                                            alt={featuredPost.title}
+                                            className="featured-image"
+                                        />
+                                        <div className="photo-credit">
+                                            ({featuredPost.author?.name || 'Staff'} / Hoops Wave)
+                                        </div>
+                                    </div>
+                                    <div className="featured-content">
+                                        <div className="featured-category">
+                                            {getCategoryLabel(featuredPost)}
+                                        </div>
+                                        <h2 className="featured-title">{featuredPost.title}</h2>
+                                        <div className="featured-description">
+                                            {featuredPost.body && featuredPost.body[0]?.children?.[0]?.text ?
+                                                featuredPost.body[0].children[0].text.substring(0, 150) + '...' :
+                                                'Breaking basketball news and analysis from around the league.'
+                                            }
+                                        </div>
+                                        <div className="featured-meta">
+                                            <span className="featured-author">{featuredPost.author?.name || 'Staff'}</span>
+                                            <span className="featured-timestamp">{formatDate(featuredPost.publishedAt) || 'Recent'}</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </Link>
+                        </main>
+
+                        {/* Right Sidebar - Latest Section */}
+                        <aside className="right-sidebar">
+                            <div className="latest-header">
+                                <h3 className="latest-title">Top Stories</h3>
+                            </div>
+                            {trendingPosts.map((post) => (
+                                <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
+                                    <article className="latest-article">
+                                        <div className="latest-category">
+                                            {getCategoryLabel(post)}
+                                        </div>
+                                        <h4 className="latest-article-title">
+                                            {post.title}
+                                        </h4>
+                                        <div className="latest-meta">
+                                            <span className="latest-author">{post.author?.name || 'Staff'}</span>
+                                            <span className="latest-timestamp">{formatDate(post.publishedAt) || 'Recent'}</span>
                                         </div>
                                     </article>
                                 </Link>
