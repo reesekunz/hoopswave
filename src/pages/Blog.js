@@ -7,8 +7,16 @@ export default function Blog() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
+        // Get search query from URL parameters
+        const urlParams = new URLSearchParams(window.location.search)
+        const search = urlParams.get('search')
+        if (search) {
+            setSearchQuery(search)
+        }
+
         const fetchPosts = async () => {
             try {
                 setLoading(true)
@@ -34,7 +42,7 @@ export default function Blog() {
                         mainImage {
                             asset -> {
                                 _id,
-                                url 
+                                url
                             },
                             alt
                         }
@@ -60,6 +68,29 @@ export default function Blog() {
             day: 'numeric',
             year: 'numeric'
         })
+    }
+
+    const getTimeAgo = (dateString) => {
+        const now = new Date()
+        const postDate = new Date(dateString)
+        const diffInHours = Math.floor((now - postDate) / (1000 * 60 * 60))
+
+        if (diffInHours < 1) return 'Just now'
+        if (diffInHours < 24) return `${diffInHours}h ago`
+        if (diffInHours < 48) return 'Yesterday'
+        return formatDate(dateString)
+    }
+
+    const getNewsIndicator = (post, index) => {
+        const now = new Date()
+        const postDate = new Date(post.publishedAt)
+        const diffInHours = Math.floor((now - postDate) / (1000 * 60 * 60))
+
+        if (index === 0) return 'BREAKING'
+        if (diffInHours < 2) return 'BREAKING'
+        if (diffInHours < 6) return 'LATEST'
+        if (index < 3) return 'TRENDING'
+        return null
     }
 
     const categorizePost = (post) => {
@@ -110,14 +141,43 @@ export default function Blog() {
     }
 
 
+    // Filter posts based on search query
+    const filteredPosts = searchQuery
+        ? posts.filter(post =>
+            post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.author?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.team?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.categories?.some(cat => cat.title?.toLowerCase().includes(searchQuery.toLowerCase()))
+          )
+        : posts
+
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading posts: {error}</div>
-   
-    const featuredPost = posts[0]
-    const secondaryPost = posts[1] // Second most recent post for secondary section
-    const trendingPosts = posts.slice(2, 7) // Posts 3-7 for right sidebar
-    const latestPosts = posts.slice(8, 14) // Posts 9-14 for left sidebar
-    const categorizedPosts = getCategorizedPosts()
+
+    const featuredPost = filteredPosts[0]
+    const secondaryPost = filteredPosts[1] // Second most recent post for secondary section
+    const trendingPosts = filteredPosts.slice(2, 7) // Posts 3-7 for right sidebar
+    const latestPosts = filteredPosts.slice(8, 14) // Posts 9-14 for left sidebar
+
+    // Use filtered posts for categories when searching
+    const getCategorizedFilteredPosts = () => {
+        const categorized = {
+            trades: [],
+            freeAgency: [],
+            draft: [],
+            news: [],
+            rumors: []
+        }
+
+        filteredPosts.forEach(post => {
+            const category = categorizePost(post)
+            categorized[category].push(post)
+        })
+
+        return categorized
+    }
+
+    const categorizedPosts = searchQuery ? getCategorizedFilteredPosts() : getCategorizedPosts()
 
     const categories = [
         { key: 'news', label: 'News', color: '#2c8aa6' },
@@ -236,11 +296,28 @@ export default function Blog() {
 
     return (
         <div className="blog-container">
-            {posts.length === 0 && (
+            {searchQuery && (
+                <div className="search-results-header">
+                    <h2>Search Results for "{searchQuery}"</h2>
+                    <p>{filteredPosts.length} articles found</p>
+                    <button onClick={() => {
+                        setSearchQuery('')
+                        window.history.pushState({}, '', '/')
+                    }} className="clear-search">
+                        Clear Search
+                    </button>
+                </div>
+            )}
+
+            {filteredPosts.length === 0 && searchQuery && (
+                <p className="no-posts">No articles found for "{searchQuery}". Try different keywords.</p>
+            )}
+
+            {posts.length === 0 && !searchQuery && (
                 <p className="no-posts">No posts found. Check back soon for fresh basketball content!</p>
             )}
-            
-            {posts.length > 0 && (
+
+            {filteredPosts.length > 0 && (
                 <>
                     <div className="three-column-layout">
 
@@ -262,6 +339,11 @@ export default function Blog() {
                                         </div>
                                         <div className="featured-content">
                                             <div className="featured-top-content">
+                                                {getNewsIndicator(featuredPost, 0) && (
+                                                    <div className={`news-indicator ${getNewsIndicator(featuredPost, 0).toLowerCase()}`}>
+                                                        {getNewsIndicator(featuredPost, 0)}
+                                                    </div>
+                                                )}
                                                 <h2 className="featured-title">{featuredPost.title}</h2>
                                                 <div className="featured-description">
                                                     {featuredPost.body && featuredPost.body[0]?.children?.[0]?.text ?
@@ -317,14 +399,36 @@ export default function Blog() {
 
                         {/* Right Sidebar - Latest Section */}
                         <aside className="right-sidebar">
-                            {posts.slice(2, 8).map((post) => (
+                            {/* Newsletter Signup */}
+                            <div className="newsletter-signup">
+                                <h3 className="newsletter-title">Stay Updated</h3>
+                                <p className="newsletter-description">Get breaking NBA news delivered to your inbox</p>
+                                <div className="newsletter-form">
+                                    <input
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        className="newsletter-input"
+                                    />
+                                    <button className="newsletter-button">Subscribe</button>
+                                </div>
+                                <p className="newsletter-note">Join 15K+ subscribers</p>
+                            </div>
+                            {posts.slice(2, 8).map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
+                                        {getNewsIndicator(post, index + 2) && (
+                                            <div className={`news-indicator-small ${getNewsIndicator(post, index + 2).toLowerCase()}`}>
+                                                {getNewsIndicator(post, index + 2)}
+                                            </div>
+                                        )}
                                         <h4 className="latest-article-title">
                                             {post.title}
                                         </h4>
                                         <div className="latest-category">
                                             {getCategoryLabel(post)}
+                                        </div>
+                                        <div className="latest-timestamp">
+                                            {getTimeAgo(post.publishedAt)}
                                         </div>
                                     </article>
                                 </Link>
