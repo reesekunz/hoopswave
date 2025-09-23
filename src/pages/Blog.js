@@ -327,23 +327,8 @@ export default function Blog() {
                             <main className="center-featured">
                                 <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
                                     <article className="featured-article">
-                                        <div className="featured-image-container">
-                                            <img
-                                                src={featuredPost.mainImage.asset.url}
-                                                alt={featuredPost.title}
-                                                className="featured-image"
-                                            />
-                                            <div className="photo-credit">
-                                                ({featuredPost.author?.name || 'Staff'} / Hoops Wave)
-                                            </div>
-                                        </div>
                                         <div className="featured-content">
                                             <div className="featured-top-content">
-                                                {getNewsIndicator(featuredPost, 0) && (
-                                                    <div className={`news-indicator ${getNewsIndicator(featuredPost, 0).toLowerCase()}`}>
-                                                        {getNewsIndicator(featuredPost, 0)}
-                                                    </div>
-                                                )}
                                                 <h2 className="featured-title">{featuredPost.title}</h2>
                                                 <div className="featured-description">
                                                     {featuredPost.body && featuredPost.body[0]?.children?.[0]?.text ?
@@ -360,6 +345,16 @@ export default function Blog() {
                                                     <span className="featured-author">{featuredPost.author?.name || 'Staff'}</span>
                                                     <span className="featured-timestamp">{formatDate(featuredPost.publishedAt) || 'Recent'}</span>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className="featured-image-container">
+                                            <img
+                                                src={featuredPost.mainImage.asset.url}
+                                                alt={featuredPost.title}
+                                                className="featured-image"
+                                            />
+                                            <div className="photo-credit">
+                                                ({featuredPost.author?.name || 'Staff'} / Hoops Wave)
                                             </div>
                                         </div>
                                     </article>
@@ -399,20 +394,6 @@ export default function Blog() {
 
                         {/* Right Sidebar - Latest Section */}
                         <aside className="right-sidebar">
-                            {/* Newsletter Signup */}
-                            <div className="newsletter-signup">
-                                <h3 className="newsletter-title">Stay Updated</h3>
-                                <p className="newsletter-description">Get breaking NBA news delivered to your inbox</p>
-                                <div className="newsletter-form">
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        className="newsletter-input"
-                                    />
-                                    <button className="newsletter-button">Subscribe</button>
-                                </div>
-                                <p className="newsletter-note">Join 15K+ subscribers</p>
-                            </div>
                             {posts.slice(2, 8).map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
