@@ -9,7 +9,7 @@
 
 .team-subtitle {
   margin: 0;
-  color: #666;
+  color: var(--color-brand-dark);
   font-size: 0.9em;
 }
 
@@ -25,7 +25,7 @@
 
 .breadcrumb-separator {
   margin: 0 8px;
-  color: #666;
+  color: var(--color-brand-dark);
 }
 
 .back-to-all-container {

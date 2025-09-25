@@ -1,6 +1,6 @@
 export default {
     name: 'team',
-    title: 'NBA Team',
+    title: 'Arizona Sports Team',
     type: 'document',
     fields: [
       {
@@ -29,8 +29,15 @@ export default {
         name: 'abbreviation',
         title: 'Team Abbreviation',
         type: 'string',
-        description: 'e.g., LAL, GSW, BOS',
-        validation: Rule => Rule.required().max(3)
+        description: 'e.g., SUNS, DBACKS, CARDS',
+        validation: Rule => Rule.required().max(6)
+      },
+      {
+        name: 'league',
+        title: 'League/Sport',
+        type: 'string',
+        description: 'NBA, MLB, NFL, WNBA, College',
+        validation: Rule => Rule.required()
       },
       {
         name: 'primaryColor',

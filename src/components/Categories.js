@@ -15,11 +15,11 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
   const [loading, setLoading] = useState(true)
 
   const categories = [
-    { key: 'trades', label: 'Trades', color: '#2c8aa6' },
-    { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' },
-    { key: 'draft', label: 'Draft', color: '#2c8aa6' },
-    { key: 'news', label: 'News', color: '#2c8aa6' },
-    { key: 'rumors', label: 'Rumors', color: '#2c8aa6' }
+    { key: 'trades', label: 'Trades', color: '#8B4513' },
+    { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' },
+    { key: 'draft', label: 'Draft', color: '#8B4513' },
+    { key: 'news', label: 'News', color: '#8B4513' },
+    { key: 'rumors', label: 'Rumors', color: '#8B4513' }
   ]
 
   useEffect(() => {

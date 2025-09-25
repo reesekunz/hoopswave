@@ -1,70 +1,59 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
-import client from "../client"
 import './Header.css'
-import HoopsWave from "../images/HoopsWaveNoBg.png"
 
 export default function Header() {
-    const [teams, setTeams] = useState([])
-    const [showTeamsDropdown, setShowTeamsDropdown] = useState(false)
-    const [loading, setLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState('')
+    const [showCollegeDropdown, setShowCollegeDropdown] = useState(false)
+    const [showMoreDropdown, setShowMoreDropdown] = useState(false)
 
-    // Categories data - your existing categories
-    const categories = [
-        { key: 'trades', label: 'Trades', color: '#2c8aa6' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' },
-        { key: 'draft', label: 'Draft', color: '#2c8aa6' },
-        { key: 'news', label: 'News', color: '#2c8aa6' },
-        { key: 'rumors', label: 'Rumors', color: '#2c8aa6' }
+    // Content categories - universal across all teams
+    const contentCategories = [
+        { key: 'news', label: 'News', color: '#97233F' },
+        { key: 'rumors', label: 'Rumors', color: '#97233F' },
+        { key: 'analysis', label: 'Analysis', color: '#97233F' },
+        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' }
     ]
 
-    useEffect(() => {
-        const fetchTeams = async () => {
-            try {
-                const data = await client.fetch(
-                    `*[_type == "team"] | order(city asc) {
-                        name,
-                        slug,
-                        city,
-                        abbreviation
-                    }`
-                )
-                setTeams(data)
-            } catch (err) {
-                console.error('Error fetching teams:', err)
-            } finally {
-                setLoading(false)
-            }
-        }
+    // Arizona professional teams - all using site red
+    const proTeams = [
+        { key: 'suns', label: 'Suns', color: '#97233F' },
+        { key: 'diamondbacks', label: 'Diamondbacks', color: '#97233F' },
+        { key: 'cardinals', label: 'Cardinals', color: '#97233F' },
+        { key: 'mercury', label: 'Mercury', color: '#97233F' }
+    ]
 
-        fetchTeams()
-    }, [])
+    // Arizona college teams
+    const collegeTeams = [
+        { key: 'wildcats', label: 'Wildcats', color: '#97233F' },
+        { key: 'sundevils', label: 'Sun Devils', color: '#97233F' },
+        { key: 'lumberjacks', label: 'Lumberjacks', color: '#97233F' }
+    ]
 
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (!event.target.closest('.teams-dropdown-container')) {
-                setShowTeamsDropdown(false)
-            }
-        }
+    // More section items
+    const moreItems = [
+        { key: 'trades', label: 'Trades', color: '#97233F' },
+        { key: 'draft', label: 'Draft', color: '#97233F' },
+        { key: 'freeagency', label: 'Free Agency', color: '#97233F' }
+    ]
 
-        if (showTeamsDropdown) {
-            document.addEventListener('click', handleClickOutside)
-        }
 
-        return () => {
-            document.removeEventListener('click', handleClickOutside)
-        }
-    }, [showTeamsDropdown])
-
-    const toggleDropdown = (e) => {
+    const toggleCollegeDropdown = (e) => {
         e.stopPropagation()
-        setShowTeamsDropdown(!showTeamsDropdown)
+        setShowCollegeDropdown(!showCollegeDropdown)
     }
 
-    const closeDropdown = () => {
-        setShowTeamsDropdown(false)
+    const closeCollegeDropdown = () => {
+        setShowCollegeDropdown(false)
+    }
+
+    const toggleMoreDropdown = (e) => {
+        e.stopPropagation()
+        setShowMoreDropdown(!showMoreDropdown)
+    }
+
+    const closeMoreDropdown = () => {
+        setShowMoreDropdown(false)
     }
 
     const handleSearchSubmit = (e) => {
@@ -77,143 +66,149 @@ export default function Header() {
 
     return (
         <header className="two-row-header">
-            {/* Top utility bar */}
-            <div className="top-utility-bar">
-                {/* Left hamburger */}
-                <div className="hamburger-section">
-                    <div className="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <div className="bottom-border"></div>
+            <div className="header-content">
+                {/* Top utility bar */}
+                <div className="top-utility-bar">
+                    {/* Left hamburger */}
+                    <div className="hamburger-section">
+                        <div className="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    {/* Right search bar */}
+                    <div className="utility-actions">
+                        <div className="permanent-search-container">
+                            <form onSubmit={handleSearchSubmit} className="permanent-search-form">
+                                <input
+                                    type="text"
+                                    placeholder="Search"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="permanent-search-input"
+                                />
+                                <button type="submit" className="permanent-search-button">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                {/* Right search bar */}
-                <div className="utility-actions">
-                    <div className="permanent-search-container">
-                        <form onSubmit={handleSearchSubmit} className="permanent-search-form">
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="permanent-search-input"
-                            />
-                            <button type="submit" className="permanent-search-button">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </button>
-                        </form>
+                {/* Logo row */}
+                <div className="logo-row">
+                    <div className='logo-center'>
+                        <Link to="/">
+                            <h2>
+                                <span>Arizona Sports News</span>
+                            </h2>
+                        </Link>
                     </div>
                 </div>
-            </div>
 
-            {/* Logo row */}
-            <div className="logo-row">
-                <div className='logo-center'>
-                    <Link to="/">
-                        <h2>
-                            <span>HO</span>
-                            <img src={HoopsWave} alt="Hoops Wave" className="inline-logo" />
-                            <span>PS WAVE</span>
-                        </h2>
-                    </Link>
-                </div>
-            </div>
+                {/* Single Navigation Row */}
+                <div className="bottom-row">
+                    <nav>
+                        <ul>
+                            {/* Professional Teams */}
+                            {proTeams.map((team) => (
+                                <li key={team.key}>
+                                    <Link
+                                        to={`/${team.key}`}
+                                        className={`team-link team-${team.key}`}
+                                        data-team={team.key}
+                                    >
+                                        {team.label}
+                                    </Link>
+                                </li>
+                            ))}
 
-            {/* Bottom row with navigation */}
-            <div className="bottom-row">
-                <nav>
-                    <ul>
-                        {/* Teams first */}
-                        <li className="teams-dropdown-container">
-                            <button
-                                className="teams-button"
-                                onClick={toggleDropdown}
-                                onMouseEnter={() => setShowTeamsDropdown(true)}
-                            >
-                                <span>Teams</span>
-                            </button>
-                            {showTeamsDropdown && !loading && (
-                                <div
-                                    className="teams-dropdown"
-                                    onMouseLeave={() => setShowTeamsDropdown(false)}
+                            {/* College Dropdown */}
+                            <li className="college-dropdown-container">
+                                <button
+                                    className="teams-button"
+                                    onClick={toggleCollegeDropdown}
+                                    onMouseEnter={() => setShowCollegeDropdown(true)}
                                 >
-                                    <div className="dropdown-header">
-                                        <Link to="/" onClick={closeDropdown}>
-                                            All Teams
-                                        </Link>
+                                    <span>NCAA</span>
+                                </button>
+                                {showCollegeDropdown && (
+                                    <div
+                                        className="teams-dropdown"
+                                        onMouseLeave={() => setShowCollegeDropdown(false)}
+                                    >
+                                        <div className="teams-grid">
+                                            {collegeTeams.map((team) => (
+                                                <Link
+                                                    key={team.key}
+                                                    to={`/${team.key}`}
+                                                    className="team-link"
+                                                    onClick={closeCollegeDropdown}
+                                                    style={{'--team-color': team.color}}
+                                                >
+                                                    <span className="team-name">
+                                                        {team.label}
+                                                    </span>
+                                                </Link>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div className="teams-grid">
-                                        {teams.map((team) => (
-                                            <Link
-                                                key={team.slug?.current || team._id}
-                                                to={`/teams/${team.slug?.current || team._id}`}
-                                                className="team-link"
-                                                onClick={closeDropdown}
-                                            >
-                                                <span className="team-abbreviation">
-                                                    {team.abbreviation}
-                                                </span>
-                                                <span className="team-name">
-                                                    {team.city} {team.name}
-                                                </span>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </li>
+                                )}
+                            </li>
 
-                        {/* Category Links in specified order */}
-                        <li>
-                            <Link
-                                to="/news"
-                                className="category-link category-news"
-                                data-category="news"
-                            >
-                                News
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/rumors"
-                                className="category-link category-rumors"
-                                data-category="rumors"
-                            >
-                                Rumors
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/trades"
-                                className="category-link category-trades"
-                                data-category="trades"
-                            >
-                                Trades
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/draft"
-                                className="category-link category-draft"
-                                data-category="draft"
-                            >
-                                Draft
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/freeAgency"
-                                className="category-link category-freeAgency"
-                                data-category="freeAgency"
-                            >
-                                Free Agency
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+                            {/* Content Categories */}
+                            {contentCategories.map((category) => (
+                                <li key={category.key}>
+                                    <Link
+                                        to={`/${category.key}`}
+                                        className={`category-link category-${category.key}`}
+                                        data-category={category.key}
+                                    >
+                                        {category.label}
+                                    </Link>
+                                </li>
+                            ))}
+
+                            {/* More Dropdown */}
+                            <li className="more-dropdown-container">
+                                <button
+                                    className="teams-button"
+                                    onClick={toggleMoreDropdown}
+                                    onMouseEnter={() => setShowMoreDropdown(true)}
+                                >
+                                    <span>More</span>
+                                </button>
+                                {showMoreDropdown && (
+                                    <div
+                                        className="teams-dropdown"
+                                        onMouseLeave={() => setShowMoreDropdown(false)}
+                                    >
+                                        <div className="teams-grid">
+                                            {moreItems.map((item) => (
+                                                <Link
+                                                    key={item.key}
+                                                    to={`/${item.key}`}
+                                                    className="team-link"
+                                                    onClick={closeMoreDropdown}
+                                                    style={{'--team-color': item.color}}
+                                                >
+                                                    <span className="team-name">
+                                                        {item.label}
+                                                    </span>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
     )

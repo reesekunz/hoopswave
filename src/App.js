@@ -15,14 +15,19 @@ function App() {
     <Header />
     <Routes>
   <Route path="/" element={<Blog />} />
-  <Route path="/trades" element={<CategoryPage />} />
-  <Route path="/freeAgency" element={<CategoryPage />} />
-  <Route path="/draft" element={<CategoryPage />} />
   <Route path="/news" element={<CategoryPage />} />
-  <Route path="/rumors" element={<CategoryPage />} /> 
+  <Route path="/rumors" element={<CategoryPage />} />
+  <Route path="/analysis" element={<CategoryPage />} />
+  <Route path="/gamerecaps" element={<CategoryPage />} />
+  <Route path="/suns" element={<TeamPage />} />
+  <Route path="/diamondbacks" element={<TeamPage />} />
+  <Route path="/cardinals" element={<TeamPage />} />
+  <Route path="/mercury" element={<TeamPage />} />
+  <Route path="/wildcats" element={<TeamPage />} />
+  <Route path="/sundevils" element={<TeamPage />} />
   <Route path="/teams/:teamSlug" element={<TeamPage />} />
   <Route path="/:slug" element={<SinglePost />} />
-  <Route path="*" element={<Error />} />  
+  <Route path="*" element={<Error />} />
 </Routes>
    </BrowserRouter>
   );

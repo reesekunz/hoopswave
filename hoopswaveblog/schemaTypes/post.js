@@ -20,6 +20,13 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'intro',
+      title: 'Intro/Excerpt',
+      type: 'text',
+      description: 'A brief introduction or excerpt that appears below the title',
+      rows: 3,
+    }),
+    defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
@@ -27,7 +34,7 @@ export default defineType({
     }),
     defineField({
       name: 'team',
-      title: 'NBA Team',
+      title: 'Arizona Sports Team',
       type: 'reference',
       to: [{type: 'team'}],
       validation: Rule => Rule.required()

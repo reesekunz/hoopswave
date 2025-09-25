@@ -12,14 +12,14 @@
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
-  color: #666;
+  color: var(--color-brand-dark);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
 .back-link:hover {
-  color: #333;
+  color: var(--color-brand-dark);
 }
 
 .category-title {
@@ -31,14 +31,14 @@
 }
 
 .category-count {
-  color: #666;
+  color: var(--color-brand-dark);
   font-size: 1.1rem;
   margin: 0 0 2rem 0;
 }
 
 .filter-indicator {
   font-weight: 500;
-  color: #333;
+  color: var(--color-brand-dark);
 }
 
 .team-filter {
@@ -51,7 +51,7 @@
 
 .filter-label {
   font-weight: 500;
-  color: #333;
+  color: var(--color-brand-dark);
   font-size: 1rem;
 }
 
@@ -59,7 +59,7 @@
   padding: 0.7rem 1rem;
   border: 2px solid #ddd;
   border-radius: 8px;
-  background: white;
+  background: var(--color-background);
   font-size: 1rem;
   font-family: inherit;
   cursor: pointer;
@@ -85,13 +85,13 @@
 }
 
 .error {
-  color: #2c8aa6;
+  color: #97233F;
 }
 
 .no-posts {
   text-align: center;
   padding: 4rem 2rem;
-  color: #666;
+  color: var(--color-brand-dark);
 }
 
 .no-posts p {
@@ -112,7 +112,7 @@
   border: 1px solid #eee;
   border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: white;
+  background: var(--color-background);
 }
 
 .category-post:hover {
@@ -157,12 +157,12 @@
 
 .post-title a {
   text-decoration: none;
-  color: #333;
+  color: var(--color-brand-dark);
   transition: color 0.2s ease;
 }
 
 .post-title a:hover {
-  color: #666;
+  color: var(--color-brand-dark);
 }
 
 .post-meta {
@@ -170,7 +170,7 @@
   gap: 1rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-brand-dark);
 }
 
 .post-author {
@@ -178,7 +178,7 @@
 }
 
 .post-excerpt {
-  color: #666;
+  color: var(--color-brand-dark);
   line-height: 1.6;
   margin: 0 0 1rem 0;
   flex-grow: 1;

@@ -16,10 +16,18 @@ export default function SinglePost() {
                 const data = await client.fetch(
                     `*[slug.current == $slug][0] {
                         title,
+                        intro,
                         body,
                         publishedAt,
                         author-> {
                             name
+                        },
+                        categories[]-> {
+                            title
+                        },
+                        team-> {
+                            name,
+                            city
                         },
                         mainImage {
                             asset -> {
@@ -78,9 +86,23 @@ export default function SinglePost() {
         <article className="single-post-container">
             <header className="single-post-header">
                 <h1 className="single-post-title">{singlePost.title}</h1>
-                
+
+                {singlePost.intro && (
+                    <div className="single-post-intro">
+                        {singlePost.intro}
+                    </div>
+                )}
+
                 <div className="single-post-meta">
-                    <span className="single-post-category">Hoops Wave News</span>
+                    <span className="single-post-category">
+                        {singlePost.team && singlePost.categories?.length > 0
+                            ? `${singlePost.team.name} ${singlePost.categories[0].title}`
+                            : singlePost.categories?.length > 0
+                            ? singlePost.categories[0].title
+                            : singlePost.team
+                            ? `${singlePost.team.city} ${singlePost.team.name}`
+                            : 'Arizona Sports'}
+                    </span>
                     <span className="single-post-author">
                         By {singlePost.author?.name || 'Reesey'}
                     </span>

@@ -135,11 +135,23 @@ export default function Blog() {
         }
         
         const categoryName = categoryLabels[category] || 'News'
-        const teamName = post.team?.name ? `${post.team.city} ${post.team.name}` : 'Hoops Wave'
-        
+        const teamName = post.team?.name ? post.team.name : 'Benchwarm'
+
         return `${teamName} ${categoryName}`
     }
 
+    const getTeamColor = (post) => {
+        const teamColors = {
+            'Suns': '#E56020',           // Phoenix Suns Orange
+            'Cardinals': '#97233F',       // Cardinals Red
+            'Diamondbacks': '#A71930',    // D-backs Red
+            'Mercury': '#E56020',         // Mercury Orange (same as Suns)
+            'Wildcats': '#003366',        // U of A Navy
+            'Sun Devils': '#8C1D40',      // ASU Maroon
+            'Lumberjacks': '#003f5c'      // NAU Navy
+        }
+        return teamColors[post.team?.name] || '#E56020' // Default to orange
+    }
 
     // Filter posts based on search query
     const filteredPosts = searchQuery
@@ -180,11 +192,11 @@ export default function Blog() {
     const categorizedPosts = searchQuery ? getCategorizedFilteredPosts() : getCategorizedPosts()
 
     const categories = [
-        { key: 'news', label: 'News', color: '#2c8aa6' },
-        { key: 'rumors', label: 'Rumors', color: '#2c8aa6' },
-        { key: 'trades', label: 'Trades', color: '#2c8aa6' },
-        { key: 'draft', label: 'Draft', color: '#2c8aa6' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' }
+        { key: 'news', label: 'News', color: '#8B4513' },
+        { key: 'rumors', label: 'Rumors', color: '#8B4513' },
+        { key: 'trades', label: 'Trades', color: '#8B4513' },
+        { key: 'draft', label: 'Draft', color: '#8B4513' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
@@ -338,7 +350,10 @@ export default function Blog() {
                                                 </div>
                                             </div>
                                             <div className="featured-bottom-content">
-                                                <div className="featured-category">
+                                                <div
+                                                    className="featured-category"
+                                                    style={{ backgroundColor: getTeamColor(featuredPost) }}
+                                                >
                                                     {getCategoryLabel(featuredPost)}
                                                 </div>
                                                 <div className="featured-meta">
@@ -353,9 +368,6 @@ export default function Blog() {
                                                 alt={featuredPost.title}
                                                 className="featured-image"
                                             />
-                                            <div className="photo-credit">
-                                                ({featuredPost.author?.name || 'Staff'} / Hoops Wave)
-                                            </div>
                                         </div>
                                     </article>
                                 </Link>

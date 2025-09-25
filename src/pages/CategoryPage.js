@@ -19,41 +19,37 @@ export default function CategoryPage() {
 
     // Map URL params to category titles for filtering
     const categoryMap = {
-        'trades': 'trades',
-        'freeAgency': 'free agency',
-        'draft': 'draft',
         'news': 'news',
-        'rumors': 'rumors'
+        'rumors': 'rumors',
+        'analysis': 'analysis',
+        'gamerecaps': 'game recaps'
     }
 
     // Map for display titles
     const displayTitles = {
-        'trades': 'Trades',
-        'freeAgency': 'Free Agency',
-        'draft': 'Draft',
         'news': 'News',
-        'rumors': 'Rumors'
+        'rumors': 'Rumors',
+        'analysis': 'Analysis',
+        'gamerecaps': 'Game Recaps'
     }
 
     // Map for colors
     const categoryColors = {
-        'trades': '#2c8aa6',
-        'freeAgency': '#2c8aa6',
-        'draft': '#2c8aa6',
-        'news': '#2c8aa6',
-        'rumors': '#2c8aa6'
+        'news': '#97233F',
+        'rumors': '#97233F',
+        'analysis': '#97233F',
+        'gamerecaps': '#97233F'
     }
 
-    // Function to categorize posts (same logic as Blog.js)
+    // Function to categorize posts (updated for new categories)
     const categorizePost = (post) => {
         const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
-        
-        if (categoryTitles.includes('trades')) return 'trades'
-        if (categoryTitles.includes('free agency')) return 'freeAgency'
-        if (categoryTitles.includes('draft')) return 'draft'
+
+        if (categoryTitles.includes('game recaps') || categoryTitles.includes('game recap')) return 'gamerecaps'
+        if (categoryTitles.includes('analysis')) return 'analysis'
         if (categoryTitles.includes('rumors')) return 'rumors'
         if (categoryTitles.includes('news')) return 'news'
-        
+
         return 'news'
     }
 

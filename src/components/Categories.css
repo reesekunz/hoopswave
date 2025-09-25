@@ -15,7 +15,7 @@
   font-size: 3rem;
   font-weight: 700;
   color: #2c3e50;
-  background: linear-gradient(135deg, #2c8aa6 0%, #44a08d 100%);
+  background: linear-gradient(135deg, #97233F 0%, #44a08d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -76,7 +76,7 @@
 }
 
 .article-card {
-  background: white;
+  background: var(--color-background);
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -174,7 +174,7 @@
 
 .article-author {
   font-weight: 600;
-  color: #2c8aa6;
+  color: #97233F;
 }
 
 .article-date {

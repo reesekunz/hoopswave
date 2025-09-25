@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams, useLocation, Link } from "react-router-dom"
 import client from "../client"
 import './TeamPage.css' // Reuse your existing blog styles
 
 export default function TeamPage() {
-    const { teamSlug } = useParams() // Get team slug from URL
+    const { teamSlug } = useParams() // Get team slug from URL params (/teams/suns)
+    const location = useLocation()
+
+    // Get team slug from either URL params or direct path
+    const currentTeamSlug = teamSlug || location.pathname.slice(1) // Remove leading '/'
     const [posts, setPosts] = useState([])
     const [team, setTeam] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -19,7 +23,7 @@ export default function TeamPage() {
                 const [teamData, postsData] = await Promise.all([
                     // Get team information
                     client.fetch(
-                        `*[_type == "team" && slug.current == $teamSlug][0] {
+                        `*[_type == "team" && slug.current == $currentTeamSlug][0] {
                             name,
                             slug,
                             city,
@@ -31,12 +35,12 @@ export default function TeamPage() {
                                 }
                             }
                         }`,
-                        { teamSlug }
+                        { currentTeamSlug: currentTeamSlug }
                     ),
                     
                     // Get posts for this team
                     client.fetch(
-                        `*[_type == "post" && team->slug.current == $teamSlug] {
+                        `*[_type == "post" && team->slug.current == $currentTeamSlug] {
                             title,
                             slug,
                             body,
@@ -62,7 +66,7 @@ export default function TeamPage() {
                                 alt
                             }
                         } | order(publishedAt desc)`,
-                        { teamSlug }
+                        { currentTeamSlug: currentTeamSlug }
                     )
                 ])
 
@@ -81,7 +85,7 @@ export default function TeamPage() {
         }
 
         fetchTeamAndPosts()
-    }, [teamSlug])
+    }, [currentTeamSlug])
 
     const formatDate = (dateString) => {
         const date = new Date(dateString)
@@ -95,23 +99,21 @@ export default function TeamPage() {
     const categorizePost = (post) => {
         // Look for exact category matches first
         const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
-        
-        if (categoryTitles.includes('trades')) return 'trades'
-        if (categoryTitles.includes('free agency')) return 'freeAgency'
-        if (categoryTitles.includes('draft')) return 'draft'
+
+        if (categoryTitles.includes('game recaps') || categoryTitles.includes('game recap')) return 'gameRecaps'
+        if (categoryTitles.includes('analysis')) return 'analysis'
         if (categoryTitles.includes('rumors')) return 'rumors'
         if (categoryTitles.includes('news')) return 'news'
-        
+
         // Default to news if no category matches
         return 'news'
     }
 
     const getCategorizedPosts = () => {
         const categorized = {
-            trades: [],
-            freeAgency: [],
-            draft: [],
             news: [],
+            gameRecaps: [],
+            analysis: [],
             rumors: []
         }
 
@@ -132,11 +134,10 @@ export default function TeamPage() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'trades', label: 'Trades', color: '#2c8aa6' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#2c8aa6' },
-        { key: 'draft', label: 'Draft', color: '#2c8aa6' },
-        { key: 'news', label: 'News', color: '#2c8aa6' },
-        { key: 'rumors', label: 'Rumors', color: '#2c8aa6' }
+        { key: 'news', label: 'News', color: '#97233F' },
+        { key: 'gameRecaps', label: 'Game Recaps', color: '#97233F' },
+        { key: 'analysis', label: 'Analysis', color: '#97233F' },
+        { key: 'rumors', label: 'Rumors', color: '#97233F' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
