@@ -147,7 +147,7 @@ export default function Blog() {
             'Suns': '#E56020',           // Phoenix Suns Orange
             'Cardinals': '#97233F',       // Cardinals Red
             'Diamondbacks': '#30CED8',    // D-backs Teal
-            'Mercury': '#E56020',         // Mercury Orange (same as Suns)
+            'Mercury': '#6B46C1',         // Mercury Bright Purple
             'Wildcats': '#003366',        // U of A Navy
             'Sun Devils': '#8C1D40'       // ASU Maroon
         }

@@ -28,7 +28,7 @@ export default function Header() {
         { key: 'suns', label: 'Suns', color: '#97233F' },
         { key: 'diamondbacks', label: 'Diamondbacks', color: '#97233F' },
         { key: 'cardinals', label: 'Cardinals', color: '#97233F' },
-        { key: 'mercury', label: 'Mercury', color: '#97233F' }
+        { key: 'mercury', label: 'Mercury', color: '#6B46C1' }
     ]
 
     // Arizona college teams
