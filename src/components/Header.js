@@ -1,11 +1,19 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import './Header.css'
 
 export default function Header() {
     const [searchQuery, setSearchQuery] = useState('')
     const [showCollegeDropdown, setShowCollegeDropdown] = useState(false)
     const [showMoreDropdown, setShowMoreDropdown] = useState(false)
+    const location = useLocation()
+
+    // Check if we're on an individual article page (any path that's not / or known category pages)
+    const isArticlePage = () => {
+        const path = location.pathname
+        const knownPages = ['/', '/news', '/rumors', '/analysis', '/gamerecaps', '/suns', '/diamondbacks', '/cardinals', '/mercury', '/wildcats', '/sundevils', '/trades', '/draft', '/freeagency']
+        return !knownPages.includes(path) && path !== '/blog'
+    }
 
     // Content categories - universal across all teams
     const contentCategories = [
@@ -26,8 +34,7 @@ export default function Header() {
     // Arizona college teams
     const collegeTeams = [
         { key: 'wildcats', label: 'Wildcats', color: '#97233F' },
-        { key: 'sundevils', label: 'Sun Devils', color: '#97233F' },
-        { key: 'lumberjacks', label: 'Lumberjacks', color: '#97233F' }
+        { key: 'sundevils', label: 'Sun Devils', color: '#97233F' }
     ]
 
     // More section items
@@ -65,54 +72,98 @@ export default function Header() {
     }
 
     return (
-        <header className="two-row-header">
+        <header className={`two-row-header ${isArticlePage() ? 'article-page' : ''}`}>
             <div className="bottom-border"></div>
             <div className="header-content">
-                {/* Top utility bar */}
-                <div className="top-utility-bar">
-                    {/* Left hamburger */}
-                    <div className="hamburger-section">
-                        <div className="hamburger">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                {isArticlePage() ? (
+                    /* Condensed single row for article pages */
+                    <div className="condensed-header-row">
+                        {/* Left hamburger */}
+                        <div className="hamburger-section">
+                            <div className="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        {/* Center logo */}
+                        <div className='condensed-logo-center'>
+                            <Link to="/">
+                                <h2 className="condensed-title">
+                                    <span>Valley Sports News</span>
+                                </h2>
+                            </Link>
+                        </div>
+
+                        {/* Right search bar */}
+                        <div className="utility-actions">
+                            <div className="permanent-search-container">
+                                <form onSubmit={handleSearchSubmit} className="permanent-search-form">
+                                    <input
+                                        type="text"
+                                        placeholder="Search"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="permanent-search-input"
+                                    />
+                                    <button type="submit" className="permanent-search-button">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                ) : (
+                    /* Original multi-row layout for home page */
+                    <>
+                        {/* Top utility bar */}
+                        <div className="top-utility-bar">
+                            {/* Left hamburger */}
+                            <div className="hamburger-section">
+                                <div className="hamburger">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
 
-                    {/* Right search bar */}
-                    <div className="utility-actions">
-                        <div className="permanent-search-container">
-                            <form onSubmit={handleSearchSubmit} className="permanent-search-form">
-                                <input
-                                    type="text"
-                                    placeholder="Search"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="permanent-search-input"
-                                />
-                                <button type="submit" className="permanent-search-button">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                    </svg>
-                                </button>
-                            </form>
+                            {/* Right search bar */}
+                            <div className="utility-actions">
+                                <div className="permanent-search-container">
+                                    <form onSubmit={handleSearchSubmit} className="permanent-search-form">
+                                        <input
+                                            type="text"
+                                            placeholder="Search"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="permanent-search-input"
+                                        />
+                                        <button type="submit" className="permanent-search-button">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* Logo row */}
-                <div className="logo-row">
-                    <div className='logo-center'>
-                        <Link to="/">
-                            <h2>
-                                <span>Arizona Sports News</span>
-                            </h2>
-                        </Link>
-                    </div>
-                </div>
+                        {/* Logo row */}
+                        <div className="logo-row">
+                            <div className='logo-center'>
+                                <Link to="/">
+                                    <h2>
+                                        <span>Valley Sports News</span>
+                                    </h2>
+                                </Link>
+                            </div>
+                        </div>
 
-                {/* Single Navigation Row */}
-                <div className="bottom-row">
+                        {/* Single Navigation Row */}
+                        <div className="bottom-row">
                     <nav>
                         <ul>
                             {/* Professional Teams */}
@@ -208,7 +259,9 @@ export default function Header() {
                             </li>
                         </ul>
                     </nav>
-                </div>
+                        </div>
+                    </>
+                )}
             </div>
         </header>
     )

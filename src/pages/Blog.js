@@ -89,7 +89,6 @@ export default function Blog() {
         if (index === 0) return 'BREAKING'
         if (diffInHours < 2) return 'BREAKING'
         if (diffInHours < 6) return 'LATEST'
-        if (index < 3) return 'TRENDING'
         return null
     }
 
@@ -101,6 +100,7 @@ export default function Blog() {
         if (categoryTitles.includes('free agency')) return 'freeAgency'
         if (categoryTitles.includes('draft')) return 'draft'
         if (categoryTitles.includes('rumors')) return 'rumors'
+        if (categoryTitles.includes('recaps') || categoryTitles.includes('gamerecaps') || categoryTitles.includes('game recaps')) return 'gamerecaps'
         if (categoryTitles.includes('news')) return 'news'
         
         // Default to news if no category matches
@@ -113,7 +113,8 @@ export default function Blog() {
             freeAgency: [],
             draft: [],
             news: [],
-            rumors: []
+            rumors: [],
+            gamerecaps: []
         }
 
         posts.forEach(post => {
@@ -128,10 +129,11 @@ export default function Blog() {
         const category = categorizePost(post)
         const categoryLabels = {
             trades: 'Trades',
-            freeAgency: 'Free Agency', 
+            freeAgency: 'Free Agency',
             draft: 'Draft',
             rumors: 'Rumors',
-            news: 'News'
+            news: 'News',
+            gamerecaps: 'Recaps'
         }
         
         const categoryName = categoryLabels[category] || 'News'
@@ -144,11 +146,10 @@ export default function Blog() {
         const teamColors = {
             'Suns': '#E56020',           // Phoenix Suns Orange
             'Cardinals': '#97233F',       // Cardinals Red
-            'Diamondbacks': '#A71930',    // D-backs Red
+            'Diamondbacks': '#30CED8',    // D-backs Teal
             'Mercury': '#E56020',         // Mercury Orange (same as Suns)
             'Wildcats': '#003366',        // U of A Navy
-            'Sun Devils': '#8C1D40',      // ASU Maroon
-            'Lumberjacks': '#003f5c'      // NAU Navy
+            'Sun Devils': '#8C1D40'       // ASU Maroon
         }
         return teamColors[post.team?.name] || '#E56020' // Default to orange
     }
@@ -178,7 +179,8 @@ export default function Blog() {
             freeAgency: [],
             draft: [],
             news: [],
-            rumors: []
+            rumors: [],
+            gamerecaps: []
         }
 
         filteredPosts.forEach(post => {
@@ -196,7 +198,8 @@ export default function Blog() {
         { key: 'rumors', label: 'Rumors', color: '#8B4513' },
         { key: 'trades', label: 'Trades', color: '#8B4513' },
         { key: 'draft', label: 'Draft', color: '#8B4513' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' }
+        { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' },
+        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
@@ -344,7 +347,16 @@ export default function Blog() {
                                                 <h2 className="featured-title">{featuredPost.title}</h2>
                                                 <div className="featured-description">
                                                     {featuredPost.body && featuredPost.body[0]?.children?.[0]?.text ?
-                                                        featuredPost.body[0].children[0].text.substring(0, 150) + '...' :
+                                                        (() => {
+                                                            const fullText = featuredPost.body[0].children[0].text;
+                                                            const sentences = fullText.split('.');
+                                                            // Take first two sentences if available
+                                                            if (sentences.length >= 2) {
+                                                                return sentences.slice(0, 2).join('.') + '.';
+                                                            }
+                                                            // If only one sentence, use it
+                                                            return sentences[0] + '.';
+                                                        })() :
                                                         'Breaking basketball news and analysis from around the league.'
                                                     }
                                                 </div>
@@ -352,7 +364,7 @@ export default function Blog() {
                                             <div className="featured-bottom-content">
                                                 <div
                                                     className="featured-category"
-                                                    style={{ backgroundColor: getTeamColor(featuredPost) }}
+                                                    style={{ borderColor: getTeamColor(featuredPost) }}
                                                 >
                                                     {getCategoryLabel(featuredPost)}
                                                 </div>
@@ -406,22 +418,33 @@ export default function Blog() {
 
                         {/* Right Sidebar - Latest Section */}
                         <aside className="right-sidebar">
-                            {posts.slice(2, 8).map((post, index) => (
+                            {posts.slice(1, 6).map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
-                                        {getNewsIndicator(post, index + 2) && (
-                                            <div className={`news-indicator-small ${getNewsIndicator(post, index + 2).toLowerCase()}`}>
-                                                {getNewsIndicator(post, index + 2)}
+                                        <div className="latest-article-content">
+                                            <div className="latest-article-top">
+                                                {getNewsIndicator(post, index + 2) && (
+                                                    <div className={`news-indicator-small ${getNewsIndicator(post, index + 2).toLowerCase()}`}>
+                                                        {getNewsIndicator(post, index + 2)}
+                                                    </div>
+                                                )}
+                                                <h4 className="latest-article-title">
+                                                    {post.title}
+                                                </h4>
                                             </div>
-                                        )}
-                                        <h4 className="latest-article-title">
-                                            {post.title}
-                                        </h4>
-                                        <div className="latest-category">
-                                            {getCategoryLabel(post)}
-                                        </div>
-                                        <div className="latest-timestamp">
-                                            {getTimeAgo(post.publishedAt)}
+                                            <div className="latest-article-bottom">
+                                                <div
+                                                    className="latest-category-tag"
+                                                    style={{ borderColor: getTeamColor(post) }}
+                                                >
+                                                    {getCategoryLabel(post)}
+                                                </div>
+                                                <div className="latest-author-date">
+                                                    <span className="latest-author">{post.author?.name || 'Staff'}</span>
+                                                    <span className="latest-divider">|</span>
+                                                    <span className="latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </article>
                                 </Link>

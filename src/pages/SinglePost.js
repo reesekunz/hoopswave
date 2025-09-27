@@ -10,6 +10,9 @@ export default function SinglePost() {
     const { slug } = useParams()
 
     useEffect(() => {
+        // Scroll to top when component mounts or slug changes
+        window.scrollTo(0, 0)
+
         const fetchPost = async () => {
             try {
                 setIsLoading(true)
@@ -39,7 +42,7 @@ export default function SinglePost() {
                     }`,
                     { slug }
                 )
-                
+
                 console.log('Fetched post data:', data)
                 setSinglePost(data)
             } catch (error) {
@@ -62,6 +65,18 @@ export default function SinglePost() {
             day: 'numeric',
             year: 'numeric'
         })
+    }
+
+    const getTeamColor = (post) => {
+        const teamColors = {
+            'Suns': '#E56020',           // Phoenix Suns Orange
+            'Cardinals': '#97233F',       // Cardinals Red
+            'Diamondbacks': '#30CED8',    // D-backs Teal
+            'Mercury': '#E56020',         // Mercury Orange (same as Suns)
+            'Wildcats': '#003366',        // U of A Navy
+            'Sun Devils': '#8C1D40'       // ASU Maroon
+        }
+        return teamColors[post?.team?.name] || '#97233F' // Default to Cardinals red
     }
 
     if (isLoading) {
@@ -94,7 +109,10 @@ export default function SinglePost() {
                 )}
 
                 <div className="single-post-meta">
-                    <span className="single-post-category">
+                    <span
+                        className="single-post-category"
+                        style={{ backgroundColor: getTeamColor(singlePost) }}
+                    >
                         {singlePost.team && singlePost.categories?.length > 0
                             ? `${singlePost.team.name} ${singlePost.categories[0].title}`
                             : singlePost.categories?.length > 0

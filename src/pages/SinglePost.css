@@ -1,5 +1,21 @@
 /* SinglePost.css - Individual Blog Post Page */
 
+/* Ensure italics maintain consistent text color */
+em, i {
+  color: inherit !important;
+  font-style: italic;
+}
+
+/* More specific rules for article content */
+.single-post-content em,
+.single-post-content i,
+.blog-content em,
+.blog-content i,
+article em,
+article i {
+  color: inherit !important;
+}
+
 .single-post-container {
   max-width: 800px;
   margin: 2rem auto;
