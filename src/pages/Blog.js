@@ -95,14 +95,15 @@ export default function Blog() {
     const categorizePost = (post) => {
         // Look for exact category matches first
         const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
-        
+
         if (categoryTitles.includes('trades')) return 'trades'
         if (categoryTitles.includes('free agency')) return 'freeAgency'
         if (categoryTitles.includes('draft')) return 'draft'
         if (categoryTitles.includes('rumors')) return 'rumors'
         if (categoryTitles.includes('recaps') || categoryTitles.includes('gamerecaps') || categoryTitles.includes('game recaps')) return 'gamerecaps'
+        if (categoryTitles.includes('analysis')) return 'analysis'
         if (categoryTitles.includes('news')) return 'news'
-        
+
         // Default to news if no category matches
         return 'news'
     }
@@ -114,7 +115,8 @@ export default function Blog() {
             draft: [],
             news: [],
             rumors: [],
-            gamerecaps: []
+            gamerecaps: [],
+            analysis: []
         }
 
         posts.forEach(post => {
@@ -133,9 +135,10 @@ export default function Blog() {
             draft: 'Draft',
             rumors: 'Rumors',
             news: 'News',
-            gamerecaps: 'Recaps'
+            gamerecaps: 'Recaps',
+            analysis: 'Analysis'
         }
-        
+
         const categoryName = categoryLabels[category] || 'News'
         const teamName = post.team?.name ? post.team.name : 'Benchwarm'
 
@@ -180,7 +183,8 @@ export default function Blog() {
             draft: [],
             news: [],
             rumors: [],
-            gamerecaps: []
+            gamerecaps: [],
+            analysis: []
         }
 
         filteredPosts.forEach(post => {
@@ -199,7 +203,8 @@ export default function Blog() {
         { key: 'trades', label: 'Trades', color: '#8B4513' },
         { key: 'draft', label: 'Draft', color: '#8B4513' },
         { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' },
-        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' }
+        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' },
+        { key: 'analysis', label: 'Analysis', color: '#8B4513' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
