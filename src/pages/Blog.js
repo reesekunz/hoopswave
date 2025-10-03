@@ -172,8 +172,8 @@ export default function Blog() {
 
     const featuredPost = filteredPosts[0]
     const secondaryPost = filteredPosts[1] // Second most recent post for secondary section
-    const trendingPosts = filteredPosts.slice(2, 7) // Posts 3-7 for right sidebar
-    const latestPosts = filteredPosts.slice(8, 14) // Posts 9-14 for left sidebar
+    const trendingPosts = filteredPosts.slice(6, 11) // Posts 7-11 for right sidebar
+    const latestPosts = filteredPosts.slice(11, 17) // Posts 12-17 for left sidebar
 
     // Use filtered posts for categories when searching
     const getCategorizedFilteredPosts = () => {
@@ -365,14 +365,14 @@ export default function Blog() {
                                                         'Breaking basketball news and analysis from around the league.'
                                                     }
                                                 </div>
-                                            </div>
-                                            <div className="featured-bottom-content">
                                                 <div
                                                     className="featured-category"
-                                                    style={{ borderColor: getTeamColor(featuredPost) }}
+                                                    style={{ color: getTeamColor(featuredPost) }}
                                                 >
                                                     {getCategoryLabel(featuredPost)}
                                                 </div>
+                                            </div>
+                                            <div className="featured-bottom-content">
                                                 <div className="featured-meta">
                                                     <span className="featured-author">{featuredPost.author?.name || 'Staff'}</span>
                                                     <span className="featured-timestamp">{formatDate(featuredPost.publishedAt) || 'Recent'}</span>
@@ -429,7 +429,7 @@ export default function Blog() {
                             {/* Secondary Section - positioned in left area */}
                             <div className="secondary-section">
                                 <div className="secondary-grid">
-                                    {posts.slice(10, 13).map((post) => (
+                                    {posts.slice(1, 4).map((post) => (
                                         <Link key={post.slug.current} to={`/${post.slug.current}`} className="secondary-card-link">
                                             <article className="secondary-card">
                                                 {post.mainImage && (
@@ -459,7 +459,7 @@ export default function Blog() {
 
                         {/* Right Sidebar - Latest Section */}
                         <aside className="right-sidebar">
-                            {posts.slice(1, 6).map((post, index) => (
+                            {posts.slice(4, 9).map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
                                         <div className="latest-article-content">
@@ -472,14 +472,14 @@ export default function Blog() {
                                                 <h4 className="latest-article-title">
                                                     {post.title}
                                                 </h4>
-                                            </div>
-                                            <div className="latest-article-bottom">
                                                 <div
                                                     className="latest-category-tag"
-                                                    style={{ borderColor: getTeamColor(post) }}
+                                                    style={{ color: getTeamColor(post) }}
                                                 >
                                                     {getCategoryLabel(post)}
                                                 </div>
+                                            </div>
+                                            <div className="latest-article-bottom">
                                                 <div className="latest-author-date">
                                                     <span className="latest-author">{post.author?.name || 'Staff'}</span>
                                                     <span className="latest-divider">|</span>

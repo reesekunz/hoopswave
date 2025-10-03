@@ -14,6 +14,19 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
   })
   const [loading, setLoading] = useState(true)
 
+  // Team color mapping
+  const getTeamColor = (article) => {
+    const teamColors = {
+      'Suns': '#E56020',           // Phoenix Suns Orange
+      'Cardinals': '#97233F',       // Cardinals Red
+      'Diamondbacks': '#30CED8',    // D-backs Teal
+      'Mercury': '#6B46C1',         // Mercury Bright Purple
+      'Wildcats': '#003366',        // U of A Navy
+      'Sun Devils': '#8C1D40'       // ASU Maroon
+    }
+    return teamColors[article.team?.name] || '#E56020' // Default to orange
+  }
+
   const categories = [
     { key: 'trades', label: 'Trades', color: '#8B4513' },
     { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' },
@@ -122,15 +135,22 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
       className={`article-card ${isLarge ? 'large' : 'small'}`}
     >
       <div className="article-image">
-        <img 
-          src={article.mainImage?.asset?.url || '/api/placeholder/400/300'} 
-          alt={article.title} 
+        <img
+          src={article.mainImage?.asset?.url || '/api/placeholder/400/300'}
+          alt={article.title}
         />
-        <div className="category-tag">
-          {article.team ? `${article.team.city} ${article.team.name} News` : 'NBA News'}
-        </div>
       </div>
       <div className="article-content">
+        <div className="category-tag" style={{
+          color: 'white',
+          background: 'red',
+          padding: '10px',
+          fontSize: '2rem',
+          fontWeight: '600',
+          textTransform: 'uppercase'
+        }}>
+          {article.team ? `${article.team.city} ${article.team.name} News` : 'NBA News'}
+        </div>
         <h3 className="article-title">{article.title}</h3>
         <div className="article-meta">
           <span className="article-author">{article.author}</span>
