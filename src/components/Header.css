@@ -125,7 +125,11 @@
   margin: 2rem 0;
   font-size: 3.5rem;
   font-weight: 800;
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #6B46C1, #97233F, #ff6b35, #f7931e, #ffcc02);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -0.8px;
   white-space: nowrap;
   display: flex;
@@ -135,9 +139,18 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
-  background: #1A1A1A;
   padding: 1rem 2rem;
   border-radius: 8px;
+  animation: sunset-shift 12s ease-in-out infinite;
+}
+
+@keyframes sunset-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .inline-logo {
@@ -748,14 +761,18 @@
   margin: 0;
   font-size: 1.8rem !important;
   font-weight: 700;
-  color: #F5F5F5;
+  background: linear-gradient(135deg, #6B46C1, #97233F, #ff6b35, #f7931e, #ffcc02) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
   letter-spacing: -0.5px;
   white-space: nowrap;
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  background: none !important;
   padding: 0.5rem 1rem !important;
   border-radius: 4px;
+  animation: sunset-shift 12s ease-in-out infinite;
 }
 
 .condensed-logo-center a {

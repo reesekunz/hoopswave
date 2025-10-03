@@ -390,6 +390,42 @@ export default function Blog() {
                                 </Link>
                             </main>
 
+                            {/* Recent Articles Section - Vertical Cards */}
+                            <section className="recent-articles-section">
+                                <div className="recent-articles-grid">
+                                    {filteredPosts.slice(1, 4).map((post) => (
+                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="recent-card-link">
+                                            <article className="recent-card">
+                                                {post.mainImage && (
+                                                    <div className="recent-card-image-container">
+                                                        <img
+                                                            src={post.mainImage.asset.url}
+                                                            alt={post.title}
+                                                            className="recent-card-image"
+                                                        />
+                                                    </div>
+                                                )}
+                                                <div className="recent-card-content">
+                                                    <h3 className="recent-card-title">
+                                                        {post.title}
+                                                    </h3>
+                                                    <div
+                                                        className="recent-card-category"
+                                                        style={{ color: getTeamColor(post) }}
+                                                    >
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="recent-card-meta">
+                                                        <span className="recent-card-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="recent-card-date">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+
                             {/* Secondary Section - positioned in left area */}
                             <div className="secondary-section">
                                 <div className="secondary-grid">
