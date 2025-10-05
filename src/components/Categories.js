@@ -20,7 +20,7 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
       'Suns': '#E56020',           // Phoenix Suns Orange
       'Cardinals': '#97233F',       // Cardinals Red
       'Diamondbacks': '#30CED8',    // D-backs Teal
-      'Mercury': '#6B46C1',         // Mercury Bright Purple
+      'Mercury': '#8B5CF6',         // Mercury Bright Purple
       'Wildcats': '#003366',        // U of A Navy
       'Sun Devils': '#8C1D40'       // ASU Maroon
     }
@@ -141,20 +141,17 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
         />
       </div>
       <div className="article-content">
-        <div className="category-tag" style={{
-          color: 'white',
-          background: 'red',
-          padding: '10px',
-          fontSize: '2rem',
-          fontWeight: '600',
-          textTransform: 'uppercase'
-        }}>
-          {article.team ? `${article.team.city} ${article.team.name} News` : 'NBA News'}
-        </div>
         <h3 className="article-title">{article.title}</h3>
-        <div className="article-meta">
-          <span className="article-author">{article.author}</span>
-          <span className="article-date">{formatDate(article.publishedAt)}</span>
+        <div className="article-bottom">
+          <div className="article-meta">
+            <span className="article-author">{article.author}</span>
+            <span className="article-date">{formatDate(article.publishedAt)}</span>
+          </div>
+          <div className="category-tag" style={{
+            background: getTeamColor(article)
+          }}>
+            {article.team ? `${article.team.city} ${article.team.name} News` : 'NBA News'}
+          </div>
         </div>
       </div>
     </Link>

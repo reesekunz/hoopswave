@@ -150,7 +150,7 @@ export default function Blog() {
             'Suns': '#E56020',           // Phoenix Suns Orange
             'Cardinals': '#97233F',       // Cardinals Red
             'Diamondbacks': '#30CED8',    // D-backs Teal
-            'Mercury': '#6B46C1',         // Mercury Bright Purple
+            'Mercury': '#8B5CF6',         // Mercury Bright Purple
             'Wildcats': '#003366',        // U of A Navy
             'Sun Devils': '#8C1D40'       // ASU Maroon
         }
@@ -365,14 +365,11 @@ export default function Blog() {
                                                         'Breaking basketball news and analysis from around the league.'
                                                     }
                                                 </div>
-                                                <div
-                                                    className="featured-category"
-                                                    style={{ color: getTeamColor(featuredPost) }}
-                                                >
-                                                    {getCategoryLabel(featuredPost)}
-                                                </div>
                                             </div>
                                             <div className="featured-bottom-content">
+                                                <div className="article-category-tag" style={{ color: getTeamColor(featuredPost) }}>
+                                                    {getCategoryLabel(featuredPost)}
+                                                </div>
                                                 <div className="featured-meta">
                                                     <span className="featured-author">{featuredPost.author?.name || 'Staff'}</span>
                                                     <span className="featured-timestamp">{formatDate(featuredPost.publishedAt) || 'Recent'}</span>
@@ -390,41 +387,6 @@ export default function Blog() {
                                 </Link>
                             </main>
 
-                            {/* Recent Articles Section - Vertical Cards */}
-                            <section className="recent-articles-section">
-                                <div className="recent-articles-grid">
-                                    {filteredPosts.slice(1, 4).map((post) => (
-                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="recent-card-link">
-                                            <article className="recent-card">
-                                                {post.mainImage && (
-                                                    <div className="recent-card-image-container">
-                                                        <img
-                                                            src={post.mainImage.asset.url}
-                                                            alt={post.title}
-                                                            className="recent-card-image"
-                                                        />
-                                                    </div>
-                                                )}
-                                                <div className="recent-card-content">
-                                                    <h3 className="recent-card-title">
-                                                        {post.title}
-                                                    </h3>
-                                                    <div
-                                                        className="recent-card-category"
-                                                        style={{ color: getTeamColor(post) }}
-                                                    >
-                                                        {getCategoryLabel(post)}
-                                                    </div>
-                                                    <div className="recent-card-meta">
-                                                        <span className="recent-card-author">{post.author?.name || 'Staff'}</span>
-                                                        <span className="recent-card-date">{formatDate(post.publishedAt) || 'Recent'}</span>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </section>
 
                             {/* Secondary Section - positioned in left area */}
                             <div className="secondary-section">
@@ -439,15 +401,21 @@ export default function Blog() {
                                                         className="secondary-card-image"
                                                     />
                                                 )}
-                                                <div className="secondary-card-content">
-                                                    <h4 className="secondary-card-title">
-                                                        {post.title}
-                                                    </h4>
-                                                    <div className="secondary-card-category">
-                                                        {getCategoryLabel(post)}
+                                                <div className="latest-article-content">
+                                                    <div className="latest-article-top">
+                                                        <h4 className="latest-article-title">
+                                                            {post.title}
+                                                        </h4>
                                                     </div>
-                                                    <div className="secondary-card-meta">
-                                                        {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                                                    <div className="latest-article-bottom">
+                                                        <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                            {getCategoryLabel(post)}
+                                                        </div>
+                                                        <div className="latest-author-date">
+                                                            <span className="latest-author">{post.author?.name || 'Staff'}</span>
+                                                            <span className="latest-divider">|</span>
+                                                            <span className="latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </article>
@@ -472,14 +440,11 @@ export default function Blog() {
                                                 <h4 className="latest-article-title">
                                                     {post.title}
                                                 </h4>
-                                                <div
-                                                    className="latest-category-tag"
-                                                    style={{ color: getTeamColor(post) }}
-                                                >
-                                                    {getCategoryLabel(post)}
-                                                </div>
                                             </div>
                                             <div className="latest-article-bottom">
+                                                <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <div className="latest-author-date">
                                                     <span className="latest-author">{post.author?.name || 'Staff'}</span>
                                                     <span className="latest-divider">|</span>
