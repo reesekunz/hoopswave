@@ -44,7 +44,8 @@ export default function Blog() {
                                 _id,
                                 url
                             },
-                            alt
+                            alt,
+                            credit
                         }
                     } | order(publishedAt desc)`
                 )
@@ -391,7 +392,7 @@ export default function Blog() {
                             {/* Secondary Section - positioned in left area */}
                             <div className="secondary-section">
                                 <div className="secondary-grid">
-                                    {posts.slice(1, 4).map((post) => (
+                                    {posts.slice(6, 9).map((post) => (
                                         <Link key={post.slug.current} to={`/${post.slug.current}`} className="secondary-card-link">
                                             <article className="secondary-card">
                                                 {post.mainImage && (
@@ -427,7 +428,7 @@ export default function Blog() {
 
                         {/* Right Sidebar - Latest Section */}
                         <aside className="right-sidebar">
-                            {posts.slice(4, 9).map((post, index) => (
+                            {posts.slice(1, 6).map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
                                         <div className="latest-article-content">

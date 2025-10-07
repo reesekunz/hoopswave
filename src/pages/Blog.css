@@ -212,12 +212,11 @@ a {
   display: flex;
   flex-direction: column;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-left: none;
   border-right: none;
   min-height: 750px;
   height: auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 @media (min-width: 768px) {
@@ -327,7 +326,7 @@ a {
 .featured-bottom-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 0;
   align-items: flex-start;
   margin-top: var(--space-4);
 }
@@ -769,7 +768,7 @@ a {
 .latest-article-bottom {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 0;
   margin-top: auto;
 }
 
@@ -1213,8 +1212,6 @@ a {
   flex: 1;
   margin-top: 0;
   margin-bottom: 0;
-  border-top: 2px solid #e0e0e0;
-  border-bottom: 2px solid #e0e0e0;
   padding: var(--space-6) 0;
 }
 
@@ -1228,7 +1225,7 @@ a {
   .secondary-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
-    height: 320px;
+    height: 350px;
   }
 }
 
@@ -1243,17 +1240,16 @@ a {
   background: var(--color-background);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid #e0e0e0;
 }
 
 .secondary-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .secondary-card-image {
@@ -1298,7 +1294,6 @@ a {
   background: var(--color-background);
   border-radius: 0;
   padding: 2rem 1.5rem;
-  border-top: 3px solid var(--color-brand);
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;

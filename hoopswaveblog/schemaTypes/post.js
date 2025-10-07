@@ -46,6 +46,20 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt text',
+          description: 'Alternative text for screen readers. Very important for SEO and accessibility.',
+        },
+        {
+          name: 'credit',
+          type: 'string',
+          title: 'Photo Credit',
+          description: 'Credit the photographer or source of the image',
+        }
+      ],
     }),
     defineField({
       name: 'categories',

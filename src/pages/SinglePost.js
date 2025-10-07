@@ -37,7 +37,8 @@ export default function SinglePost() {
                                 _id,
                                 url
                             },
-                            alt
+                            alt,
+                            credit
                         }
                     }`,
                     { slug }
@@ -131,12 +132,19 @@ export default function SinglePost() {
             </header>
 
             {singlePost.mainImage?.asset?.url ? (
-                <img 
-                    src={singlePost.mainImage.asset.url} 
-                    alt={singlePost.mainImage.alt || singlePost.title || 'Blog post image'} 
-                    title={singlePost.title}
-                    className="single-post-image"
-                />
+                <div className="single-post-image-container">
+                    <img
+                        src={singlePost.mainImage.asset.url}
+                        alt={singlePost.mainImage.alt || singlePost.title || 'Blog post image'}
+                        title={singlePost.title}
+                        className="single-post-image"
+                    />
+                    {singlePost.mainImage.credit && (
+                        <div className="photo-credit">
+                            Photo: {singlePost.mainImage.credit}
+                        </div>
+                    )}
+                </div>
             ) : (
                 <div className="no-image">No image available</div>
             )}
