@@ -8,6 +8,7 @@ export default function Blog() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [searchQuery, setSearchQuery] = useState('')
+    const [selectedTeam, setSelectedTeam] = useState('all')
 
     useEffect(() => {
         // Get search query from URL parameters
@@ -171,10 +172,60 @@ export default function Blog() {
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading posts: {error}</div>
 
+    // Filter for news articles specifically
+    const newsArticles = filteredPosts.filter(post =>
+        post.categories && post.categories.some(cat => cat.title.toLowerCase() === 'news')
+    )
+
     const featuredPost = filteredPosts[0]
-    const secondaryPost = filteredPosts[1] // Second most recent post for secondary section
+    const secondFeaturedPost = filteredPosts[1] // Second featured article (post 2)
+    const secondaryPost = filteredPosts[2] // Third most recent post for secondary section
     const trendingPosts = filteredPosts.slice(6, 11) // Posts 7-11 for right sidebar
     const latestPosts = filteredPosts.slice(11, 17) // Posts 12-17 for left sidebar
+    const secondSidebarPosts = filteredPosts.slice(2, 7) // Posts 3-7 for second right sidebar
+
+    // Get the most recent news articles for the news section (will be updated by team filter)
+    // const featuredTeamNewsPost = newsArticles[0] || filteredPosts[0] // Use first news article or fallback to first post
+    // Teams for the filter
+    const teams = [
+        { key: 'all', label: 'All' },
+        { key: 'cardinals', label: 'Cardinals' },
+        { key: 'diamondbacks', label: 'Diamondbacks' },
+        { key: 'suns', label: 'Suns' },
+        { key: 'mercury', label: 'Mercury' }
+    ]
+
+    // Get team-specific news articles
+    const getTeamNewsArticles = (teamKey) => {
+        if (teamKey === 'all') {
+            // For "All", use all posts if there aren't enough news articles
+            return newsArticles.length >= 13 ? newsArticles : filteredPosts
+        }
+        return newsArticles.filter(post =>
+            post.team?.name?.toLowerCase().includes(teamKey) ||
+            post.categories?.some(category => category.title.toLowerCase().includes(teamKey)) ||
+            post.title?.toLowerCase().includes(teamKey)
+        )
+    }
+
+    // Get articles for the selected team
+    const teamNewsArticles = getTeamNewsArticles(selectedTeam)
+
+    // Get team-filtered articles for all news section components
+    const filteredNewsArticles = teamNewsArticles
+
+    // Featured article for news section (team-filtered)
+    const featuredTeamNewsPost = filteredNewsArticles[0] || filteredPosts[0]
+
+    // Left sidebar articles (team-filtered) - show more when "All" is selected
+    const newsLeftSidebarPosts = selectedTeam === 'all'
+        ? filteredNewsArticles.slice(1, 7)  // Show 6 articles for "All"
+        : filteredNewsArticles.slice(1, 6)  // Show 5 articles for specific teams
+
+    // Right sidebar articles (team-filtered) - show more when "All" is selected
+    const newsRightSidebarPosts = selectedTeam === 'all'
+        ? filteredNewsArticles.slice(7, 13) // Show 6 articles for "All"
+        : filteredNewsArticles.slice(1, Math.min(filteredNewsArticles.length, 6)) // Show 5 articles for specific teams, ensuring we have content
 
     // Use filtered posts for categories when searching
     const getCategorizedFilteredPosts = () => {
@@ -199,43 +250,68 @@ export default function Blog() {
     const categorizedPosts = searchQuery ? getCategorizedFilteredPosts() : getCategorizedPosts()
 
     const categories = [
-        { key: 'news', label: 'News', color: '#8B4513' },
-        { key: 'rumors', label: 'Rumors', color: '#8B4513' },
-        { key: 'trades', label: 'Trades', color: '#8B4513' },
-        { key: 'draft', label: 'Draft', color: '#8B4513' },
-        { key: 'freeAgency', label: 'Free Agency', color: '#8B4513' },
-        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' },
-        { key: 'analysis', label: 'Analysis', color: '#8B4513' }
+        { key: 'rumors', label: 'Rumors', color: '#6B46C1' },
+        { key: 'trades', label: 'Trades', color: '#059669' },
+        { key: 'draft', label: 'Draft', color: '#DC2626' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#0369A1' }
     ]
 
-    const SectionArticle = ({ post, size = 'small', isRed = false }) => (
-        <Link
-            to={`/${post.slug.current}`}
-            className={`section-article-link ${size}`}
-        >
-            <article className={`section-article ${size}`}>
-                {/* Show images for large and medium articles */}
-                {(size === 'large' || size === 'medium') && post.mainImage && (
-                    <img
-                        src={post.mainImage.asset.url}
-                        alt={post.title}
-                        className="section-image"
-                    />
-                )}
-                <div className="section-content">
-                    <div className="section-category">
-                        {getCategoryLabel(post)}
+    const SectionArticle = ({ post, size = 'small', isRed = false }) => {
+        // Generate description snippet from body content
+        const getDescriptionSnippet = (body) => {
+            if (!body || !Array.isArray(body)) return ''
+
+            // Find the first text block
+            const textBlock = body.find(block => block._type === 'block' && block.children)
+            if (!textBlock || !textBlock.children) return ''
+
+            // Extract text from children
+            const text = textBlock.children
+                .filter(child => child._type === 'span' && child.text)
+                .map(child => child.text)
+                .join('')
+
+            // Return first 60 characters with ellipsis for small cards
+            return text.length > 60 ? text.substring(0, 60) + '...' : text
+        }
+
+        return (
+            <Link
+                to={`/${post.slug.current}`}
+                className={`section-article-link ${size}`}
+            >
+                <article className={`section-article ${size}`}>
+                    {/* Show images for large and medium articles */}
+                    {(size === 'large' || size === 'medium') && post.mainImage && (
+                        <img
+                            src={post.mainImage.asset.url}
+                            alt={post.title}
+                            className="section-image"
+                        />
+                    )}
+                    <div className="section-content">
+                        <h4 className={`section-title ${isRed ? 'red' : ''}`}>
+                            {post.title}
+                        </h4>
+                        {/* Add description snippet for news section articles */}
+                        {size === 'large' && (
+                            <p className="section-description">
+                                {getDescriptionSnippet(post.body)}
+                            </p>
+                        )}
+                        {size === 'small' && (
+                            <p className="section-description-small">
+                                {getDescriptionSnippet(post.body)}
+                            </p>
+                        )}
+                        <div className="section-meta">
+                            {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                        </div>
                     </div>
-                    <h4 className={`section-title ${isRed ? 'red' : ''}`}>
-                        {post.title}
-                    </h4>
-                    <div className="section-meta">
-                        {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
-                    </div>
-                </div>
-            </article>
-        </Link>
-    )
+                </article>
+            </Link>
+        )
+    }
 
     const getLayoutType = (categoryKey) => {
         const layoutMap = {
@@ -340,21 +416,176 @@ export default function Blog() {
 
             {filteredPosts.length > 0 && (
                 <>
+                    {/* Second Featured Section - Duplicate of main featured section with unique class names */}
+                    {filteredPosts.length > 1 && (
+                        <div className="second-three-column-layout">
+                            {/* Left Content Container */}
+                            <div className="second-left-content-container">
+                                {/* Center Featured Article */}
+                                <main className="second-center-featured">
+                                    <Link to={`/${filteredPosts[1].slug.current}`} className="second-featured-article-link">
+                                        <article className="second-featured-article">
+                                            <div className="second-featured-content">
+                                                <div className="second-featured-top-content">
+                                                    <h2 className="second-featured-title">{filteredPosts[1].title}</h2>
+                                                    <div className="second-featured-description">
+                                                        {filteredPosts[1].body && filteredPosts[1].body[0]?.children?.[0]?.text ?
+                                                            (() => {
+                                                                const fullText = filteredPosts[1].body[0].children[0].text;
+                                                                const sentences = fullText.split('.');
+                                                                // Take first two sentences if available
+                                                                if (sentences.length >= 2) {
+                                                                    return sentences.slice(0, 2).join('.') + '.';
+                                                                }
+                                                                // If only one sentence, use it
+                                                                return sentences[0] + '.';
+                                                            })() :
+                                                            'Breaking basketball news and analysis from around the league.'
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div className="second-featured-bottom-content">
+                                                    <div className="article-category-tag" style={{ color: getTeamColor(filteredPosts[1]) }}>
+                                                        {getCategoryLabel(filteredPosts[1])}
+                                                    </div>
+                                                    <div className="second-featured-meta">
+                                                        <span className="second-featured-author">{filteredPosts[1].author?.name || 'Staff'}</span>
+                                                        <span className="second-featured-timestamp">{formatDate(filteredPosts[1].publishedAt) || 'Recent'}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="second-featured-image-container">
+                                                {filteredPosts[1].mainImage && (
+                                                    <img
+                                                        src={filteredPosts[1].mainImage.asset.url}
+                                                        alt={filteredPosts[1].title}
+                                                        className="second-featured-image"
+                                                    />
+                                                )}
+                                            </div>
+                                        </article>
+                                    </Link>
+                                </main>
+
+                                {/* Secondary Section - positioned in left area */}
+                                <div className="second-secondary-section">
+                                    <div className="second-secondary-grid">
+                                        {filteredPosts.slice(7, 10).map((post) => (
+                                            <Link key={post.slug.current} to={`/${post.slug.current}`} className="second-secondary-card-link">
+                                                <article className="second-secondary-card">
+                                                    {post.mainImage && (
+                                                        <img
+                                                            src={post.mainImage.asset.url}
+                                                            alt={post.title}
+                                                            className="second-secondary-card-image"
+                                                        />
+                                                    )}
+                                                    <div className="second-latest-article-content">
+                                                        <div className="second-latest-article-top">
+                                                            <h4 className="second-latest-article-title">
+                                                                {post.title}
+                                                            </h4>
+                                                        </div>
+                                                        <div className="second-latest-article-bottom">
+                                                            <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                                {getCategoryLabel(post)}
+                                                            </div>
+                                                            <div className="second-latest-author-date">
+                                                                <span className="second-latest-author">{post.author?.name || 'Staff'}</span>
+                                                                <span className="second-latest-divider">|</span>
+                                                                <span className="second-latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Sidebar - Latest Section */}
+                            <aside className="second-right-sidebar">
+                                {secondSidebarPosts.map((post, index) => (
+                                    <Link key={post.slug.current} to={`/${post.slug.current}`} className="second-latest-article-link">
+                                        <article className="second-latest-article">
+                                            <div className="second-latest-article-content">
+                                                <div className="second-latest-article-top">
+                                                    {getNewsIndicator(post, index + 3) && (
+                                                        <div className={`news-indicator-small ${getNewsIndicator(post, index + 3).toLowerCase()}`}>
+                                                            {getNewsIndicator(post, index + 3)}
+                                                        </div>
+                                                    )}
+                                                    <h4 className="second-latest-article-title">
+                                                        {post.title}
+                                                    </h4>
+                                                </div>
+                                                <div className="second-latest-article-bottom">
+                                                    <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="second-latest-author-date">
+                                                        <span className="second-latest-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="second-latest-divider">|</span>
+                                                        <span className="second-latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                ))}
+                            </aside>
+                        </div>
+                    )}
+
                     <div className="three-column-layout">
+                        {/* News Section Header */}
+                        <div className="news-section-header">
+                            <div className="section-header">
+                                <h2 className="section-title" style={{ color: '#97233F' }}>
+                                    News
+                                </h2>
+                                <Link
+                                    to="/news"
+                                    className="see-more"
+                                    style={{ color: '#97233F' }}
+                                >
+                                    See more
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Left Sidebar - Team Filter */}
+                        <aside className="news-left-sidebar">
+                            <div className="left-sidebar-filter">
+                                <h3 className="filter-title">By Team</h3>
+                                <div className="team-filter-tabs vertical">
+                                    {teams.map((team) => (
+                                        <button
+                                            key={team.key}
+                                            className={`team-tab vertical ${selectedTeam === team.key ? 'active' : ''}`}
+                                            onClick={() => setSelectedTeam(team.key)}
+                                        >
+                                            {team.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </aside>
 
                         {/* Left Content Container */}
                         <div className="left-content-container">
                             {/* Center Featured Article */}
                             <main className="center-featured">
-                                <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
+                                <Link to={`/${featuredTeamNewsPost.slug.current}`} className="featured-article-link">
                                     <article className="featured-article">
                                         <div className="featured-content">
                                             <div className="featured-top-content">
-                                                <h2 className="featured-title">{featuredPost.title}</h2>
+                                                <h2 className="featured-title">{featuredTeamNewsPost.title}</h2>
                                                 <div className="featured-description">
-                                                    {featuredPost.body && featuredPost.body[0]?.children?.[0]?.text ?
+                                                    {featuredTeamNewsPost.body && featuredTeamNewsPost.body[0]?.children?.[0]?.text ?
                                                         (() => {
-                                                            const fullText = featuredPost.body[0].children[0].text;
+                                                            const fullText = featuredTeamNewsPost.body[0].children[0].text;
                                                             const sentences = fullText.split('.');
                                                             // Take first two sentences if available
                                                             if (sentences.length >= 2) {
@@ -368,67 +599,32 @@ export default function Blog() {
                                                 </div>
                                             </div>
                                             <div className="featured-bottom-content">
-                                                <div className="article-category-tag" style={{ color: getTeamColor(featuredPost) }}>
-                                                    {getCategoryLabel(featuredPost)}
+                                                <div className="article-category-tag" style={{ color: getTeamColor(featuredTeamNewsPost) }}>
+                                                    {getCategoryLabel(featuredTeamNewsPost)}
                                                 </div>
                                                 <div className="featured-meta">
-                                                    <span className="featured-author">{featuredPost.author?.name || 'Staff'}</span>
-                                                    <span className="featured-timestamp">{formatDate(featuredPost.publishedAt) || 'Recent'}</span>
+                                                    <span className="featured-author">{featuredTeamNewsPost.author?.name || 'Staff'}</span>
+                                                    <span className="featured-timestamp">{formatDate(featuredTeamNewsPost.publishedAt) || 'Recent'}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="featured-image-container">
-                                            <img
-                                                src={featuredPost.mainImage.asset.url}
-                                                alt={featuredPost.title}
-                                                className="featured-image"
-                                            />
+                                            {featuredTeamNewsPost.mainImage && (
+                                                <img
+                                                    src={featuredTeamNewsPost.mainImage.asset.url}
+                                                    alt={featuredTeamNewsPost.title}
+                                                    className="featured-image"
+                                                />
+                                            )}
                                         </div>
                                     </article>
                                 </Link>
                             </main>
-
-
-                            {/* Secondary Section - positioned in left area */}
-                            <div className="secondary-section">
-                                <div className="secondary-grid">
-                                    {posts.slice(6, 9).map((post) => (
-                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="secondary-card-link">
-                                            <article className="secondary-card">
-                                                {post.mainImage && (
-                                                    <img
-                                                        src={post.mainImage.asset.url}
-                                                        alt={post.title}
-                                                        className="secondary-card-image"
-                                                    />
-                                                )}
-                                                <div className="latest-article-content">
-                                                    <div className="latest-article-top">
-                                                        <h4 className="latest-article-title">
-                                                            {post.title}
-                                                        </h4>
-                                                    </div>
-                                                    <div className="latest-article-bottom">
-                                                        <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
-                                                            {getCategoryLabel(post)}
-                                                        </div>
-                                                        <div className="latest-author-date">
-                                                            <span className="latest-author">{post.author?.name || 'Staff'}</span>
-                                                            <span className="latest-divider">|</span>
-                                                            <span className="latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
 
-                        {/* Right Sidebar - Latest Section */}
+                        {/* Right Sidebar - Articles */}
                         <aside className="right-sidebar">
-                            {posts.slice(1, 6).map((post, index) => (
+                            {newsRightSidebarPosts.map((post, index) => (
                                 <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
                                     <article className="latest-article">
                                         <div className="latest-article-content">

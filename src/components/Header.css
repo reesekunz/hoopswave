@@ -125,12 +125,7 @@
   margin: 2rem 0;
   font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #7a2d5a, #e74c3c, #f39c12, #f1c40f);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: sunset-shift 15s ease-in-out infinite;
+  color: white;
   letter-spacing: -0.8px;
   white-space: nowrap;
   display: flex;
@@ -142,6 +137,10 @@
   z-index: 1;
   padding: 1rem 2rem;
   border-radius: 8px;
+}
+
+.logo-center h2.title-with-team-colors {
+  color: #97233F !important;
 }
 
 @keyframes sunset-shift {
@@ -761,12 +760,7 @@
   margin: 0;
   font-size: 1.8rem !important;
   font-weight: 700;
-  background: linear-gradient(135deg, #7a2d5a, #e74c3c, #f39c12, #f1c40f) !important;
-  background-size: 400% 400% !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  animation: sunset-shift 15s ease-in-out infinite;
+  color: #97233F !important;
   letter-spacing: -0.5px;
   white-space: nowrap;
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
@@ -791,6 +785,37 @@
 
 .two-row-header.article-page .top-utility-bar {
   display: none;
+}
+
+/* Team Colors Square */
+.team-colors-square {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.team-color-section {
+  width: 25%;
+  height: 100%;
+}
+
+.team-color-section.suns {
+  background-color: #E56020;
+}
+
+.team-color-section.diamondbacks {
+  background-color: #30CED8;
+}
+
+.team-color-section.cardinals {
+  background-color: #97233F;
+}
+
+.team-color-section.mercury {
+  background-color: #8B5CF6;
 }
 
 /* Large desktop optimizations */

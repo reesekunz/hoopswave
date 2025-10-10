@@ -155,7 +155,7 @@ export default function Header() {
                         <div className="logo-row">
                             <div className='logo-center'>
                                 <Link to="/">
-                                    <h2>
+                                    <h2 className="title-with-team-colors">
                                         <span>Valley Sports News</span>
                                     </h2>
                                 </Link>
