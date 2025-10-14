@@ -134,10 +134,10 @@ export default function TeamPage() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'news', label: 'News', color: '#97233F' },
-        { key: 'gameRecaps', label: 'Game Recaps', color: '#97233F' },
-        { key: 'analysis', label: 'Analysis', color: '#97233F' },
-        { key: 'rumors', label: 'Rumors', color: '#97233F' }
+        { key: 'news', label: 'News', color: '#8C1D40' },
+        { key: 'gameRecaps', label: 'Game Recaps', color: '#8C1D40' },
+        { key: 'analysis', label: 'Analysis', color: '#8C1D40' },
+        { key: 'rumors', label: 'Rumors', color: '#8C1D40' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (

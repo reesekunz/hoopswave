@@ -18,7 +18,7 @@ const Categories = ({ teamSlug = null, teamName = null }) => {
   const getTeamColor = (article) => {
     const teamColors = {
       'Suns': '#E56020',           // Phoenix Suns Orange
-      'Cardinals': '#97233F',       // Cardinals Red
+      'Cardinals': '#8C1D40',       // Cardinals Red
       'Diamondbacks': '#30CED8',    // D-backs Teal
       'Mercury': '#8B5CF6',         // Mercury Bright Purple
       'Wildcats': '#003366',        // U of A Navy

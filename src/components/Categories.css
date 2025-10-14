@@ -13,13 +13,14 @@
 
 .team-title {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   color: #2c3e50;
-  background: linear-gradient(135deg, #97233F 0%, #44a08d 100%);
+  background: linear-gradient(135deg, #8C1D40 0%, #44a08d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
+  font-family: "Merriweather", "Times New Roman", Times, serif;
 }
 
 .categories-content {
@@ -43,10 +44,11 @@
 
 .category-title {
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: -0.5px;
+  font-family: "Merriweather", "Times New Roman", Times, serif;
 }
 
 .see-more-link {
@@ -192,7 +194,7 @@
 
 .article-author {
   font-weight: 600;
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .article-date {

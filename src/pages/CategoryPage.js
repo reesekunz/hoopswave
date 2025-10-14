@@ -35,10 +35,10 @@ export default function CategoryPage() {
 
     // Map for colors
     const categoryColors = {
-        'news': '#97233F',
-        'rumors': '#97233F',
-        'analysis': '#97233F',
-        'gamerecaps': '#97233F'
+        'news': '#8C1D40',
+        'rumors': '#8C1D40',
+        'analysis': '#8C1D40',
+        'gamerecaps': '#8C1D40'
     }
 
     // Function to categorize posts (updated for new categories)

@@ -20,7 +20,7 @@ article i {
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #FBF9F7;
+  background-color: #F4E8D4;
   min-height: calc(100vh - 4rem);
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -116,7 +116,7 @@ article i {
 .no-image {
   width: 100%;
   height: 200px;
-  background: #FBF9F7;
+  background: #F4E8D4;
   border: 2px dashed #ddd;
   display: flex;
   align-items: center;
@@ -172,7 +172,7 @@ article i {
 
 .single-post-content em {
   font-style: italic;
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .single-post-content ul,
@@ -186,7 +186,7 @@ article i {
 }
 
 .single-post-content a {
-  color: #97233F;
+  color: #8C1D40;
   text-decoration: underline;
 }
 
@@ -196,7 +196,7 @@ article i {
 }
 
 .single-post-content blockquote {
-  border-left: 4px solid #97233F;
+  border-left: 4px solid #8C1D40;
   margin: 2rem 0;
   padding: 1rem 2rem;
   background: #f8fdfc;
@@ -236,7 +236,7 @@ article i {
 }
 
 .back-to-blog-btn {
-  background: linear-gradient(135deg, #97233F 0%, #44a08d 100%);
+  background: linear-gradient(135deg, #8C1D40 0%, #44a08d 100%);
   border: none;
   padding: 1rem 2rem;
   border-radius: 8px;
@@ -285,7 +285,7 @@ article i {
 }
 
 .error-container {
-  background: #FBF9F7;
+  background: #F4E8D4;
   border: 1px solid #fecaca;
   border-radius: 8px;
   margin: 2rem;
@@ -293,12 +293,12 @@ article i {
 
 .error-container h1 {
   font-size: 2rem;
-  color: #97233F;
+  color: #8C1D40;
   margin: 0 0 1rem 0;
 }
 
 .error-link {
-  color: #97233F;
+  color: #8C1D40;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;

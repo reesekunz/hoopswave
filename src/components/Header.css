@@ -1,27 +1,25 @@
 /* Header.css - Seattle Times Style Two-Row Navigation */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap');
 
 .two-row-header {
-  /* position: sticky; */
   top: 0;
   z-index: 100;
   background: #1A1A1A;
   position: relative;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06); */
-  /* border: 1px solid red; */
 }
 
 
 
 .bottom-border {
+  width: 100%;
+  height: 1px;
+  background-color: #404040;
   position: absolute;
   bottom: 0;
-  left: 3rem;
-  right: 3rem;
-  height: 3px;
-  background: #FFFFFF;
-  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(1200px - 2rem);
 }
 
 .header-content {
@@ -32,38 +30,45 @@
   z-index: 2;
 }
 
-/* Top utility bar styling */
+/* Top utility bar styling - NYT style minimal */
 .top-utility-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 28px;
-  min-height: 28px;
-  padding-bottom: 6px;
+  height: 40px;
+  min-height: 40px;
+  padding: 8px 0;
 }
 
-/* Logo row styling */
+/* Logo row styling - Prominent like NYT */
 .logo-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 0;
+  padding: 20px 0;
 }
 
-/* Bottom row styling */
+/* Bottom row styling - NYT style navigation */
 .bottom-row {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  min-height: 40px;
-  margin-top: 0;
+  height: 48px;
+  min-height: 48px;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  background: #1A1A1A;
 }
 
-/* Hamburger section */
+/* Hamburger section - NYT style */
 .hamburger-section {
   flex-shrink: 0;
-  width: 150px;
+  width: 60px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .hamburger {
@@ -72,14 +77,21 @@
   cursor: pointer;
   padding: 8px;
   gap: 4px;
-  width: 24px;
+  width: 28px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger span {
-  width: 20px;
-  height: 2px;
-  background-color: #FFFFFF;
+  width: 24px;
+  height: 3px;
+  background-color: #CCCCCC;
   transition: all 0.2s ease;
+  border-radius: 1px;
 }
 
 .hamburger:hover span {
@@ -122,25 +134,26 @@
 }
 
 .logo-center h2 {
-  margin: 2rem 0;
-  font-size: 3.5rem;
-  font-weight: 800;
+  margin: 0;
+  font-size: 3.2rem;
+  font-weight: 700;
+  font-style: normal;
   color: white;
-  letter-spacing: -0.8px;
+  letter-spacing: -1px;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0;
-  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Cinzel Decorative', serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 1;
-  padding: 1rem 2rem;
-  border-radius: 8px;
+  padding: 0;
+  text-align: center;
 }
 
 .logo-center h2.title-with-team-colors {
-  color: #97233F !important;
+  color: #8C1D40 !important;
 }
 
 @keyframes sunset-shift {
@@ -189,7 +202,7 @@
   opacity: 1;
 }
 
-/* Bottom row navigation */
+/* Bottom row navigation - NYT style */
 .bottom-row nav {
   display: flex;
   justify-content: center;
@@ -201,7 +214,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 0;
+  gap: 1rem;
   align-items: center;
   white-space: nowrap;
 }
@@ -210,38 +223,52 @@
   margin: 0;
 }
 
-/* Category Links and Team Links - Navigation Style */
+/* Category Links and Team Links - NYT Navigation Style */
 .category-link,
 .bottom-row .team-link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #FFFFFF;
-  font-size: 0.9rem;
-  font-weight: 400;
-  padding: 12px 16px;
-  margin: 0 2px;
-  transition: all 0.25s ease;
+  color: #CCCCCC;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 14px 20px;
+  margin: 0;
+  transition: all 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  height: 40px;
+  letter-spacing: 0.8px;
+  height: 48px;
   box-sizing: border-box;
-  border-bottom: 2px solid transparent;
+  border: none;
   border-radius: 0;
   background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   outline: none;
+  position: relative;
 }
 
 .category-link:hover,
 .bottom-row .team-link:hover {
-  color: #97233F;
-  border-bottom-color: #97233F;
-  background-color: rgba(151, 35, 63, 0.05);
-  transform: translateY(-1px);
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.category-link::after,
+.bottom-row .team-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #8C1D40;
+  transition: width 0.2s ease;
+}
+
+.category-link:hover::after,
+.bottom-row .team-link:hover::after {
+  width: 80%;
 }
 
 .category-link:focus,
@@ -254,18 +281,63 @@
 /* Active state for current page */
 .category-link.active,
 .bottom-row .team-link.active {
-  color: #97233F;
+  color: #8C1D40;
   font-weight: 500;
-  border-bottom-color: #97233F;
   background-color: rgba(151, 35, 63, 0.08);
 }
 
 /* Active state with hover - slightly more pronounced */
 .category-link.active:hover,
 .bottom-row .team-link.active:hover {
-  color: #97233F;
+  color: #8C1D40;
   font-weight: 500;
   background-color: rgba(151, 35, 63, 0.12);
+}
+
+/* Team-specific hover colors with consistent gray background and team color underlines */
+.bottom-row .team-link[data-team="suns"]:hover {
+  color: #E56020 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.bottom-row .team-link[data-team="suns"]:hover::after {
+  background-color: #E56020 !important;
+}
+
+.bottom-row .team-link[data-team="diamondbacks"]:hover {
+  color: #30CED8 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.bottom-row .team-link[data-team="diamondbacks"]:hover::after {
+  background-color: #30CED8 !important;
+}
+
+.bottom-row .team-link[data-team="mercury"]:hover {
+  color: #6B46C1 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.bottom-row .team-link[data-team="mercury"]:hover::after {
+  background-color: #6B46C1 !important;
+}
+
+.bottom-row .team-link[data-team="cardinals"]:hover {
+  color: #8C1D40 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.bottom-row .team-link[data-team="cardinals"]:hover::after {
+  background-color: #8C1D40 !important;
+}
+
+.bottom-row .team-link[data-team="sundevils"]:hover {
+  color: #FFC627 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.bottom-row .team-link[data-team="sundevils"]:hover::after {
+  background-color: #FFC627 !important;
 }
 
 /* Teams Dropdown Styles */
@@ -285,30 +357,29 @@
 .teams-button {
   background: none;
   border: none;
-  padding: 12px 16px;
-  margin: 0 2px;
+  padding: 14px 20px;
+  margin: 0;
   cursor: pointer;
-  transition: all 0.25s ease;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #FFFFFF;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #CCCCCC;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
-  height: 40px;
+  letter-spacing: 0.8px;
+  height: 48px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   box-sizing: border-box;
-  border-bottom: 2px solid transparent;
   border-radius: 0;
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   outline: none;
+  position: relative;
 }
 
 .teams-button:hover {
-  color: #97233F;
-  border-bottom-color: #97233F;
-  background-color: rgba(151, 35, 63, 0.05);
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .teams-button:focus {
@@ -318,14 +389,13 @@
 }
 
 .teams-button.active {
-  color: #97233F;
+  color: #8C1D40;
   font-weight: 500;
-  border-bottom-color: #97233F;
   background-color: rgba(151, 35, 63, 0.08);
 }
 
 .teams-button.active:hover {
-  color: #97233F;
+  color: #8C1D40;
   font-weight: 500;
   background-color: rgba(151, 35, 63, 0.12);
 }
@@ -378,7 +448,7 @@
 }
 
 .dropdown-header a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
@@ -388,7 +458,7 @@
 }
 
 .dropdown-header a:hover {
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .teams-grid {
@@ -406,7 +476,7 @@
   align-items: center;
   padding: 12px 16px;
   text-decoration: none;
-  color: #FFFFFF;
+  color: white;
   background-color: transparent;
   border-bottom: 1px solid #404040;
   transition: all 0.15s ease;
@@ -415,9 +485,44 @@
   white-space: nowrap;
 }
 
+.team-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #8C1D40;
+  transition: width 0.2s ease;
+}
+
+.team-link:hover::after {
+  width: 80%;
+}
+
 .team-link:hover {
-  background-color: rgba(151, 35, 63, 0.1) !important;
-  color: #97233F !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+/* NCAA team-specific dropdown colors */
+.team-link[data-team="wildcats"]:hover {
+  color: #8C1D40 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.team-link[data-team="wildcats"]:hover::after {
+  background-color: #8C1D40 !important;
+}
+
+.team-link[data-team="sundevils"]:hover {
+  color: #FFC627 !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.team-link[data-team="sundevils"]:hover::after {
+  background-color: #FFC627 !important;
 }
 
 /* Override any potential transparency on hover */
@@ -425,7 +530,7 @@
 .college-dropdown-container:hover .teams-dropdown,
 .more-dropdown-container:hover .teams-dropdown {
   display: block !important;
-  background: #1A1A1A !important;
+  background: #FFFFFF !important;
   opacity: 1 !important;
 }
 
@@ -440,11 +545,12 @@
 }
 
 
-/* Right section with permanent search */
+/* Right section with permanent search - NYT style */
 .utility-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 200px;
 }
 
 .permanent-search-container {
@@ -455,39 +561,47 @@
 .permanent-search-form {
   display: flex;
   align-items: center;
-  background-color: #FAFAFA;
-  border-radius: 20px;
+  background-color: #2A2A2A;
+  border: 1px solid #444;
+  border-radius: 4px;
   padding: 0;
   overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.permanent-search-form:focus-within {
+  border-color: #8C1D40;
 }
 
 .permanent-search-input {
   border: none;
   outline: none;
   background: transparent;
-  padding: 8px 16px;
+  padding: 8px 12px;
   font-size: 0.875rem;
-  color: #333;
-  width: 200px;
+  color: #FFF;
+  width: 160px;
+  font-family: inherit;
 }
 
 .permanent-search-input::placeholder {
-  color: #999;
+  color: #AAA;
 }
 
 .permanent-search-button {
-  background-color: #97233F;
+  background-color: #8C1D40;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   outline: none;
+  transition: background-color 0.2s ease;
 }
 
 .permanent-search-button:hover {
-  background-color: #97233F;
+  background-color: #A02347;
 }
 
 .permanent-search-button:focus {
@@ -513,7 +627,7 @@
 }
 
 .social-icon:hover {
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .social-icon:focus {
@@ -531,7 +645,7 @@
 
 /* Search and more menu icons */
 .more-menu {
-  color: #97233F;
+  color: #8C1D40;
   font-size: 1.3rem;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -539,7 +653,7 @@
 }
 
 .more-menu:hover {
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .search-container {
@@ -557,7 +671,7 @@
 }
 
 .search-icon:hover {
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .search-icon:focus {
@@ -576,13 +690,13 @@
 
 .search-input {
   padding: 8px 12px;
-  border: 2px solid #97233F;
+  border: 2px solid #8C1D40;
   border-radius: 20px;
   font-size: 0.9rem;
   width: 250px;
   outline: none;
   background: var(--color-background);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
 }
 
 .search-input:focus {
@@ -758,12 +872,13 @@
 
 .condensed-title {
   margin: 0;
-  font-size: 1.8rem !important;
+  font-size: 1.5rem !important;
   font-weight: 700;
-  color: #97233F !important;
+  font-style: normal;
+  color: #8C1D40 !important;
   letter-spacing: -0.5px;
   white-space: nowrap;
-  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-family: 'Cinzel Decorative', serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   padding: 0.5rem 1rem !important;
   border-radius: 4px;
@@ -811,7 +926,7 @@
 }
 
 .team-color-section.cardinals {
-  background-color: #97233F;
+  background-color: #8C1D40;
 }
 
 .team-color-section.mercury {

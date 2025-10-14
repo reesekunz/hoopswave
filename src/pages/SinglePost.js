@@ -71,13 +71,13 @@ export default function SinglePost() {
     const getTeamColor = (post) => {
         const teamColors = {
             'Suns': '#E56020',           // Phoenix Suns Orange
-            'Cardinals': '#97233F',       // Cardinals Red
+            'Cardinals': '#8C1D40',       // Cardinals Red
             'Diamondbacks': '#30CED8',    // D-backs Teal
             'Mercury': '#6B46C1',         // Mercury Bright Purple
             'Wildcats': '#003366',        // U of A Navy
             'Sun Devils': '#8C1D40'       // ASU Maroon
         }
-        return teamColors[post?.team?.name] || '#97233F' // Default to Cardinals red
+        return teamColors[post?.team?.name] || '#8C1D40' // Default to Cardinals red
     }
 
     if (isLoading) {

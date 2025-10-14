@@ -17,31 +17,31 @@ export default function Header() {
 
     // Content categories - universal across all teams
     const contentCategories = [
-        { key: 'news', label: 'News', color: '#97233F' },
-        { key: 'rumors', label: 'Rumors', color: '#97233F' },
-        { key: 'analysis', label: 'Analysis', color: '#97233F' },
-        { key: 'gamerecaps', label: 'Recaps', color: '#97233F' }
+        { key: 'news', label: 'News', color: '#8C1D40' },
+        { key: 'rumors', label: 'Rumors', color: '#8C1D40' },
+        { key: 'analysis', label: 'Analysis', color: '#8C1D40' }
     ]
 
     // Arizona professional teams - all using site red
     const proTeams = [
-        { key: 'suns', label: 'Suns', color: '#97233F' },
-        { key: 'diamondbacks', label: 'Diamondbacks', color: '#97233F' },
-        { key: 'cardinals', label: 'Cardinals', color: '#97233F' },
+        { key: 'suns', label: 'Suns', color: '#8C1D40' },
+        { key: 'cardinals', label: 'Cardinals', color: '#8C1D40' },
+        { key: 'diamondbacks', label: 'Diamondbacks', color: '#8C1D40' },
         { key: 'mercury', label: 'Mercury', color: '#6B46C1' }
     ]
 
     // Arizona college teams
     const collegeTeams = [
-        { key: 'wildcats', label: 'Wildcats', color: '#97233F' },
-        { key: 'sundevils', label: 'Sun Devils', color: '#97233F' }
+        { key: 'wildcats', label: 'Wildcats', color: '#8C1D40' },
+        { key: 'sundevils', label: 'Sun Devils', color: '#8C1D40' }
     ]
 
     // More section items
     const moreItems = [
-        { key: 'trades', label: 'Trades', color: '#97233F' },
-        { key: 'draft', label: 'Draft', color: '#97233F' },
-        { key: 'freeagency', label: 'Free Agency', color: '#97233F' }
+        { key: 'gamerecaps', label: 'Recaps', color: '#8C1D40' },
+        { key: 'trades', label: 'Trades', color: '#8C1D40' },
+        { key: 'draft', label: 'Draft', color: '#8C1D40' },
+        { key: 'freeagency', label: 'Free Agency', color: '#8C1D40' }
     ]
 
 
@@ -91,7 +91,7 @@ export default function Header() {
                         <div className='condensed-logo-center'>
                             <Link to="/">
                                 <h2 className="condensed-title">
-                                    <span>Valley Sports News</span>
+                                    <span>Valley Sports news</span>
                                 </h2>
                             </Link>
                         </div>
@@ -119,7 +119,7 @@ export default function Header() {
                 ) : (
                     /* Original multi-row layout for home page */
                     <>
-                        {/* Top utility bar */}
+                        {/* Top utility bar - NYT style */}
                         <div className="top-utility-bar">
                             {/* Left hamburger */}
                             <div className="hamburger-section">
@@ -156,7 +156,7 @@ export default function Header() {
                             <div className='logo-center'>
                                 <Link to="/">
                                     <h2 className="title-with-team-colors">
-                                        <span>Valley Sports News</span>
+                                        <span>Valley Sports news</span>
                                     </h2>
                                 </Link>
                             </div>
@@ -199,6 +199,7 @@ export default function Header() {
                                                     key={team.key}
                                                     to={`/${team.key}`}
                                                     className="team-link"
+                                                    data-team={team.key}
                                                     onClick={closeCollegeDropdown}
                                                     style={{'--team-color': team.color}}
                                                 >

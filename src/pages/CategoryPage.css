@@ -24,10 +24,11 @@
 
 .category-title {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 400;
   margin: 0.5rem 0;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: "Merriweather", "Times New Roman", Times, serif;
 }
 
 .category-count {
@@ -85,7 +86,7 @@
 }
 
 .error {
-  color: #97233F;
+  color: #8C1D40;
 }
 
 .no-posts {
