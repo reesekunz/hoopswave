@@ -247,10 +247,10 @@ a {
 }
 
 .featured-article {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02) !important;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -313,7 +313,7 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   gap: var(--space-4);
-  background: var(--color-background);
+  background: transparent;
   text-align: left;
 }
 
@@ -356,6 +356,16 @@ a {
 }
 
 .featured-description {
+  font-size: var(--text-base);
+  color: #f0f0f0;
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-secondary);
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.section-description {
   font-size: var(--text-base);
   color: #f0f0f0;
   line-height: 1.6;
@@ -682,7 +692,7 @@ a {
   box-shadow: none;
   transition: all 0.2s ease;
   height: auto;
-  min-height: 160px;
+  min-height: 120px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1035,7 +1045,7 @@ a {
   box-shadow: none;
   transition: all 0.2s ease;
   height: auto;
-  min-height: 160px;
+  min-height: 120px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1063,7 +1073,7 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--space-2);
 }
 
@@ -1132,10 +1142,10 @@ a {
 }
 
 .latest-article-title {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 var(--space-2) 0;
+  margin: 0 0 var(--space-1) 0;
   color: white;
   font-family: var(--font-primary);
   text-transform: none;
@@ -2045,7 +2055,7 @@ a {
   border-right: none;
   transition: all 0.3s ease;
   height: fit-content;
-  min-height: 160px;
+  min-height: 120px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -2554,7 +2564,7 @@ a {
 
   .latest-article {
     margin-bottom: var(--space-2);
-    min-height: 160px;
+    min-height: 120px;
   }
 
   .secondary-card-link {
@@ -2975,11 +2985,10 @@ a {
 
 /* MAIN HOMEPAGE FEATURED ARTICLE - This is the top Mercury card from the screenshot */
 .second-featured-article {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
   border-radius: 0;
   overflow: hidden;
-  box-shadow: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -2995,16 +3004,17 @@ a {
 }
 
 .second-featured-image-container {
-  height: 280px;
+  height: 100%;
   overflow: hidden;
   position: relative;
   order: 2;
+  display: flex;
 }
 
 @media (min-width: 768px) {
   .second-featured-image-container {
     width: 60%;
-    height: 320px;
+    height: 100%;
     flex-shrink: 0;
     order: 2;
   }
@@ -3020,10 +3030,12 @@ a {
   height: 100%;
   object-fit: cover;
   border-radius: 0;
+  display: block;
+  flex: 1;
 }
 
 .second-featured-content {
-  padding: 0 var(--space-3) var(--space-3) var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-4);
   flex: 1 1 auto;
   order: 1;
   display: flex;
@@ -3034,12 +3046,12 @@ a {
 
 @media (min-width: 768px) {
   .second-featured-content {
-    padding: 0 var(--space-8) var(--space-3) var(--space-3);
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6);
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--space-4);
+    justify-content: center;
+    gap: var(--space-3);
     min-height: 0;
     order: 1;
   }
@@ -3072,11 +3084,13 @@ a {
 }
 
 .second-featured-description {
-  font-size: var(--text-sm);
-  color: #e5e5e5;
-  line-height: 1.5;
-  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  color: #f0f0f0;
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
   font-family: var(--font-secondary);
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .second-featured-bottom-content {
@@ -3164,7 +3178,7 @@ a {
 }
 
 .second-latest-article:first-child {
-  padding: var(--space-5);
+  padding: var(--space-4);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -3177,7 +3191,7 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--space-2);
 }
 
@@ -3220,10 +3234,10 @@ a {
 }
 
 .second-latest-article-title {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 var(--space-3) 0;
+  margin: 0 0 var(--space-1) 0;
   color: white;
   font-family: var(--font-primary);
   text-transform: none;
@@ -3297,14 +3311,14 @@ a {
 
 .second-secondary-card .second-latest-article-content {
   justify-content: flex-start;
-  padding: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-4);
   gap: var(--space-2);
-  height: 120px;
+  min-height: 120px;
   flex-shrink: 0;
 }
 
 .second-secondary-card .second-latest-article-bottom {
-  margin-top: var(--space-2);
+  margin-top: auto;
   gap: 0;
 }
 

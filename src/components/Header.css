@@ -262,7 +262,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background-color: #8C1D40;
+  background-color: #CCCCCC;
   transition: width 0.2s ease;
 }
 
@@ -296,7 +296,7 @@
 
 /* Team-specific hover colors with consistent gray background and team color underlines */
 .bottom-row .team-link[data-team="suns"]:hover {
-  color: #E56020 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -305,7 +305,7 @@
 }
 
 .bottom-row .team-link[data-team="diamondbacks"]:hover {
-  color: #30CED8 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -314,7 +314,7 @@
 }
 
 .bottom-row .team-link[data-team="mercury"]:hover {
-  color: #6B46C1 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -323,7 +323,7 @@
 }
 
 .bottom-row .team-link[data-team="cardinals"]:hover {
-  color: #8C1D40 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -332,7 +332,7 @@
 }
 
 .bottom-row .team-link[data-team="sundevils"]:hover {
-  color: #FFC627 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -474,6 +474,7 @@
 .team-link {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 12px 16px;
   text-decoration: none;
   color: white;
@@ -493,7 +494,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background-color: #8C1D40;
+  background-color: #CCCCCC;
   transition: width 0.2s ease;
 }
 
@@ -508,7 +509,7 @@
 
 /* NCAA team-specific dropdown colors */
 .team-link[data-team="wildcats"]:hover {
-  color: #8C1D40 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -517,7 +518,7 @@
 }
 
 .team-link[data-team="sundevils"]:hover {
-  color: #FFC627 !important;
+  color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -550,7 +551,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 200px;
+  width: 250px;
 }
 
 .permanent-search-container {
@@ -610,6 +611,36 @@
   box-shadow: none;
 }
 
+/* Theme toggle button */
+.theme-toggle-button {
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px;
+  margin-left: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.theme-toggle-button svg {
+  fill: #E56020;
+}
+
+.theme-toggle-button:hover {
+  background-color: #2A2A2A;
+  border-color: #8C1D40;
+}
+
+.theme-toggle-button:focus {
+  outline: none;
+  border-color: #8C1D40;
+  box-shadow: 0 0 0 2px rgba(140, 29, 64, 0.2);
+}
+
 .social-icons {
   display: flex;
   align-items: center;
@@ -663,7 +694,7 @@
 }
 
 .search-icon {
-  color: #666;
+  color: #8C1D40;
   font-size: 1rem;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -926,7 +957,7 @@
 }
 
 .team-color-section.cardinals {
-  background-color: #8C1D40;
+  background-color: #CCCCCC;
 }
 
 .team-color-section.mercury {

@@ -83,6 +83,37 @@ export default function Blog() {
         return formatDate(dateString)
     }
 
+    const extractTwoSentences = (body) => {
+        if (!body || !Array.isArray(body)) return ''
+
+        let allText = ''
+
+        // Extract text from multiple blocks/paragraphs
+        for (let block of body) {
+            if (block._type === 'block' && block.children) {
+                for (let child of block.children) {
+                    if (child._type === 'span' && child.text) {
+                        allText += child.text + ' '
+                    }
+                }
+                // Add space between paragraphs
+                allText += ' '
+            }
+        }
+
+        if (!allText.trim()) return ''
+
+        // Split by periods, but be more careful about abbreviations
+        const sentences = allText.split(/\.(?=\s+[A-Z])/); // Split on period followed by space and capital letter
+
+        if (sentences.length >= 1) {
+            // Take first sentence and add the period back
+            return sentences[0].trim() + '.'
+        }
+
+        return allText.trim()
+    }
+
     const getNewsIndicator = (post, index) => {
         const now = new Date()
         const postDate = new Date(post.publishedAt)
@@ -192,7 +223,7 @@ export default function Blog() {
     const secondaryPost = filteredPosts[2] // Third most recent post for secondary section
     const trendingPosts = filteredPosts.slice(6, 11) // Posts 7-11 for right sidebar
     const latestPosts = filteredPosts.slice(11, 17) // Posts 12-17 for left sidebar
-    const secondSidebarPosts = filteredPosts.slice(2, 7) // Posts 3-7 for second right sidebar
+    const secondSidebarPosts = filteredPosts.slice(2, 8) // Posts 3-8 for second right sidebar
 
     // Get the most recent news articles for the news section (will be updated by team filter)
     // const featuredTeamNewsPost = newsArticles[0] || filteredPosts[0] // Use first news article or fallback to first post
@@ -313,8 +344,8 @@ export default function Blog() {
 
     // Right sidebar articles (team-filtered) - show more when "All" is selected
     const newsRightSidebarPosts = selectedTeam === 'all'
-        ? filteredNewsArticles.slice(7, 13) // Show 6 articles for "All"
-        : filteredNewsArticles.slice(1, Math.min(filteredNewsArticles.length, 6)) // Show 5 articles for specific teams, ensuring we have content
+        ? filteredNewsArticles.slice(7, 14) // Show 7 articles for "All"
+        : filteredNewsArticles.slice(1, Math.min(filteredNewsArticles.length, 7)) // Show 6 articles for specific teams, ensuring we have content
 
     // Get team-specific rumors articles
     const getTeamRumorsArticles = (teamKey) => {
@@ -337,8 +368,8 @@ export default function Blog() {
     ) || filteredPosts[0]
 
     const rumorsRightSidebarPosts = selectedTeam === 'all'
-        ? filteredRumorsArticles.slice(1, 7)
-        : filteredRumorsArticles.slice(1, Math.min(filteredRumorsArticles.length, 6))
+        ? filteredRumorsArticles.slice(1, 8)
+        : filteredRumorsArticles.slice(1, Math.min(filteredRumorsArticles.length, 7))
 
     // Get team-specific analysis articles
     const getTeamAnalysisArticles = (teamKey) => {
@@ -361,8 +392,8 @@ export default function Blog() {
     ) || filteredPosts[0]
 
     const analysisRightSidebarPosts = selectedTeam === 'all'
-        ? filteredAnalysisArticles.slice(1, 7)
-        : filteredAnalysisArticles.slice(1, Math.min(filteredAnalysisArticles.length, 6))
+        ? filteredAnalysisArticles.slice(1, 8)
+        : filteredAnalysisArticles.slice(1, Math.min(filteredAnalysisArticles.length, 7))
 
     // Use filtered posts for categories when searching
     const getCategorizedFilteredPosts = () => {
@@ -566,17 +597,7 @@ export default function Blog() {
                                                 <div className="second-featured-top-content">
                                                     <h2 className="second-featured-title">{filteredPosts[1].title}</h2>
                                                     <div className="second-featured-description">
-                                                        {filteredPosts[1].body && filteredPosts[1].body[0]?.children?.[0]?.text ?
-                                                            (() => {
-                                                                const fullText = filteredPosts[1].body[0].children[0].text;
-                                                                const sentences = fullText.split('.');
-                                                                // Take first two sentences if available
-                                                                if (sentences.length >= 2) {
-                                                                    return sentences.slice(0, 2).join('.') + '.';
-                                                                }
-                                                                // If only one sentence, use it
-                                                                return sentences[0] + '.';
-                                                            })() :
+                                                        {extractTwoSentences(filteredPosts[1].body) ||
                                                             'Breaking basketball news and analysis from around the league.'
                                                         }
                                                     </div>
@@ -720,17 +741,7 @@ export default function Blog() {
                                             <div className="featured-top-content">
                                                 <h2 className="featured-title">{featuredTeamNewsPost.title}</h2>
                                                 <div className="featured-description">
-                                                    {featuredTeamNewsPost.body && featuredTeamNewsPost.body[0]?.children?.[0]?.text ?
-                                                        (() => {
-                                                            const fullText = featuredTeamNewsPost.body[0].children[0].text;
-                                                            const sentences = fullText.split('.');
-                                                            // Take first two sentences if available
-                                                            if (sentences.length >= 2) {
-                                                                return sentences.slice(0, 2).join('.') + '.';
-                                                            }
-                                                            // If only one sentence, use it
-                                                            return sentences[0] + '.';
-                                                        })() :
+                                                    {extractTwoSentences(featuredTeamNewsPost.body) ||
                                                         'Breaking basketball news and analysis from around the league.'
                                                     }
                                                 </div>
@@ -875,15 +886,7 @@ export default function Blog() {
                                             <div className="featured-top-content">
                                                 <h2 className="featured-title">{featuredTeamRumorsPost.title}</h2>
                                                 <div className="featured-description">
-                                                    {featuredTeamRumorsPost.body && featuredTeamRumorsPost.body[0]?.children?.[0]?.text ?
-                                                        (() => {
-                                                            const fullText = featuredTeamRumorsPost.body[0].children[0].text;
-                                                            const sentences = fullText.split('.');
-                                                            if (sentences.length >= 2) {
-                                                                return sentences.slice(0, 2).join('.') + '.';
-                                                            }
-                                                            return sentences[0] + '.';
-                                                        })() :
+                                                    {extractTwoSentences(featuredTeamRumorsPost.body) ||
                                                         'Latest rumors and speculation from around the league.'
                                                     }
                                                 </div>
@@ -1028,15 +1031,7 @@ export default function Blog() {
                                             <div className="featured-top-content">
                                                 <h2 className="featured-title">{featuredTeamAnalysisPost.title}</h2>
                                                 <div className="featured-description">
-                                                    {featuredTeamAnalysisPost.body && featuredTeamAnalysisPost.body[0]?.children?.[0]?.text ?
-                                                        (() => {
-                                                            const fullText = featuredTeamAnalysisPost.body[0].children[0].text;
-                                                            const sentences = fullText.split('.');
-                                                            if (sentences.length >= 2) {
-                                                                return sentences.slice(0, 2).join('.') + '.';
-                                                            }
-                                                            return sentences[0] + '.';
-                                                        })() :
+                                                    {extractTwoSentences(featuredTeamAnalysisPost.body) ||
                                                         'In-depth analysis and insights from basketball experts.'
                                                     }
                                                 </div>
