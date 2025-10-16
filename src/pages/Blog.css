@@ -2,6 +2,334 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
+/* Theme CSS Variables - Same as Header.css */
+:root {
+  /* Dark Theme (Default) */
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #222222;
+  --bg-tertiary: #2A2A2A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-tertiary: #999999;
+  --border-primary: #404040;
+  --border-secondary: #555555;
+  --accent-primary: #8C1D40;
+}
+
+/* Light Theme */
+body.theme-light {
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F5F5F5;
+  --text-primary: #1A1A1A;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --border-primary: #E0E0E0;
+  --border-secondary: #D0D0D0;
+  --accent-primary: #8C1D40;
+}
+
+/* Dark Theme (Explicit) */
+body.theme-dark {
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #222222;
+  --bg-tertiary: #2A2A2A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-tertiary: #999999;
+  --border-primary: #404040;
+  --border-secondary: #555555;
+  --accent-primary: #8C1D40;
+}
+
+/* Light mode specific adjustments */
+body.theme-light .featured-title,
+body.theme-light .second-featured-title,
+body.theme-light .latest-article-title,
+body.theme-light .second-latest-article-title {
+  text-shadow: none;
+}
+
+/* Light mode specific shadows (if needed) */
+body.theme-light .featured-title {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Force light mode backgrounds and colors */
+body.theme-light {
+  background-color: #FAFAFA !important;
+  color: #1A1A1A !important;
+}
+
+body.theme-light .blog-container {
+  background-color: #FAFAFA !important;
+  color: #1A1A1A !important;
+}
+
+body.theme-light .featured-article,
+body.theme-light .second-secondary-card,
+body.theme-light .secondary-card {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+  border-color: #E0E0E0 !important;
+}
+
+body.theme-light .featured-title,
+body.theme-light .second-featured-title,
+body.theme-light .latest-article-title,
+body.theme-light .second-latest-article-title {
+  color: #1A1A1A !important;
+}
+
+body.theme-light .featured-description,
+body.theme-light .second-featured-description,
+body.theme-light .latest-article-description {
+  color: #333333 !important;
+}
+
+body.theme-light .bottom-border {
+  background-color: #E0E0E0 !important;
+}
+
+/* More comprehensive light mode overrides */
+body.theme-light .news-left-sidebar-article-title,
+body.theme-light .sidebar-article-title,
+body.theme-light .team-title {
+  color: #1A1A1A !important;
+}
+
+body.theme-light .news-left-sidebar-article-description,
+body.theme-light .sidebar-article-description,
+body.theme-light .article-meta,
+body.theme-light .latest-meta,
+body.theme-light .featured-meta {
+  color: #666666 !important;
+}
+
+/* Fix featured article author and timestamp colors */
+body.theme-light .featured-author,
+body.theme-light .second-featured-author {
+  color: #666666 !important;
+}
+
+body.theme-light .featured-timestamp,
+body.theme-light .second-featured-timestamp {
+  color: #666666 !important;
+}
+
+body.theme-light .secondary-section,
+body.theme-light .second-secondary-section {
+  border-top-color: #E0E0E0 !important;
+}
+
+body.theme-light .sidebar-section,
+body.theme-light .news-left-sidebar,
+body.theme-light .latest-section {
+  background-color: #FFFFFF !important;
+  border-color: #E0E0E0 !important;
+}
+
+body.theme-light .category-tag,
+body.theme-light .tag {
+  background-color: #F5F5F5 !important;
+  color: #333333 !important;
+}
+
+body.theme-light .see-more-link {
+  color: #8C1D40 !important;
+}
+
+body.theme-light .author-date,
+body.theme-light .news-left-sidebar-article-meta,
+body.theme-light .latest-author-date,
+body.theme-light .second-latest-author-date {
+  color: #666666 !important;
+}
+
+/* Fix sidebar specific elements */
+body.theme-light .news-left-sidebar,
+body.theme-light .latest-section,
+body.theme-light .sidebar-section {
+  background-color: #FFFFFF !important;
+}
+
+body.theme-light .news-left-sidebar-article-link,
+body.theme-light .latest-article-link,
+body.theme-light .sidebar-article-link {
+  background-color: #FFFFFF !important;
+  border-color: #E0E0E0 !important;
+}
+
+body.theme-light .news-left-sidebar-article-link:hover,
+body.theme-light .latest-article-link:hover,
+body.theme-light .sidebar-article-link:hover {
+  background-color: #F5F5F5 !important;
+}
+
+body.theme-light .right-sidebar,
+body.theme-light .left-sidebar {
+  background-color: #FFFFFF !important;
+}
+
+body.theme-light .sidebar-title,
+body.theme-light .latest-title,
+body.theme-light .news-sidebar-title {
+  color: #1A1A1A !important;
+}
+
+/* Fix right sidebar specifically */
+body.theme-light .right-sidebar {
+  background-color: #FAFAFA !important;
+  border-left-color: #E0E0E0 !important;
+}
+
+body.theme-light .left-sidebar-article {
+  border-bottom-color: #E0E0E0 !important;
+  background-color: transparent !important;
+}
+
+body.theme-light .left-sidebar-article:hover {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Force all sidebar elements to be light */
+body.theme-light .news-left-sidebar,
+body.theme-light .news-left-sidebar-article,
+body.theme-light .news-left-sidebar-content,
+body.theme-light .latest-section,
+body.theme-light .latest-article,
+body.theme-light .latest-content,
+body.theme-light .sidebar-article,
+body.theme-light .sidebar-content,
+body.theme-light .right-sidebar-content {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+}
+
+/* Override any specific dark backgrounds */
+body.theme-light [class*="sidebar"],
+body.theme-light [class*="latest"],
+body.theme-light [class*="news-"] {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+}
+
+/* Make sure all text in sidebar is dark */
+body.theme-light .right-sidebar *,
+body.theme-light .news-left-sidebar *,
+body.theme-light .latest-section * {
+  color: inherit !important;
+}
+
+body.theme-light .right-sidebar h3,
+body.theme-light .right-sidebar h4,
+body.theme-light .news-left-sidebar h3,
+body.theme-light .news-left-sidebar h4 {
+  color: #1A1A1A !important;
+}
+
+/* Nuclear option - override ALL elements in right sidebar area */
+body.theme-light .right-sidebar,
+body.theme-light .right-sidebar > *,
+body.theme-light .right-sidebar * {
+  background-color: #FFFFFF !important;
+}
+
+body.theme-light .right-sidebar div,
+body.theme-light .right-sidebar section,
+body.theme-light .right-sidebar article {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+}
+
+/* Fix borders in light mode */
+body.theme-light .left-sidebar-article,
+body.theme-light .news-left-sidebar-article,
+body.theme-light .latest-article,
+body.theme-light .sidebar-article {
+  border-color: #E0E0E0 !important;
+}
+
+body.theme-light .right-sidebar {
+  border-left: 1px solid #E0E0E0 !important;
+}
+
+body.theme-light .news-left-sidebar-article-link,
+body.theme-light .latest-article-link,
+body.theme-light .sidebar-article-link {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix borders for all other sidebar elements */
+body.theme-light .left-sidebar {
+  border-right: 1px solid #E0E0E0 !important;
+}
+
+body.theme-light .news-left-sidebar,
+body.theme-light .latest-section,
+body.theme-light .sidebar-section {
+  border: 1px solid #E0E0E0 !important;
+}
+
+body.theme-light .news-left-sidebar-article,
+body.theme-light .latest-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Ensure section dividers are visible */
+body.theme-light .secondary-section,
+body.theme-light .second-secondary-section {
+  border-top: 2px solid #E0E0E0 !important;
+}
+
+/* Fix the specific news-left-sidebar border */
+body.theme-light .news-left-sidebar {
+  border-right: 1px solid #E0E0E0 !important;
+}
+
+/* Fix any rgba white borders */
+body.theme-light .left-sidebar-filter {
+  border-bottom: 2px solid #E0E0E0 !important;
+}
+
+/* Fix right sidebar article borders */
+body.theme-light .sidebar-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+body.theme-light .right-sidebar .sidebar-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix newsletter item borders in right sidebar */
+body.theme-light .newsletter-item {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix freeagency sidebar article borders */
+body.theme-light .freeagency-sidebar-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix trades sidebar article borders */
+body.theme-light .trades-sidebar-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix latest article borders in right sidebar */
+body.theme-light .latest-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+body.theme-light .right-sidebar .latest-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Fix second latest article borders */
+body.theme-light .second-latest-article {
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
 /* Ensure italics maintain consistent text color */
 em,
 i {
@@ -23,8 +351,8 @@ p i {
 
 /* Global body styling */
 body {
-  background-color: var(--color-background);
-  color: var(--color-brand-dark);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* Professional Typography & Color System */
@@ -35,28 +363,28 @@ body {
     Roboto, sans-serif;
   --font-mono: "SF Mono", Monaco, monospace;
 
-  /* Professional Color Palette */
-  --color-primary: #f5f5f5; /* Primary text */
-  --color-secondary: #cccccc; /* Secondary text */
-  --color-tertiary: #999999; /* Tertiary text */
-  --color-quaternary: #9e9e9e; /* Light text */
+  /* Professional Color Palette - Now using theme variables */
+  --color-primary: var(--text-primary); /* Primary text */
+  --color-secondary: var(--text-secondary); /* Secondary text */
+  --color-tertiary: var(--text-tertiary); /* Tertiary text */
+  --color-quaternary: var(--text-tertiary); /* Light text */
 
   --color-accent: #0066cc; /* Professional blue accent */
   --color-accent-light: #3385d6; /* Lighter accent */
   --color-accent-dark: #004499; /* Darker accent */
 
-  --color-brand: #8c1d40; /* Brown */
-  --color-brand-light: #b13a56; /* Light brown */
-  --color-brand-dark: #7d1a32; /* Dark brown */
-  --color-cream: #1a1a1a; /* Cream/off-white */
+  --color-brand: var(--accent-primary); /* Brand color */
+  --color-brand-light: #b13a56; /* Light brand */
+  --color-brand-dark: #7d1a32; /* Dark brand */
+  --color-cream: var(--bg-primary); /* Background */
 
-  --color-background: #1a1a1a;
-  --color-background-subtle: #2d2d2d;
-  --color-background-muted: #404040;
+  --color-background: var(--bg-primary);
+  --color-background-subtle: var(--bg-secondary);
+  --color-background-muted: var(--bg-tertiary);
 
-  --color-border: #555555;
-  --color-border-light: #f0f0f0;
-  --color-border-subtle: #f8f8f8;
+  --color-border: var(--border-primary);
+  --color-border-light: var(--border-secondary);
+  --color-border-subtle: var(--border-primary);
 
   /* Typography Scale */
   --text-xs: 0.75rem; /* 12px */
@@ -168,7 +496,7 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
-  margin-top: var(--space-10);
+  margin-top: var(--space-16);
   margin-bottom: var(--space-8);
 }
 
@@ -179,7 +507,7 @@ a {
       "header header header"
       "left-sidebar left-content right-sidebar";
     gap: var(--space-6);
-    margin-top: var(--space-4);
+    margin-top: var(--space-16);
     align-items: start;
   }
 
@@ -247,14 +575,14 @@ a {
 }
 
 .featured-article {
-  background: rgba(255, 255, 255, 0.02) !important;
+  background: var(--bg-secondary) !important;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  border: none;
+  border: 1px solid var(--border-primary);
   height: auto;
 }
 
@@ -297,7 +625,7 @@ a {
   right: var(--space-2);
   font-size: var(--text-xs);
   color: var(--color-tertiary);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   padding: var(--space-1) var(--space-2);
   border-radius: 4px;
   font-style: italic;
@@ -335,7 +663,7 @@ a {
   font-weight: 400;
   line-height: 1.3;
   margin: 0 0 var(--space-4) 0;
-  color: white;
+  color: var(--text-primary);
   letter-spacing: -0.025em;
   font-family: var(--font-primary);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -357,7 +685,7 @@ a {
 
 .featured-description {
   font-size: var(--text-base);
-  color: #f0f0f0;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--space-4);
   font-family: var(--font-secondary);
@@ -367,7 +695,7 @@ a {
 
 .section-description {
   font-size: var(--text-base);
-  color: #f0f0f0;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--space-4);
   font-family: var(--font-secondary);
@@ -483,7 +811,7 @@ a {
   right: var(--space-2);
   font-size: var(--text-xs);
   color: var(--color-tertiary);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   padding: var(--space-1) var(--space-2);
   border-radius: 4px;
   font-style: italic;
@@ -519,7 +847,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: var(--space-1);
   display: inline-block;
   font-family: var(--font-secondary);
@@ -530,7 +858,7 @@ a {
   font-weight: 700;
   line-height: 1.3;
   margin: 0 0 var(--space-3) 0;
-  color: white;
+  color: var(--text-primary);
   letter-spacing: -0.025em;
   font-family: var(--font-primary);
 }
@@ -548,7 +876,7 @@ a {
 
 .secondary-description {
   font-size: var(--text-base);
-  color: #cccccc;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--space-4);
   font-family: var(--font-secondary);
@@ -563,12 +891,12 @@ a {
 }
 
 .secondary-author {
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .secondary-timestamp {
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -615,7 +943,7 @@ a {
 .filter-title {
   font-size: var(--text-xl);
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 var(--space-4) 0;
   font-family: var(--font-primary);
 }
@@ -635,7 +963,7 @@ a {
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: transparent;
-  color: #cccccc;
+  color: var(--text-secondary);
   font-size: var(--text-sm);
   font-weight: 600;
   cursor: pointer;
@@ -648,14 +976,14 @@ a {
 .team-tab.vertical:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.4);
-  color: white;
+  color: var(--text-primary);
   transform: translateX(4px);
 }
 
 .team-tab.vertical.active {
   background: #8c1d40;
   border-color: #8c1d40;
-  color: white;
+  color: var(--text-primary);
   transform: translateX(4px);
   box-shadow: 0 4px 16px rgba(151, 35, 63, 0.3);
 }
@@ -735,7 +1063,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: 0;
   line-height: 1.2;
   font-family: var(--font-secondary);
@@ -746,22 +1074,23 @@ a {
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 var(--space-2) 0;
-  color: white;
+  color: var(--text-primary);
   font-family: var(--font-primary);
   text-transform: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
   cursor: pointer;
 }
 
 .news-left-sidebar-article-description {
   font-size: var(--text-sm);
-  color: #e5e5e5;
+  color: var(--text-secondary);
   line-height: 1.4;
   margin-bottom: var(--space-3);
   font-family: var(--font-secondary);
 }
 
 .news-left-sidebar-article-link:hover .news-left-sidebar-article-title {
+  opacity: 0.8;
 }
 
 .news-left-sidebar-article-meta {
@@ -770,7 +1099,7 @@ a {
   gap: var(--space-2);
   flex-wrap: wrap;
   font-size: var(--text-xs);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
   font-family: var(--font-secondary);
   margin-top: auto;
@@ -867,7 +1196,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: var(--space-1);
   line-height: 1.2;
   font-family: var(--font-secondary);
@@ -878,7 +1207,7 @@ a {
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 var(--space-3) 0;
-  color: white;
+  color: var(--text-primary);
   font-family: var(--font-primary);
 }
 
@@ -891,14 +1220,14 @@ a {
 
 .left-sidebar-author {
   font-size: var(--text-xs);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
   font-family: var(--font-secondary);
 }
 
 .left-sidebar-timestamp {
   font-size: var(--text-xs);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
   font-family: var(--font-secondary);
 }
@@ -980,7 +1309,7 @@ a {
 .team-tab {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cccccc;
+  color: var(--text-secondary);
   padding: var(--space-1) var(--space-2);
   border-radius: 4px;
   font-size: var(--text-xs);
@@ -995,14 +1324,14 @@ a {
 .team-tab:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.4);
-  color: white;
+  color: var(--text-primary);
   transform: translateY(-2px);
 }
 
 .team-tab.active {
   background: #8c1d40;
   border-color: #8c1d40;
-  color: white;
+  color: var(--text-primary);
 }
 
 .team-tab.active:hover {
@@ -1135,7 +1464,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: 0;
   line-height: 1.2;
   font-family: var(--font-secondary);
@@ -1146,22 +1475,23 @@ a {
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 var(--space-1) 0;
-  color: white;
+  color: var(--text-primary);
   font-family: var(--font-primary);
   text-transform: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
   cursor: pointer;
 }
 
 .latest-article-description {
   font-size: var(--text-sm);
-  color: #e5e5e5;
+  color: var(--text-secondary);
   line-height: 1.4;
   margin-bottom: var(--space-3);
   font-family: var(--font-secondary);
 }
 
 .latest-article-link:hover .latest-article-title {
+  opacity: 0.8;
 }
 
 .latest-meta {
@@ -1173,14 +1503,14 @@ a {
 
 .latest-author {
   font-size: var(--text-xs);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
   font-family: var(--font-secondary);
 }
 
 .latest-timestamp {
   font-size: var(--text-xs);
-  color: #cccccc;
+  color: var(--text-secondary);
   font-weight: 500;
   font-family: var(--font-secondary);
 }
@@ -1241,7 +1571,7 @@ a {
   line-height: 1.3;
   margin: 0 0 0.5rem 0;
   color: #2c3e50;
-  transition: color 0.3s ease;
+  transition: opacity 0.2s ease;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1249,7 +1579,7 @@ a {
 }
 
 .sidebar-article-link:hover .sidebar-article-title {
-  color: #8c1d40;
+  opacity: 0.8;
 }
 
 .sidebar-meta {
@@ -1273,7 +1603,7 @@ a {
 
 .news-indicator.breaking {
   background: #dc3545;
-  color: white;
+  color: var(--text-primary);
   animation: pulse 2s infinite;
 }
 
@@ -1284,7 +1614,7 @@ a {
 
 .news-indicator.trending {
   background: #059669;
-  color: white;
+  color: var(--text-primary);
 }
 
 .news-indicator-small {
@@ -1301,7 +1631,7 @@ a {
 
 .news-indicator-small.breaking {
   background: #dc3545;
-  color: white;
+  color: var(--text-primary);
 }
 
 .news-indicator-small.latest {
@@ -1311,7 +1641,7 @@ a {
 
 .news-indicator-small.trending {
   background: #059669;
-  color: white;
+  color: var(--text-primary);
 }
 
 @keyframes pulse {
@@ -1339,7 +1669,7 @@ a {
 .newsletter-title {
   font-size: var(--text-lg);
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 var(--space-2) 0;
   font-family: var(--font-primary);
 }
@@ -1430,7 +1760,7 @@ a {
 
 .clear-search {
   background: #6b46c1;
-  color: white;
+  color: var(--text-primary);
   border: none;
   padding: var(--space-2) var(--space-4);
   border-radius: 4px;
@@ -1468,7 +1798,7 @@ a {
 }
 
 .read-more-link {
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
   display: block;
   width: 100%;
@@ -1476,7 +1806,7 @@ a {
 }
 
 .read-more-link:hover {
-  color: white;
+  color: var(--text-primary);
 }
 
 /* All Articles Grid (when no featured) */
@@ -1733,7 +2063,7 @@ a {
 .section-title {
   font-size: 2.25rem;
   font-weight: 400;
-  color: white;
+  color: var(--text-primary);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1769,7 +2099,7 @@ a {
 }
 
 .see-more:hover {
-  color: white;
+  color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.08);
   transform: none;
 }
@@ -1956,7 +2286,7 @@ a {
   font-weight: 700;
   text-transform: none;
   letter-spacing: 0;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: 1rem;
   background: transparent;
   padding: 0;
@@ -1969,7 +2299,7 @@ a {
 .section-article.large .section-title-link {
   font-size: 1.2rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   line-height: 1.3;
   margin: 1rem 0;
   hyphens: none;
@@ -2152,7 +2482,7 @@ a {
   line-height: 1.3;
   margin: 0 0 var(--space-3) 0;
   padding: 0;
-  color: white;
+  color: var(--text-primary);
   font-family: var(--font-primary);
   text-transform: none;
   transition: all 0.3s ease;
@@ -2234,7 +2564,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: 0.75rem;
   background: transparent;
   padding: 0;
@@ -2297,7 +2627,7 @@ a {
 .section-title-link {
   font-size: 0.9rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
   line-height: 1.4;
   display: block;
@@ -2899,7 +3229,7 @@ a {
 .rumors-section-header .section-title,
 .analysis-section-header .section-title {
   font-size: 1.6rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 @media (min-width: 768px) {
@@ -2913,7 +3243,7 @@ a {
   .rumors-section-header .section-title,
   .analysis-section-header .section-title {
     font-size: 1.8rem;
-    color: white;
+    color: var(--text-primary);
   }
 
   .suns-section-header,
@@ -2931,7 +3261,7 @@ a {
   grid-template-columns: 1fr;
   gap: var(--space-6);
   margin-top: var(--space-4);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-12);
   padding-bottom: var(--space-8);
   position: relative;
 }
@@ -2942,8 +3272,8 @@ a {
     grid-template-areas: "left-content right-sidebar";
     gap: var(--space-6);
     margin-top: var(--space-2);
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-10);
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-12);
     align-items: start;
   }
 }
@@ -2953,8 +3283,8 @@ a {
     grid-template-columns: 1fr 360px;
     grid-template-areas: "left-content right-sidebar";
     gap: var(--space-8);
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-12);
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-16);
   }
 
   /* Make the decorative divider wider on large screens */
@@ -3063,7 +3393,7 @@ a {
   line-height: 1.3;
   margin: 0 0 var(--space-4) 0;
   padding: 0;
-  color: white;
+  color: var(--text-primary);
   letter-spacing: -0.025em;
   font-family: var(--font-primary);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -3085,7 +3415,7 @@ a {
 
 .second-featured-description {
   font-size: var(--text-base);
-  color: #f0f0f0;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--space-4);
   font-family: var(--font-secondary);
@@ -3139,7 +3469,7 @@ a {
   background: var(--color-background);
   border-radius: 0;
   padding: 0;
-  height: 1000px;
+  height: auto;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding-left: var(--space-6);
   grid-area: right-sidebar;
@@ -3238,11 +3568,15 @@ a {
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 var(--space-1) 0;
-  color: white;
+  color: var(--text-primary);
   font-family: var(--font-primary);
   text-transform: none;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
   cursor: pointer;
+}
+
+.second-latest-article-title:hover {
+  opacity: 0.8;
 }
 
 /* Second Secondary Section */
@@ -3250,15 +3584,15 @@ a {
   flex: 1;
   margin: var(--space-6) 0;
   padding: 0;
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
-  margin-top: 24px;
+  border-top: 2px solid var(--border-primary);
+  margin-top: 64px;
 }
 
 .second-secondary-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: var(--space-4);
-  margin-top: 80px;
+  margin-top: 32px;
 }
 
 @media (min-width: 768px) {
@@ -3281,13 +3615,22 @@ a {
   transition: all 0.2s ease;
 }
 
+@media (min-width: 768px) {
+  .second-secondary-card-link:first-child {
+    padding-left: 0;
+  }
+
+  .second-secondary-card-link:last-child {
+    padding-right: 0;
+  }
+}
+
 /* THREE CARDS BELOW THE TOP FEATURED CARD - Shows posts 7-10 in a horizontal row */
 .second-secondary-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-primary);
   overflow: hidden;
-  transition: all 0.2s ease;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -3304,7 +3647,6 @@ a {
   height: 160px;
   object-fit: cover;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
   display: block;
   border-radius: 8px 8px 0 0;
 }
@@ -3802,7 +4144,7 @@ a {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: white;
+  color: var(--text-primary);
 }
 
 .recaps-section-header .see-more-link {
@@ -3935,8 +4277,8 @@ a {
 
 /* ===== MERCURY SECTION STYLING ===== */
 .mercury-section {
-  margin: 180px 0;
-  padding: var(--space-12) 0;
+  margin: 180px 0 0 0;
+  padding: var(--space-12) 0 var(--space-6) 0;
 }
 
 .mercury-section-header {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import './Header.css'
 
@@ -6,6 +6,8 @@ export default function Header() {
     const [searchQuery, setSearchQuery] = useState('')
     const [showCollegeDropdown, setShowCollegeDropdown] = useState(false)
     const [showMoreDropdown, setShowMoreDropdown] = useState(false)
+    const [showMobileMenu, setShowMobileMenu] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(false) // Default to light mode
     const location = useLocation()
 
     // Check if we're on an individual article page (any path that's not / or known category pages)
@@ -71,8 +73,50 @@ export default function Header() {
         }
     }
 
+    const toggleMobileMenu = () => {
+        setShowMobileMenu(!showMobileMenu)
+    }
+
+    const closeMobileMenu = () => {
+        setShowMobileMenu(false)
+    }
+
+    const toggleTheme = () => {
+        setIsDarkMode(!isDarkMode)
+    }
+
+    // Initialize theme from localStorage on component mount
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme')
+        if (savedTheme) {
+            setIsDarkMode(savedTheme === 'dark')
+        }
+    }, [])
+
+    // Handle theme changes
+    useEffect(() => {
+        const theme = isDarkMode ? 'dark' : 'light'
+        localStorage.setItem('theme', theme)
+        document.body.className = document.body.className.replace(/theme-\w+/g, '')
+        document.body.classList.add(`theme-${theme}`)
+    }, [isDarkMode])
+
+    // Handle body scroll lock when mobile menu is open
+    useEffect(() => {
+        if (showMobileMenu) {
+            document.body.classList.add('mobile-menu-open')
+        } else {
+            document.body.classList.remove('mobile-menu-open')
+        }
+
+        // Cleanup on unmount
+        return () => {
+            document.body.classList.remove('mobile-menu-open')
+        }
+    }, [showMobileMenu])
+
     return (
-        <header className={`two-row-header ${isArticlePage() ? 'article-page' : ''}`}>
+        <header className={`two-row-header ${isArticlePage() ? 'article-page' : ''} ${showMobileMenu ? 'mobile-menu-open' : ''}`}>
             <div className="bottom-border"></div>
             <div className="header-content">
                 {isArticlePage() ? (
@@ -80,7 +124,7 @@ export default function Header() {
                     <div className="condensed-header-row">
                         {/* Left hamburger */}
                         <div className="hamburger-section">
-                            <div className="hamburger">
+                            <div className="hamburger" onClick={toggleMobileMenu}>
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -114,7 +158,7 @@ export default function Header() {
                                     </button>
                                 </form>
                             </div>
-                            <button className="theme-toggle-button" title="Toggle dark/light mode">
+                            <button className="theme-toggle-button" title="Toggle dark/light mode" onClick={toggleTheme}>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                                     <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
                                 </svg>
@@ -128,7 +172,7 @@ export default function Header() {
                         <div className="top-utility-bar">
                             {/* Left hamburger */}
                             <div className="hamburger-section">
-                                <div className="hamburger">
+                                <div className="hamburger" onClick={toggleMobileMenu}>
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -153,7 +197,7 @@ export default function Header() {
                                         </button>
                                     </form>
                                 </div>
-                                <button className="theme-toggle-button" title="Toggle dark/light mode">
+                                <button className="theme-toggle-button" title="Toggle dark/light mode" onClick={toggleTheme}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                                         <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
                                     </svg>
@@ -274,6 +318,75 @@ export default function Header() {
                     </>
                 )}
             </div>
+
+            {/* Mobile Navigation Menu */}
+            {showMobileMenu && (
+                <>
+                    <div className="mobile-menu-overlay" onClick={closeMobileMenu}></div>
+                    <div className="mobile-menu">
+                        <div className="mobile-menu-header">
+                            <button className="mobile-menu-close" onClick={closeMobileMenu}>
+                                <span>×</span>
+                            </button>
+                        </div>
+                        <div className="mobile-menu-content">
+                            {/* Teams Section */}
+                            <div className="mobile-menu-section">
+                                <h4>Teams</h4>
+                                <div className="mobile-menu-links">
+                                    {proTeams.map((team) => (
+                                        <Link
+                                            key={team.key}
+                                            to={`/${team.key}`}
+                                            className="mobile-menu-link"
+                                            onClick={closeMobileMenu}
+                                        >
+                                            {team.label}
+                                        </Link>
+                                    ))}
+                                    {collegeTeams.map((team) => (
+                                        <Link
+                                            key={team.key}
+                                            to={`/${team.key}`}
+                                            className="mobile-menu-link"
+                                            onClick={closeMobileMenu}
+                                        >
+                                            {team.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Content Categories */}
+                            <div className="mobile-menu-section">
+                                <h4>Content</h4>
+                                <div className="mobile-menu-links">
+                                    {contentCategories.map((category) => (
+                                        <Link
+                                            key={category.key}
+                                            to={`/${category.key}`}
+                                            className="mobile-menu-link"
+                                            onClick={closeMobileMenu}
+                                        >
+                                            {category.label}
+                                        </Link>
+                                    ))}
+                                    {moreItems.map((item) => (
+                                        <Link
+                                            key={item.key}
+                                            to={`/${item.key}`}
+                                            className="mobile-menu-link"
+                                            onClick={closeMobileMenu}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </header>
     )
 }
