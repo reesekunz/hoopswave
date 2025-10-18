@@ -22,7 +22,7 @@ body.theme-light {
   --bg-secondary: #FFFFFF;
   --bg-tertiary: #F5F5F5;
   --text-primary: #1A1A1A;
-  --text-secondary: #333333;
+  --text-secondary: #1A1A1A;
   --text-tertiary: #666666;
   --border-primary: #E0E0E0;
   --border-secondary: #D0D0D0;
@@ -84,7 +84,7 @@ body.theme-light .second-latest-article-title {
 body.theme-light .featured-description,
 body.theme-light .second-featured-description,
 body.theme-light .latest-article-description {
-  color: #333333 !important;
+  color: #1A1A1A !important;
 }
 
 body.theme-light .bottom-border {
@@ -3215,8 +3215,132 @@ a {
 .rumors-section-header,
 .analysis-section-header {
   grid-column: 1 / -1;
+  margin-top: 0;
   margin-bottom: var(--space-6);
 }
+
+/* Specific extra spacing for the main NEWS section */
+#news-section-specific {
+  margin-top: 15rem;
+}
+
+/* Remove white backgrounds from section headers */
+body.theme-light .section-header,
+body.theme-light .news-section-header,
+body.theme-light .rumors-section-header,
+body.theme-light .analysis-section-header,
+body.theme-light .suns-section-header,
+body.theme-light .cardinals-section-header,
+body.theme-light .diamondbacks-section-header,
+body.theme-light .recaps-section-header,
+body.theme-light .mercury-section-header,
+body.theme-light .trades-header,
+body.theme-light .freeagency-header {
+  background-color: transparent !important;
+}
+
+/* Make NEWS section header and see more button black */
+body.theme-light #news-section-specific .section-title {
+  color: #1A1A1A !important;
+}
+
+body.theme-light #news-section-specific .see-more {
+  color: #1A1A1A !important;
+  border-color: #1A1A1A !important;
+}
+
+body.theme-light #news-section-specific .see-more:hover {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* Make NEWS section header and see more button white in dark mode */
+body.theme-dark #news-section-specific .section-title,
+#news-section-specific .section-title {
+  color: #FFFFFF !important;
+}
+
+body.theme-dark #news-section-specific .see-more,
+#news-section-specific .see-more {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+body.theme-dark #news-section-specific .see-more:hover,
+#news-section-specific .see-more:hover {
+  color: #CCCCCC !important;
+  border-color: #CCCCCC !important;
+}
+
+/* Remove background from Filter By Team title and container */
+body.theme-light .filter-title {
+  background-color: transparent !important;
+}
+
+body.theme-light .left-sidebar-filter {
+  background: none !important;
+}
+
+/* Override aggressive white background forcing - Remove all backgrounds from news left sidebar and filter elements */
+body.theme-light .news-left-sidebar,
+body.theme-light .left-sidebar,
+body.theme-light .left-sidebar-filter,
+body.theme-light .team-filter-tabs,
+body.theme-light .team-filter-tabs.vertical,
+body.theme-light .sidebar-section,
+body.theme-light .latest-section {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* More specific override to counter the aggressive white background rules - Remove card styling from all team filter sections */
+body.theme-light .news-left-sidebar {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Apply same to rumors and analysis sections */
+body.theme-light .rumors-left-sidebar,
+body.theme-light .analysis-left-sidebar {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Team-specific colors for active filter buttons - border only, transparent background, no shadows */
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(1) {
+  background: transparent !important; /* All */
+  border-color: #000000 !important;
+  box-shadow: none !important;
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(2) {
+  background: transparent !important; /* Cardinals */
+  border-color: #8C1D40 !important;
+  box-shadow: none !important;
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(3) {
+  background: transparent !important; /* Diamondbacks */
+  border-color: #17A2B8 !important;
+  box-shadow: none !important;
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(4) {
+  background: transparent !important; /* Suns */
+  border-color: #E56020 !important;
+  box-shadow: none !important;
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(5) {
+  background: transparent !important; /* Mercury */
+  border-color: #6B46C1 !important;
+  box-shadow: none !important;
+}
+
 
 .news-section-header .section-header,
 .rumors-section-header .section-header,
@@ -3739,6 +3863,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #333;
@@ -3871,6 +3996,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #333;
@@ -4003,6 +4129,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #333;
@@ -4135,6 +4262,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #333;
@@ -4285,6 +4413,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #333;
@@ -4455,6 +4584,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid #333;

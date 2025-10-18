@@ -22,7 +22,7 @@ body.theme-light {
   --bg-secondary: #FFFFFF;
   --bg-tertiary: #F5F5F5;
   --text-primary: #1A1A1A;
-  --text-secondary: #333333;
+  --text-secondary: #1A1A1A;
   --text-tertiary: #666666;
   --border-primary: #E0E0E0;
   --border-secondary: #D0D0D0;
@@ -57,8 +57,9 @@ body.theme-light .team-link {
 }
 
 body.theme-light .category-link:hover,
-body.theme-light .team-link:hover {
-  color: #1A1A1A !important;
+body.theme-light .team-link:hover,
+body.theme-light .bottom-row .team-link:hover {
+  color: #333333 !important;
   background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
@@ -68,11 +69,11 @@ body.theme-light .condensed-title {
 }
 
 body.theme-light .hamburger span {
-  background-color: #333333 !important;
+  background-color: #606060 !important;
 }
 
 body.theme-light .hamburger:hover span {
-  background-color: #1A1A1A !important;
+  background-color: #808080 !important;
 }
 
 body.theme-light .mobile-menu {
@@ -318,7 +319,7 @@ body.theme-light .teams-dropdown .dropdown-header a {
 
 .logo-center h2 {
   margin: 0;
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   font-weight: 700;
   font-style: normal;
   color: var(--text-primary);
@@ -436,6 +437,41 @@ body.theme-light .teams-dropdown .dropdown-header a {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
+/* Override for light mode to prevent white text on hover */
+body.theme-light .category-link:hover,
+body.theme-light .team-link:hover,
+body.theme-light .bottom-row .team-link:hover,
+body.theme-light .bottom-row .category-link:hover {
+  color: #333333 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Make Mercury purple darker in light mode - all states */
+body.theme-light .bottom-row .team-link[data-team="mercury"]:hover::after {
+  background-color: #4C1D95 !important;
+}
+
+body.theme-light .team-link[data-team="mercury"]:hover::after {
+  background-color: #4C1D95 !important;
+}
+
+body.theme-light .mobile-menu-link[href="/mercury"]:hover {
+  border-left-color: #4C1D95 !important;
+}
+
+body.theme-light .team-color-section.mercury {
+  background-color: #4C1D95 !important;
+}
+
+/* Override any Mercury team colors used in dropdowns or other contexts */
+body.theme-light .team-link[data-team="mercury"] {
+  --team-color: #4C1D95 !important;
+}
+
+body.theme-light .teams-dropdown .team-link[data-team="mercury"]:hover::after {
+  background-color: #4C1D95 !important;
+}
+
 .category-link::after,
 .bottom-row .team-link::after {
   content: '';
@@ -520,7 +556,7 @@ body.theme-light .teams-dropdown .dropdown-header a {
 }
 
 .bottom-row .team-link[data-team="sundevils"]:hover::after {
-  background-color: #FFC627 !important;
+  background-color: #8C1D40 !important;
 }
 
 /* Teams Dropdown Styles */
@@ -796,7 +832,7 @@ body.theme-light .teams-grid .team-link:hover {
 }
 
 .team-link[data-team="sundevils"]:hover::after {
-  background-color: #FFC627 !important;
+  background-color: #8C1D40 !important;
 }
 
 /* Override any potential transparency on hover - Light mode */
@@ -877,7 +913,7 @@ body.theme-dark .more-dropdown-container:hover .teams-dropdown,
 }
 
 .permanent-search-button {
-  background-color: #404040;
+  background-color: #606060;
   border: none;
   padding: 8px 10px;
   cursor: pointer;
@@ -1363,7 +1399,7 @@ body.theme-dark .more-dropdown-container:hover .teams-dropdown,
 }
 
 .mobile-menu-link[href="/sundevils"]:hover {
-  border-left-color: #FFC627;
+  border-left-color: #8C1D40;
 }
 
 /* Hamburger animation when menu is open */

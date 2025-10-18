@@ -698,7 +698,7 @@ export default function Blog() {
 
                     <div className="three-column-layout">
                         {/* News Section Header */}
-                        <div className="news-section-header">
+                        <div id="news-section-specific" className="news-section-header">
                             <div className="section-header">
                                 <h2 className="section-title" style={{ color: '#97233F' }}>
                                     News
