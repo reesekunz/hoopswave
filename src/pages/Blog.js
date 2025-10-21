@@ -190,6 +190,18 @@ export default function Blog() {
         return teamColors[post.team?.name] || '#E56020' // Default to orange
     }
 
+    const getTeamClass = (post) => {
+        const teamClasses = {
+            'Suns': 'team-suns',
+            'Cardinals': 'team-cardinals',
+            'Diamondbacks': 'team-diamondbacks',
+            'Mercury': 'team-mercury',
+            'Wildcats': 'team-wildcats',
+            'Sun Devils': 'team-sundevils'
+        }
+        return teamClasses[post.team?.name] || 'team-suns' // Default to suns
+    }
+
     // Filter posts based on search query
     const filteredPosts = searchQuery
         ? posts.filter(post =>
@@ -333,6 +345,29 @@ export default function Blog() {
     const freeAgencyArticles = freeAgencySpecificArticles.length >= 4
         ? freeAgencySpecificArticles.slice(0, 4)
         : [...freeAgencySpecificArticles, ...posts.filter(post => !freeAgencySpecificArticles.includes(post)).slice(0, 4 - freeAgencySpecificArticles.length)]
+
+    // Get Wildcats articles for two-column section
+    const wildcatsSpecificArticles = posts.filter(post =>
+        post.categories?.some(category => category.title.toLowerCase().includes('wildcat')) ||
+        post.title?.toLowerCase().includes('wildcat') ||
+        post.categories?.some(category => category.title.toLowerCase().includes('arizona wildcats')) ||
+        post.title?.toLowerCase().includes('arizona wildcats')
+    )
+    const wildcatsArticles = wildcatsSpecificArticles.length >= 4
+        ? wildcatsSpecificArticles.slice(0, 4)
+        : [...wildcatsSpecificArticles, ...posts.filter(post => !wildcatsSpecificArticles.includes(post)).slice(0, 4 - wildcatsSpecificArticles.length)]
+
+    // Get Sun Devils articles for two-column section
+    const sunDevilsSpecificArticles = posts.filter(post =>
+        post.categories?.some(category => category.title.toLowerCase().includes('sun devil')) ||
+        post.categories?.some(category => category.title.toLowerCase().includes('sundevil')) ||
+        post.title?.toLowerCase().includes('sun devil') ||
+        post.categories?.some(category => category.title.toLowerCase().includes('asu')) ||
+        post.title?.toLowerCase().includes('asu')
+    )
+    const sunDevilsArticles = sunDevilsSpecificArticles.length >= 4
+        ? sunDevilsSpecificArticles.slice(0, 4)
+        : [...sunDevilsSpecificArticles, ...posts.filter(post => !sunDevilsSpecificArticles.includes(post)).slice(0, 4 - sunDevilsSpecificArticles.length)]
 
     // Featured article for news section (team-filtered)
     const featuredTeamNewsPost = filteredNewsArticles[0] || filteredPosts[0]
@@ -787,7 +822,7 @@ export default function Blog() {
                                                 </h4>
                                             </div>
                                             <div className="latest-article-bottom">
-                                                <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
                                                     {getCategoryLabel(post)}
                                                 </div>
                                                 <div className="latest-author-date">
@@ -1077,7 +1112,7 @@ export default function Blog() {
                                                 </h4>
                                             </div>
                                             <div className="latest-article-bottom">
-                                                <div className="article-category-tag" style={{ color: getTeamColor(post) }}>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
                                                     {getCategoryLabel(post)}
                                                 </div>
                                                 <div className="latest-author-date">
@@ -1156,6 +1191,9 @@ export default function Blog() {
                                             )}
                                             <div className="recaps-card-content">
                                                 <h3 className="recaps-card-title">{post.title}</h3>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <div className="recaps-card-meta">
                                                     <span className="recaps-card-author">{post.author?.name || 'Staff'}</span>
                                                     <span className="recaps-card-divider">|</span>
@@ -1181,6 +1219,9 @@ export default function Blog() {
                                             )}
                                             <div className="recaps-card-content">
                                                 <h3 className="recaps-card-title">{post.title}</h3>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <div className="recaps-card-meta">
                                                     <span className="recaps-card-author">{post.author?.name || 'Staff'}</span>
                                                     <span className="recaps-card-divider">|</span>
@@ -1256,8 +1297,13 @@ export default function Blog() {
                                             )}
                                             <div className="featured-trade-content">
                                                 <h3 className="featured-trade-title">{tradesArticles[0].title}</h3>
-                                                <div className="featured-trade-meta">
-                                                    <span>{tradesArticles[0].author?.name || 'Staff'} | {getTimeAgo(tradesArticles[0].publishedAt)}</span>
+                                                <div className="featured-trade-meta-wrapper">
+                                                    <div className={`featured-trade-category ${getTeamClass(tradesArticles[0])}`}>
+                                                        {getCategoryLabel(tradesArticles[0])}
+                                                    </div>
+                                                    <div className="featured-trade-meta">
+                                                        <span>{tradesArticles[0].author?.name || 'Staff'} | {getTimeAgo(tradesArticles[0].publishedAt)}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </article>
@@ -1269,7 +1315,7 @@ export default function Blog() {
                                             <article>
                                                 <div className="trades-sidebar-content">
                                                     <h4 className="trades-sidebar-title">{post.title}</h4>
-                                                    <div className="trades-sidebar-category" style={{ color: getTeamColor(post) }}>
+                                                    <div className={`trades-sidebar-category ${getTeamClass(post)}`}>
                                                         {getCategoryLabel(post)}
                                                     </div>
                                                     <div className="trades-sidebar-meta">
@@ -1308,8 +1354,13 @@ export default function Blog() {
                                             )}
                                             <div className="featured-freeagency-content">
                                                 <h3 className="featured-freeagency-title">{freeAgencyArticles[0].title}</h3>
-                                                <div className="featured-freeagency-meta">
-                                                    <span>{freeAgencyArticles[0].author?.name || 'Staff'} | {getTimeAgo(freeAgencyArticles[0].publishedAt)}</span>
+                                                <div className="featured-freeagency-meta-wrapper">
+                                                    <div className={`featured-freeagency-category ${getTeamClass(freeAgencyArticles[0])}`}>
+                                                        {getCategoryLabel(freeAgencyArticles[0])}
+                                                    </div>
+                                                    <div className="featured-freeagency-meta">
+                                                        <span>{freeAgencyArticles[0].author?.name || 'Staff'} | {getTimeAgo(freeAgencyArticles[0].publishedAt)}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </article>
@@ -1321,13 +1372,130 @@ export default function Blog() {
                                             <article>
                                                 <div className="freeagency-sidebar-content">
                                                     <h4 className="freeagency-sidebar-title">{post.title}</h4>
-                                                    <div className="freeagency-sidebar-category" style={{ color: getTeamColor(post) }}>
+                                                    <div className={`freeagency-sidebar-category ${getTeamClass(post)}`}>
                                                         {getCategoryLabel(post)}
                                                     </div>
                                                     <div className="freeagency-sidebar-meta">
                                                         <span className="freeagency-sidebar-author">{post.author?.name || 'Staff'}</span>
                                                         <span className="freeagency-sidebar-divider">|</span>
                                                         <span className="freeagency-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Wildcats and Sun Devils Two-Column Section */}
+                    <div className="two-column-section">
+                        {/* Wildcats Column */}
+                        <div className="wildcats-column">
+                            <div className="wildcats-header">
+                                <h2 className="section-title">Wildcats</h2>
+                                <Link to="/wildcats" className="see-more-link">
+                                    See more
+                                </Link>
+                            </div>
+                            <div className="wildcats-content">
+                                {wildcatsArticles[0] && (
+                                    <Link to={`/${wildcatsArticles[0].slug.current}`} className="featured-wildcats-article">
+                                        <article>
+                                            {wildcatsArticles[0].mainImage && (
+                                                <div className="featured-wildcats-image">
+                                                    <img
+                                                        src={wildcatsArticles[0].mainImage.asset.url}
+                                                        alt={wildcatsArticles[0].mainImage.alt || wildcatsArticles[0].title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="featured-wildcats-content">
+                                                <h3 className="featured-wildcats-title">{wildcatsArticles[0].title}</h3>
+                                                <div className="featured-wildcats-meta-wrapper">
+                                                    <div className={`featured-wildcats-category ${getTeamClass(wildcatsArticles[0])}`}>
+                                                        {getCategoryLabel(wildcatsArticles[0])}
+                                                    </div>
+                                                    <div className="featured-wildcats-meta">
+                                                        <span>{wildcatsArticles[0].author?.name || 'Staff'} | {getTimeAgo(wildcatsArticles[0].publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                )}
+                                <div className="wildcats-sidebar">
+                                    {wildcatsArticles.slice(1, 4).map((post, index) => (
+                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="wildcats-sidebar-article">
+                                            <article>
+                                                <div className="wildcats-sidebar-content">
+                                                    <h4 className="wildcats-sidebar-title">{post.title}</h4>
+                                                    <div className={`wildcats-sidebar-category ${getTeamClass(post)}`}>
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="wildcats-sidebar-meta">
+                                                        <span className="wildcats-sidebar-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="wildcats-sidebar-divider">|</span>
+                                                        <span className="wildcats-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Sun Devils Column */}
+                        <div className="sundevils-column">
+                            <div className="sundevils-header">
+                                <h2 className="section-title">Sun Devils</h2>
+                                <Link to="/sundevils" className="see-more-link">
+                                    See more
+                                </Link>
+                            </div>
+                            <div className="sundevils-content">
+                                {sunDevilsArticles[0] && (
+                                    <Link to={`/${sunDevilsArticles[0].slug.current}`} className="featured-sundevils-article">
+                                        <article>
+                                            {sunDevilsArticles[0].mainImage && (
+                                                <div className="featured-sundevils-image">
+                                                    <img
+                                                        src={sunDevilsArticles[0].mainImage.asset.url}
+                                                        alt={sunDevilsArticles[0].mainImage.alt || sunDevilsArticles[0].title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="featured-sundevils-content">
+                                                <h3 className="featured-sundevils-title">{sunDevilsArticles[0].title}</h3>
+                                                <div className="featured-sundevils-meta-wrapper">
+                                                    <div className={`featured-sundevils-category ${getTeamClass(sunDevilsArticles[0])}`}>
+                                                        {getCategoryLabel(sunDevilsArticles[0])}
+                                                    </div>
+                                                    <div className="featured-sundevils-meta">
+                                                        <span>{sunDevilsArticles[0].author?.name || 'Staff'} | {getTimeAgo(sunDevilsArticles[0].publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                )}
+                                <div className="sundevils-sidebar">
+                                    {sunDevilsArticles.slice(1, 4).map((post, index) => (
+                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="sundevils-sidebar-article">
+                                            <article>
+                                                <div className="sundevils-sidebar-content">
+                                                    <h4 className="sundevils-sidebar-title">{post.title}</h4>
+                                                    <div className={`sundevils-sidebar-category ${getTeamClass(post)}`}>
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="sundevils-sidebar-meta">
+                                                        <span className="sundevils-sidebar-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="sundevils-sidebar-divider">|</span>
+                                                        <span className="sundevils-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
                                                     </div>
                                                 </div>
                                             </article>

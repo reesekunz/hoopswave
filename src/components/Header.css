@@ -112,6 +112,11 @@ body.theme-light .permanent-search-input::placeholder {
   color: #666666 !important;
 }
 
+body.theme-light .search-icon {
+  background-color: #2A2A2A !important;
+  border-radius: 4px;
+}
+
 body.theme-light .theme-toggle-button {
   border-color: #E0E0E0 !important;
 }
