@@ -78,7 +78,8 @@ body.theme-light .hamburger:hover span {
 
 body.theme-light .mobile-menu {
   background-color: #FAFAFA !important;
-  border-right-color: #E0E0E0 !important;
+  border-right: 1px solid #E0E0E0 !important;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 body.theme-light .mobile-menu-close {
@@ -97,6 +98,11 @@ body.theme-light .mobile-menu-link {
 body.theme-light .mobile-menu-link:hover {
   color: #1A1A1A !important;
   background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+body.theme-light .mobile-menu-section h4 {
+  color: #8C1D40 !important;
+  background: transparent !important;
 }
 
 body.theme-light .permanent-search-form {
@@ -118,7 +124,7 @@ body.theme-light .search-icon {
 }
 
 body.theme-light .theme-toggle-button {
-  border-color: #E0E0E0 !important;
+  border-color: #CCCCCC !important;
 }
 
 body.theme-light .theme-toggle-button:hover {
@@ -128,7 +134,7 @@ body.theme-light .theme-toggle-button:hover {
 
 /* Fix dropdown button colors in light mode */
 body.theme-light .teams-button {
-  color: var(--text-secondary) !important;
+  color: #333333 !important;
 }
 
 body.theme-light .teams-button:hover {
