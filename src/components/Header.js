@@ -42,8 +42,8 @@ export default function Header() {
     const moreItems = [
         { key: 'gamerecaps', label: 'Recaps', color: '#8C1D40' },
         { key: 'trades', label: 'Trades', color: '#8C1D40' },
-        { key: 'draft', label: 'Draft', color: '#8C1D40' },
-        { key: 'freeagency', label: 'Free Agency', color: '#8C1D40' }
+        { key: 'freeagency', label: 'Free Agency', color: '#8C1D40' },
+        { key: 'draft', label: 'Draft', color: '#8C1D40' }
     ]
 
 

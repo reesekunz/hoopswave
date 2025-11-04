@@ -483,6 +483,15 @@ body.theme-light .teams-dropdown .team-link[data-team="mercury"]:hover::after {
   background-color: #4C1D95 !important;
 }
 
+/* Light mode dropdown hover border colors */
+body.theme-light .team-link[data-team="wildcats"]:hover::after {
+  background-color: #003366 !important; /* Navy for light mode */
+}
+
+body.theme-light .team-link[data-team="sundevils"]:hover::after {
+  background-color: #8C1D40 !important; /* Red for light mode */
+}
+
 .category-link::after,
 .bottom-row .team-link::after {
   content: '';
@@ -567,7 +576,7 @@ body.theme-light .teams-dropdown .team-link[data-team="mercury"]:hover::after {
 }
 
 .bottom-row .team-link[data-team="sundevils"]:hover::after {
-  background-color: #8C1D40 !important;
+  background-color: #ffc627 !important;
 }
 
 /* Teams Dropdown Styles */
@@ -834,7 +843,7 @@ body.theme-light .teams-grid .team-link:hover {
 }
 
 .team-link[data-team="wildcats"]:hover::after {
-  background-color: #003366 !important;
+  background-color: #cc0033 !important; /* U of A red */
 }
 
 .team-link[data-team="sundevils"]:hover {
@@ -843,7 +852,7 @@ body.theme-light .teams-grid .team-link:hover {
 }
 
 .team-link[data-team="sundevils"]:hover::after {
-  background-color: #8C1D40 !important;
+  background-color: #ffc627 !important;
 }
 
 /* Override any potential transparency on hover - Light mode */
@@ -906,6 +915,11 @@ body.theme-dark .more-dropdown-container:hover .teams-dropdown,
 
 .permanent-search-form:focus-within {
   border-color: #8C1D40;
+}
+
+/* Remove red border on search focus in dark mode */
+body.theme-dark .permanent-search-form:focus-within {
+  border-color: #666666;
 }
 
 .permanent-search-input {

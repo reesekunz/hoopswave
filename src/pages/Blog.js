@@ -315,6 +315,16 @@ export default function Blog() {
         ? recapsArticles.slice(0, 8)
         : [...recapsArticles, ...posts.filter(post => !recapsArticles.includes(post)).slice(0, 8 - recapsArticles.length)]
 
+    // Get 8 latest Draft articles for dedicated Draft section (2 rows of 4)
+    const draftArticles = posts.filter(post =>
+        post.categories?.some(category => category.title.toLowerCase().includes('draft')) ||
+        post.title?.toLowerCase().includes('draft')
+    )
+    // If less than 8 Draft articles, fill with general posts
+    const latestDraftArticles = draftArticles.length >= 8
+        ? draftArticles.slice(0, 8)
+        : [...draftArticles, ...posts.filter(post => !draftArticles.includes(post)).slice(0, 8 - draftArticles.length)]
+
     // Get 4 latest Mercury articles for dedicated Mercury section
     const mercuryArticles = posts.filter(post =>
         post.team?.name?.toLowerCase().includes('mercury') ||
@@ -863,6 +873,9 @@ export default function Blog() {
                                         )}
                                         <div className="suns-card-content">
                                             <h3 className="suns-card-title">{post.title}</h3>
+                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                {getCategoryLabel(post)}
+                                            </div>
                                             <div className="suns-card-meta">
                                                 <span className="suns-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="suns-card-divider">|</span>
@@ -986,10 +999,10 @@ export default function Blog() {
                     {/* Cardinals Section */}
                     <div className="cardinals-section">
                         <div className="cardinals-section-header">
-                            <h2 className="section-title" style={{ color: '#97233F' }}>
+                            <h2 className="section-title" style={{ color: '#8C1D40' }}>
                                 Cardinals
                             </h2>
-                            <Link to="/cardinals" className="see-more-link">
+                            <Link to="/cardinals" className="see-more-link" style={{ color: '#8C1D40' }}>
                                 See More
                             </Link>
                         </div>
@@ -1008,6 +1021,9 @@ export default function Blog() {
                                         )}
                                         <div className="cardinals-card-content">
                                             <h3 className="cardinals-card-title">{post.title}</h3>
+                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                {getCategoryLabel(post)}
+                                            </div>
                                             <div className="cardinals-card-meta">
                                                 <span className="cardinals-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="cardinals-card-divider">|</span>
@@ -1153,6 +1169,9 @@ export default function Blog() {
                                         )}
                                         <div className="diamondbacks-card-content">
                                             <h3 className="diamondbacks-card-title">{post.title}</h3>
+                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                {getCategoryLabel(post)}
+                                            </div>
                                             <div className="diamondbacks-card-meta">
                                                 <span className="diamondbacks-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="diamondbacks-card-divider">|</span>
@@ -1260,6 +1279,9 @@ export default function Blog() {
                                         )}
                                         <div className="mercury-card-content">
                                             <h3 className="mercury-card-title">{post.title}</h3>
+                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                {getCategoryLabel(post)}
+                                            </div>
                                             <div className="mercury-card-meta">
                                                 <span className="mercury-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="mercury-card-divider">|</span>
@@ -1385,6 +1407,76 @@ export default function Blog() {
                                         </Link>
                                     ))}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Draft Section */}
+                    <div className="draft-section">
+                        <div className="draft-section-header">
+                            <h2 className="section-title" style={{ color: '#DC2626' }}>
+                                Draft
+                            </h2>
+                            <Link to="/draft" className="see-more-link">
+                                See More
+                            </Link>
+                        </div>
+                        <div className="draft-articles-container">
+                            <div className="draft-row">
+                                {latestDraftArticles.slice(0, 4).map((post, index) => (
+                                    <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="draft-article-card">
+                                        <article>
+                                            {post.mainImage && (
+                                                <div className="draft-card-image">
+                                                    <img
+                                                        src={post.mainImage.asset.url}
+                                                        alt={post.mainImage.alt || post.title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="draft-card-content">
+                                                <h3 className="draft-card-title">{post.title}</h3>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
+                                                <div className="draft-card-meta">
+                                                    <span className="draft-card-author">{post.author?.name || 'Staff'}</span>
+                                                    <span className="draft-card-divider">|</span>
+                                                    <span className="draft-card-date">{getTimeAgo(post.publishedAt)}</span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="draft-row">
+                                {latestDraftArticles.slice(4, 8).map((post, index) => (
+                                    <Link key={post.slug.current || index + 4} to={`/${post.slug.current}`} className="draft-article-card">
+                                        <article>
+                                            {post.mainImage && (
+                                                <div className="draft-card-image">
+                                                    <img
+                                                        src={post.mainImage.asset.url}
+                                                        alt={post.mainImage.alt || post.title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="draft-card-content">
+                                                <h3 className="draft-card-title">{post.title}</h3>
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
+                                                <div className="draft-card-meta">
+                                                    <span className="draft-card-author">{post.author?.name || 'Staff'}</span>
+                                                    <span className="draft-card-divider">|</span>
+                                                    <span className="draft-card-date">{getTimeAgo(post.publishedAt)}</span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>

@@ -5,41 +5,41 @@
 /* Theme CSS Variables - Same as Header.css */
 :root {
   /* Dark Theme (Default) */
-  --bg-primary: #1A1A1A;
+  --bg-primary: #1a1a1a;
   --bg-secondary: #222222;
-  --bg-tertiary: #2A2A2A;
-  --text-primary: #FFFFFF;
-  --text-secondary: #CCCCCC;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
   --text-tertiary: #999999;
   --border-primary: #404040;
   --border-secondary: #555555;
-  --accent-primary: #8C1D40;
+  --accent-primary: #8c1d40;
 }
 
 /* Light Theme */
 body.theme-light {
-  --bg-primary: #FAFAFA;
-  --bg-secondary: #FFFFFF;
-  --bg-tertiary: #F5F5F5;
-  --text-primary: #1A1A1A;
-  --text-secondary: #1A1A1A;
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f5f5f5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #1a1a1a;
   --text-tertiary: #666666;
-  --border-primary: #E0E0E0;
-  --border-secondary: #D0D0D0;
-  --accent-primary: #8C1D40;
+  --border-primary: #e0e0e0;
+  --border-secondary: #d0d0d0;
+  --accent-primary: #8c1d40;
 }
 
 /* Dark Theme (Explicit) */
 body.theme-dark {
-  --bg-primary: #1A1A1A;
+  --bg-primary: #1a1a1a;
   --bg-secondary: #222222;
-  --bg-tertiary: #2A2A2A;
-  --text-primary: #FFFFFF;
-  --text-secondary: #CCCCCC;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
   --text-tertiary: #999999;
   --border-primary: #404040;
   --border-secondary: #555555;
-  --accent-primary: #8C1D40;
+  --accent-primary: #8c1d40;
 }
 
 /* Light mode specific adjustments */
@@ -57,45 +57,63 @@ body.theme-light .featured-title {
 
 /* Force light mode backgrounds and colors */
 body.theme-light {
-  background-color: #FAFAFA !important;
-  color: #1A1A1A !important;
+  background-color: #fafafa !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .blog-container {
-  background-color: #FAFAFA !important;
-  color: #1A1A1A !important;
+  background-color: #fafafa !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .featured-article,
 body.theme-light .secondary-card {
-  background-color: #FFFFFF !important;
-  color: #1A1A1A !important;
-  border-color: #E0E0E0 !important;
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+  border: 1px solid #e0e0e0 !important;
 }
 
+body.theme-light .second-featured-article {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+/* Featured article border in light mode - more specific targeting */
+body.theme-light .featured-article-link,
+body.theme-light .center-featured {
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+/* Reset border for elements that shouldn't have borders */
+body.theme-light .featured-title,
+body.theme-light .featured-content,
+body.theme-light .featured-description {
+  border: none !important;
+}
 
 body.theme-light .featured-title,
 body.theme-light .second-featured-title,
 body.theme-light .latest-article-title,
 body.theme-light .second-latest-article-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .featured-description,
 body.theme-light .second-featured-description,
 body.theme-light .latest-article-description {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .bottom-border {
-  background-color: #E0E0E0 !important;
+  background-color: #e0e0e0 !important;
 }
 
 /* More comprehensive light mode overrides */
 body.theme-light .news-left-sidebar-article-title,
 body.theme-light .sidebar-article-title,
 body.theme-light .team-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .news-left-sidebar-article-description,
@@ -119,24 +137,24 @@ body.theme-light .second-featured-timestamp {
 
 body.theme-light .secondary-section,
 body.theme-light .second-secondary-section {
-  border-top-color: #E0E0E0 !important;
+  border-top-color: #e0e0e0 !important;
 }
 
 body.theme-light .sidebar-section,
 body.theme-light .news-left-sidebar,
 body.theme-light .latest-section {
-  background-color: #FFFFFF !important;
-  border-color: #E0E0E0 !important;
+  background-color: #ffffff !important;
+  border-color: #e0e0e0 !important;
 }
 
 body.theme-light .category-tag,
 body.theme-light .tag {
-  background-color: #F5F5F5 !important;
+  background-color: #f5f5f5 !important;
   color: #333333 !important;
 }
 
 body.theme-light .see-more-link {
-  color: #8C1D40 !important;
+  color: #8c1d40 !important;
 }
 
 body.theme-light .author-date,
@@ -150,7 +168,7 @@ body.theme-light .second-latest-author-date {
 body.theme-light .news-left-sidebar,
 body.theme-light .latest-section,
 body.theme-light .sidebar-section {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }
 
 /* MASTER CARD STYLING RULE - Perfect consistency across ALL homepage cards */
@@ -162,27 +180,22 @@ body.theme-light .trades-sidebar-article,
 body.theme-light .freeagency-sidebar-article,
 body.theme-light .second-secondary-card-link,
 body.theme-light .section-article-link {
-  background-color: #FFFFFF !important;
-  border: 1px solid #E0E0E0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
 }
-
-
 
 /* MASTER HOVER EFFECTS RULE - Consistent hover behavior across ALL homepage cards */
 body.theme-light .news-left-sidebar-article-link:hover,
 body.theme-light .latest-article-link:hover,
 body.theme-light .second-latest-article-link:hover,
 body.theme-light .sidebar-article-link:hover,
-body.theme-light .trades-sidebar-article:hover,
-body.theme-light .freeagency-sidebar-article:hover,
 body.theme-light .second-secondary-card-link:hover,
 body.theme-light .section-article-link:hover {
   background-color: inherit !important;
-  border-color: #E0E0E0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border-color: #e0e0e0 !important;
 }
 
+/* Only title opacity hover effects for Trades/Free Agency sidebar articles */
 
 /* UNIVERSAL CARD CONSISTENCY RULE - TEMPORARILY DISABLED TO TEST
 body.theme-light .blog-container article:not(.featured-article):not(.second-featured-article),
@@ -190,22 +203,13 @@ body.theme-light .blog-container [class*="-article-card"]:not(.suns-article-card
 body.theme-light .blog-container [class*="sidebar-article"] {
   background-color: #FFFFFF !important;
   border: 1px solid #E0E0E0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 */
-
-
-
-
-
-
-
 
 /* Completely remove all borders and shadows from second-secondary-card section in light mode */
 body.theme-light .second-secondary-card,
 body.theme-light .second-secondary-card-link {
   border: none !important;
-  box-shadow: none !important;
   padding: 0 !important;
 }
 
@@ -230,8 +234,6 @@ body.theme-light .second-right-sidebar .article-category-tag {
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
 }
-
-
 
 /* NAVIGATION EXCLUSIONS - Ensure nav elements are not affected by card styling */
 body.theme-light nav,
@@ -259,20 +261,21 @@ body.theme-light .college-dropdown-container,
 body.theme-light .more-dropdown-container {
   background-color: initial !important;
   border: initial !important;
-  box-shadow: initial !important;
 }
 
 /* RESTORE NAVIGATION BORDER - Ensure bottom border is preserved */
 body.theme-light .bottom-border {
-  background-color: #E0E0E0 !important;
+  background-color: #e0e0e0 !important;
 }
 
-
 /* RESTORE MOBILE MENU STYLES - Copy the exact dark mode structure */
+body.theme-light .mobile-menu-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
 body.theme-light .mobile-menu {
   background: var(--bg-primary) !important;
   border-right: 1px solid var(--border-primary) !important;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 body.theme-light .mobile-menu-close {
@@ -295,11 +298,79 @@ body.theme-light .mobile-menu-link {
 body.theme-light .mobile-menu-link:hover {
   background: rgba(0, 0, 0, 0.05) !important;
   color: var(--text-primary) !important;
-  border-left-color: #8C1D40 !important;
+  border-left-color: #8c1d40 !important;
+}
+
+/* Team-specific hover colors for mobile menu in light mode */
+body.theme-light .mobile-menu-link[href="/suns"]:hover {
+  border-left-color: #e56020 !important;
+}
+body.theme-light .mobile-menu-link[href="/diamondbacks"]:hover {
+  border-left-color: #30ced8 !important;
+}
+body.theme-light .mobile-menu-link[href="/cardinals"]:hover {
+  border-left-color: #8c1d40 !important;
+}
+body.theme-light .mobile-menu-link[href="/mercury"]:hover {
+  border-left-color: #8b5cf6 !important;
+}
+body.theme-light .mobile-menu-link[href="/wildcats"]:hover {
+  border-left-color: #003366 !important;
+}
+body.theme-light .mobile-menu-link[href="/sundevils"]:hover {
+  border-left-color: #8c1d40 !important;
+}
+
+/* Neutral color for content tabs in mobile menu */
+body.theme-light .mobile-menu-link[href="/news"]:hover,
+body.theme-light .mobile-menu-link[href="/rumors"]:hover,
+body.theme-light .mobile-menu-link[href="/analysis"]:hover,
+body.theme-light .mobile-menu-link[href="/gamerecaps"]:hover,
+body.theme-light .mobile-menu-link[href="/trades"]:hover,
+body.theme-light .mobile-menu-link[href="/draft"]:hover,
+body.theme-light .mobile-menu-link[href="/freeagency"]:hover {
+  border-left-color: #cccccc !important;
+}
+
+/* Neutral color for content tabs in mobile menu - dark mode */
+body.theme-dark .mobile-menu-link[href="/news"]:hover,
+body.theme-dark .mobile-menu-link[href="/rumors"]:hover,
+body.theme-dark .mobile-menu-link[href="/analysis"]:hover,
+body.theme-dark .mobile-menu-link[href="/gamerecaps"]:hover,
+body.theme-dark .mobile-menu-link[href="/trades"]:hover,
+body.theme-dark .mobile-menu-link[href="/draft"]:hover,
+body.theme-dark .mobile-menu-link[href="/freeagency"]:hover {
+  border-left-color: #cccccc !important;
+}
+/* University colors for mobile menu hover - dark mode */
+body.theme-dark .mobile-menu-link[href="/wildcats"]:hover {
+  border-left-color: #cc0033 !important; /* U of A red */
+}
+body.theme-dark .mobile-menu-link[href="/sundevils"]:hover {
+  border-left-color: #ffc627 !important; /* ASU gold */
 }
 
 body.theme-light .mobile-menu-section h4 {
-  color: #8C1D40 !important;
+  color: #000000 !important;
+  background: transparent !important;
+  border-top: 1px solid #e0e0e0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+}
+
+/* Dark mode header colors and borders */
+body.theme-dark .mobile-menu-section h4,
+.mobile-menu-section h4 {
+  color: #ffffff !important;
+  border-top: 1px solid #404040 !important;
+  border-bottom: 1px solid #404040 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
   background: transparent !important;
 }
 
@@ -307,25 +378,22 @@ body.theme-light .mobile-menu-section h4 {
 body.theme-light .permanent-search-input {
   border: 1px solid #ccc !important;
   background-color: white !important;
-  box-shadow: none !important;
 }
 
 body.theme-light .permanent-search-button {
   border: 1px solid #606060 !important;
   background-color: #606060 !important;
-  box-shadow: none !important;
 }
 
 body.theme-light .theme-toggle-button {
-  border: 1px solid #CCCCCC !important;
+  border: 1px solid #cccccc !important;
   background-color: transparent !important;
-  box-shadow: none !important;
 }
 
 body.theme-light .right-sidebar,
 body.theme-light .second-right-sidebar {
   background-color: transparent !important;
-  border-left: 1px solid #E0E0E0 !important;
+  border-left: 1px solid #e0e0e0 !important;
   padding-left: 20px !important;
 }
 
@@ -336,7 +404,7 @@ body.theme-light .left-sidebar {
 body.theme-light .sidebar-title,
 body.theme-light .latest-title,
 body.theme-light .news-sidebar-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 /* Fix right sidebar specifically */
@@ -346,7 +414,7 @@ body.theme-light .right-sidebar {
 }
 
 body.theme-light .left-sidebar-article {
-  border-bottom-color: #E0E0E0 !important;
+  border-bottom-color: #e0e0e0 !important;
   background-color: transparent !important;
 }
 
@@ -364,16 +432,16 @@ body.theme-light .latest-content,
 body.theme-light .sidebar-article,
 body.theme-light .sidebar-content,
 body.theme-light .right-sidebar-content {
-  background-color: #FFFFFF !important;
-  color: #1A1A1A !important;
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
 }
 
 /* Override any specific dark backgrounds */
 body.theme-light [class*="sidebar"],
 body.theme-light [class*="latest"],
 body.theme-light [class*="news-"] {
-  background-color: #FFFFFF !important;
-  color: #1A1A1A !important;
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
 }
 
 /* Make sure all text in sidebar is dark */
@@ -387,7 +455,7 @@ body.theme-light .right-sidebar h3,
 body.theme-light .right-sidebar h4,
 body.theme-light .news-left-sidebar h3,
 body.theme-light .news-left-sidebar h4 {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 /* COMPREHENSIVE CARD STYLING CONSOLIDATION - Remove all white container backgrounds */
@@ -410,26 +478,25 @@ body.theme-light .second-right-sidebar div,
 body.theme-light .right-sidebar section,
 body.theme-light .second-right-sidebar section {
   background-color: transparent !important;
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
   border: none !important;
-  box-shadow: none !important;
 }
 
 /* Dynamic team colors for category tags in second-right-sidebar - Copy the working pattern from news section */
 body.theme-light .second-right-sidebar .article-category-tag.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 
 body.theme-light .second-right-sidebar .article-category-tag.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 
 body.theme-light .second-right-sidebar .article-category-tag.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 
 body.theme-light .second-right-sidebar .article-category-tag.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 
 body.theme-light .second-right-sidebar .article-category-tag.team-wildcats {
@@ -437,38 +504,48 @@ body.theme-light .second-right-sidebar .article-category-tag.team-wildcats {
 }
 
 body.theme-light .second-right-sidebar .article-category-tag.team-sundevils {
-  color: #8C1D40 !important; /* ASU Maroon */
+  color: #8c1d40 !important; /* ASU Maroon */
 }
 
 /* Dark mode team colors for category tags in second-right-sidebar */
 body.theme-dark .second-right-sidebar .article-category-tag.team-suns,
 body:not(.theme-light) .second-right-sidebar .article-category-tag.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-cardinals,
-body:not(.theme-light) .second-right-sidebar .article-category-tag.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+body:not(.theme-light)
+  .second-right-sidebar
+  .article-category-tag.team-cardinals {
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-diamondbacks,
-body:not(.theme-light) .second-right-sidebar .article-category-tag.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+body:not(.theme-light)
+  .second-right-sidebar
+  .article-category-tag.team-diamondbacks {
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-mercury,
-body:not(.theme-light) .second-right-sidebar .article-category-tag.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+body:not(.theme-light)
+  .second-right-sidebar
+  .article-category-tag.team-mercury {
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-wildcats,
-body:not(.theme-light) .second-right-sidebar .article-category-tag.team-wildcats {
+body:not(.theme-light)
+  .second-right-sidebar
+  .article-category-tag.team-wildcats {
   color: #003366 !important; /* Wildcats Navy */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-sundevils,
-body:not(.theme-light) .second-right-sidebar .article-category-tag.team-sundevils {
-  color: #8C1D40 !important; /* ASU Maroon */
+body:not(.theme-light)
+  .second-right-sidebar
+  .article-category-tag.team-sundevils {
+  color: #8c1d40 !important; /* ASU Maroon */
 }
 
 /* Fix borders in light mode */
@@ -476,7 +553,7 @@ body.theme-light .left-sidebar-article,
 body.theme-light .news-left-sidebar-article,
 body.theme-light .latest-article,
 body.theme-light .sidebar-article {
-  border-color: #E0E0E0 !important;
+  border-color: #e0e0e0 !important;
 }
 
 body.theme-light .right-sidebar {
@@ -485,32 +562,30 @@ body.theme-light .right-sidebar {
 
 body.theme-light .news-left-sidebar-article-link,
 body.theme-light .latest-article-link,
-body.theme-light .sidebar-article-link,
-body.theme-light .trades-sidebar-article,
-body.theme-light .freeagency-sidebar-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+body.theme-light .sidebar-article-link {
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Fix borders for all other sidebar elements */
 body.theme-light .left-sidebar {
-  border-right: 1px solid #E0E0E0 !important;
+  border-right: 1px solid #e0e0e0 !important;
 }
 
 body.theme-light .news-left-sidebar,
 body.theme-light .latest-section,
 body.theme-light .sidebar-section {
-  border: 1px solid #E0E0E0 !important;
+  border: 1px solid #e0e0e0 !important;
 }
 
 body.theme-light .news-left-sidebar-article,
 body.theme-light .latest-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Ensure section dividers are visible */
 body.theme-light .secondary-section,
 body.theme-light .second-secondary-section {
-  border-top: 2px solid #E0E0E0 !important;
+  border-top: 2px solid #e0e0e0 !important;
 }
 
 /* Fix the specific news-left-sidebar border */
@@ -525,40 +600,32 @@ body.theme-light .left-sidebar-filter {
 
 /* Fix right sidebar article borders */
 body.theme-light .sidebar-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 body.theme-light .right-sidebar .sidebar-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Fix newsletter item borders in right sidebar */
 body.theme-light .newsletter-item {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
-/* Fix freeagency sidebar article borders */
-body.theme-light .freeagency-sidebar-article {
-  border-bottom: 1px solid #E0E0E0 !important;
-}
-
-/* Fix trades sidebar article borders */
-body.theme-light .trades-sidebar-article {
-  border-bottom: 1px solid #E0E0E0 !important;
-}
+/* Trades/Free Agency sidebar articles now use card styling with gaps instead of borders */
 
 /* Fix latest article borders in right sidebar */
 body.theme-light .latest-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 body.theme-light .right-sidebar .latest-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Fix second latest article borders */
 body.theme-light .second-latest-article {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Ensure italics maintain consistent text color */
@@ -648,7 +715,6 @@ body {
   font-family: var(--font-primary);
   line-height: 1.6;
   color: var(--color-primary);
-  box-shadow: none;
 }
 
 @media (min-width: 768px) {
@@ -719,7 +785,6 @@ a {
   background: linear-gradient(135deg, #fdf2f2 0%, var(--color-background) 100%);
   border: 1px solid rgba(231, 76, 60, 0.2);
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.1);
 }
 
 /* Three Column Layout - Professional News Style */
@@ -809,11 +874,10 @@ a {
   background: var(--bg-secondary) !important;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-primary);
+  border: 1px solid var(--border-primary) !important;
   height: auto;
 }
 
@@ -841,7 +905,6 @@ a {
     order: 1;
   }
 }
-
 
 .featured-image {
   width: 100%;
@@ -999,7 +1062,6 @@ a {
   flex-direction: column;
   border: none;
   height: fit-content;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 @media (min-width: 768px) {
@@ -1191,7 +1253,7 @@ a {
   width: 100%;
   padding: var(--space-3) var(--space-4);
   text-align: left;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
   border-radius: 8px;
   background: transparent;
   color: var(--text-secondary);
@@ -1204,23 +1266,32 @@ a {
   letter-spacing: 0.5px;
 }
 
+/* ALL button only gets border when active */
+.team-tab.vertical:first-child {
+  border-color: transparent;
+}
+.team-tab.vertical:first-child.active {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
 .team-tab.vertical:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.4);
   color: var(--text-primary);
   transform: translateX(4px);
+}
+.team-tab.vertical:first-child:hover {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .team-tab.vertical.active {
   background: #8c1d40;
-  border-color: #8c1d40;
   color: var(--text-primary);
   transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(151, 35, 63, 0.3);
 }
 
 .team-tab.vertical.active:hover {
   background: #b13a56;
+}
+.team-tab.vertical:first-child.active:hover {
   border-color: #b13a56;
 }
 
@@ -1248,7 +1319,6 @@ a {
   border-radius: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: none;
   transition: all 0.2s ease;
   height: auto;
   min-height: 120px;
@@ -1398,9 +1468,8 @@ aside.right-sidebar article.latest-article {
 /* Override light mode border for right sidebar cards - BOTH featured and news sections */
 body.theme-light aside.right-sidebar article.latest-article,
 body.theme-light aside.second-right-sidebar article.second-latest-article {
-  border-bottom: 1px solid #E0E0E0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  background-color: #ffffff !important;
 }
 
 /* Remove top border from first card in right sidebar - BOTH sections */
@@ -1410,7 +1479,9 @@ aside.second-right-sidebar article.second-latest-article:first-child {
 }
 
 body.theme-light aside.right-sidebar article.latest-article:first-child,
-body.theme-light aside.second-right-sidebar article.second-latest-article:first-child {
+body.theme-light
+  aside.second-right-sidebar
+  article.second-latest-article:first-child {
   border-top: none !important;
 }
 
@@ -1427,52 +1498,70 @@ body.theme-light aside.second-right-sidebar .second-latest-article-link:hover {
 
 /* Team color classes for category tags - ULTRA HIGH specificity to override inherit rule */
 body.theme-light aside.right-sidebar .article-category-tag.team-suns,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-suns,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-suns,
 body.theme-light .right-sidebar aside .article-category-tag.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 body.theme-light aside.right-sidebar .article-category-tag.team-cardinals,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-cardinals,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-cardinals,
 body.theme-light .right-sidebar aside .article-category-tag.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 body.theme-light aside.right-sidebar .article-category-tag.team-diamondbacks,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-diamondbacks,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-diamondbacks,
 body.theme-light .right-sidebar aside .article-category-tag.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 body.theme-light aside.right-sidebar .article-category-tag.team-mercury,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-mercury,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-mercury,
 body.theme-light .right-sidebar aside .article-category-tag.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 body.theme-light aside.right-sidebar .article-category-tag.team-wildcats,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-wildcats,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-wildcats,
 body.theme-light .right-sidebar aside .article-category-tag.team-wildcats {
   color: #003366 !important; /* Wildcats Navy */
 }
 body.theme-light aside.right-sidebar .article-category-tag.team-sundevils,
-body.theme-light .analysis-section aside.right-sidebar .article-category-tag.team-sundevils,
+body.theme-light
+  .analysis-section
+  aside.right-sidebar
+  .article-category-tag.team-sundevils,
 body.theme-light .right-sidebar aside .article-category-tag.team-sundevils {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+  color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
 /* Also add dark mode versions */
 .right-sidebar .article-category-tag.team-suns,
 .analysis-section .right-sidebar .article-category-tag.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 .right-sidebar .article-category-tag.team-cardinals,
 .analysis-section .right-sidebar .article-category-tag.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 .right-sidebar .article-category-tag.team-diamondbacks,
 .analysis-section .right-sidebar .article-category-tag.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 .right-sidebar .article-category-tag.team-mercury,
 .analysis-section .right-sidebar .article-category-tag.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 .right-sidebar .article-category-tag.team-wildcats,
 .analysis-section .right-sidebar .article-category-tag.team-wildcats {
@@ -1480,7 +1569,7 @@ body.theme-light .right-sidebar aside .article-category-tag.team-sundevils {
 }
 .right-sidebar .article-category-tag.team-sundevils,
 .analysis-section .right-sidebar .article-category-tag.team-sundevils {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+  color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
 /* Make right sidebar author/date lines match other cards - darker color */
@@ -1538,7 +1627,6 @@ body.theme-light .second-featured-timestamp {
 .left-sidebar-article:hover {
   background-color: var(--color-background-subtle);
   transform: translateX(6px) translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
@@ -1722,7 +1810,6 @@ body.theme-light .second-featured-timestamp {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-left: none;
   border-right: none;
-  box-shadow: none;
   transition: all 0.2s ease;
   height: auto;
   min-height: 120px;
@@ -1939,62 +2026,6 @@ body.theme-light .second-featured-timestamp {
   margin: 0;
 }
 
-/* News Indicators */
-.news-indicator {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-radius: 3px;
-  margin-bottom: var(--space-3);
-  font-family: var(--font-secondary);
-}
-
-.news-indicator.breaking {
-  background: #dc3545;
-  color: var(--text-primary);
-  animation: pulse 2s infinite;
-}
-
-.news-indicator.latest {
-  background: #ffc107;
-  color: #000;
-}
-
-.news-indicator.trending {
-  background: #059669;
-  color: var(--text-primary);
-}
-
-.news-indicator-small {
-  display: inline-block;
-  padding: 2px 6px;
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  border-radius: 2px;
-  margin-bottom: var(--space-2);
-  font-family: var(--font-secondary);
-}
-
-.news-indicator-small.breaking {
-  background: #dc3545;
-  color: var(--text-primary);
-}
-
-.news-indicator-small.latest {
-  background: #ffc107;
-  color: #000;
-}
-
-.news-indicator-small.trending {
-  background: #059669;
-  color: var(--text-primary);
-}
-
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -2014,7 +2045,6 @@ body.theme-light .second-featured-timestamp {
   margin: var(--space-4) var(--space-4) var(--space-6) var(--space-4);
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(44, 138, 166, 0.3);
 }
 
 .newsletter-title {
@@ -2049,7 +2079,6 @@ body.theme-light .second-featured-timestamp {
 }
 
 .newsletter-input:focus {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .newsletter-button {
@@ -2070,7 +2099,6 @@ body.theme-light .second-featured-timestamp {
 .newsletter-button:hover {
   background: #fafafa;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .newsletter-note {
@@ -2180,14 +2208,12 @@ body.theme-light .second-featured-timestamp {
   background: var(--color-background);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(78, 205, 196, 0.08);
   transition: all 0.3s ease;
   border: 1px solid rgba(78, 205, 196, 0.1);
 }
 
 .post-card:hover {
   transform: none;
-  box-shadow: 0 8px 30px rgba(78, 205, 196, 0.15);
 }
 
 .post-image {
@@ -2496,6 +2522,15 @@ body.theme-light .second-featured-timestamp {
   cursor: pointer;
 }
 
+.section-article {
+  border: 1px solid var(--border-primary) !important;
+  border-radius: 8px;
+}
+
+body.theme-light .section-article {
+  border: 1px solid #e0e0e0 !important;
+}
+
 .section-article:hover {
   transform: none;
 }
@@ -2581,12 +2616,10 @@ body.theme-light .second-featured-timestamp {
   border: 2px solid red;
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: none;
 }
 
 .layout-image-focus .section-article.large:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   border-color: rgba(151, 35, 63, 0.2);
 }
 
@@ -2644,7 +2677,6 @@ body.theme-light .second-featured-timestamp {
   border-radius: 0;
   width: fit-content;
   border: none;
-  
 }
 
 .section-article.large .section-title-link {
@@ -2685,7 +2717,6 @@ body.theme-light .second-featured-timestamp {
   flex: 1 !important;
   width: 100% !important;
   margin: 0.5rem !important;
-  
 }
 
 /* Hide images in small section articles for cleaner look - except news sidebar */
@@ -2705,7 +2736,6 @@ body.theme-light .second-featured-timestamp {
   transform: translateY(-3px) scale(1.02) !important;
   border-color: rgba(151, 35, 63, 0.3) !important;
   background: var(--color-background-subtle) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }
 
 .section-content {
@@ -2784,7 +2814,6 @@ body.theme-light .second-featured-timestamp {
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   border-left: none;
   border-right: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .layout-image-focus
@@ -2799,7 +2828,6 @@ body.theme-light .second-featured-timestamp {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(151, 35, 63, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .layout-image-focus
@@ -3023,7 +3051,6 @@ body.theme-light .second-featured-timestamp {
   background: var(--color-background);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .bottom-featured-image {
@@ -3110,7 +3137,6 @@ body.theme-light .second-featured-timestamp {
 @media print {
   .blog-container {
     background: var(--color-background);
-    box-shadow: none;
   }
 
   .see-more {
@@ -3156,7 +3182,6 @@ body.theme-light .second-featured-timestamp {
   border-right: none;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -3184,7 +3209,6 @@ body.theme-light .second-featured-timestamp {
     padding: var(--space-4);
     margin-top: var(--space-4);
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .layout-image-focus .section-article.large {
@@ -3316,7 +3340,6 @@ body.theme-light .second-featured-timestamp {
 
 .section-article.text-only:hover {
   border-color: var(--color-brand);
-  box-shadow: 0 2px 8px rgba(44, 138, 166, 0.1);
 }
 
 .section-article.text-only .section-content {
@@ -3456,7 +3479,6 @@ body.theme-light .second-featured-timestamp {
   background: transparent;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: none;
   transition: all 0.3s ease;
   height: 100%;
   display: flex;
@@ -3464,7 +3486,6 @@ body.theme-light .second-featured-timestamp {
 }
 
 .recent-card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .recent-card-image-container {
@@ -3584,6 +3605,7 @@ body.theme-light .suns-section-header,
 body.theme-light .cardinals-section-header,
 body.theme-light .diamondbacks-section-header,
 body.theme-light .recaps-section-header,
+body.theme-light .draft-section-header,
 body.theme-light .mercury-section-header,
 body.theme-light .trades-header,
 body.theme-light .freeagency-header {
@@ -3592,12 +3614,12 @@ body.theme-light .freeagency-header {
 
 /* Make NEWS section header and see more button black */
 body.theme-light #news-section-specific .section-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light #news-section-specific .see-more {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 body.theme-light #news-section-specific .see-more:hover {
@@ -3608,19 +3630,191 @@ body.theme-light #news-section-specific .see-more:hover {
 /* Make NEWS section header and see more button white in dark mode */
 body.theme-dark #news-section-specific .section-title,
 #news-section-specific .section-title {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 body.theme-dark #news-section-specific .see-more,
 #news-section-specific .see-more {
-  color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 body.theme-dark #news-section-specific .see-more:hover,
 #news-section-specific .see-more:hover {
-  color: #CCCCCC !important;
-  border-color: #CCCCCC !important;
+  color: #cccccc !important;
+  border-color: #cccccc !important;
+}
+/* Make RUMORS section header and see more button white in dark mode */
+body.theme-dark .rumors-section-header .section-title,
+.rumors-section-header .section-title {
+  color: #ffffff !important;
+}
+body.theme-dark .rumors-section-header .see-more-link,
+body.theme-dark .rumors-section-header .see-more,
+body.theme-dark #rumors-section-specific .see-more-link,
+body.theme-dark #rumors-section-specific .see-more,
+.rumors-section-header .see-more-link,
+.rumors-section-header .see-more,
+#rumors-section-specific .see-more-link,
+#rumors-section-specific .see-more {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+body.theme-dark .rumors-section-header .see-more-link:hover,
+body.theme-dark .rumors-section-header .see-more:hover,
+body.theme-dark #rumors-section-specific .see-more-link:hover,
+body.theme-dark #rumors-section-specific .see-more:hover,
+.rumors-section-header .see-more-link:hover,
+.rumors-section-header .see-more:hover,
+#rumors-section-specific .see-more-link:hover,
+#rumors-section-specific .see-more:hover {
+  color: #cccccc !important;
+  border-color: #cccccc !important;
+}
+/* Make ANALYSIS section header and see more button white in dark mode */
+body.theme-dark .analysis-section-header .section-title,
+.analysis-section-header .section-title {
+  color: #ffffff !important;
+}
+body.theme-dark .analysis-section-header .see-more-link,
+body.theme-dark .analysis-section-header .see-more,
+body.theme-dark #analysis-section-specific .see-more-link,
+body.theme-dark #analysis-section-specific .see-more,
+.analysis-section-header .see-more-link,
+.analysis-section-header .see-more,
+#analysis-section-specific .see-more-link,
+#analysis-section-specific .see-more {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+body.theme-dark .analysis-section-header .see-more-link:hover,
+body.theme-dark .analysis-section-header .see-more:hover,
+body.theme-dark #analysis-section-specific .see-more-link:hover,
+body.theme-dark #analysis-section-specific .see-more:hover,
+.analysis-section-header .see-more-link:hover,
+.analysis-section-header .see-more:hover,
+#analysis-section-specific .see-more-link:hover,
+#analysis-section-specific .see-more:hover {
+  color: #cccccc !important;
+  border-color: #cccccc !important;
+}
+/* Make RECAPS section header and see more button white in dark mode */
+body.theme-dark .recaps-section-header .section-title,
+.recaps-section-header .section-title {
+  color: #ffffff !important;
+}
+body.theme-dark .recaps-section-header .see-more-link,
+body.theme-dark .recaps-section-header .see-more,
+body.theme-dark #recaps-section-specific .see-more-link,
+body.theme-dark #recaps-section-specific .see-more,
+.recaps-section-header .see-more-link,
+.recaps-section-header .see-more,
+#recaps-section-specific .see-more-link,
+#recaps-section-specific .see-more {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+body.theme-dark .recaps-section-header .see-more-link:hover,
+body.theme-dark .recaps-section-header .see-more:hover,
+body.theme-dark #recaps-section-specific .see-more-link:hover,
+body.theme-dark #recaps-section-specific .see-more:hover,
+.recaps-section-header .see-more-link:hover,
+.recaps-section-header .see-more:hover,
+#recaps-section-specific .see-more-link:hover,
+#recaps-section-specific .see-more:hover {
+  color: #cccccc !important;
+  border-color: #cccccc !important;
+}
+/* Add section border for recaps section in dark mode */
+body.theme-dark .recaps-section-header,
+.recaps-section-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+/* Make WILDCATS section header and see more button U of A red in dark mode */
+body.theme-dark #wildcats-sundevils-section .trades-column .trades-header,
+#wildcats-sundevils-section .trades-column .trades-header {
+  border-bottom-color: #cc0033 !important; /* U of A red border */
+}
+body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .section-title,
+#wildcats-sundevils-section .trades-column .trades-header .section-title {
+  color: #cc0033 !important; /* U of A red */
+  font-size: 1.8rem !important; /* Match other sections */
+  font-weight: 700 !important; /* Match other sections */
+  font-family: var(--font-primary) !important; /* Match other sections */
+}
+body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .see-more-link,
+#wildcats-sundevils-section .trades-column .trades-header .see-more-link {
+  color: #cc0033 !important; /* U of A red */
+  border-color: #cc0033 !important; /* U of A red */
+  font-family: var(--font-secondary) !important; /* Match other sections */
+}
+body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .see-more-link:hover,
+#wildcats-sundevils-section .trades-column .trades-header .see-more-link:hover {
+  color: #e6004d !important; /* Lighter red on hover */
+  border-color: #e6004d !important; /* Lighter red on hover */
+}
+/* Make SUN DEVILS section header and see more button ASU gold in dark mode */
+body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header,
+#wildcats-sundevils-section .freeagency-column .freeagency-header {
+  border-bottom-color: #ffc627 !important; /* ASU gold border */
+}
+body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .section-title,
+#wildcats-sundevils-section .freeagency-column .freeagency-header .section-title {
+  color: #ffc627 !important; /* ASU gold */
+  font-size: 1.8rem !important; /* Match other sections */
+  font-weight: 700 !important; /* Match other sections */
+  font-family: var(--font-primary) !important; /* Match other sections */
+}
+body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link,
+#wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link {
+  color: #ffc627 !important; /* ASU gold */
+  border-color: #ffc627 !important; /* ASU gold */
+  font-family: var(--font-secondary) !important; /* Match other sections */
+}
+body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link:hover,
+#wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link:hover {
+  color: #ffdf80 !important; /* Lighter gold on hover */
+  border-color: #ffdf80 !important; /* Lighter gold on hover */
+}
+/* Featured article category tags for dark mode - Trades/Free Agency/Wildcats/Sun Devils */
+body.theme-dark .featured-trade-category,
+body.theme-dark .featured-freeagency-category,
+body.theme-dark .featured-wildcats-category,
+body.theme-dark .featured-sundevils-category,
+.featured-trade-category,
+.featured-freeagency-category,
+.featured-wildcats-category,
+.featured-sundevils-category {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 !important;
+  font-family: var(--font-secondary) !important;
+}
+/* Make TRADES and FREE AGENCY section see more buttons white in dark mode */
+body.theme-dark .trades-header .see-more-link,
+body.theme-dark .freeagency-header .see-more-link,
+.trades-header .see-more-link,
+.freeagency-header .see-more-link {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+body.theme-dark .trades-header .see-more-link:hover,
+body.theme-dark .freeagency-header .see-more-link:hover,
+.trades-header .see-more-link:hover,
+.freeagency-header .see-more-link:hover {
+  color: #cccccc !important;
+  border-color: #cccccc !important;
+}
+/* Make right sidebar article borders more subtle in dark mode - NEWS SECTION SPECIFIC */
+body.theme-dark .three-column-layout .right-sidebar .latest-article,
+body:not(.theme-light) .three-column-layout .right-sidebar .latest-article,
+.three-column-layout .right-sidebar .latest-article {
+  background: rgba(255, 255, 255, 0.01) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
 }
 
 /* Remove background from Filter By Team title and container */
@@ -3649,7 +3843,6 @@ body.theme-light .news-left-sidebar {
   background: none !important;
   background-color: transparent !important;
   border: none !important;
-  box-shadow: none !important;
 }
 
 /* Apply same to rumors and analysis sections */
@@ -3658,40 +3851,38 @@ body.theme-light .analysis-left-sidebar {
   background: none !important;
   background-color: transparent !important;
   border: none !important;
-  box-shadow: none !important;
 }
 
-/* Team-specific colors for active filter buttons - border only, transparent background, no shadows */
+/* Team-specific border colors for active filter buttons */
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(1) {
   background: transparent !important; /* All */
-  border-color: #000000 !important;
-  box-shadow: none !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+/* Light mode ALL button border */
+body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(1),
+body.theme-light .team-tab.vertical:first-child.active {
+  border-color: #1a1a1a !important; /* Black border for light mode */
 }
 
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(2) {
   background: transparent !important; /* Cardinals */
-  border-color: #8C1D40 !important;
-  box-shadow: none !important;
+  border-color: #8c1d40 !important;
 }
 
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(3) {
   background: transparent !important; /* Diamondbacks */
-  border-color: #17A2B8 !important;
-  box-shadow: none !important;
+  border-color: #30ced8 !important; /* Diamondbacks Teal */
 }
 
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(4) {
   background: transparent !important; /* Suns */
-  border-color: #E56020 !important;
-  box-shadow: none !important;
+  border-color: #e56020 !important;
 }
 
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(5) {
   background: transparent !important; /* Mercury */
-  border-color: #6B46C1 !important;
-  box-shadow: none !important;
+  border-color: #8b5cf6 !important; /* Mercury Purple */
 }
-
 
 .news-section-header .section-header,
 .rumors-section-header .section-header,
@@ -3793,12 +3984,12 @@ body.theme-light .analysis-left-sidebar {
   background: rgba(255, 255, 255, 0.02);
   border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
   border: none;
   height: auto;
+  border: 1px solid var(--border-primary) !important;
 }
 
 @media (min-width: 768px) {
@@ -3827,7 +4018,6 @@ body.theme-light .analysis-left-sidebar {
 
 .second-featured-article:hover {
   transform: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .second-featured-image {
@@ -4123,8 +4313,6 @@ body:not(.theme-light) .second-secondary-section {
   border-right: none;
 }
 
-
-
 .second-secondary-card-image {
   width: 100%;
   height: 160px;
@@ -4260,6 +4448,13 @@ body.theme-light .suns-section-header .see-more-link {
   color: #e56020 !important;
   border-color: #e56020 !important;
 }
+body.theme-light .second-secondary-card .second-latest-article-content {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+}
 
 body.theme-dark .suns-section-header .see-more-link {
   color: #e56020 !important;
@@ -4271,18 +4466,33 @@ body.theme-light .suns-section-header .section-title {
   color: #e56020 !important;
 }
 
+body.theme-light .suns-card-title {
+  color: #000000 !important;
+}
+
+body.theme-light .cardinals-card-title {
+  color: #000000 !important;
+}
+
+body.theme-light .diamondbacks-card-title {
+  color: #000000 !important;
+}
+
+body.theme-light .recaps-card-title {
+  color: #000000 !important;
+}
 
 /* Override Rumors section styling for light mode */
 body.theme-light .rumors-section-header .section-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .rumors-section-header .see-more-link,
 body.theme-light .rumors-section-header .see-more,
 body.theme-light #rumors-section-specific .see-more-link,
 body.theme-light #rumors-section-specific .see-more {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 body.theme-light .rumors-section-header .see-more-link:hover,
@@ -4293,18 +4503,17 @@ body.theme-light #rumors-section-specific .see-more:hover {
   border-color: #000000 !important;
 }
 
-
 /* Override Analysis section styling for light mode */
 body.theme-light .analysis-section-header .section-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .analysis-section-header .see-more-link,
 body.theme-light .analysis-section-header .see-more,
 body.theme-light #analysis-section-specific .see-more-link,
 body.theme-light #analysis-section-specific .see-more {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 body.theme-light .analysis-section-header .see-more-link:hover,
@@ -4316,48 +4525,65 @@ body.theme-light #analysis-section-specific .see-more:hover {
 }
 
 /* Force analysis section category tags to use inline styles by preventing inherit override */
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="color"] {
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="color"] {
   color: inherit !important;
 }
 
 /* Specific overrides for each team in analysis section to force colors */
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="#E56020"] {
-  color: #E56020 !important; /* Suns Orange */
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="#E56020"] {
+  color: #e56020 !important; /* Suns Orange */
 }
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="#8C1D40"] {
-  color: #8C1D40 !important; /* Cardinals Red */
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="#8C1D40"] {
+  color: #8c1d40 !important; /* Cardinals Red */
 }
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="#30CED8"] {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="#30CED8"] {
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="#8B5CF6"] {
-  color: #8B5CF6 !important; /* Mercury Purple */
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="#8B5CF6"] {
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
-body.theme-light .analysis-section .right-sidebar .article-category-tag[style*="#003366"] {
+body.theme-light
+  .analysis-section
+  .right-sidebar
+  .article-category-tag[style*="#003366"] {
   color: #003366 !important; /* Wildcats Navy */
 }
 
 /* Override Diamondbacks section styling for light mode */
 body.theme-light .diamondbacks-section-header .see-more-link {
-  color: #30CED8 !important;
-  border-color: #30CED8 !important;
+  color: #30ced8 !important;
+  border-color: #30ced8 !important;
 }
 
 body.theme-light .diamondbacks-section-header .see-more-link:hover {
-  color: #30CED8 !important;
-  border-color: #30CED8 !important;
+  color: #30ced8 !important;
+  border-color: #30ced8 !important;
   background-color: transparent !important;
 }
 
-
 /* Override Recaps section styling for light mode */
 body.theme-light .recaps-section-header .section-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 body.theme-light .recaps-section-header .see-more-link {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 body.theme-light .recaps-section-header .see-more-link:hover {
@@ -4365,8 +4591,24 @@ body.theme-light .recaps-section-header .see-more-link:hover {
   border-color: #000000 !important;
 }
 
-
-
+/* Override Draft section styling for light mode */
+body.theme-light .draft-section-header {
+  border-bottom-color: #1a1a1a !important;
+}
+body.theme-light .draft-section-header .section-title {
+  color: #1a1a1a !important;
+}
+body.theme-light .draft-section-header .see-more-link {
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+body.theme-light .draft-section-header .see-more-link:hover {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+body.theme-light .draft-card-title {
+  color: #000000 !important;
+}
 /* Light mode hover effect only affects title opacity (same as other sections) */
 
 /* Recaps card category tag styling */
@@ -4375,38 +4617,116 @@ body.theme-light .recaps-section-header .see-more-link:hover {
   margin-top: auto;
 }
 
+/* Team section card category tag styling - position at bottom */
+.suns-card-content .article-category-tag,
+.cardinals-card-content .article-category-tag,
+.diamondbacks-card-content .article-category-tag,
+.mercury-card-content .article-category-tag {
+  margin-bottom: 0;
+  margin-top: auto;
+}
+
+
+
+/* Team section category tags use team colors */
+.suns-card-content .article-category-tag.team-suns {
+  color: #e56020 !important; /* Suns Orange */
+}
+.cardinals-card-content .article-category-tag.team-cardinals {
+  color: #8c1d40 !important; /* Cardinals Red */
+}
+.diamondbacks-card-content .article-category-tag.team-diamondbacks {
+  color: #30ced8 !important; /* Diamondbacks Teal */
+}
+.mercury-card-content .article-category-tag.team-mercury {
+  color: #8b5cf6 !important; /* Mercury Purple */
+}
+
 /* Ensure Recaps category tags use team colors */
 .recaps-card-content .article-category-tag.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 .recaps-card-content .article-category-tag.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 .recaps-card-content .article-category-tag.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 .recaps-card-content .article-category-tag.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 .recaps-card-content .article-category-tag.team-wildcats {
   color: #003366 !important; /* Wildcats Navy */
 }
 .recaps-card-content .article-category-tag.team-sundevils {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+  color: #8c1d40 !important; /* Sun Devils Maroon */
+}
+/* Ensure Draft category tags use team colors */
+.draft-card-content .article-category-tag.team-cardinals {
+  color: #8c1d40 !important; /* Cardinals Red */
+}
+.draft-card-content .article-category-tag.team-suns {
+  color: #e56020 !important; /* Suns Orange */
+}
+.draft-card-content .article-category-tag.team-diamondbacks {
+  color: #30ced8 !important; /* Diamondbacks Teal */
+}
+.draft-card-content .article-category-tag.team-mercury {
+  color: #8b5cf6 !important; /* Mercury Purple */
+}
+.draft-card-content .article-category-tag.team-wildcats {
+  color: #003366 !important; /* Wildcats Navy */
+}
+.draft-card-content .article-category-tag.team-sundevils {
+  color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
 /* Override Mercury section styling for light mode */
 body.theme-light .mercury-section-header .see-more-link {
-  color: #8B5CF6 !important;
-  border-color: #8B5CF6 !important;
+  color: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
 }
 
 body.theme-light .mercury-section-header .see-more-link:hover {
-  color: #8B5CF6 !important;
-  border-color: #8B5CF6 !important;
+  color: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
   background-color: transparent !important;
 }
 
+/* Mercury cards light mode styling */
+body.theme-light .mercury-article-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #1a1a1a !important;
+}
+
+body.theme-light .mercury-card-title {
+  color: #1a1a1a !important;
+}
+
+body.theme-light .suns-card-content,
+body.theme-light .cardinals-card-content,
+body.theme-light .diamondbacks-card-content,
+body.theme-light .mercury-card-content {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+body.theme-light .mercury-card-meta {
+  color: #888 !important;
+}
+
+body.theme-light .mercury-card-author {
+  color: #666 !important;
+}
+
+body.theme-light .mercury-card-date {
+  color: #666 !important;
+}
+
+body.theme-light .mercury-card-divider {
+  color: #666 !important;
+}
 
 /* ===== TRADES/FREE AGENCY SECTION LIGHT MODE OVERRIDES ===== */
 
@@ -4417,7 +4737,6 @@ body.theme-light .wildcats-column,
 body.theme-light .sundevils-column {
   background: #ffffff !important;
   border: none !important;
-  box-shadow: none !important;
 }
 
 /* Section headers */
@@ -4425,7 +4744,7 @@ body.theme-light .trades-header,
 body.theme-light .freeagency-header,
 body.theme-light .wildcats-header,
 body.theme-light .sundevils-header {
-  border-bottom: 1px solid #E0E0E0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 
 /* Section titles */
@@ -4433,7 +4752,7 @@ body.theme-light .trades-header .section-title,
 body.theme-light .freeagency-header .section-title,
 body.theme-light .wildcats-header .section-title,
 body.theme-light .sundevils-header .section-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 /* See more links */
@@ -4441,16 +4760,16 @@ body.theme-light .trades-header .see-more-link,
 body.theme-light .freeagency-header .see-more-link,
 body.theme-light .wildcats-header .see-more-link,
 body.theme-light .sundevils-header .see-more-link {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
 }
 
 body.theme-light .trades-header .see-more-link:hover,
 body.theme-light .freeagency-header .see-more-link:hover,
 body.theme-light .wildcats-header .see-more-link:hover,
 body.theme-light .sundevils-header .see-more-link:hover {
-  color: #1A1A1A !important;
-  border-color: #1A1A1A !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
   background-color: transparent !important;
 }
 
@@ -4479,7 +4798,7 @@ body.theme-light .featured-trade-title,
 body.theme-light .featured-freeagency-title,
 body.theme-light .featured-wildcats-title,
 body.theme-light .featured-sundevils-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
 
 /* Featured article meta wrappers - no gap between category and meta */
@@ -4517,7 +4836,7 @@ body.theme-light .trades-sidebar-category.team-suns,
 body.theme-light .freeagency-sidebar-category.team-suns,
 body.theme-light .wildcats-sidebar-category.team-suns,
 body.theme-light .sundevils-sidebar-category.team-suns {
-  color: #E56020 !important; /* Suns Orange */
+  color: #e56020 !important; /* Suns Orange */
 }
 
 .featured-trade-category.team-cardinals,
@@ -4532,7 +4851,7 @@ body.theme-light .trades-sidebar-category.team-cardinals,
 body.theme-light .freeagency-sidebar-category.team-cardinals,
 body.theme-light .wildcats-sidebar-category.team-cardinals,
 body.theme-light .sundevils-sidebar-category.team-cardinals {
-  color: #8C1D40 !important; /* Cardinals Red */
+  color: #8c1d40 !important; /* Cardinals Red */
 }
 
 .featured-trade-category.team-diamondbacks,
@@ -4547,7 +4866,7 @@ body.theme-light .trades-sidebar-category.team-diamondbacks,
 body.theme-light .freeagency-sidebar-category.team-diamondbacks,
 body.theme-light .wildcats-sidebar-category.team-diamondbacks,
 body.theme-light .sundevils-sidebar-category.team-diamondbacks {
-  color: #30CED8 !important; /* Diamondbacks Teal */
+  color: #30ced8 !important; /* Diamondbacks Teal */
 }
 
 .featured-trade-category.team-mercury,
@@ -4562,7 +4881,7 @@ body.theme-light .trades-sidebar-category.team-mercury,
 body.theme-light .freeagency-sidebar-category.team-mercury,
 body.theme-light .wildcats-sidebar-category.team-mercury,
 body.theme-light .sundevils-sidebar-category.team-mercury {
-  color: #8B5CF6 !important; /* Mercury Purple */
+  color: #8b5cf6 !important; /* Mercury Purple */
 }
 
 .featured-trade-category.team-wildcats,
@@ -4592,7 +4911,7 @@ body.theme-light .trades-sidebar-category.team-sundevils,
 body.theme-light .freeagency-sidebar-category.team-sundevils,
 body.theme-light .wildcats-sidebar-category.team-sundevils,
 body.theme-light .sundevils-sidebar-category.team-sundevils {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+  color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
 /* Featured article meta text */
@@ -4603,19 +4922,17 @@ body.theme-light .featured-sundevils-meta {
   color: #666666 !important;
 }
 
-/* First sidebar article gets top border for trades/freeagency sections */
-body.theme-light .trades-sidebar-article:first-child,
-body.theme-light .freeagency-sidebar-article:first-child {
-  border-top: 1px solid #E0E0E0 !important;
-}
+/* Card-based layout no longer needs special first-child borders */
 
 /* Sidebar article titles */
 body.theme-light .trades-sidebar-title,
 body.theme-light .freeagency-sidebar-title,
 body.theme-light .wildcats-sidebar-title,
 body.theme-light .sundevils-sidebar-title {
-  color: #1A1A1A !important;
+  color: #1a1a1a !important;
 }
+
+/* Sidebar category tags light mode styling - no backgrounds */
 
 /* Sidebar meta text */
 body.theme-light .trades-sidebar-meta,
@@ -4648,81 +4965,102 @@ body.theme-light .sundevils-sidebar-date {
 
 /* Section divider */
 body.theme-light .two-column-section::after {
-  background: #E0E0E0 !important;
+  background: #e0e0e0 !important;
 }
 
 /* Wildcats section styling - navy theme */
-body.theme-light #wildcats-sundevils-section .trades-column:first-child .trades-header .section-title {
+body.theme-light
+  #wildcats-sundevils-section
+  .trades-column:first-child
+  .trades-header
+  .section-title {
   color: #003366 !important; /* Wildcats Navy */
 }
 
-body.theme-light #wildcats-sundevils-section .trades-column:first-child .trades-header .see-more-link {
+body.theme-light
+  #wildcats-sundevils-section
+  .trades-column:first-child
+  .trades-header
+  .see-more-link {
   color: #003366 !important; /* Wildcats Navy */
   border-color: #003366 !important; /* Wildcats Navy */
 }
 
-body.theme-light #wildcats-sundevils-section .trades-column:first-child .trades-header .see-more-link:hover {
+body.theme-light
+  #wildcats-sundevils-section
+  .trades-column:first-child
+  .trades-header
+  .see-more-link:hover {
   color: #003366 !important; /* Wildcats Navy */
   background-color: transparent !important;
   border-color: #003366 !important; /* Wildcats Navy */
 }
 
-body.theme-light #wildcats-sundevils-section .trades-column:first-child .trades-header {
+body.theme-light
+  #wildcats-sundevils-section
+  .trades-column:first-child
+  .trades-header {
   border-bottom-color: #003366 !important; /* Wildcats Navy */
 }
 
 /* Sun Devils section styling - maroon theme */
-body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-header .section-title {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+body.theme-light
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .section-title {
+  color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
-body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
-  border-color: #8C1D40 !important; /* Sun Devils Maroon */
+body.theme-light
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link {
+  color: #8c1d40 !important; /* Sun Devils Maroon */
+  border-color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
-body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link:hover {
-  color: #8C1D40 !important; /* Sun Devils Maroon */
+body.theme-light
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link:hover {
+  color: #8c1d40 !important; /* Sun Devils Maroon */
   background-color: transparent !important;
-  border-color: #8C1D40 !important; /* Sun Devils Maroon */
+  border-color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
-body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-header {
-  border-bottom-color: #8C1D40 !important; /* Sun Devils Maroon */
+body.theme-light
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header {
+  border-bottom-color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
 /* Standardized hover effects - only title opacity changes for ALL sections */
 .featured-trade-article:hover .featured-trade-title,
-.featured-freeagency-article:hover .featured-freeagency-title {
+.featured-freeagency-article:hover .featured-freeagency-title,
+.featured-trade-article:hover .featured-wildcats-title,
+.featured-trade-article:hover .featured-sundevils-title {
   opacity: 0.8 !important;
 }
 
 .trades-sidebar-article:hover .trades-sidebar-title,
-.freeagency-sidebar-article:hover .freeagency-sidebar-title {
+.freeagency-sidebar-article:hover .freeagency-sidebar-title,
+.trades-sidebar-article:hover .wildcats-sidebar-title,
+.trades-sidebar-article:hover .sundevils-sidebar-title {
   opacity: 0.8 !important;
 }
 
-/* Override ALL existing hover effects - no transforms, scales, or background changes */
-.featured-trade-article:hover,
-.featured-freeagency-article:hover {
-  transform: none !important;
-  box-shadow: none !important;
-  background-color: inherit !important;
-}
-
+/* Disable image scaling for featured articles only */
 .featured-trade-article:hover .featured-trade-image img,
 .featured-freeagency-article:hover .featured-freeagency-image img {
   transform: none !important;
   scale: none !important;
 }
 
-.trades-sidebar-article:hover,
-.freeagency-sidebar-article:hover {
-  transform: none !important;
-  box-shadow: none !important;
-  background-color: inherit !important;
-}
-
+/* Sidebar articles now use enhanced card hover effects defined above */
 
 .suns-articles-container {
   display: grid;
@@ -4745,15 +5083,16 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .suns-article-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid var(--border-primary);
 }
 
 .suns-article-card:hover {
@@ -4783,14 +5122,30 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 120px;
+}
+
+.diamondbacks-card-content {
+  padding: var(--space-4);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+
+.mercury-card-content {
+  padding: var(--space-4);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
 }
 
 .suns-card-title {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 var(--space-3) 0;
+  margin: 0;
   color: #ffffff;
 }
 
@@ -4800,7 +5155,6 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #888;
-  margin-top: auto;
 }
 
 .suns-card-author {
@@ -4828,7 +5182,7 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #97233f;
+  border-bottom: 1px solid #8c1d40;
 }
 
 .cardinals-section-header .section-title {
@@ -4839,7 +5193,7 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .cardinals-section-header .see-more-link {
-  color: #97233f;
+  color: #8c1d40 !important;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -4849,13 +5203,19 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   padding: 0.5rem 1rem;
   border-radius: 0;
   background: transparent;
-  border: 1px solid #97233f;
+  border: 1px solid #8c1d40;
   font-family: var(--font-secondary);
 }
 
 .cardinals-section-header .see-more-link:hover {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Override theme-specific styling for Cardinals section see-more link */
+body.theme-light .cardinals-section-header .see-more-link {
+  color: #8c1d40 !important;
+  border-color: #8c1d40 !important;
 }
 
 .cardinals-articles-container {
@@ -4879,20 +5239,20 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .cardinals-article-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid var(--border-primary);
 }
 
 .cardinals-article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Remove transform and box-shadow effects */
 }
 
 .cardinals-card-image {
@@ -4909,8 +5269,8 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   transition: transform 0.3s ease;
 }
 
-.cardinals-article-card:hover .cardinals-card-image img {
-  transform: scale(1.05);
+.cardinals-article-card:hover .cardinals-card-title {
+  opacity: 0.8;
 }
 
 .cardinals-card-content {
@@ -4918,14 +5278,14 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 120px;
 }
 
 .cardinals-card-title {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 var(--space-3) 0;
+  margin: 0;
   color: #ffffff;
 }
 
@@ -4935,7 +5295,6 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #888;
-  margin-top: auto;
 }
 
 .cardinals-card-author {
@@ -4963,7 +5322,7 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #30CED8;
+  border-bottom: 1px solid #30ced8;
 }
 
 .diamondbacks-section-header .section-title {
@@ -5014,20 +5373,20 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .diamondbacks-article-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid var(--border-primary);
 }
 
-.diamondbacks-article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.diamondbacks-article-card:hover .diamondbacks-card-title {
+  opacity: 0.8;
 }
 
 .diamondbacks-card-image {
@@ -5044,17 +5403,8 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   transition: transform 0.3s ease;
 }
 
-.diamondbacks-article-card:hover .diamondbacks-card-image img {
-  transform: scale(1.05);
-}
+/* Image scaling removed to match other sections */
 
-.diamondbacks-card-content {
-  padding: var(--space-4);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .diamondbacks-card-title {
   font-size: 1.1rem;
@@ -5070,7 +5420,6 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #888;
-  margin-top: auto;
 }
 
 .diamondbacks-card-author {
@@ -5098,7 +5447,7 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #1A1A1A;
+  border-bottom: 1px solid #1a1a1a;
 }
 
 .recaps-section-header .section-title {
@@ -5155,16 +5504,16 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .recaps-article-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   height: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-primary);
 }
 
 .recaps-article-card:hover .recaps-card-title {
@@ -5192,15 +5541,14 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 90px;
+  min-height: 110px;
 }
 
 .recaps-card-title {
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
-  margin: 0 0 var(--space-4) 0;
+  margin: 0 0 auto 0;
   color: #ffffff;
 }
 
@@ -5236,6 +5584,152 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   color: #666;
 }
 
+/* ===== DRAFT SECTION STYLING ===== */
+.draft-section {
+  margin: 180px 0;
+  padding: var(--space-12) 0;
+}
+.draft-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: var(--space-6);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #DC2626;
+}
+.draft-section-header .section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #DC2626;
+}
+.draft-section-header .see-more-link {
+  color: #DC2626;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid #DC2626;
+  font-family: var(--font-secondary);
+}
+.draft-section-header .see-more-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Dark mode Draft section styling - white */
+body.theme-dark .draft-section-header {
+  border-bottom: 1px solid #404040 !important;
+}
+body.theme-dark .draft-section-header .section-title {
+  color: #ffffff !important;
+}
+body.theme-dark .draft-section-header .see-more-link {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+body.theme-dark .draft-section-header .see-more-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+.draft-articles-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.draft-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  align-items: stretch;
+  grid-auto-rows: 1fr;
+}
+@media (min-width: 768px) {
+  .draft-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .draft-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.draft-article-card {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--border-primary);
+}
+.draft-article-card:hover .draft-card-title {
+  opacity: 0.8;
+}
+.draft-card-image {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+.draft-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+/* Image scale effect removed to match other sections */
+.draft-card-content {
+  padding: var(--space-3);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 110px;
+}
+.draft-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 auto 0;
+  color: #ffffff;
+}
+.draft-card-category {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+.draft-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0;
+}
+.draft-card-author {
+  font-weight: 500;
+}
+.draft-card-divider {
+  color: #666;
+}
+.draft-card-date {
+  color: #666;
+}
+
 /* ===== MERCURY SECTION STYLING ===== */
 .mercury-section {
   margin: 180px 0 0 0;
@@ -5249,7 +5743,7 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #8B5CF6;
+  border-bottom: 1px solid #8b5cf6;
 }
 
 .mercury-section-header .section-title {
@@ -5300,15 +5794,16 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .mercury-article-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid var(--border-primary);
 }
 
 .mercury-article-card:hover .mercury-card-title {
@@ -5331,19 +5826,12 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 
 /* Image scale effect removed to match other sections */
 
-.mercury-card-content {
-  padding: var(--space-4);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .mercury-card-title {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 var(--space-3) 0;
+  margin: 0;
   color: #ffffff;
 }
 
@@ -5353,7 +5841,6 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   gap: 0.5rem;
   font-size: 0.85rem;
   color: #888;
-  margin-top: auto;
 }
 
 .mercury-card-author {
@@ -5472,7 +5959,9 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .featured-trade-article,
-.featured-freeagency-article {
+.featured-freeagency-article,
+.featured-wildcats-article,
+.featured-sundevils-article {
   background: rgba(255, 255, 255, 0.02);
   border-radius: 8px;
   overflow: hidden;
@@ -5481,18 +5970,17 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 400px;
+  min-height: 400px;
 }
 
-.featured-trade-article:hover,
-.featured-freeagency-article:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+/* Transform effects removed - only title opacity changes */
 
 .featured-trade-image,
-.featured-freeagency-image {
-  width: 80%;
+.featured-freeagency-image,
+.featured-wildcats-image,
+.featured-sundevils-image {
+  width: 90%;
   height: 280px;
   overflow: hidden;
   position: relative;
@@ -5500,99 +5988,115 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .featured-trade-image img,
-.featured-freeagency-image img {
+.featured-freeagency-image img,
+.featured-wildcats-image img,
+.featured-sundevils-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.featured-trade-article:hover .featured-trade-image img,
-.featured-freeagency-article:hover .featured-freeagency-image img {
-  transform: scale(1.05);
-}
+/* Image scaling removed to match other sections */
 
 .featured-trade-content,
-.featured-freeagency-content {
+.featured-freeagency-content,
+.featured-wildcats-content,
+.featured-sundevils-content {
   padding: var(--space-4);
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  justify-content: space-between;
+  gap: var(--space-2);
   width: 80%;
   margin: 0 auto;
 }
 
 .featured-trade-title,
-.featured-freeagency-title {
+.featured-freeagency-title,
+.featured-wildcats-title,
+.featured-sundevils-title {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
   color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: calc(1.4em * 2);
+  flex-shrink: 0;
 }
 
 .featured-trade-meta,
-.featured-freeagency-meta {
+.featured-freeagency-meta,
+.featured-wildcats-meta,
+.featured-sundevils-meta {
   font-size: 0.85rem;
   color: #888;
   margin-top: auto;
+  flex-shrink: 0;
 }
 
 .trades-sidebar,
 .freeagency-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--space-4);
   margin-top: var(--space-4);
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 .trades-sidebar-article,
 .freeagency-sidebar-article {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-secondary);
   text-decoration: none;
   color: inherit;
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background-color 0.2s ease;
+  padding: var(--space-4);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
   display: block;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .trades-sidebar-article:hover,
 .freeagency-sidebar-article:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.trades-sidebar-article:last-child,
-.freeagency-sidebar-article:last-child {
-  border-bottom: none;
+  /* Only title opacity changes - no transform or shadow effects */
 }
 
 .trades-sidebar-title,
-.freeagency-sidebar-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0 0 var(--space-1) 0;
-  color: #ffffff;
+.freeagency-sidebar-title,
+.wildcats-sidebar-title,
+.sundevils-sidebar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 var(--space-2) 0;
+  color: var(--text-primary);
 }
 
 .trades-sidebar-category,
-.freeagency-sidebar-category {
+.freeagency-sidebar-category,
+.wildcats-sidebar-category,
+.sundevils-sidebar-category {
   font-family: var(--font-secondary);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 0 0 var(--space-1) 0;
+  margin: 0 0 var(--space-2) 0;
   padding: 0;
+  display: inline-block;
+  width: fit-content;
   line-height: 1.2;
 }
 
 .trades-sidebar-meta,
-.freeagency-sidebar-meta {
+.freeagency-sidebar-meta,
+.wildcats-sidebar-meta,
+.sundevils-sidebar-meta {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -5601,21 +6105,22 @@ body.theme-light #wildcats-sundevils-section .freeagency-column .freeagency-head
 }
 
 .trades-sidebar-author,
-.freeagency-sidebar-author {
+.freeagency-sidebar-author,
+.wildcats-sidebar-author,
+.sundevils-sidebar-author {
   font-weight: 500;
 }
 
 .trades-sidebar-divider,
-.freeagency-sidebar-divider {
+.freeagency-sidebar-divider,
+.wildcats-sidebar-divider,
+.sundevils-sidebar-divider {
   color: #666;
 }
 
 .trades-sidebar-date,
-.freeagency-sidebar-date {
+.freeagency-sidebar-date,
+.wildcats-sidebar-date,
+.sundevils-sidebar-date {
   color: #666;
 }
-
-
-
-
-
