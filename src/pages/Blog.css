@@ -88,7 +88,9 @@ body.theme-light .center-featured {
 /* Reset border for elements that shouldn't have borders */
 body.theme-light .featured-title,
 body.theme-light .featured-content,
-body.theme-light .featured-description {
+body.theme-light .featured-description,
+body.theme-light .featured-trade-description,
+body.theme-light .featured-freeagency-description {
   border: none !important;
 }
 
@@ -101,7 +103,9 @@ body.theme-light .second-latest-article-title {
 
 body.theme-light .featured-description,
 body.theme-light .second-featured-description,
-body.theme-light .latest-article-description {
+body.theme-light .latest-article-description,
+body.theme-light .featured-trade-description,
+body.theme-light .featured-freeagency-description {
   color: #1a1a1a !important;
 }
 
@@ -987,6 +991,18 @@ a {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* Featured description styling for trades, free agency, wildcats, and sun devils */
+.featured-trade-description,
+.featured-freeagency-description {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  font-family: var(--font-secondary);
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 .section-description {
   font-size: var(--text-base);
   color: var(--text-secondary);
@@ -1680,6 +1696,24 @@ body.theme-light .second-featured-timestamp {
       "right-sidebar";
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
+  }
+
+  /* Ensure main featured article shows prominently on mobile */
+  .center-featured,
+  .featured-article {
+    width: 100% !important;
+    max-width: none !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  /* Hide or minimize sidebar on mobile to prioritize main content */
+  .left-sidebar,
+  .right-sidebar {
+    order: 10 !important;
+  }
+
+  .left-content-container {
+    order: 1 !important;
   }
 
   .news-left-sidebar {
@@ -3735,44 +3769,80 @@ body.theme-dark #wildcats-sundevils-section .trades-column .trades-header,
 #wildcats-sundevils-section .trades-column .trades-header {
   border-bottom-color: #cc0033 !important; /* U of A red border */
 }
-body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .section-title,
+body.theme-dark
+  #wildcats-sundevils-section
+  .trades-column
+  .trades-header
+  .section-title,
 #wildcats-sundevils-section .trades-column .trades-header .section-title {
   color: #cc0033 !important; /* U of A red */
   font-size: 1.8rem !important; /* Match other sections */
   font-weight: 700 !important; /* Match other sections */
   font-family: var(--font-primary) !important; /* Match other sections */
 }
-body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .see-more-link,
+body.theme-dark
+  #wildcats-sundevils-section
+  .trades-column
+  .trades-header
+  .see-more-link,
 #wildcats-sundevils-section .trades-column .trades-header .see-more-link {
   color: #cc0033 !important; /* U of A red */
   border-color: #cc0033 !important; /* U of A red */
   font-family: var(--font-secondary) !important; /* Match other sections */
 }
-body.theme-dark #wildcats-sundevils-section .trades-column .trades-header .see-more-link:hover,
+body.theme-dark
+  #wildcats-sundevils-section
+  .trades-column
+  .trades-header
+  .see-more-link:hover,
 #wildcats-sundevils-section .trades-column .trades-header .see-more-link:hover {
   color: #e6004d !important; /* Lighter red on hover */
   border-color: #e6004d !important; /* Lighter red on hover */
 }
 /* Make SUN DEVILS section header and see more button ASU gold in dark mode */
-body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header,
+body.theme-dark
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header,
 #wildcats-sundevils-section .freeagency-column .freeagency-header {
   border-bottom-color: #ffc627 !important; /* ASU gold border */
 }
-body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .section-title,
-#wildcats-sundevils-section .freeagency-column .freeagency-header .section-title {
+body.theme-dark
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .section-title,
+#wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .section-title {
   color: #ffc627 !important; /* ASU gold */
   font-size: 1.8rem !important; /* Match other sections */
   font-weight: 700 !important; /* Match other sections */
   font-family: var(--font-primary) !important; /* Match other sections */
 }
-body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link,
-#wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link {
+body.theme-dark
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link,
+#wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link {
   color: #ffc627 !important; /* ASU gold */
   border-color: #ffc627 !important; /* ASU gold */
   font-family: var(--font-secondary) !important; /* Match other sections */
 }
-body.theme-dark #wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link:hover,
-#wildcats-sundevils-section .freeagency-column .freeagency-header .see-more-link:hover {
+body.theme-dark
+  #wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link:hover,
+#wildcats-sundevils-section
+  .freeagency-column
+  .freeagency-header
+  .see-more-link:hover {
   color: #ffdf80 !important; /* Lighter gold on hover */
   border-color: #ffdf80 !important; /* Lighter gold on hover */
 }
@@ -3859,7 +3929,9 @@ body.theme-light .analysis-left-sidebar {
   border-color: rgba(255, 255, 255, 0.6) !important;
 }
 /* Light mode ALL button border */
-body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(1),
+body.theme-light
+  .team-filter-tabs.vertical
+  .team-tab.vertical.active:nth-child(1),
 body.theme-light .team-tab.vertical:first-child.active {
   border-color: #1a1a1a !important; /* Black border for light mode */
 }
@@ -3996,6 +4068,7 @@ body.theme-light .team-tab.vertical:first-child.active {
   .second-featured-article {
     flex-direction: row;
     height: auto;
+    
   }
 }
 
@@ -4349,14 +4422,55 @@ body:not(.theme-light) .second-secondary-section {
 @media (max-width: 767px) {
   .second-three-column-layout {
     grid-template-areas:
-      "featured-article"
-      "secondary-article"
-      "left-sidebar"
+      "left-content"
       "right-sidebar";
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
+    gap: var(--space-4);
     margin-bottom: var(--space-10);
     padding-bottom: var(--space-6);
+  }
+
+  /* Flip second featured article layout - image on top, text below */
+  .second-featured-article {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .second-featured-image-container {
+    order: 1 !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .second-featured-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) !important;
+  }
+
+  /* Fix category tag alignment */
+  .second-featured-bottom-content .article-category-tag {
+    margin: 0 !important;
+    width: 90% !important;
+    border: 2px solid red !important;
+  }
+
+  /* Align author/date meta with category tag */
+  .second-featured-meta {
+    width: 90% !important;
+    margin: 0 !important;
+  }
+
+  /* Target specific text elements directly */
+  .second-featured-title {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  .second-featured-description {
+    margin: var(--space-3) 0 0 0 !important;
+    width: 90% !important;
   }
 
   /* Smaller decorative divider on mobile */
@@ -4626,8 +4740,6 @@ body.theme-light .draft-card-title {
   margin-top: auto;
 }
 
-
-
 /* Team section category tags use team colors */
 .suns-card-content .article-category-tag.team-suns {
   color: #e56020 !important; /* Suns Orange */
@@ -4728,6 +4840,22 @@ body.theme-light .mercury-card-divider {
   color: #666 !important;
 }
 
+body.theme-light .cardinals-card-meta {
+  color: #888 !important;
+}
+
+body.theme-light .cardinals-card-author {
+  color: #666 !important;
+}
+
+body.theme-light .cardinals-card-date {
+  color: #666 !important;
+}
+
+body.theme-light .cardinals-card-divider {
+  color: #666 !important;
+}
+
 /* ===== TRADES/FREE AGENCY SECTION LIGHT MODE OVERRIDES ===== */
 
 /* Section backgrounds */
@@ -4781,7 +4909,7 @@ body.theme-light .featured-sundevils-article {
   background: #ffffff !important;
   border: none !important;
   border-radius: 0px !important;
-  height: 400px !important;
+  height: 520px !important;
   display: flex !important;
   flex-direction: column !important;
 }
@@ -5122,7 +5250,7 @@ body.theme-light
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
+  min-height: 180px;
 }
 
 .diamondbacks-card-content {
@@ -5130,7 +5258,7 @@ body.theme-light
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
+  min-height: 180px;
 }
 
 .mercury-card-content {
@@ -5138,7 +5266,7 @@ body.theme-light
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
+  min-height: 180px;
 }
 
 .suns-card-title {
@@ -5278,7 +5406,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
+  min-height: 180px;
 }
 
 .cardinals-card-title {
@@ -5307,6 +5435,12 @@ body.theme-light .cardinals-section-header .see-more-link {
 
 .cardinals-card-date {
   color: #666;
+}
+
+/* Cardinals category tag positioning */
+.cardinals-card-content .article-category-tag {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
 }
 
 /* ===== DIAMONDBACKS SECTION STYLING ===== */
@@ -5404,7 +5538,6 @@ body.theme-light .cardinals-section-header .see-more-link {
 }
 
 /* Image scaling removed to match other sections */
-
 
 .diamondbacks-card-title {
   font-size: 1.1rem;
@@ -5596,16 +5729,16 @@ body.theme-light .cardinals-section-header .see-more-link {
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #DC2626;
+  border-bottom: 1px solid #dc2626;
 }
 .draft-section-header .section-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: #DC2626;
+  color: #dc2626;
 }
 .draft-section-header .see-more-link {
-  color: #DC2626;
+  color: #dc2626;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -5615,7 +5748,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   padding: 0.5rem 1rem;
   border-radius: 0;
   background: transparent;
-  border: 1px solid #DC2626;
+  border: 1px solid #dc2626;
   font-family: var(--font-secondary);
 }
 .draft-section-header .see-more-link:hover {
@@ -5826,7 +5959,6 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 
 /* Image scale effect removed to match other sections */
 
-
 .mercury-card-title {
   font-size: 1.1rem;
   font-weight: 600;
@@ -5970,8 +6102,8 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 400px;
-  min-height: 400px;
+  height: 520px;
+  min-height: 520px;
 }
 
 /* Transform effects removed - only title opacity changes */
@@ -6123,4 +6255,528 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 .wildcats-sidebar-date,
 .sundevils-sidebar-date {
   color: #666;
+}
+
+/* ===== COMPREHENSIVE MOBILE RESPONSIVE IMPROVEMENTS ===== */
+
+/* Mobile First - Base styles for very small screens */
+@media (max-width: 480px) {
+  /* Ensure featured articles stay at top */
+  .center-featured,
+  .second-center-featured {
+    order: -1 !important;
+  }
+
+  .left-content-container {
+    order: -1 !important;
+  }
+
+  /* Container and section improvements */
+  .blog-container {
+    padding: var(--space-2) var(--space-3);
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Typography improvements */
+  .section-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+
+  /* Team section headers */
+  .suns-section-header .section-title,
+  .cardinals-section-header .section-title,
+  .diamondbacks-section-header .section-title,
+  .mercury-section-header .section-title {
+    font-size: 1.4rem;
+  }
+
+  /* Featured article improvements */
+  .featured-title,
+  .second-featured-title {
+    font-size: 1.3rem !important;
+    line-height: 1.4;
+  }
+
+  .featured-description,
+  .second-featured-description,
+  .featured-trade-description,
+  .featured-freeagency-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Card spacing improvements */
+  .suns-card-content,
+  .cardinals-card-content,
+  .diamondbacks-card-content,
+  .mercury-card-content {
+    padding: var(--space-3);
+    min-height: 140px;
+  }
+
+  /* Make team section cards full width on mobile */
+  .suns-articles-container,
+  .cardinals-articles-container,
+  .diamondbacks-articles-container,
+  .mercury-articles-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4) !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .suns-article-card,
+  .cardinals-article-card,
+  .diamondbacks-article-card,
+  .mercury-article-card {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure featured articles take full width on mobile */
+  .featured-article,
+  .center-featured {
+    width: 100% !important;
+    max-width: none !important;
+    flex-direction: column !important;
+  }
+
+  .featured-article-link {
+    width: 100% !important;
+    display: block !important;
+  }
+
+
+  /* Flip featured article layout - image on top, text below */
+  .featured-article,
+  .second-featured-article {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .featured-image-container,
+  .second-featured-image-container {
+    order: 1 !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .featured-content,
+  .second-featured-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) !important;
+  }
+
+  /* Add padding to Mercury article text content */
+  .second-featured-top-content,
+  .second-featured-bottom-content {
+    padding: var(--space-4) !important;
+  }
+
+  /* Section spacing */
+  .suns-section,
+  .cardinals-section,
+  .diamondbacks-section,
+  .mercury-section {
+    margin: var(--space-8) 0;
+    padding: var(--space-6) 0;
+  }
+
+  /* Three column layout improvements */
+  .three-column-layout {
+    margin-top: var(--space-8);
+    gap: var(--space-4);
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  /* Ensure proper mobile layout hierarchy */
+  .left-content-container {
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  .news-left-sidebar,
+  .rumors-left-sidebar,
+  .analysis-left-sidebar {
+    order: 2 !important;
+  }
+
+  .right-sidebar {
+    order: 3 !important;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Ensure featured articles stay at top on tablet */
+  .center-featured,
+  .second-center-featured {
+    order: -1 !important;
+  }
+
+  .left-content-container {
+    order: -1 !important;
+  }
+
+  .blog-container {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  /* Team section spacing */
+  .suns-section,
+  .cardinals-section,
+  .diamondbacks-section,
+  .mercury-section {
+    margin: var(--space-12) 0;
+    padding: var(--space-8) 0;
+  }
+
+  /* Card improvements */
+  .suns-card-content,
+  .cardinals-card-content,
+  .diamondbacks-card-content,
+  .mercury-card-content {
+    min-height: 160px;
+  }
+
+  /* Typography scaling */
+  .section-title {
+    font-size: 1.6rem !important;
+  }
+
+  .featured-title,
+  .second-featured-title {
+    font-size: 1.5rem !important;
+  }
+
+  /* Adjust featured article heights for tablet */
+  .featured-trade-article,
+  .featured-freeagency-article,
+  .featured-wildcats-article,
+  .featured-sundevils-article {
+    height: 480px;
+    min-height: 480px;
+  }
+}
+
+/* Mobile landscape and small tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .blog-container {
+    padding: var(--space-4) var(--space-6);
+  }
+
+  /* Optimize grid spacing */
+  .suns-articles-container,
+  .cardinals-articles-container,
+  .diamondbacks-articles-container,
+  .mercury-articles-container {
+    gap: var(--space-4);
+  }
+}
+
+/* ===== LIGHT/DARK MODE MOBILE CONSISTENCY ===== */
+
+/* Mobile light mode improvements */
+@media (max-width: 768px) {
+  /* Light mode background consistency */
+  body.theme-light .blog-container {
+    background-color: #fafafa;
+  }
+
+  body.theme-light .suns-section,
+  body.theme-light .cardinals-section,
+  body.theme-light .diamondbacks-section,
+  body.theme-light .mercury-section {
+    background-color: #fafafa;
+  }
+
+  /* Light mode card styling */
+  body.theme-light .suns-article-card,
+  body.theme-light .cardinals-article-card,
+  body.theme-light .diamondbacks-article-card,
+  body.theme-light .mercury-article-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Light mode typography */
+  body.theme-light .suns-card-title,
+  body.theme-light .cardinals-card-title,
+  body.theme-light .diamondbacks-card-title,
+  body.theme-light .mercury-card-title {
+    color: #1a1a1a !important;
+  }
+
+  /* Light mode section headers */
+  body.theme-light .suns-section-header,
+  body.theme-light .cardinals-section-header,
+  body.theme-light .diamondbacks-section-header,
+  body.theme-light .mercury-section-header {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Featured article light mode mobile */
+  body.theme-light .featured-article,
+  body.theme-light .second-featured-article {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+  }
+
+  body.theme-light .featured-title,
+  body.theme-light .second-featured-title {
+    color: #1a1a1a !important;
+  }
+
+  body.theme-light .featured-description,
+  body.theme-light .second-featured-description,
+  body.theme-light .featured-trade-description,
+  body.theme-light .featured-freeagency-description {
+    color: #666666 !important;
+  }
+}
+
+/* Mobile dark mode improvements */
+@media (max-width: 768px) {
+  /* Dark mode card enhancements */
+  body.theme-dark .suns-article-card,
+  body.theme-dark .cardinals-article-card,
+  body.theme-dark .diamondbacks-article-card,
+  body.theme-dark .mercury-article-card,
+  body:not(.theme-light) .suns-article-card,
+  body:not(.theme-light) .cardinals-article-card,
+  body:not(.theme-light) .diamondbacks-article-card,
+  body:not(.theme-light) .mercury-article-card {
+    border: 1px solid #404040;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Dark mode section dividers */
+  body.theme-dark .suns-section-header,
+  body.theme-dark .cardinals-section-header,
+  body.theme-dark .diamondbacks-section-header,
+  body.theme-dark .mercury-section-header,
+  body:not(.theme-light) .suns-section-header,
+  body:not(.theme-light) .cardinals-section-header,
+  body:not(.theme-light) .diamondbacks-section-header,
+  body:not(.theme-light) .mercury-section-header {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ===== TOUCH IMPROVEMENTS FOR MOBILE ===== */
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  .suns-article-card,
+  .cardinals-article-card,
+  .diamondbacks-article-card,
+  .mercury-article-card {
+    min-height: 200px;
+  }
+
+  /* Adjust featured article heights for mobile */
+  .featured-trade-article,
+  .featured-freeagency-article,
+  .featured-wildcats-article,
+  .featured-sundevils-article {
+    height: auto !important;
+    min-height: 420px !important;
+  }
+
+  /* Improved hover states for touch */
+  .suns-article-card:active,
+  .cardinals-article-card:active,
+  .diamondbacks-article-card:active,
+  .mercury-article-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* See more button improvements - mobile style with arrows */
+  .see-more-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    background: transparent !important;
+    position: relative;
+  }
+
+  /* Add arrow after text for all see more buttons on mobile */
+  .see-more-link::after {
+    content: "→";
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .see-more-link:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* Team section see more buttons - specific styling */
+  .suns-section-header .see-more-link,
+  .cardinals-section-header .see-more-link,
+  .diamondbacks-section-header .see-more-link,
+  .mercury-section-header .see-more-link {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Three-column layout see more buttons */
+  .three-column-layout .see-more {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .three-column-layout .see-more::after {
+    content: "→";
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .three-column-layout .see-more:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* Two-column section see more buttons (Trades, Free Agency, etc.) */
+  .trades-header .see-more-link,
+  .freeagency-header .see-more-link,
+  .wildcats-header .see-more-link,
+  .sundevils-header .see-more-link,
+  .recaps-section-header .see-more-link,
+  .draft-section-header .see-more-link {
+    border: none !important;
+    background: transparent !important;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Ensure arrows appear on all section buttons */
+  .trades-header .see-more-link::after,
+  .freeagency-header .see-more-link::after,
+  .wildcats-header .see-more-link::after,
+  .sundevils-header .see-more-link::after,
+  .recaps-section-header .see-more-link::after,
+  .draft-section-header .see-more-link::after {
+    content: "→";
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .trades-header .see-more-link:hover::after,
+  .freeagency-header .see-more-link:hover::after,
+  .wildcats-header .see-more-link:hover::after,
+  .sundevils-header .see-more-link:hover::after,
+  .recaps-section-header .see-more-link:hover::after,
+  .draft-section-header .see-more-link:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* Featured images 100% width on mobile for specified sections */
+  .featured-trade-image,
+  .featured-freeagency-image,
+  .featured-wildcats-image,
+  .featured-sundevils-image {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Category tag touch improvements and alignment fixes */
+  .article-category-tag {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    margin: 0 !important;
+  }
+
+  /* Specifically fix team section category tag alignment on mobile */
+  .suns-card-content .article-category-tag,
+  .cardinals-card-content .article-category-tag,
+  .diamondbacks-card-content .article-category-tag,
+  .mercury-card-content .article-category-tag {
+    margin: 0 !important;
+    padding: 0.4rem 0.6rem;
+    margin-top: auto !important;
+    margin-bottom: 0.5rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: flex-start !important;
+  }
+
+  /* Fix all team section card layouts with CSS order */
+  .suns-card-content .suns-card-title,
+  .cardinals-card-content .cardinals-card-title,
+  .diamondbacks-card-content .diamondbacks-card-title,
+  .mercury-card-content .mercury-card-title {
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .suns-card-content .suns-card-meta,
+  .cardinals-card-content .cardinals-card-meta,
+  .diamondbacks-card-content .diamondbacks-card-meta,
+  .mercury-card-content .mercury-card-meta {
+    order: 3 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Ensure team card content has proper spacing */
+  .suns-card-content,
+  .cardinals-card-content,
+  .diamondbacks-card-content,
+  .mercury-card-content {
+    padding: var(--space-3) !important;
+    gap: 0.5rem;
+  }
+
+  /* Additional Mercury-specific mobile fix for category tag alignment */
+  .mercury-section .mercury-card-content .article-category-tag {
+    margin: 0 !important;
+    padding: 0.4rem 0.6rem !important;
+    margin-top: auto !important;
+    margin-bottom: 0.5rem !important;
+    order: 2 !important;
+  }
+
+  .mercury-section .mercury-card-content .mercury-card-meta {
+    order: 3 !important;
+    margin-top: 0 !important;
+  }
+
+  .mercury-section .mercury-card-content .mercury-card-title {
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .mercury-section .mercury-card-content {
+    padding: var(--space-3) !important;
+    gap: 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }

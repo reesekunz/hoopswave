@@ -1103,6 +1103,26 @@ body.theme-dark .permanent-search-form:focus-within {
 
 /* Improved mobile responsive */
 @media (max-width: 768px) {
+  /* Hide bottom navigation row on mobile */
+  .bottom-row {
+    display: none !important;
+  }
+
+  /* Hide search bar on mobile but keep theme toggle */
+  .permanent-search-container,
+  .search-container {
+    display: none !important;
+  }
+
+  .utility-actions {
+    width: auto !important;
+    justify-content: flex-end !important;
+  }
+
+  .theme-toggle-button {
+    display: block !important;
+  }
+
   header {
     padding: 0 1rem;
     height: auto;
@@ -1113,10 +1133,21 @@ body.theme-dark .permanent-search-form:focus-within {
   .logo {
     width: auto;
     flex-shrink: 0;
+    padding: 0 1rem;
+    margin: 0 auto;
+    text-align: center;
   }
 
-  .logo h2 {
-    font-size: 1.2rem;
+  .logo h2,
+  .logo-center h2 {
+    font-size: 2.2rem !important;
+  }
+
+  .logo-center {
+    padding: 0 1rem;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 90%;
   }
 
   .logo-image {
@@ -1334,6 +1365,14 @@ body.theme-dark .permanent-search-form:focus-within {
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
   z-index: 999999;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu {
+    width: 100vw !important;
+    border-right: none !important;
+    box-shadow: none !important;
+  }
 }
 
 .mobile-menu-header {

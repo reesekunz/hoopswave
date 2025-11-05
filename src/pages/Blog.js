@@ -873,10 +873,10 @@ export default function Blog() {
                                         )}
                                         <div className="suns-card-content">
                                             <h3 className="suns-card-title">{post.title}</h3>
-                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                {getCategoryLabel(post)}
-                                            </div>
                                             <div className="suns-card-meta">
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <span className="suns-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="suns-card-divider">|</span>
                                                 <span className="suns-card-date">{getTimeAgo(post.publishedAt)}</span>
@@ -1021,10 +1021,10 @@ export default function Blog() {
                                         )}
                                         <div className="cardinals-card-content">
                                             <h3 className="cardinals-card-title">{post.title}</h3>
-                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                {getCategoryLabel(post)}
-                                            </div>
                                             <div className="cardinals-card-meta">
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <span className="cardinals-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="cardinals-card-divider">|</span>
                                                 <span className="cardinals-card-date">{getTimeAgo(post.publishedAt)}</span>
@@ -1169,10 +1169,10 @@ export default function Blog() {
                                         )}
                                         <div className="diamondbacks-card-content">
                                             <h3 className="diamondbacks-card-title">{post.title}</h3>
-                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                {getCategoryLabel(post)}
-                                            </div>
                                             <div className="diamondbacks-card-meta">
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <span className="diamondbacks-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="diamondbacks-card-divider">|</span>
                                                 <span className="diamondbacks-card-date">{getTimeAgo(post.publishedAt)}</span>
@@ -1279,10 +1279,10 @@ export default function Blog() {
                                         )}
                                         <div className="mercury-card-content">
                                             <h3 className="mercury-card-title">{post.title}</h3>
-                                            <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                {getCategoryLabel(post)}
-                                            </div>
                                             <div className="mercury-card-meta">
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
                                                 <span className="mercury-card-author">{post.author?.name || 'Staff'}</span>
                                                 <span className="mercury-card-divider">|</span>
                                                 <span className="mercury-card-date">{getTimeAgo(post.publishedAt)}</span>
@@ -1319,6 +1319,11 @@ export default function Blog() {
                                             )}
                                             <div className="featured-trade-content">
                                                 <h3 className="featured-trade-title">{tradesArticles[0].title}</h3>
+                                                <div className="featured-trade-description">
+                                                    {extractTwoSentences(tradesArticles[0].body) ||
+                                                        'Latest trades and roster moves from around the league.'
+                                                    }
+                                                </div>
                                                 <div className="featured-trade-meta-wrapper">
                                                     <div className={`featured-trade-category ${getTeamClass(tradesArticles[0])}`}>
                                                         {getCategoryLabel(tradesArticles[0])}
@@ -1376,6 +1381,11 @@ export default function Blog() {
                                             )}
                                             <div className="featured-freeagency-content">
                                                 <h3 className="featured-freeagency-title">{freeAgencyArticles[0].title}</h3>
+                                                <div className="featured-freeagency-description">
+                                                    {extractTwoSentences(freeAgencyArticles[0].body) ||
+                                                        'Latest free agency news and player signings from around the league.'
+                                                    }
+                                                </div>
                                                 <div className="featured-freeagency-meta-wrapper">
                                                     <div className={`featured-freeagency-category ${getTeamClass(freeAgencyArticles[0])}`}>
                                                         {getCategoryLabel(freeAgencyArticles[0])}
@@ -1506,6 +1516,11 @@ export default function Blog() {
                                             )}
                                             <div className="featured-trade-content">
                                                 <h3 className="featured-trade-title">{wildcatsArticles[0].title}</h3>
+                                                <div className="featured-trade-description">
+                                                    {extractTwoSentences(wildcatsArticles[0].body) ||
+                                                        'Latest Arizona Wildcats basketball news and updates.'
+                                                    }
+                                                </div>
                                                 <div className="featured-trade-meta-wrapper">
                                                     <div className={`featured-trade-category ${getTeamClass(wildcatsArticles[0])}`}>
                                                         {getCategoryLabel(wildcatsArticles[0])}
@@ -1563,6 +1578,11 @@ export default function Blog() {
                                             )}
                                             <div className="featured-freeagency-content">
                                                 <h3 className="featured-freeagency-title">{sunDevilsArticles[0].title}</h3>
+                                                <div className="featured-freeagency-description">
+                                                    {extractTwoSentences(sunDevilsArticles[0].body) ||
+                                                        'Latest Arizona State Sun Devils basketball news and updates.'
+                                                    }
+                                                </div>
                                                 <div className="featured-freeagency-meta-wrapper">
                                                     <div className={`featured-freeagency-category ${getTeamClass(sunDevilsArticles[0])}`}>
                                                         {getCategoryLabel(sunDevilsArticles[0])}
