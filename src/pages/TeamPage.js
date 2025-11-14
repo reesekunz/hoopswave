@@ -157,8 +157,10 @@ export default function TeamPage() {
                 >
                     {post.title}
                 </Link>
-                <div className="section-meta">
-                    {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
+                <div className="team-card-meta">
+                    <span className="team-card-author">{post.author?.name || 'Staff'}</span>
+                    <span className="team-card-divider"> | </span>
+                    <span className="team-card-date">{formatDate(post.publishedAt) || 'Recent'}</span>
                 </div>
             </div>
         </article>

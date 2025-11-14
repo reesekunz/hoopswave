@@ -20,8 +20,7 @@ export default function Header() {
     // Content categories - universal across all teams
     const contentCategories = [
         { key: 'news', label: 'News', color: '#8C1D40' },
-        { key: 'rumors', label: 'Rumors', color: '#8C1D40' },
-        { key: 'analysis', label: 'Analysis', color: '#8C1D40' }
+        { key: 'rumors', label: 'Rumors', color: '#8C1D40' }
     ]
 
     // Arizona professional teams - all using site red
@@ -40,6 +39,7 @@ export default function Header() {
 
     // More section items
     const moreItems = [
+        { key: 'analysis', label: 'Analysis', color: '#8C1D40' },
         { key: 'gamerecaps', label: 'Recaps', color: '#8C1D40' },
         { key: 'trades', label: 'Trades', color: '#8C1D40' },
         { key: 'freeagency', label: 'Free Agency', color: '#8C1D40' },
@@ -119,6 +119,31 @@ export default function Header() {
         <header className={`two-row-header ${isArticlePage() ? 'article-page' : ''} ${showMobileMenu ? 'mobile-menu-open' : ''}`}>
             <div className="bottom-border"></div>
             <div className="header-content">
+                {/* Mobile/Tablet single row layout */}
+                <div className="mobile-header-layout">
+                    <div className="hamburger-section">
+                        <div className="hamburger" onClick={toggleMobileMenu}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div className="mobile-title-center">
+                        <Link to="/">
+                            <h2>Valley Sports News</h2>
+                        </Link>
+                    </div>
+
+                    <div className="utility-actions">
+                        <button className="theme-toggle-button" title="Toggle dark/light mode" onClick={toggleTheme}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
                 {isArticlePage() ? (
                     /* Condensed single row for article pages */
                     <div className="condensed-header-row">
@@ -234,19 +259,19 @@ export default function Header() {
                             ))}
 
                             {/* College Dropdown */}
-                            <li className="college-dropdown-container">
+                            <li
+                                className="college-dropdown-container"
+                                onMouseEnter={() => setShowCollegeDropdown(true)}
+                                onMouseLeave={() => setShowCollegeDropdown(false)}
+                            >
                                 <button
                                     className="teams-button"
                                     onClick={toggleCollegeDropdown}
-                                    onMouseEnter={() => setShowCollegeDropdown(true)}
                                 >
                                     <span>NCAA</span>
                                 </button>
                                 {showCollegeDropdown && (
-                                    <div
-                                        className="teams-dropdown"
-                                        onMouseLeave={() => setShowCollegeDropdown(false)}
-                                    >
+                                    <div className="teams-dropdown">
                                         <div className="teams-grid">
                                             {collegeTeams.map((team) => (
                                                 <Link
@@ -281,19 +306,19 @@ export default function Header() {
                             ))}
 
                             {/* More Dropdown */}
-                            <li className="more-dropdown-container">
+                            <li
+                                className="more-dropdown-container"
+                                onMouseEnter={() => setShowMoreDropdown(true)}
+                                onMouseLeave={() => setShowMoreDropdown(false)}
+                            >
                                 <button
                                     className="teams-button"
                                     onClick={toggleMoreDropdown}
-                                    onMouseEnter={() => setShowMoreDropdown(true)}
                                 >
                                     <span>More</span>
                                 </button>
                                 {showMoreDropdown && (
-                                    <div
-                                        className="teams-dropdown"
-                                        onMouseLeave={() => setShowMoreDropdown(false)}
-                                    >
+                                    <div className="teams-dropdown">
                                         <div className="teams-grid">
                                             {moreItems.map((item) => (
                                                 <Link

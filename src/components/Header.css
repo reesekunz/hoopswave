@@ -165,13 +165,6 @@ body.theme-light .team-link {
   color: #333333 !important;
 }
 
-/* Force override for all dropdown containers */
-body.theme-light .teams-dropdown-container:hover .teams-dropdown,
-body.theme-light .college-dropdown-container:hover .teams-dropdown,
-body.theme-light .more-dropdown-container:hover .teams-dropdown {
-  background: #FFFFFF !important;
-  border: 1px solid #E0E0E0 !important;
-}
 
 /* Fix all dropdown links and text */
 body.theme-light .teams-dropdown a,
@@ -253,9 +246,10 @@ body.theme-light .teams-dropdown .dropdown-header a {
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   background: #1A1A1A;
+  overflow: visible;
 }
 
 /* Hamburger section - NYT style */
@@ -402,7 +396,10 @@ body.theme-light .teams-dropdown .dropdown-header a {
   display: flex;
   justify-content: center;
   width: 100%;
+  overflow: visible;
+  padding: 0 1rem;
 }
+
 
 .bottom-row nav ul {
   display: flex;
@@ -412,6 +409,8 @@ body.theme-light .teams-dropdown .dropdown-header a {
   gap: 1rem;
   align-items: center;
   white-space: nowrap;
+  min-width: max-content;
+  flex-shrink: 0;
 }
 
 .bottom-row nav li {
@@ -420,7 +419,8 @@ body.theme-light .teams-dropdown .dropdown-header a {
 
 /* Category Links and Team Links - NYT Navigation Style */
 .category-link,
-.bottom-row .team-link {
+.bottom-row .team-link,
+.teams-dropdown .team-link {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -443,7 +443,8 @@ body.theme-light .teams-dropdown .dropdown-header a {
 }
 
 .category-link:hover,
-.bottom-row .team-link:hover {
+.bottom-row .team-link:hover,
+.teams-dropdown .team-link:hover {
   color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.08);
 }
@@ -493,7 +494,8 @@ body.theme-light .team-link[data-team="sundevils"]:hover::after {
 }
 
 .category-link::after,
-.bottom-row .team-link::after {
+.bottom-row .team-link::after,
+.teams-dropdown .team-link::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -506,12 +508,14 @@ body.theme-light .team-link[data-team="sundevils"]:hover::after {
 }
 
 .category-link:hover::after,
-.bottom-row .team-link:hover::after {
+.bottom-row .team-link:hover::after,
+.teams-dropdown .team-link:hover::after {
   width: 80%;
 }
 
 .category-link:focus,
-.bottom-row .team-link:focus {
+.bottom-row .team-link:focus,
+.teams-dropdown .team-link:focus {
   outline: none;
   border: none;
   box-shadow: none;
@@ -677,16 +681,6 @@ body.theme-light .teams-dropdown {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
-.teams-dropdown {
-  display: none;
-}
-
-.teams-dropdown-container:hover .teams-dropdown,
-.college-dropdown-container:hover .teams-dropdown,
-.more-dropdown-container:hover .teams-dropdown {
-  display: block !important;
-}
-
 .dropdown-header {
   padding: 16px 20px;
   border-bottom: 1px solid #404040;
@@ -800,83 +794,27 @@ body.theme-light .teams-grid .team-link:hover {
   background: #1A1A1A;
 }
 
-.team-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 16px;
-  text-decoration: none;
-  color: white;
-  background-color: transparent;
-  border-bottom: 1px solid #404040;
-  transition: all 0.15s ease;
-  position: relative;
-  min-width: 0;
-  white-space: nowrap;
-}
+/* Moved to before responsive breakpoints - this was overriding responsive styles */
 
-.team-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: #CCCCCC;
-  transition: width 0.2s ease;
-}
-
-.team-link:hover::after {
-  width: 80%;
-}
-
-.team-link:hover {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  color: #FFFFFF !important;
-}
-
-/* NCAA team-specific dropdown colors */
-.team-link[data-team="wildcats"]:hover {
+/* NCAA team-specific dropdown colors - moved to use same selectors as navbar items */
+.teams-dropdown .team-link[data-team="wildcats"]:hover {
   color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.team-link[data-team="wildcats"]:hover::after {
+.teams-dropdown .team-link[data-team="wildcats"]:hover::after {
   background-color: #cc0033 !important; /* U of A red */
 }
 
-.team-link[data-team="sundevils"]:hover {
+.teams-dropdown .team-link[data-team="sundevils"]:hover {
   color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.team-link[data-team="sundevils"]:hover::after {
+.teams-dropdown .team-link[data-team="sundevils"]:hover::after {
   background-color: #ffc627 !important;
 }
 
-/* Override any potential transparency on hover - Light mode */
-body.theme-light .teams-dropdown-container:hover .teams-dropdown,
-body.theme-light .college-dropdown-container:hover .teams-dropdown,
-body.theme-light .more-dropdown-container:hover .teams-dropdown {
-  display: block !important;
-  background: #FFFFFF !important;
-  opacity: 1 !important;
-  border: 1px solid #E0E0E0 !important;
-}
-
-/* Override any potential transparency on hover - Dark mode */
-body.theme-dark .teams-dropdown-container:hover .teams-dropdown,
-body.theme-dark .college-dropdown-container:hover .teams-dropdown,
-body.theme-dark .more-dropdown-container:hover .teams-dropdown,
-.teams-dropdown-container:hover .teams-dropdown,
-.college-dropdown-container:hover .teams-dropdown,
-.more-dropdown-container:hover .teams-dropdown {
-  display: block !important;
-  background: #1A1A1A !important;
-  opacity: 1 !important;
-  border: 1px solid #404040 !important;
-}
 
 .team-name {
   font-size: 0.9rem;
@@ -1101,63 +1039,114 @@ body.theme-dark .permanent-search-form:focus-within {
   background: #777777;
 }
 
+
+/* Tablet responsive - reduce nav item sizes gradually */
+@media (max-width: 1200px) and (min-width: 900px) {
+  .bottom-row nav ul {
+    gap: 0.8rem;
+  }
+
+  .category-link,
+  .bottom-row .team-link,
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 14px 16px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.82rem !important;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 825px) {
+  .bottom-row nav ul {
+    gap: 0.6rem;
+  }
+
+  .category-link,
+  .bottom-row .team-link,
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 14px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* Hide mobile layout on desktop */
+.mobile-header-layout {
+  display: none;
+}
+
 /* Improved mobile responsive */
-@media (max-width: 768px) {
+@media (max-width: 824px) {
   /* Hide bottom navigation row on mobile */
   .bottom-row {
     display: none !important;
   }
 
-  /* Hide search bar on mobile but keep theme toggle */
-  .permanent-search-container,
-  .search-container {
+  /* Hide the logo row and top utility bar for mobile */
+  .logo-row,
+  .top-utility-bar {
     display: none !important;
   }
 
-  .utility-actions {
+  /* Show mobile layout */
+  .mobile-header-layout {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    min-height: 60px;
+  }
+
+  .mobile-header-layout .hamburger-section {
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  /* Center the logo/title */
+  .mobile-title-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-title-center h2 {
+    margin: 0;
+    font-size: 2.2rem !important;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Cinzel Decorative', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Mobile specific font size */
+  @media (max-width: 480px) {
+    .mobile-title-center h2 {
+      font-size: 1.6rem !important;
+    }
+  }
+
+  .mobile-title-center a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .mobile-header-layout .utility-actions {
     width: auto !important;
     justify-content: flex-end !important;
+    flex-shrink: 0;
   }
 
-  .theme-toggle-button {
+  .mobile-header-layout .theme-toggle-button {
     display: block !important;
-  }
-
-  header {
-    padding: 0 1rem;
-    height: auto;
-    min-height: 60px;
-    flex-wrap: nowrap;
-  }
-
-  .logo {
-    width: auto;
-    flex-shrink: 0;
-    padding: 0 1rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .logo h2,
-  .logo-center h2 {
-    font-size: 2.2rem !important;
-  }
-
-  .logo-center {
-    padding: 0 1rem;
-    margin: 0 auto;
-    text-align: center;
-    max-width: 90%;
-  }
-
-  .logo-image {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .header-actions {
-    width: auto;
-    flex-shrink: 0;
+    margin-left: 0;
   }
 
   nav {
@@ -1183,10 +1172,15 @@ body.theme-dark .permanent-search-form:focus-within {
 
   .category-link,
   .bottom-row .team-link,
-  .teams-button {
-    padding: 15px 8px;
-    font-size: 0.75rem;
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 15px 8px !important;
+    font-size: 0.75rem !important;
     white-space: nowrap;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.75rem !important;
   }
 
   .teams-dropdown {
@@ -1227,9 +1221,14 @@ body.theme-dark .permanent-search-form:focus-within {
 
   .category-link,
   .bottom-row .team-link,
-  .teams-button {
-    padding: 12px 6px;
-    font-size: 0.7rem;
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 12px 6px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.7rem !important;
   }
 
   .teams-dropdown {
@@ -1256,12 +1255,17 @@ body.theme-dark .permanent-search-form:focus-within {
 }
 
 /* Add medium desktop breakpoint for better scaling */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 1025px) and (max-width: 1024px) {
   .category-link,
   .bottom-row .team-link,
-  .teams-button {
-    padding: 15px 16px;
-    font-size: 0.85rem;
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 15px 16px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.85rem !important;
   }
 }
 
@@ -1367,7 +1371,7 @@ body.theme-dark .permanent-search-form:focus-within {
   overflow-y: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .mobile-menu {
     width: 100vw !important;
     border-right: none !important;
@@ -1494,8 +1498,13 @@ body.mobile-menu-open {
 @media (min-width: 1200px) {
   .category-link,
   .bottom-row .team-link,
-  .teams-button {
-    padding: 15px 24px;
-    font-size: 0.95rem;
+  .teams-button,
+  .teams-dropdown .team-link {
+    padding: 15px 24px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .teams-dropdown .team-name {
+    font-size: 0.95rem !important;
   }
 }

@@ -235,7 +235,7 @@ export default function Blog() {
     const secondaryPost = filteredPosts[2] // Third most recent post for secondary section
     const trendingPosts = filteredPosts.slice(6, 11) // Posts 7-11 for right sidebar
     const latestPosts = filteredPosts.slice(11, 17) // Posts 12-17 for left sidebar
-    const secondSidebarPosts = filteredPosts.slice(2, 8) // Posts 3-8 for second right sidebar
+    const secondSidebarPosts = filteredPosts.slice(2, 7) // Posts 3-7 for second right sidebar
 
     // Get the most recent news articles for the news section (will be updated by team filter)
     // const featuredTeamNewsPost = newsArticles[0] || filteredPosts[0] // Use first news article or fallback to first post
