@@ -85,6 +85,7 @@ export default function Header() {
         setIsDarkMode(!isDarkMode)
     }
 
+
     // Initialize theme from localStorage on component mount
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme')

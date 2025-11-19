@@ -9,6 +9,26 @@ export default function Blog() {
     const [error, setError] = useState(null)
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedTeam, setSelectedTeam] = useState('all')
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    useEffect(() => {
+        // Initialize theme state and watch for changes
+        const checkTheme = () => {
+            setIsDarkMode(document.body.classList.contains('theme-dark'))
+        }
+
+        // Check initial theme
+        checkTheme()
+
+        // Listen for theme changes
+        const observer = new MutationObserver(() => {
+            checkTheme()
+        })
+
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+
+        return () => observer.disconnect()
+    }, [])
 
     useEffect(() => {
         // Get search query from URL parameters
@@ -184,8 +204,8 @@ export default function Blog() {
             'Cardinals': '#8C1D40',       // Cardinals Red
             'Diamondbacks': '#30CED8',    // D-backs Teal
             'Mercury': '#8B5CF6',         // Mercury Bright Purple
-            'Wildcats': '#003366',        // U of A Navy
-            'Sun Devils': '#8C1D40'       // ASU Maroon
+            'Wildcats': isDarkMode ? '#cc0033' : '#003366',  // U of A red in dark mode, navy in light
+            'Sun Devils': isDarkMode ? '#ffc627' : '#8C1D40'  // ASU gold in dark mode, maroon in light
         }
         return teamColors[post.team?.name] || '#E56020' // Default to orange
     }
@@ -202,15 +222,21 @@ export default function Blog() {
         return teamClasses[post.team?.name] || 'team-suns' // Default to suns
     }
 
-    // Filter posts based on search query
-    const filteredPosts = searchQuery
-        ? posts.filter(post =>
+    // Filter posts based on search query and team selection
+    const filteredPosts = posts.filter(post => {
+        // Apply search filter
+        const matchesSearch = searchQuery ? (
             post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.author?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.team?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.categories?.some(cat => cat.title?.toLowerCase().includes(searchQuery.toLowerCase()))
-          )
-        : posts
+        ) : true
+
+        // Apply team filter
+        const matchesTeam = selectedTeam === 'all' ? true : post.team?.name === selectedTeam
+
+        return matchesSearch && matchesTeam
+    })
 
     if (loading) return <div className="loading">Loading...</div>
     if (error) return <div className="error">Error loading posts: {error}</div>
@@ -235,17 +261,19 @@ export default function Blog() {
     const secondaryPost = filteredPosts[2] // Third most recent post for secondary section
     const trendingPosts = filteredPosts.slice(6, 11) // Posts 7-11 for right sidebar
     const latestPosts = filteredPosts.slice(11, 17) // Posts 12-17 for left sidebar
-    const secondSidebarPosts = filteredPosts.slice(2, 7) // Posts 3-7 for second right sidebar
+    const secondSidebarPosts = filteredPosts.slice(4, 9) // Posts 5-9 for second right sidebar
 
     // Get the most recent news articles for the news section (will be updated by team filter)
     // const featuredTeamNewsPost = newsArticles[0] || filteredPosts[0] // Use first news article or fallback to first post
     // Teams for the filter
     const teams = [
         { key: 'all', label: 'All' },
-        { key: 'cardinals', label: 'Cardinals' },
-        { key: 'diamondbacks', label: 'Diamondbacks' },
-        { key: 'suns', label: 'Suns' },
-        { key: 'mercury', label: 'Mercury' }
+        { key: 'Cardinals', label: 'Cardinals' },
+        { key: 'Diamondbacks', label: 'Diamondbacks' },
+        { key: 'Suns', label: 'Suns' },
+        { key: 'Mercury', label: 'Mercury' },
+        { key: 'Wildcats', label: 'Wildcats' },
+        { key: 'Sun Devils', label: 'Sun Devils' }
     ]
 
     // Get team-specific news articles
@@ -254,10 +282,11 @@ export default function Blog() {
             // For "All", use all posts if there aren't enough news articles
             return newsArticles.length >= 13 ? newsArticles : filteredPosts
         }
+
         return newsArticles.filter(post =>
-            post.team?.name?.toLowerCase().includes(teamKey) ||
-            post.categories?.some(category => category.title.toLowerCase().includes(teamKey)) ||
-            post.title?.toLowerCase().includes(teamKey)
+            post.team?.name === teamKey ||
+            post.categories?.some(category => category.title.toLowerCase().includes(teamKey.toLowerCase())) ||
+            post.title?.toLowerCase().includes(teamKey.toLowerCase())
         )
     }
 
@@ -399,10 +428,11 @@ export default function Blog() {
                 post.categories && post.categories.some(cat => cat.title.toLowerCase() === 'rumors')
             )
         }
+
         return rumorsArticles.filter(post =>
-            post.team?.name?.toLowerCase().includes(teamKey) ||
-            post.categories?.some(category => category.title.toLowerCase().includes(teamKey)) ||
-            post.title?.toLowerCase().includes(teamKey)
+            post.team?.name === teamKey ||
+            post.categories?.some(category => category.title.toLowerCase().includes(teamKey.toLowerCase())) ||
+            post.title?.toLowerCase().includes(teamKey.toLowerCase())
         )
     }
 
@@ -423,10 +453,11 @@ export default function Blog() {
                 post.categories && post.categories.some(cat => cat.title.toLowerCase() === 'analysis')
             )
         }
+
         return analysisArticles.filter(post =>
-            post.team?.name?.toLowerCase().includes(teamKey) ||
-            post.categories?.some(category => category.title.toLowerCase().includes(teamKey)) ||
-            post.title?.toLowerCase().includes(teamKey)
+            post.team?.name === teamKey ||
+            post.categories?.some(category => category.title.toLowerCase().includes(teamKey.toLowerCase())) ||
+            post.title?.toLowerCase().includes(teamKey.toLowerCase())
         )
     }
 
@@ -619,6 +650,7 @@ export default function Blog() {
                 </div>
             )}
 
+
             {filteredPosts.length === 0 && searchQuery && (
                 <p className="no-posts">No articles found for "{searchQuery}". Try different keywords.</p>
             )}
@@ -636,32 +668,32 @@ export default function Blog() {
                             <div className="second-left-content-container">
                                 {/* Center Featured Article */}
                                 <main className="second-center-featured">
-                                    <Link to={`/${filteredPosts[1].slug.current}`} className="second-featured-article-link">
+                                    <Link to={`/${filteredPosts[0].slug.current}`} className="second-featured-article-link">
                                         <article className="second-featured-article">
                                             <div className="second-featured-content">
                                                 <div className="second-featured-top-content">
-                                                    <h2 className="second-featured-title">{filteredPosts[1].title}</h2>
+                                                    <h2 className="second-featured-title">{filteredPosts[0].title}</h2>
                                                     <div className="second-featured-description">
-                                                        {extractTwoSentences(filteredPosts[1].body) ||
+                                                        {extractTwoSentences(filteredPosts[0].body) ||
                                                             'Breaking basketball news and analysis from around the league.'
                                                         }
                                                     </div>
                                                 </div>
                                                 <div className="second-featured-bottom-content">
-                                                    <div className="article-category-tag" style={{ color: getTeamColor(filteredPosts[1]) }}>
-                                                        {getCategoryLabel(filteredPosts[1])}
+                                                    <div className="article-category-tag" style={{ color: getTeamColor(filteredPosts[0]) }}>
+                                                        {getCategoryLabel(filteredPosts[0])}
                                                     </div>
                                                     <div className="second-featured-meta">
-                                                        <span className="second-featured-author">{filteredPosts[1].author?.name || 'Staff'}</span>
-                                                        <span className="second-featured-timestamp">{formatDate(filteredPosts[1].publishedAt) || 'Recent'}</span>
+                                                        <span className="second-featured-author">{filteredPosts[0].author?.name || 'Staff'}</span>
+                                                        <span className="second-featured-timestamp">{formatDate(filteredPosts[0].publishedAt) || 'Recent'}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="second-featured-image-container">
-                                                {filteredPosts[1].mainImage && (
+                                                {filteredPosts[0].mainImage && (
                                                     <img
-                                                        src={filteredPosts[1].mainImage.asset.url}
-                                                        alt={filteredPosts[1].title}
+                                                        src={filteredPosts[0].mainImage.asset.url}
+                                                        alt={filteredPosts[0].title}
                                                         className="second-featured-image"
                                                     />
                                                 )}
@@ -670,10 +702,17 @@ export default function Blog() {
                                     </Link>
                                 </main>
 
+                                {/* Top Stories Section Divider - Only visible at 1025px and smaller */}
+                                <div className="top-stories-section-header">
+                                    <h2 className="section-title">
+                                        Top Stories
+                                    </h2>
+                                </div>
+
                                 {/* Secondary Section - positioned in left area */}
                                 <div className="second-secondary-section">
                                     <div className="second-secondary-grid">
-                                        {filteredPosts.slice(7, 10).map((post) => (
+                                        {filteredPosts.slice(1, 4).map((post) => (
                                             <Link key={post.slug.current} to={`/${post.slug.current}`} className="second-secondary-card-link">
                                                 <article className="second-secondary-card">
                                                     {post.mainImage && (
@@ -714,9 +753,9 @@ export default function Blog() {
                                         <article className="second-latest-article">
                                             <div className="second-latest-article-content">
                                                 <div className="second-latest-article-top">
-                                                    {getNewsIndicator(post, index + 3) && (
-                                                        <div className={`news-indicator-small ${getNewsIndicator(post, index + 3).toLowerCase()}`}>
-                                                            {getNewsIndicator(post, index + 3)}
+                                                    {getNewsIndicator(post, index + 4) && (
+                                                        <div className={`news-indicator-small ${getNewsIndicator(post, index + 4).toLowerCase()}`}>
+                                                            {getNewsIndicator(post, index + 4)}
                                                         </div>
                                                     )}
                                                     <h4 className="second-latest-article-title">
@@ -1620,7 +1659,7 @@ export default function Blog() {
 
                     {/* Category Sections */}
                     <div className="content-sections">
-                        {categories.map(category => renderCategorySection(category))}
+                        {categories.filter(category => category.key !== 'draft').map(category => renderCategorySection(category))}
                     </div>
                 </>
             )}

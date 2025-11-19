@@ -163,9 +163,37 @@ body.theme-light .see-more-link {
 
 body.theme-light .author-date,
 body.theme-light .news-left-sidebar-article-meta,
+/* Light mode consistency for all author/date elements */
+body.theme-light .latest-author,
+body.theme-light .latest-date,
 body.theme-light .latest-author-date,
-body.theme-light .second-latest-author-date {
-  color: #666666 !important;
+body.theme-light .second-latest-author,
+body.theme-light .second-latest-date,
+body.theme-light .second-latest-author-date,
+body.theme-light .recent-card-author,
+body.theme-light .recent-card-date,
+body.theme-light .suns-card-author,
+body.theme-light .suns-card-date,
+body.theme-light .cardinals-card-author,
+body.theme-light .cardinals-card-date,
+body.theme-light .diamondbacks-card-author,
+body.theme-light .diamondbacks-card-date,
+body.theme-light .recaps-card-author,
+body.theme-light .recaps-card-date,
+body.theme-light .draft-card-author,
+body.theme-light .draft-card-date,
+body.theme-light .mercury-card-author,
+body.theme-light .mercury-card-date,
+body.theme-light .trades-sidebar-author,
+body.theme-light .trades-sidebar-date,
+body.theme-light .freeagency-sidebar-author,
+body.theme-light .freeagency-sidebar-date,
+body.theme-light .wildcats-sidebar-author,
+body.theme-light .wildcats-sidebar-date,
+body.theme-light .sundevils-sidebar-author,
+body.theme-light .sundevils-sidebar-date {
+  color: #666666 !important; /* Consistent gray color for all cards in light mode */
+  font-weight: 500 !important;
 }
 
 /* Fix sidebar specific elements */
@@ -542,14 +570,14 @@ body.theme-dark .second-right-sidebar .article-category-tag.team-wildcats,
 body:not(.theme-light)
   .second-right-sidebar
   .article-category-tag.team-wildcats {
-  color: #003366 !important; /* Wildcats Navy */
+  color: #cc0033 !important; /* U of A red */
 }
 
 body.theme-dark .second-right-sidebar .article-category-tag.team-sundevils,
 body:not(.theme-light)
   .second-right-sidebar
   .article-category-tag.team-sundevils {
-  color: #8c1d40 !important; /* ASU Maroon */
+  color: #ffc627 !important; /* ASU gold */
 }
 
 /* Fix borders in light mode */
@@ -1598,11 +1626,52 @@ body.theme-light .right-sidebar aside .article-category-tag.team-sundevils {
   color: #8c1d40 !important; /* Sun Devils Maroon */
 }
 
+/* Dark mode overrides for right sidebar team colors */
+body.theme-dark .right-sidebar .article-category-tag.team-wildcats,
+body.theme-dark .analysis-section .right-sidebar .article-category-tag.team-wildcats {
+  color: #cc0033 !important; /* U of A red */
+}
+body.theme-dark .right-sidebar .article-category-tag.team-sundevils,
+body.theme-dark .analysis-section .right-sidebar .article-category-tag.team-sundevils {
+  color: #ffc627 !important; /* ASU gold */
+}
+
 /* Make right sidebar author/date lines match other cards - darker color */
 body.theme-light .right-sidebar .latest-author,
 body.theme-light .right-sidebar .latest-date {
   color: #666666 !important; /* Darker gray to match main cards */
   font-weight: 500 !important; /* Ensure consistent weight */
+}
+
+/* Dark mode consistency for all author/date elements */
+body.theme-dark .latest-author,
+body.theme-dark .latest-date,
+body.theme-dark .second-latest-author,
+body.theme-dark .second-latest-date,
+body.theme-dark .recent-card-author,
+body.theme-dark .recent-card-date,
+body.theme-dark .suns-card-author,
+body.theme-dark .suns-card-date,
+body.theme-dark .cardinals-card-author,
+body.theme-dark .cardinals-card-date,
+body.theme-dark .diamondbacks-card-author,
+body.theme-dark .diamondbacks-card-date,
+body.theme-dark .recaps-card-author,
+body.theme-dark .recaps-card-date,
+body.theme-dark .draft-card-author,
+body.theme-dark .draft-card-date,
+body.theme-dark .mercury-card-author,
+body.theme-dark .mercury-card-date,
+body.theme-dark .trades-sidebar-author,
+body.theme-dark .trades-sidebar-date,
+body.theme-dark .freeagency-sidebar-author,
+body.theme-dark .freeagency-sidebar-date,
+body.theme-dark .wildcats-sidebar-author,
+body.theme-dark .wildcats-sidebar-date,
+body.theme-dark .sundevils-sidebar-author,
+body.theme-dark .sundevils-sidebar-date {
+  color: var(--color-secondary) !important; /* Consistent secondary text color for all cards */
+  font-weight: 500 !important;
 }
 
 /* Dark mode consistency for right sidebar */
@@ -4222,11 +4291,285 @@ body.theme-light .team-tab.vertical:first-child.active {
   }
 }
 
+/* Fix category tag alignment on mobile and tablets up to 1025px */
+@media (max-width: 1025px) {
+  .article-category-tag {
+    text-align: left !important;
+    margin: 0 !important;
+    margin-right: auto !important;
+    align-self: flex-start !important;
+    justify-self: flex-start !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* Fix for featured article category tags - override all existing rules */
+  .featured-bottom-content .article-category-tag,
+  .second-featured-bottom-content .article-category-tag {
+    text-align: left !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    align-self: flex-start !important;
+    justify-self: flex-start !important;
+  }
+
+  /* Force the container to not center its contents */
+  .featured-bottom-content,
+  .second-featured-bottom-content {
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Fix for all card content category tags */
+  .suns-card-content .article-category-tag,
+  .cardinals-card-content .article-category-tag,
+  .diamondbacks-card-content .article-category-tag,
+  .mercury-card-content .article-category-tag,
+  .recaps-card-content .article-category-tag,
+  .draft-card-content .article-category-tag {
+    text-align: left !important;
+    margin: 0 !important;
+    align-self: flex-start !important;
+    width: auto !important;
+  }
+
+  /* Fix for sidebar category tags */
+  .right-sidebar .article-category-tag,
+  .second-right-sidebar .article-category-tag {
+    text-align: left !important;
+    margin: 0 !important;
+    align-self: flex-start !important;
+    width: auto !important;
+  }
+}
+
 @media (max-width: 600px) {
   .second-featured-article {
-    margin: 0 0 var(--space-8) 0;
-    width: 100%;
-    max-width: none;
+    margin: var(--space-6) 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .second-featured-image {
+    height: 250px !important;
+  }
+
+  .second-featured-content {
+    padding: 0 !important;
+  }
+
+  .second-featured-top-content {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  .second-featured-bottom-content {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  /* Reset text-only cards to clean state - remove margins for compact list */
+  .second-latest-article,
+  .second-latest-article-link {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Align all text elements with top 3 cards */
+  .second-latest-article .second-latest-article-title {
+    padding-left: 1rem !important;
+    padding-right: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .second-latest-article .article-category-tag {
+    margin-left: 1rem !important;
+    margin-right: 1.5rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+    display: inline-block !important;
+  }
+
+  .second-latest-article .second-latest-author-date {
+    padding-left: 1rem !important;
+    padding-right: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Add more margin between the first 3 image cards */
+  .second-secondary-card {
+    margin: var(--space-6) 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Ensure parent containers are aligned */
+  .second-right-sidebar {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .second-secondary-card-image {
+    height: 250px !important;
+  }
+
+  /* Apply exact spacing from second-featured-article to top stories cards */
+  .second-latest-article-top {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  .second-latest-article-title {
+    font-size: 1.1rem !important;
+  }
+
+  .second-latest-article-bottom {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  .second-secondary-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+    display: inline-block !important;
+  }
+
+  /* Ensure full width alignment for top stories section */
+  .second-left-content-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .second-secondary-section {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .second-secondary-grid {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: var(--space-4) !important;
+  }
+
+  .second-three-column-layout {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+}
+
+/* Specific breakpoint for 481px-600px range to override the 480px rule */
+@media (min-width: 481px) and (max-width: 600px) {
+  .second-featured-article .second-featured-title,
+  .second-featured-content .second-featured-title,
+  .suns-card-title,
+  .cardinals-card-title,
+  .diamondbacks-card-title,
+  .mercury-card-title,
+  .recaps-card-title,
+  .draft-card-title,
+  .featured-trade-title,
+  .featured-freeagency-title {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Rounded borders for images and cards at 1025px breakpoint */
+@media (max-width: 1025px) {
+  .suns-article-card,
+  .cardinals-article-card,
+  .diamondbacks-article-card,
+  .mercury-article-card,
+  .recaps-article-card,
+  .draft-article-card,
+  .featured-trade-article,
+  .featured-freeagency-article,
+  .second-featured-article,
+  .featured-article {
+    border-radius: 12px !important;
+  }
+
+  .suns-card-image,
+  .cardinals-card-image,
+  .diamondbacks-card-image,
+  .mercury-card-image,
+  .recaps-card-image,
+  .draft-card-image,
+  .featured-trade-image,
+  .featured-freeagency-image,
+  .second-featured-image,
+  .featured-image {
+    border-radius: 12px 12px 0 0 !important;
+  }
+
+  .suns-card-image img,
+  .cardinals-card-image img,
+  .diamondbacks-card-image img,
+  .mercury-card-image img,
+  .recaps-card-image img,
+  .draft-card-image img,
+  .featured-trade-image img,
+  .featured-freeagency-image img,
+  .second-featured-image,
+  .featured-image {
+    border-radius: 12px 12px 0 0 !important;
+  }
+}
+
+/* Rounded borders for images and cards at 600px breakpoint */
+@media (max-width: 600px) {
+  .suns-article-card,
+  .cardinals-article-card,
+  .diamondbacks-article-card,
+  .mercury-article-card,
+  .recaps-article-card,
+  .draft-article-card,
+  .featured-trade-article,
+  .featured-freeagency-article,
+  .second-featured-article,
+  .featured-article {
+    border-radius: 16px !important;
+  }
+
+  .suns-card-image,
+  .cardinals-card-image,
+  .diamondbacks-card-image,
+  .mercury-card-image,
+  .recaps-card-image,
+  .draft-card-image,
+  .featured-trade-image,
+  .featured-freeagency-image,
+  .second-featured-image,
+  .featured-image {
+    border-radius: 16px 16px 0 0 !important;
+  }
+
+  .suns-card-image img,
+  .cardinals-card-image img,
+  .diamondbacks-card-image img,
+  .mercury-card-image img,
+  .recaps-card-image img,
+  .draft-card-image img,
+  .featured-trade-image img,
+  .featured-freeagency-image img,
+  .second-featured-image,
+  .featured-image {
+    border-radius: 16px 16px 0 0 !important;
   }
 }
 
@@ -4697,7 +5040,7 @@ body:not(.theme-light) .second-secondary-section {
   }
 
   .second-secondary-grid .second-secondary-card {
-    border: 5px solid red !important;
+    border: none !important;
   }
 }
 
@@ -4710,7 +5053,16 @@ body:not(.theme-light) .second-secondary-section {
   }
 
   .second-secondary-grid .second-secondary-card {
-    border: 5px solid red !important;
+    border: none !important;
+  }
+
+  /* Red border for both dark and light modes */
+  body.theme-dark .second-secondary-grid .second-secondary-card {
+    border: none !important;
+  }
+
+  body.theme-light .second-secondary-grid .second-secondary-card {
+    border: none !important;
   }
 
   /* Back to single column for sidebar at small screens */
@@ -5052,6 +5404,15 @@ body.theme-light .draft-card-title {
 .recaps-card-content .article-category-tag.team-sundevils {
   color: #8c1d40 !important; /* Sun Devils Maroon */
 }
+
+/* Dark mode overrides for recaps cards */
+body.theme-dark .recaps-card-content .article-category-tag.team-wildcats {
+  color: #cc0033 !important; /* U of A red */
+}
+body.theme-dark .recaps-card-content .article-category-tag.team-sundevils {
+  color: #ffc627 !important; /* ASU gold */
+}
+
 /* Ensure Draft category tags use team colors */
 .draft-card-content .article-category-tag.team-cardinals {
   color: #8c1d40 !important; /* Cardinals Red */
@@ -5070,6 +5431,14 @@ body.theme-light .draft-card-title {
 }
 .draft-card-content .article-category-tag.team-sundevils {
   color: #8c1d40 !important; /* Sun Devils Maroon */
+}
+
+/* Dark mode overrides for draft cards */
+body.theme-dark .draft-card-content .article-category-tag.team-wildcats {
+  color: #cc0033 !important; /* U of A red */
+}
+body.theme-dark .draft-card-content .article-category-tag.team-sundevils {
+  color: #ffc627 !important; /* ASU gold */
 }
 
 /* Override Mercury section styling for light mode */
@@ -5107,15 +5476,6 @@ body.theme-light .mercury-card-meta {
   color: #888 !important;
 }
 
-body.theme-light .mercury-card-author {
-  color: #666 !important;
-  font-weight: 500 !important;
-}
-
-body.theme-light .mercury-card-date {
-  color: #666 !important;
-  font-weight: 500 !important;
-}
 
 body.theme-light .mercury-card-divider {
   color: #666 !important;
@@ -5125,15 +5485,6 @@ body.theme-light .cardinals-card-meta {
   color: #888 !important;
 }
 
-body.theme-light .cardinals-card-author {
-  color: #666 !important;
-  font-weight: 500 !important;
-}
-
-body.theme-light .cardinals-card-date {
-  color: #666 !important;
-  font-weight: 500 !important;
-}
 
 body.theme-light .cardinals-card-divider {
   color: #666 !important;
@@ -5323,6 +5674,29 @@ body.theme-light .freeagency-sidebar-category.team-sundevils,
 body.theme-light .wildcats-sidebar-category.team-sundevils,
 body.theme-light .sundevils-sidebar-category.team-sundevils {
   color: #8c1d40 !important; /* Sun Devils Maroon */
+}
+
+/* Dark mode overrides for featured and sidebar categories */
+body.theme-dark .featured-trade-category.team-wildcats,
+body.theme-dark .featured-freeagency-category.team-wildcats,
+body.theme-dark .featured-wildcats-category.team-wildcats,
+body.theme-dark .featured-sundevils-category.team-wildcats,
+body.theme-dark .trades-sidebar-category.team-wildcats,
+body.theme-dark .freeagency-sidebar-category.team-wildcats,
+body.theme-dark .wildcats-sidebar-category.team-wildcats,
+body.theme-dark .sundevils-sidebar-category.team-wildcats {
+  color: #cc0033 !important; /* U of A red */
+}
+
+body.theme-dark .featured-trade-category.team-sundevils,
+body.theme-dark .featured-freeagency-category.team-sundevils,
+body.theme-dark .featured-wildcats-category.team-sundevils,
+body.theme-dark .featured-sundevils-category.team-sundevils,
+body.theme-dark .trades-sidebar-category.team-sundevils,
+body.theme-dark .freeagency-sidebar-category.team-sundevils,
+body.theme-dark .wildcats-sidebar-category.team-sundevils,
+body.theme-dark .sundevils-sidebar-category.team-sundevils {
+  color: #ffc627 !important; /* ASU gold */
 }
 
 /* Featured article meta text */
@@ -6667,6 +7041,61 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   margin-left: 0.25rem;
 }
 
+/* ===== TEAM FILTER STYLES ===== */
+.team-filter-container {
+  margin: var(--space-4) 0 var(--space-6) 0;
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+}
+
+.filter-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+}
+
+.team-filter-select {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.team-filter-select:hover,
+.team-filter-select:focus {
+  border-color: #E56020;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .team-filter-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .filter-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .team-filter-select {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
 /* ===== COMPREHENSIVE MOBILE RESPONSIVE IMPROVEMENTS ===== */
 
 /* Mobile First - Base styles for very small screens */
@@ -6724,6 +7153,43 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   .mercury-card-content {
     padding: var(--space-3);
     min-height: 140px;
+  }
+
+  /* Fix author/date alignment with title and description on mobile */
+  .suns-card-meta,
+  .cardinals-card-meta,
+  .diamondbacks-card-meta,
+  .mercury-card-meta,
+  .recaps-card-meta,
+  .draft-card-meta,
+  .trades-sidebar-meta,
+  .freeagency-sidebar-meta {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Ensure meta elements align with card content padding */
+  .suns-card-author,
+  .cardinals-card-author,
+  .diamondbacks-card-author,
+  .mercury-card-author,
+  .recaps-card-author,
+  .draft-card-author,
+  .trades-sidebar-author,
+  .freeagency-sidebar-author {
+    margin-left: 0 !important;
+  }
+
+  /* Also fix date elements alignment */
+  .suns-card-date,
+  .cardinals-card-date,
+  .diamondbacks-card-date,
+  .mercury-card-date,
+  .recaps-card-date,
+  .draft-card-date,
+  .trades-sidebar-date,
+  .freeagency-sidebar-date {
+    margin-left: 0.25rem !important;
   }
 
   /* Make team section cards full width on mobile */
@@ -7187,5 +7653,841 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     gap: 0.5rem !important;
     display: flex !important;
     flex-direction: column !important;
+  }
+}
+
+/* Top Stories Section Header - Hidden by default, visible at 1025px and smaller */
+.top-stories-section-header {
+  display: none;
+}
+
+@media (max-width: 1025px) {
+  .top-stories-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: var(--space-6);
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #97233F;
+  }
+
+  .top-stories-section-header .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #97233F;
+  }
+
+  /* Light theme styling */
+  body.theme-light .top-stories-section-header {
+    border-bottom: 1px solid #000000;
+  }
+
+  body.theme-light .top-stories-section-header .section-title {
+    color: #000000;
+  }
+
+  /* Dark theme styling */
+  body.theme-dark .top-stories-section-header,
+  body:not(.theme-light) .top-stories-section-header {
+    border-bottom: 1px solid #ffffff;
+  }
+
+  body.theme-dark .top-stories-section-header .section-title,
+  body:not(.theme-light) .top-stories-section-header .section-title {
+    color: #ffffff;
+  }
+
+  /* Remove light gray borders from sections at this breakpoint */
+  .second-secondary-section {
+    border-top: none !important;
+  }
+
+  .second-right-sidebar {
+    border-top: none !important;
+  }
+
+  .second-featured-article {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .second-center-featured {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .second-featured-content {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .second-featured-article-link {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-secondary-section {
+    border-top: none !important;
+  }
+
+  body.theme-light .second-right-sidebar {
+    border-top: none !important;
+    border-left: none !important;
+  }
+
+  body.theme-light .second-featured-article {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-center-featured {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-featured-content {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-featured-article-link {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  /* Remove red borders from secondary cards */
+  .second-secondary-card {
+    border: none !important;
+  }
+
+  .second-secondary-grid .second-secondary-card {
+    border: none !important;
+  }
+
+  body.theme-light .second-secondary-card {
+    border: none !important;
+  }
+
+  body.theme-light .second-secondary-card-link {
+    border: none !important;
+  }
+
+  body.theme-light .second-secondary-card .second-latest-article-content {
+    border: none !important;
+  }
+
+  /* Remove red borders from main featured cards and top 3 cards */
+  .second-featured-article,
+  .second-center-featured .second-featured-article,
+  .second-secondary-grid .second-secondary-card {
+    border: none !important;
+  }
+
+  body.theme-dark .second-featured-article,
+  body.theme-dark .second-center-featured .second-featured-article,
+  body.theme-dark .second-secondary-grid .second-secondary-card {
+    border: none !important;
+  }
+
+  body.theme-light .second-featured-article,
+  body.theme-light .second-center-featured .second-featured-article,
+  body.theme-light .second-secondary-grid .second-secondary-card {
+    border: none !important;
+  }
+}
+
+/* Mobile view: Add yellow border to second-featured-article for both light and dark mode */
+@media (max-width: 600px) {
+  .second-featured-article,
+  .second-center-featured .second-featured-article {
+    border: 3px solid yellow !important;
+  }
+
+  body.theme-dark .second-featured-article,
+  body.theme-dark .second-center-featured .second-featured-article {
+    border: 3px solid yellow !important;
+  }
+
+  body.theme-light .second-featured-article,
+  body.theme-light .second-center-featured .second-featured-article {
+    border: 3px solid yellow !important;
+  }
+
+  /* Copy EXACT styling from working yellow cards */
+  .center-featured .featured-article,
+  .featured-article {
+    border: 3px solid pink !important;
+  }
+
+  body.theme-dark .center-featured .featured-article,
+  body.theme-dark .featured-article {
+    border: 3px solid pink !important;
+  }
+
+  body.theme-light .center-featured .featured-article,
+  body.theme-light .featured-article {
+    border: 3px solid pink !important;
+  }
+
+  /* Apply same styling to featured image containers */
+  .center-featured .featured-article .featured-image-container,
+  .featured-article .featured-image-container,
+  .center-featured .featured-article .featured-image,
+  .featured-article .featured-image {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  body.theme-dark .center-featured .featured-article .featured-image-container,
+  body.theme-dark .featured-article .featured-image-container,
+  body.theme-dark .center-featured .featured-article .featured-image,
+  body.theme-dark .featured-article .featured-image {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  body.theme-light .center-featured .featured-article .featured-image-container,
+  body.theme-light .featured-article .featured-image-container,
+  body.theme-light .center-featured .featured-article .featured-image,
+  body.theme-light .featured-article .featured-image {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Reset and style content elements to match yellow border cards */
+  .center-featured .featured-article .featured-content,
+  .featured-article .featured-content,
+  .center-featured .featured-article .featured-title,
+  .featured-article .featured-title,
+  .center-featured .featured-article .featured-description,
+  .featured-article .featured-description,
+  .center-featured .featured-article .featured-meta,
+  .featured-article .featured-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  body.theme-dark .center-featured .featured-article .featured-content,
+  body.theme-dark .featured-article .featured-content,
+  body.theme-dark .center-featured .featured-article .featured-title,
+  body.theme-dark .featured-article .featured-title,
+  body.theme-dark .center-featured .featured-article .featured-description,
+  body.theme-dark .featured-article .featured-description,
+  body.theme-dark .center-featured .featured-article .featured-meta,
+  body.theme-dark .featured-article .featured-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  body.theme-light .center-featured .featured-article .featured-content,
+  body.theme-light .featured-article .featured-content,
+  body.theme-light .center-featured .featured-article .featured-title,
+  body.theme-light .featured-article .featured-title,
+  body.theme-light .center-featured .featured-article .featured-description,
+  body.theme-light .featured-article .featured-description,
+  body.theme-light .center-featured .featured-article .featured-meta,
+  body.theme-light .featured-article .featured-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Override: Add red borders to secondary cards (text-only cards) in Top Stories for mobile */
+  .second-right-sidebar .second-latest-article {
+    border: none !important;
+  }
+
+  body.theme-dark .second-right-sidebar .second-latest-article {
+    /* Reset everything */
+    all: unset !important;
+    /* Rebuild exactly like light mode */
+    border: none !important;
+    padding: var(--space-4) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    height: auto !important;
+    min-height: 120px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Make the sidebar container itself align properly */
+  body.theme-dark .second-right-sidebar {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Reset and rebuild all inner elements */
+  body.theme-dark .second-right-sidebar .second-latest-article *,
+  body.theme-dark .second-right-sidebar .second-latest-article .second-latest-article-content,
+  body.theme-dark .second-right-sidebar .second-latest-article .second-latest-article-top,
+  body.theme-dark .second-right-sidebar .second-latest-article .second-latest-article-bottom {
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.theme-light .second-right-sidebar .second-latest-article {
+    border: none !important;
+    padding: var(--space-4) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    height: auto !important;
+    min-height: 120px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  /* NUCLEAR RESET: Override EVERYTHING and rebuild like dark mode */
+  body.theme-light .second-right-sidebar .second-latest-article {
+    /* Reset everything */
+    all: unset !important;
+    /* Rebuild exactly like dark mode */
+    border: none !important;
+    padding: var(--space-4) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    height: auto !important;
+    min-height: 120px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Make the sidebar container itself align properly */
+  body.theme-light .second-right-sidebar {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Reset and rebuild all inner elements */
+  body.theme-light .second-right-sidebar .second-latest-article *,
+  body.theme-light .second-right-sidebar .second-latest-article .second-latest-article-content,
+  body.theme-light .second-right-sidebar .second-latest-article .second-latest-article-top,
+  body.theme-light .second-right-sidebar .second-latest-article .second-latest-article-bottom {
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Apply same featured image styling as second-featured-article to all other sections */
+  .featured-image {
+    height: 400px !important;
+    object-fit: cover !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    display: block !important;
+    flex: 1 !important;
+  }
+
+  .featured-image-container {
+    order: 1 !important;
+    width: 100% !important;
+    height: 400px !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+  }
+
+  .featured-trade-image,
+  .featured-freeagency-image,
+  .featured-wildcats-image,
+  .featured-sundevils-image {
+    width: 100% !important;
+    height: 400px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+  }
+
+  .featured-trade-image img,
+  .featured-freeagency-image img,
+  .featured-wildcats-image img,
+  .featured-sundevils-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+    flex: 1 !important;
+  }
+
+  /* Also target any potential article containers */
+  .featured-trade-article,
+  .featured-freeagency-article,
+  .featured-wildcats-article,
+  .featured-sundevils-article {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .featured-trade-content,
+  .featured-freeagency-content,
+  .featured-wildcats-content,
+  .featured-sundevils-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) !important;
+  }
+
+  /* Remove any decorative dividers from layout containers */
+  .second-three-column-layout::after {
+    display: none !important;
+  }
+
+  .second-left-content-container {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-three-column-layout {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  body.theme-light .second-left-content-container {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+}
+
+/* FEATURED IMAGES OVERRIDE - Apply second-featured-article styling to all featured images at mobile breakpoint */
+@media (max-width: 1025px) {
+  /* Force all featured images to match second-featured-article behavior */
+  .featured-image-container,
+  .featured-trade-image,
+  .featured-freeagency-image {
+    width: 100% !important;
+    height: 400px !important;
+    margin: 0 !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+    order: 1 !important;
+  }
+
+  .featured-image,
+  .featured-trade-image img,
+  .featured-freeagency-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+    flex: 1 !important;
+  }
+
+  /* Apply exact second-featured-article styling to all main section cards */
+  .featured-article,
+  .featured-trade-article,
+  .featured-freeagency-article {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: none !important;
+    height: auto !important;
+    border: 1px solid var(--border-primary) !important;
+    margin: var(--space-10) auto var(--space-8) auto !important;
+    width: 80% !important;
+    max-width: 700px !important;
+  }
+
+  /* Light mode version - apply same layout, height, and styling */
+  body.theme-light .featured-article,
+  body.theme-light .featured-trade-article,
+  body.theme-light .featured-freeagency-article {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    margin: var(--space-10) auto var(--space-8) auto !important;
+    width: 80% !important;
+    max-width: 700px !important;
+  }
+
+  /* Light mode image containers */
+  body.theme-light .featured-image-container,
+  body.theme-light .featured-trade-image,
+  body.theme-light .featured-freeagency-image {
+    width: 100% !important;
+    height: 400px !important;
+    margin: 0 !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+    order: 1 !important;
+  }
+
+  /* Light mode content areas */
+  body.theme-light .featured-content,
+  body.theme-light .featured-trade-content,
+  body.theme-light .featured-freeagency-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) var(--space-8) var(--space-4) var(--space-4) !important;
+  }
+
+  /* Force content areas to bottom order */
+  .featured-content,
+  .featured-trade-content,
+  .featured-freeagency-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) var(--space-8) var(--space-4) var(--space-4) !important;
+  }
+
+  /* Target specific description elements to prevent text overflow */
+  .featured-description,
+  .featured-trade-description,
+  .featured-freeagency-description {
+    margin-right: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+    max-width: calc(100% - var(--space-8)) !important;
+    box-sizing: border-box !important;
+  }
+
+  .featured-top-content,
+  .featured-trade-top-content,
+  .featured-freeagency-top-content {
+    margin-right: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+    max-width: calc(100% - var(--space-8)) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Move "By Team" filter above featured articles for News, Rumors, Analysis sections */
+  .three-column-layout {
+    grid-template-areas:
+      "header"
+      "left-sidebar"
+      "left-content"
+      "right-sidebar" !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+  }
+
+  .three-column-layout .news-left-sidebar,
+  .three-column-layout .rumors-left-sidebar,
+  .three-column-layout .analysis-left-sidebar {
+    grid-area: left-sidebar !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .three-column-layout .left-content-container {
+    grid-area: left-content !important;
+    width: 100% !important;
+  }
+
+  /* Add consistent spacing for News section */
+  #news-section-specific {
+    margin-top: 8rem !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .three-column-layout {
+    margin-top: 8rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .three-column-layout .news-section-header {
+    margin-top: 0 !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .three-column-layout .news-left-sidebar {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+  }
+
+  .three-column-layout .news-left-sidebar .left-sidebar-filter {
+    margin-top: 0 !important;
+    margin-bottom: var(--space-2) !important;
+    padding: var(--space-3) var(--space-4) !important;
+  }
+
+  .three-column-layout .left-content-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .three-column-layout .center-featured {
+    margin-top: 0 !important;
+  }
+
+  /* Fixed: Reset sidebar height to content size */
+
+  .left-sidebar-filter {
+    width: 100% !important;
+    padding: var(--space-4) !important;
+    margin-bottom: var(--space-4) !important;
+    border-bottom: 1px solid var(--border-primary) !important;
+  }
+
+  .team-filter-tabs.vertical {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: var(--space-2) !important;
+    justify-content: flex-start !important;
+  }
+
+  .team-tab.vertical {
+    width: auto !important;
+    padding: var(--space-2) var(--space-3) !important;
+    text-align: center !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Fix card gaps in recaps and draft sections at 1025px */
+  .recaps-section,
+  .draft-section {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Override the container to be a 3-column grid */
+  .recaps-section .recaps-articles-container,
+  .draft-section .draft-articles-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: var(--space-4) !important;
+    width: 100% !important;
+  }
+
+  /* Hide the individual row containers */
+  .recaps-section .recaps-articles-container .recaps-row,
+  .draft-section .draft-articles-container .draft-row {
+    display: contents !important;
+  }
+
+  /* Reset card widths for grid */
+  .recaps-section .recaps-articles-container .recaps-article-card,
+  .draft-section .draft-articles-container .draft-article-card {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Position the 7th card to span columns 2-3 and center it */
+  .recaps-section .recaps-articles-container .recaps-article-card:nth-child(7),
+  .draft-section .draft-articles-container .draft-article-card:nth-child(7) {
+    grid-column: 2 / 3 !important;
+    justify-self: center !important;
+  }
+
+  /* Position the 8th card in column 3 and center it */
+  .recaps-section .recaps-articles-container .recaps-article-card:nth-child(8),
+  .draft-section .draft-articles-container .draft-article-card:nth-child(8) {
+    grid-column: 3 / 4 !important;
+    justify-self: center !important;
+  }
+
+  /* Light mode consistency for all author/date elements at 1025px breakpoint */
+  body.theme-light .latest-author,
+  body.theme-light .latest-date,
+  body.theme-light .latest-author-date,
+  body.theme-light .second-latest-author,
+  body.theme-light .second-latest-date,
+  body.theme-light .second-latest-author-date,
+  body.theme-light .recent-card-author,
+  body.theme-light .recent-card-date,
+  body.theme-light .suns-card-author,
+  body.theme-light .suns-card-date,
+  body.theme-light .cardinals-card-author,
+  body.theme-light .cardinals-card-date,
+  body.theme-light .diamondbacks-card-author,
+  body.theme-light .diamondbacks-card-date,
+  body.theme-light .recaps-card-author,
+  body.theme-light .recaps-card-date,
+  body.theme-light .draft-card-author,
+  body.theme-light .draft-card-date,
+  body.theme-light .mercury-card-author,
+  body.theme-light .mercury-card-date,
+  body.theme-light .trades-sidebar-author,
+  body.theme-light .trades-sidebar-date,
+  body.theme-light .freeagency-sidebar-author,
+  body.theme-light .freeagency-sidebar-date,
+  body.theme-light .wildcats-sidebar-author,
+  body.theme-light .wildcats-sidebar-date,
+  body.theme-light .sundevils-sidebar-author,
+  body.theme-light .sundevils-sidebar-date {
+    color: #666666 !important; /* Consistent gray color for all cards in light mode at 1025px */
+    font-weight: 500 !important;
+  }
+}
+
+/* Apply exact second-featured-article styling at 600px breakpoint */
+@media (max-width: 600px) {
+  /* Add consistent spacing for News section */
+  #news-section-specific {
+    padding-top: var(--space-8) !important;
+  }
+
+  .featured-article,
+  .featured-trade-article,
+  .featured-freeagency-article {
+    margin: 0 0 var(--space-8) 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: none !important;
+    height: auto !important;
+    border: 1px solid var(--border-primary) !important;
+  }
+
+  .featured-image-container,
+  .featured-trade-image,
+  .featured-freeagency-image {
+    order: 1 !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+    height: 400px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+  }
+
+  .featured-content,
+  .featured-trade-content,
+  .featured-freeagency-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) !important;
+  }
+
+  /* Move "By Team" filter above featured articles for News, Rumors, Analysis sections */
+  .three-column-layout {
+    grid-template-areas:
+      "header"
+      "left-sidebar"
+      "left-content"
+      "right-sidebar" !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+  }
+
+  .three-column-layout .news-left-sidebar,
+  .three-column-layout .rumors-left-sidebar,
+  .three-column-layout .analysis-left-sidebar {
+    grid-area: left-sidebar !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .three-column-layout .left-content-container {
+    grid-area: left-content !important;
+    width: 100% !important;
+  }
+
+  .left-sidebar-filter {
+    width: 100% !important;
+    padding: var(--space-4) !important;
+    margin-bottom: var(--space-4) !important;
+    border-bottom: 1px solid var(--border-primary) !important;
+  }
+
+  .team-filter-tabs.vertical {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: var(--space-2) !important;
+    justify-content: flex-start !important;
+  }
+
+  .team-tab.vertical {
+    width: auto !important;
+    padding: var(--space-2) var(--space-3) !important;
+    text-align: center !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Apply same approach for recaps and draft at 600px */
+  .recaps-section .recaps-articles-container,
+  .draft-section .draft-articles-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: var(--space-4) !important;
+    width: 100% !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-row,
+  .draft-section .draft-articles-container .draft-row {
+    display: contents !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-article-card,
+  .draft-section .draft-articles-container .draft-article-card {
+    width: calc(33.333% - calc(var(--space-4) * 2 / 3)) !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    flex: 0 0 auto !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-article-card:nth-child(n+7),
+  .draft-section .draft-articles-container .draft-article-card:nth-child(n+7) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-article-card:nth-child(7),
+  .draft-section .draft-articles-container .draft-article-card:nth-child(7) {
+    margin-left: calc(16.666% + var(--space-2)) !important;
+    margin-right: 0 !important;
   }
 }

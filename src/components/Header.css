@@ -1488,6 +1488,67 @@ body.mobile-menu-open {
   overflow: hidden;
 }
 
+/* Mobile styling for 600px */
+@media (max-width: 600px) {
+  /* Hide the single-row mobile layout */
+  .mobile-header-layout {
+    display: none !important;
+  }
+
+  /* Show the desktop-style layout but adapted for mobile */
+  .top-utility-bar,
+  .logo-row {
+    display: flex !important;
+  }
+
+  .bottom-row {
+    display: none !important;
+  }
+
+  /* Make navbar wider by reducing margins */
+  .two-row-header {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .top-utility-bar {
+    padding: 0.5rem !important;
+    justify-content: space-between;
+  }
+
+  .logo-row {
+    padding: 0.5rem !important;
+  }
+
+  .logo-center h2 {
+    font-size: 1.8rem !important;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .condensed-title {
+    font-size: 1.3rem !important;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .condensed-header-row {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Hide search bar entirely on mobile */
+  .permanent-search-container {
+    display: none !important;
+  }
+
+  .utility-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
 /* Large desktop optimizations */
 @media (min-width: 768px) {
   .two-row-header {
