@@ -22,7 +22,7 @@ body.theme-light {
   --bg-secondary: #ffffff;
   --bg-tertiary: #f5f5f5;
   --text-primary: #1a1a1a;
-  --text-secondary: #1a1a1a;
+  --text-secondary: #333333;
   --text-tertiary: #666666;
   --border-primary: #e0e0e0;
   --border-secondary: #d0d0d0;
@@ -922,8 +922,7 @@ a {
 }
 
 .featured-image-container {
-  height: 280px;
-  overflow: hidden;
+  height: 250px;
   position: relative;
   order: 1;
   width: 100%;
@@ -942,6 +941,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 8px 8px 0 0;
 }
 
@@ -1165,6 +1165,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 8px;
 }
 
@@ -1334,13 +1335,13 @@ a {
 }
 
 .team-tab.vertical.active {
-  background: #8c1d40;
+  background: transparent;
   color: var(--text-primary);
   transform: translateX(4px);
 }
 
 .team-tab.vertical.active:hover {
-  background: #b13a56;
+  background: rgba(255, 255, 255, 0.08);
 }
 .team-tab.vertical:first-child.active:hover {
   border-color: #b13a56;
@@ -1944,8 +1945,9 @@ body.theme-light .second-featured-timestamp {
 
 .latest-article-image {
   width: 100%;
-  height: 160px;
+  height: 250px;
   object-fit: cover;
+  object-position: top;
   border-radius: 4px;
 }
 
@@ -2338,6 +2340,7 @@ body.theme-light .second-featured-timestamp {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  object-position: top;
 }
 
 .post-content {
@@ -2426,6 +2429,7 @@ body.theme-light .second-featured-timestamp {
   width: 100%;
   height: 160px;
   object-fit: cover;
+  object-position: top;
   flex-shrink: 0;
   transition: transform 0.3s ease;
   display: block;
@@ -2688,6 +2692,7 @@ body.theme-light .section-article {
   width: 100%;
   height: 280px;
   object-fit: cover;
+  object-position: top;
   border-radius: 0;
   order: 2;
 }
@@ -2706,6 +2711,7 @@ body.theme-light .section-article {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -3239,6 +3245,7 @@ body.theme-light .section-article {
   width: 100%;
   height: 300px;
   object-fit: cover;
+  object-position: top;
 }
 
 .bottom-featured-content {
@@ -3574,6 +3581,7 @@ body.theme-light .section-article {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  object-position: top;
   flex-shrink: 0;
 }
 
@@ -3681,6 +3689,7 @@ body.theme-light .section-article {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -4150,6 +4159,15 @@ body.theme-light .team-tab.vertical:first-child.active {
   border-color: #1a1a1a !important; /* Black border for light mode */
 }
 
+/* Light mode team-specific borders for Wildcats and Sun Devils */
+body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(6) {
+  border-color: #003366 !important; /* Wildcats - Navy */
+}
+
+body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(7) {
+  border-color: #8c1a4a !important; /* Sun Devils - ASU Maroon */
+}
+
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(2) {
   background: transparent !important; /* Cardinals */
   border-color: #8c1d40 !important;
@@ -4168,6 +4186,16 @@ body.theme-light .team-tab.vertical:first-child.active {
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(5) {
   background: transparent !important; /* Mercury */
   border-color: #8b5cf6 !important; /* Mercury Purple */
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(6) {
+  background: transparent !important; /* Wildcats */
+  border-color: #cc0033 !important; /* U of A Red */
+}
+
+.team-filter-tabs.vertical .team-tab.vertical.active:nth-child(7) {
+  background: transparent !important; /* Sun Devils */
+  border-color: #ffc627 !important; /* ASU Gold */
 }
 
 .news-section-header .section-header,
@@ -4285,9 +4313,16 @@ body.theme-light .team-tab.vertical:first-child.active {
     max-width: 700px;
   }
 
+  .featured-article {
+    margin: var(--space-10) auto var(--space-8) auto;
+    width: 80%;
+    max-width: 700px;
+  }
+
   .second-featured-image {
     height: 400px !important;
     object-fit: cover;
+    object-position: top;
   }
 }
 
@@ -4349,16 +4384,43 @@ body.theme-light .team-tab.vertical:first-child.active {
 
 @media (max-width: 600px) {
   .second-featured-article {
-    margin: var(--space-6) 0 !important;
-    width: 100% !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    width: calc(100% + 2 * var(--space-3)) !important;
     max-width: none !important;
+  }
+
+  .featured-article,
+  .center-featured .featured-article {
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    padding: 0 !important;
+    width: calc(100% + 2 * var(--space-3)) !important;
+    max-width: none !important;
+  }
+
+  /* Add border around entire news section */
+  .three-column-layout {
+    border: 3px solid red !important;
+  }
+
+  /* Force the center-featured container to break out */
+  .center-featured {
+    margin: 0 calc(-1 * var(--space-3)) !important;
+    width: calc(100% + 2 * var(--space-3)) !important;
   }
 
   .second-featured-image {
     height: 250px !important;
   }
 
+  .featured-image {
+    height: 250px !important;
+  }
+
   .second-featured-content {
+    padding: 0 !important;
+  }
+
+  .featured-content {
     padding: 0 !important;
   }
 
@@ -4368,6 +4430,16 @@ body.theme-light .team-tab.vertical:first-child.active {
   }
 
   .second-featured-bottom-content {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  .featured-top-content {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-6) !important;
+  }
+
+  .featured-bottom-content {
     padding-left: var(--space-4) !important;
     padding-right: var(--space-6) !important;
   }
@@ -4452,6 +4524,12 @@ body.theme-light .team-tab.vertical:first-child.active {
     padding: 0 !important;
   }
 
+  .left-content-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   .second-secondary-section {
     width: 100% !important;
     margin: 0 !important;
@@ -4466,6 +4544,12 @@ body.theme-light .team-tab.vertical:first-child.active {
   }
 
   .second-three-column-layout {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .three-column-layout {
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -4607,6 +4691,7 @@ body.theme-light .team-tab.vertical:first-child.active {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 0;
   display: block;
   flex: 1;
@@ -4900,6 +4985,7 @@ body:not(.theme-light) .second-secondary-section {
   width: 100%;
   height: 160px;
   object-fit: cover;
+  object-position: top;
   flex-shrink: 0;
   display: block;
   border-radius: 8px 8px 0 0;
@@ -5886,7 +5972,7 @@ body.theme-light
 
 .suns-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -5895,6 +5981,7 @@ body.theme-light
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -5975,8 +6062,11 @@ body.theme-light
 .mercury-card-content .article-category-tag {
   display: block !important;
   width: 100% !important;
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   order: -2 !important;
 }
 
@@ -6114,7 +6204,7 @@ body.theme-light .cardinals-section-header .see-more-link {
 
 .cardinals-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -6123,6 +6213,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -6278,7 +6369,7 @@ body.theme-light .cardinals-section-header .see-more-link {
 
 .diamondbacks-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -6287,6 +6378,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -6414,7 +6506,7 @@ body.theme-light .cardinals-section-header .see-more-link {
 
 .recaps-card-image {
   width: 100%;
-  height: 160px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -6423,6 +6515,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -6575,7 +6668,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 }
 .draft-card-image {
   width: 100%;
-  height: 160px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -6583,6 +6676,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 /* Image scale effect removed to match other sections */
@@ -6716,7 +6810,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 
 .mercury-card-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
 }
@@ -6725,6 +6819,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -6903,6 +6998,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.3s ease;
 }
 
@@ -7256,6 +7352,12 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     padding: var(--space-4) !important;
   }
 
+  /* Add same padding to regular featured article text content for mobile */
+  .featured-top-content,
+  .featured-bottom-content {
+    padding: var(--space-4) !important;
+  }
+
   /* Section spacing */
   .suns-section,
   .cardinals-section,
@@ -7288,6 +7390,204 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 
   .right-sidebar {
     order: 3 !important;
+  }
+
+  /* ===== UNIFIED MOBILE CARD STYLING ===== */
+
+  /* UNIFIED FEATURED ARTICLE STYLING - All sections */
+  .featured-article,
+  .second-featured-article,
+  .center-featured .featured-article,
+  .second-center-featured .second-featured-article {
+    /* Container */
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+
+    /* Layout */
+    background: var(--bg-secondary) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border-primary) !important;
+  }
+
+  /* UNIFIED IMAGE CONTAINER STYLING */
+  .featured-image-container,
+  .second-featured-image-container {
+    order: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    border-radius: 8px 8px 0 0 !important;
+  }
+
+  /* UNIFIED CONTENT CONTAINER STYLING */
+  .featured-content,
+  .second-featured-content {
+    order: 2 !important;
+    width: 100% !important;
+    padding: var(--space-4) !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+  }
+
+  /* UNIFIED TYPOGRAPHY STYLING */
+  .featured-title,
+  .second-featured-title {
+    font-size: var(--text-xl) !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-primary) !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .featured-description,
+  .second-featured-description {
+    font-size: var(--text-base) !important;
+    font-weight: 300 !important;
+    line-height: 1.6 !important;
+    color: var(--text-secondary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-secondary) !important;
+  }
+
+  /* UNIFIED META STYLING */
+  .featured-meta,
+  .second-featured-meta,
+  .featured-bottom-content,
+  .second-featured-bottom-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+  }
+
+  .featured-author,
+  .second-featured-author,
+  .featured-timestamp,
+  .second-featured-timestamp {
+    font-size: 0.85rem !important;
+    font-family: var(--font-secondary) !important;
+    color: var(--text-tertiary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* UNIFIED SECONDARY CARD STYLING - All team sections */
+  .suns-article-card,
+  .cardinals-article-card,
+  .diamondbacks-article-card,
+  .mercury-article-card,
+  .recaps-article-card,
+  .news-left-sidebar-article,
+  .sidebar-article,
+  .trades-sidebar-article,
+  .freeagency-sidebar-article {
+    /* Container */
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 var(--space-3) 0 !important;
+    padding: var(--space-4) !important;
+    box-sizing: border-box !important;
+
+    /* Layout */
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-primary) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* UNIFIED SECONDARY CARD CONTENT */
+  .suns-card-content,
+  .cardinals-card-content,
+  .diamondbacks-card-content,
+  .mercury-card-content,
+  .recaps-card-content,
+  .news-left-sidebar-article-content,
+  .sidebar-article-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* UNIFIED SECONDARY CARD TYPOGRAPHY */
+  .suns-card-title,
+  .cardinals-card-title,
+  .diamondbacks-card-title,
+  .mercury-card-title,
+  .recaps-card-title,
+  .news-left-sidebar-article-title,
+  .sidebar-article-title {
+    font-size: var(--text-lg) !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-primary) !important;
+  }
+
+  .suns-card-description,
+  .cardinals-card-description,
+  .diamondbacks-card-description,
+  .mercury-card-description,
+  .recaps-card-description,
+  .news-left-sidebar-article-description,
+  .sidebar-article-description {
+    font-size: var(--text-sm) !important;
+    font-weight: 300 !important;
+    line-height: 1.5 !important;
+    color: var(--text-secondary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-secondary) !important;
+  }
+
+  /* UNIFIED SECONDARY CARD META */
+  .suns-card-meta,
+  .cardinals-card-meta,
+  .diamondbacks-card-meta,
+  .mercury-card-meta,
+  .recaps-card-meta,
+  .news-left-sidebar-article-meta,
+  .sidebar-article-meta {
+    font-size: 0.8rem !important;
+    color: var(--text-tertiary) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-secondary) !important;
+  }
+
+  /* UNIFIED HOVER STATES */
+  .suns-article-card:hover,
+  .cardinals-article-card:hover,
+  .diamondbacks-article-card:hover,
+  .mercury-article-card:hover,
+  .recaps-article-card:hover,
+  .news-left-sidebar-article:hover,
+  .sidebar-article:hover,
+  .trades-sidebar-article:hover,
+  .freeagency-sidebar-article:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
   }
 }
 
@@ -7360,94 +7660,8 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 }
 
 /* ===== LIGHT/DARK MODE MOBILE CONSISTENCY ===== */
+/* Note: Light/dark mode consistency now handled by unified mobile styling using CSS variables */
 
-/* Mobile light mode improvements */
-@media (max-width: 768px) {
-  /* Light mode background consistency */
-  body.theme-light .blog-container {
-    background-color: #fafafa;
-  }
-
-  body.theme-light .suns-section,
-  body.theme-light .cardinals-section,
-  body.theme-light .diamondbacks-section,
-  body.theme-light .mercury-section {
-    background-color: #fafafa;
-  }
-
-  /* Light mode card styling */
-  body.theme-light .suns-article-card,
-  body.theme-light .cardinals-article-card,
-  body.theme-light .diamondbacks-article-card,
-  body.theme-light .mercury-article-card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Light mode typography */
-  body.theme-light .suns-card-title,
-  body.theme-light .cardinals-card-title,
-  body.theme-light .diamondbacks-card-title,
-  body.theme-light .mercury-card-title {
-    color: #1a1a1a !important;
-  }
-
-  /* Light mode section headers */
-  body.theme-light .suns-section-header,
-  body.theme-light .cardinals-section-header,
-  body.theme-light .diamondbacks-section-header,
-  body.theme-light .mercury-section-header {
-    border-color: rgba(0, 0, 0, 0.1);
-  }
-
-  /* Featured article light mode mobile */
-  body.theme-light .featured-article,
-  body.theme-light .second-featured-article {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-  }
-
-  body.theme-light .featured-title,
-  body.theme-light .second-featured-title {
-    color: #1a1a1a !important;
-  }
-
-  body.theme-light .featured-description,
-  body.theme-light .second-featured-description,
-  body.theme-light .featured-trade-description,
-  body.theme-light .featured-freeagency-description {
-    color: #666666 !important;
-  }
-}
-
-/* Mobile dark mode improvements */
-@media (max-width: 768px) {
-  /* Dark mode card enhancements */
-  body.theme-dark .suns-article-card,
-  body.theme-dark .cardinals-article-card,
-  body.theme-dark .diamondbacks-article-card,
-  body.theme-dark .mercury-article-card,
-  body:not(.theme-light) .suns-article-card,
-  body:not(.theme-light) .cardinals-article-card,
-  body:not(.theme-light) .diamondbacks-article-card,
-  body:not(.theme-light) .mercury-article-card {
-    border: 1px solid #404040;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Dark mode section dividers */
-  body.theme-dark .suns-section-header,
-  body.theme-dark .cardinals-section-header,
-  body.theme-dark .diamondbacks-section-header,
-  body.theme-dark .mercury-section-header,
-  body:not(.theme-light) .suns-section-header,
-  body:not(.theme-light) .cardinals-section-header,
-  body:not(.theme-light) .diamondbacks-section-header,
-  body:not(.theme-light) .mercury-section-header {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-}
 
 /* ===== TOUCH IMPROVEMENTS FOR MOBILE ===== */
 @media (max-width: 768px) {
@@ -7633,7 +7847,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   /* Additional Mercury-specific mobile fix for category tag alignment */
   .mercury-section .mercury-card-content .article-category-tag {
     margin: 0 !important;
-    padding: 0.4rem 0.6rem !important;
+    padding: 0.4rem 0 !important;
     margin-bottom: 0 !important;
     order: -1 !important;
   }
@@ -7798,112 +8012,52 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   }
 }
 
-/* Mobile view: Add yellow border to second-featured-article for both light and dark mode */
-@media (max-width: 600px) {
-  .second-featured-article,
-  .second-center-featured .second-featured-article {
-    border: 3px solid yellow !important;
-  }
 
-  body.theme-dark .second-featured-article,
-  body.theme-dark .second-center-featured .second-featured-article {
-    border: 3px solid yellow !important;
-  }
-
-  body.theme-light .second-featured-article,
-  body.theme-light .second-center-featured .second-featured-article {
-    border: 3px solid yellow !important;
-  }
-
-  /* Copy EXACT styling from working yellow cards */
+  /* Make featured card 98% width of red container */
   .center-featured .featured-article,
   .featured-article {
-    border: 3px solid pink !important;
+    margin: 0 auto !important;
+    width: 98% !important;
+    box-sizing: border-box !important;
   }
 
   body.theme-dark .center-featured .featured-article,
   body.theme-dark .featured-article {
-    border: 3px solid pink !important;
+    margin: 0 auto !important;
+    width: 95% !important;
+    box-sizing: border-box !important;
   }
 
   body.theme-light .center-featured .featured-article,
   body.theme-light .featured-article {
-    border: 3px solid pink !important;
+    margin: 0 auto !important;
+    width: 95% !important;
+    box-sizing: border-box !important;
   }
 
-  /* Apply same styling to featured image containers */
-  .center-featured .featured-article .featured-image-container,
-  .featured-article .featured-image-container,
-  .center-featured .featured-article .featured-image,
-  .featured-article .featured-image {
-    border-radius: 8px !important;
-    overflow: hidden !important;
+  /* Copy EXACT yellow card mobile styles to featured article */
+  .featured-image-container {
+    order: 1 !important;
     width: 100% !important;
-    height: auto !important;
-  }
-
-  body.theme-dark .center-featured .featured-article .featured-image-container,
-  body.theme-dark .featured-article .featured-image-container,
-  body.theme-dark .center-featured .featured-article .featured-image,
-  body.theme-dark .featured-article .featured-image {
-    border-radius: 8px !important;
+    height: 350px !important;
     overflow: hidden !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .featured-content {
+    order: 2 !important;
     width: 100% !important;
-    height: auto !important;
+    padding: var(--space-4) !important;
   }
 
-  body.theme-light .center-featured .featured-article .featured-image-container,
-  body.theme-light .featured-article .featured-image-container,
-  body.theme-light .center-featured .featured-article .featured-image,
-  body.theme-light .featured-article .featured-image {
-    border-radius: 8px !important;
-    overflow: hidden !important;
-    width: 100% !important;
-    height: auto !important;
+  /* Add padding to featured article text content */
+  .featured-top-content,
+  .featured-bottom-content {
+    padding: var(--space-4) !important;
   }
 
-  /* Reset and style content elements to match yellow border cards */
-  .center-featured .featured-article .featured-content,
-  .featured-article .featured-content,
-  .center-featured .featured-article .featured-title,
-  .featured-article .featured-title,
-  .center-featured .featured-article .featured-description,
-  .featured-article .featured-description,
-  .center-featured .featured-article .featured-meta,
-  .featured-article .featured-meta {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-  }
 
-  body.theme-dark .center-featured .featured-article .featured-content,
-  body.theme-dark .featured-article .featured-content,
-  body.theme-dark .center-featured .featured-article .featured-title,
-  body.theme-dark .featured-article .featured-title,
-  body.theme-dark .center-featured .featured-article .featured-description,
-  body.theme-dark .featured-article .featured-description,
-  body.theme-dark .center-featured .featured-article .featured-meta,
-  body.theme-dark .featured-article .featured-meta {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-  }
 
-  body.theme-light .center-featured .featured-article .featured-content,
-  body.theme-light .featured-article .featured-content,
-  body.theme-light .center-featured .featured-article .featured-title,
-  body.theme-light .featured-article .featured-title,
-  body.theme-light .center-featured .featured-article .featured-description,
-  body.theme-light .featured-article .featured-description,
-  body.theme-light .center-featured .featured-article .featured-meta,
-  body.theme-light .featured-article .featured-meta {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-  }
 
   /* Override: Add red borders to secondary cards (text-only cards) in Top Stories for mobile */
   .second-right-sidebar .second-latest-article {
@@ -8006,6 +8160,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   .featured-image {
     height: 400px !important;
     object-fit: cover !important;
+    object-position: top !important;
     width: 100% !important;
     border-radius: 0 !important;
     display: block !important;
@@ -8027,7 +8182,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   .featured-wildcats-image,
   .featured-sundevils-image {
     width: 100% !important;
-    height: 400px !important;
+    height: 250px !important;
     margin: 0 !important;
     overflow: hidden !important;
     position: relative !important;
@@ -8041,6 +8196,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    object-position: top !important;
     border-radius: 0 !important;
     display: block !important;
     flex: 1 !important;
@@ -8086,16 +8242,25 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     border-top: none !important;
     border-bottom: none !important;
   }
-}
 
 /* FEATURED IMAGES OVERRIDE - Apply second-featured-article styling to all featured images at mobile breakpoint */
 @media (max-width: 1025px) {
   /* Force all featured images to match second-featured-article behavior */
-  .featured-image-container,
+  .featured-image-container {
+    width: 100% !important;
+    height: 250px !important;
+    margin: 0 !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+    order: 1 !important;
+  }
+
   .featured-trade-image,
   .featured-freeagency-image {
     width: 100% !important;
-    height: 400px !important;
+    height: 250px !important;
     margin: 0 !important;
     margin-bottom: var(--space-4) !important;
     overflow: hidden !important;
@@ -8110,6 +8275,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    object-position: top !important;
     border-radius: 0 !important;
     display: block !important;
     flex: 1 !important;
@@ -8151,11 +8317,20 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   }
 
   /* Light mode image containers */
-  body.theme-light .featured-image-container,
+  body.theme-light .featured-image-container {
+    width: 100% !important;
+    height: 250px !important;
+    margin: 0 !important;
+    margin-bottom: var(--space-4) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+  }
+
   body.theme-light .featured-trade-image,
   body.theme-light .featured-freeagency-image {
     width: 100% !important;
-    height: 400px !important;
+    height: 250px !important;
     margin: 0 !important;
     margin-bottom: var(--space-4) !important;
     overflow: hidden !important;
@@ -8377,8 +8552,8 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   .featured-article,
   .featured-trade-article,
   .featured-freeagency-article {
-    margin: 0 0 var(--space-8) 0 !important;
-    width: 100% !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) var(--space-8) calc(-1 * var(--space-3)) !important;
+    width: calc(100% + 2 * var(--space-3)) !important;
     max-width: none !important;
     background: rgba(255, 255, 255, 0.02) !important;
     border-radius: 0 !important;
@@ -8391,16 +8566,31 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     border: 1px solid var(--border-primary) !important;
   }
 
-  .featured-image-container,
+  .featured-image-container {
+    order: 1 !important;
+    width: 100% !important;
+    margin-bottom: var(--space-4) !important;
+    height: 250px !important;
+    position: relative !important;
+    display: flex !important;
+    overflow: hidden !important;
+  }
+
   .featured-trade-image,
   .featured-freeagency-image {
     order: 1 !important;
     width: 100% !important;
     margin-bottom: var(--space-4) !important;
-    height: 400px !important;
-    overflow: hidden !important;
+    height: 250px !important;
     position: relative !important;
     display: flex !important;
+    overflow: hidden !important;
+  }
+
+  /* Make news section featured image consistent */
+  .center-featured .featured-image-container,
+  .left-content-container .featured-image-container {
+    height: 250px !important;
   }
 
   .featured-content,
@@ -8489,5 +8679,930 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   .draft-section .draft-articles-container .draft-article-card:nth-child(7) {
     margin-left: calc(16.666% + var(--space-2)) !important;
     margin-right: 0 !important;
+  }
+
+  /* Remove green border from main article card in news section on mobile */
+  #news-section-specific ~ .left-content-container .center-featured .featured-article,
+  .left-content-container .center-featured .featured-article {
+    border: none !important;
+    border-radius: 8px !important;
+    width: 98% !important;
+    max-width: 98% !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-dark #news-section-specific ~ .left-content-container .center-featured .featured-article,
+  body.theme-dark .left-content-container .center-featured .featured-article {
+    border: none !important;
+  }
+
+  body.theme-light #news-section-specific ~ .left-content-container .center-featured .featured-article,
+  body.theme-light .left-content-container .center-featured .featured-article {
+    border: none !important;
+  }
+
+  /* Set image size for news section main article on mobile */
+  #news-section-specific ~ .left-content-container .center-featured .featured-image-container,
+  .left-content-container .center-featured .featured-image-container {
+    height: 250px !important;
+    max-height: 250px !important;
+  }
+
+  #news-section-specific ~ .left-content-container .center-featured .featured-image,
+  .left-content-container .center-featured .featured-image {
+    height: 250px !important;
+    max-height: 250px !important;
+    object-fit: cover !important;
+    object-position: top !important;
+  }
+
+  /* Decrease content card section size and margins/gaps */
+  #news-section-specific ~ .left-content-container .center-featured .featured-content,
+  .left-content-container .center-featured .featured-content {
+    padding: 0 !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #news-section-specific ~ .left-content-container .center-featured .featured-top-content,
+  .left-content-container .center-featured .featured-top-content {
+    margin: 0 !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #news-section-specific ~ .left-content-container .center-featured .featured-title,
+  .left-content-container .center-featured .featured-title {
+    font-size: 1.2rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 8px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #news-section-specific ~ .left-content-container .center-featured .featured-description,
+  .left-content-container .center-featured .featured-description {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #news-section-specific ~ .left-content-container .center-featured .featured-bottom-content,
+  .left-content-container .center-featured .featured-bottom-content {
+    margin: 0 !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove right sidebar padding on mobile to align cards with left edge */
+  #news-section-specific ~ .right-sidebar,
+  .right-sidebar {
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
+
+  body.theme-light #news-section-specific ~ .right-sidebar,
+  body.theme-light .right-sidebar {
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
+
+  /* Remove red border from news section containers on mobile */
+  .three-column-layout {
+    border: none !important;
+  }
+
+  #news-section-specific ~ .left-content-container,
+  .left-content-container {
+    border: none !important;
+  }
+
+  /* Style secondary cards in news section right sidebar on mobile */
+  #news-section-specific ~ .right-sidebar .latest-article,
+  .right-sidebar .latest-article {
+    width: 98% !important;
+    max-width: 98% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 8px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-dark .three-column-layout .right-sidebar .latest-article,
+  body.theme-dark #news-section-specific ~ .right-sidebar .latest-article,
+  body.theme-dark .right-sidebar .latest-article {
+    border: none !important;
+    width: 98% !important;
+    max-width: 98% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 8px !important;
+    box-sizing: border-box !important;
+    background: var(--bg-secondary) !important;
+    border-radius: 8px !important;
+  }
+
+  body.theme-light .three-column-layout .right-sidebar .latest-article,
+  body.theme-light #news-section-specific ~ .right-sidebar .latest-article,
+  body.theme-light .right-sidebar .latest-article {
+    border: none !important;
+    width: 98% !important;
+    max-width: 98% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 8px !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border-radius: 8px !important;
+  }
+
+  #news-section-specific ~ .right-sidebar .latest-article-title,
+  .right-sidebar .latest-article-title {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 6px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.theme-dark .three-column-layout .right-sidebar .latest-article-title,
+  body.theme-dark #news-section-specific ~ .right-sidebar .latest-article-title,
+  body.theme-dark .right-sidebar .latest-article-title {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 6px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.theme-light .three-column-layout .right-sidebar .latest-article-title,
+  body.theme-light #news-section-specific ~ .right-sidebar .latest-article-title,
+  body.theme-light .right-sidebar .latest-article-title {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 6px 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Align category tags with title and author date - remove left margin */
+  #news-section-specific ~ .right-sidebar .article-category-tag,
+  .right-sidebar .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-dark #news-section-specific ~ .right-sidebar .article-category-tag,
+  body.theme-dark .right-sidebar .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-light #news-section-specific ~ .right-sidebar .article-category-tag,
+  body.theme-light .right-sidebar .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  #news-section-specific ~ .right-sidebar .latest-article-content,
+  .right-sidebar .latest-article-content {
+    padding: 4px !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #news-section-specific ~ .right-sidebar .latest-article-top,
+  .right-sidebar .latest-article-top {
+    margin: 0 0 2px 0 !important;
+    width: 100% !important;
+  }
+
+  #news-section-specific ~ .right-sidebar .latest-article-bottom,
+  .right-sidebar .latest-article-bottom {
+    margin: 2px 0 0 0 !important;
+    width: 100% !important;
+  }
+
+  /* Apply Top Stories card styling to Suns cards */
+  .suns-section .suns-article-card,
+  .suns-article-card {
+    border: none !important;
+    margin-bottom: 12px !important;
+  }
+
+  body.theme-dark .suns-section .suns-article-card,
+  body.theme-dark .suns-article-card {
+    border: none !important;
+  }
+
+  body.theme-light .suns-section .suns-article-card,
+  body.theme-light .suns-article-card {
+    border: none !important;
+  }
+
+  /* Apply Top Stories content styling to Suns cards - try different element targeting */
+  .suns-section .suns-article-card,
+  .suns-article-card {
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+  }
+
+  .suns-section .suns-article-card article,
+  .suns-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .suns-section .suns-card-content,
+  .suns-article-card .suns-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  /* Apply exact Top Stories title area styling to Suns cards */
+  .suns-section .suns-card-title,
+  .suns-article-card .suns-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  body.theme-dark .suns-section .suns-card-title,
+  body.theme-dark .suns-article-card .suns-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  body.theme-light .suns-section .suns-card-title,
+  body.theme-light .suns-article-card .suns-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Apply exact Top Stories meta area styling to Suns cards */
+  .suns-section .suns-card-meta,
+  .suns-article-card .suns-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Apply Top Stories category tag styling to Suns cards */
+  .suns-section .article-category-tag,
+  .suns-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-dark .suns-section .article-category-tag,
+  body.theme-dark .suns-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-light .suns-section .article-category-tag,
+  body.theme-light .suns-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Apply same styling to Cardinals, Diamondbacks, and Mercury sections */
+
+  /* Cardinals section */
+  .cardinals-section .cardinals-article-card,
+  .cardinals-article-card {
+    border: none !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .cardinals-section .cardinals-article-card article,
+  .cardinals-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .cardinals-section .cardinals-card-content,
+  .cardinals-article-card .cardinals-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  .cardinals-section .cardinals-card-title,
+  .cardinals-article-card .cardinals-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .cardinals-section .cardinals-card-meta,
+  .cardinals-article-card .cardinals-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .cardinals-section .article-category-tag,
+  .cardinals-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Diamondbacks section */
+  .diamondbacks-section .diamondbacks-article-card,
+  .diamondbacks-article-card {
+    border: none !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .diamondbacks-section .diamondbacks-article-card article,
+  .diamondbacks-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .diamondbacks-section .diamondbacks-card-content,
+  .diamondbacks-article-card .diamondbacks-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  .diamondbacks-section .diamondbacks-card-title,
+  .diamondbacks-article-card .diamondbacks-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .diamondbacks-section .diamondbacks-card-meta,
+  .diamondbacks-article-card .diamondbacks-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .diamondbacks-section .article-category-tag,
+  .diamondbacks-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Mercury section */
+  .mercury-section .mercury-article-card,
+  .mercury-article-card {
+    border: none !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .mercury-section .mercury-article-card article,
+  .mercury-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .mercury-section .mercury-card-content,
+  .mercury-article-card .mercury-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  .mercury-section .mercury-card-title,
+  .mercury-article-card .mercury-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .mercury-section .mercury-card-meta,
+  .mercury-article-card .mercury-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .mercury-section .article-category-tag,
+  .mercury-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Apply theme-specific styling to all team sections */
+  body.theme-dark .cardinals-section .cardinals-article-card,
+  body.theme-dark .cardinals-article-card,
+  body.theme-dark .diamondbacks-section .diamondbacks-article-card,
+  body.theme-dark .diamondbacks-article-card,
+  body.theme-dark .mercury-section .mercury-article-card,
+  body.theme-dark .mercury-article-card {
+    border: none !important;
+  }
+
+  body.theme-light .cardinals-section .cardinals-article-card,
+  body.theme-light .cardinals-article-card,
+  body.theme-light .diamondbacks-section .diamondbacks-article-card,
+  body.theme-light .diamondbacks-article-card,
+  body.theme-light .mercury-section .mercury-article-card,
+  body.theme-light .mercury-article-card {
+    border: none !important;
+  }
+
+  /* Override recaps layout to match Suns section exactly */
+  .recaps-section .recaps-articles-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-row {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+  }
+
+  /* Apply exact Suns section styling to recaps section */
+  .recaps-section .recaps-articles-container .recaps-article-card,
+  .recaps-section .recaps-article-card,
+  .recaps-article-card {
+    border: none !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    margin-bottom: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    grid-column: unset !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-article-card article,
+  .recaps-section .recaps-article-card article,
+  .recaps-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-card-content,
+  .recaps-section .recaps-card-content,
+  .recaps-article-card .recaps-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-card-title,
+  .recaps-section .recaps-card-title,
+  .recaps-article-card .recaps-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .recaps-section .recaps-articles-container .recaps-card-meta,
+  .recaps-section .recaps-card-meta,
+  .recaps-article-card .recaps-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .recaps-section .recaps-articles-container .article-category-tag,
+  .recaps-section .article-category-tag,
+  .recaps-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  body.theme-dark .recaps-section .recaps-articles-container .article-category-tag,
+  body.theme-dark .recaps-section .article-category-tag,
+  body.theme-dark .recaps-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  body.theme-light .recaps-section .recaps-articles-container .article-category-tag,
+  body.theme-light .recaps-section .article-category-tag,
+  body.theme-light .recaps-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  /* Theme-specific styling for recaps - exact Suns approach */
+  body.theme-dark .recaps-section .recaps-articles-container .recaps-article-card,
+  body.theme-dark .recaps-section .recaps-article-card,
+  body.theme-dark .recaps-article-card {
+    border: none !important;
+  }
+
+  body.theme-light .recaps-section .recaps-articles-container .recaps-article-card,
+  body.theme-light .recaps-section .recaps-article-card,
+  body.theme-light .recaps-article-card {
+    border: none !important;
+  }
+
+  body.theme-dark .recaps-section .recaps-articles-container .recaps-card-title,
+  body.theme-dark .recaps-section .recaps-card-title,
+  body.theme-dark .recaps-article-card .recaps-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  body.theme-light .recaps-section .recaps-articles-container .recaps-card-title,
+  body.theme-light .recaps-section .recaps-card-title,
+  body.theme-light .recaps-article-card .recaps-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Force entire trades section to full width and remove background */
+  .two-column-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  .trades-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  .trades-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Make trades section card take full width of screen */
+  .trades-column .featured-trade-article,
+  .featured-trade-article {
+    border: none !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-dark .trades-column .featured-trade-article,
+  body.theme-dark .featured-trade-article {
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-light .trades-column .featured-trade-article,
+  body.theme-light .featured-trade-article {
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Remove white background from trades section in light mode */
+  body.theme-light .two-column-section,
+  body.theme-light .trades-column,
+  body.theme-light .trades-content,
+  body.theme-light .trades-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  body.theme-dark .two-column-section,
+  body.theme-dark .trades-column,
+  body.theme-dark .trades-content,
+  body.theme-dark .trades-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Apply same styling to Free Agency section */
+  .freeagency-column {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  .freeagency-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Make free agency section card take full width of screen */
+  .freeagency-column .featured-freeagency-article,
+  .featured-freeagency-article {
+    border: none !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-dark .freeagency-column .featured-freeagency-article,
+  body.theme-dark .featured-freeagency-article {
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.theme-light .freeagency-column .featured-freeagency-article,
+  body.theme-light .featured-freeagency-article {
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Remove background from free agency section in both themes */
+  body.theme-light .freeagency-column,
+  body.theme-light .freeagency-content,
+  body.theme-light .freeagency-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  body.theme-dark .freeagency-column,
+  body.theme-dark .freeagency-content,
+  body.theme-dark .freeagency-header {
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Apply Suns section styling to Draft section */
+  .draft-section .draft-articles-container .draft-article-card,
+  .draft-section .draft-article-card,
+  .draft-article-card {
+    border: none !important;
+    margin: var(--space-6) calc(-1 * var(--space-3)) !important;
+    margin-bottom: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    grid-column: unset !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .draft-section .draft-articles-container .draft-article-card article,
+  .draft-section .draft-article-card article,
+  .draft-article-card article {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .draft-section .draft-articles-container .draft-card-content,
+  .draft-section .draft-card-content,
+  .draft-article-card .draft-card-content {
+    margin: 0 !important;
+    padding: 0 0 0 24px !important;
+    height: auto !important;
+  }
+
+  .draft-section .draft-articles-container .draft-card-title,
+  .draft-section .draft-card-title,
+  .draft-article-card .draft-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .draft-section .draft-articles-container .draft-card-meta,
+  .draft-section .draft-card-meta,
+  .draft-article-card .draft-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .draft-section .draft-articles-container .article-category-tag,
+  .draft-section .article-category-tag,
+  .draft-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  /* Theme-specific styling for draft - exact Suns approach */
+  body.theme-dark .draft-section .draft-articles-container .draft-article-card,
+  body.theme-dark .draft-section .draft-article-card,
+  body.theme-dark .draft-article-card {
+    border: none !important;
+  }
+
+  body.theme-light .draft-section .draft-articles-container .draft-article-card,
+  body.theme-light .draft-section .draft-article-card,
+  body.theme-light .draft-article-card {
+    border: none !important;
+  }
+
+  body.theme-dark .draft-section .draft-articles-container .draft-card-title,
+  body.theme-dark .draft-section .draft-card-title,
+  body.theme-dark .draft-article-card .draft-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  body.theme-light .draft-section .draft-articles-container .draft-card-title,
+  body.theme-light .draft-section .draft-card-title,
+  body.theme-light .draft-article-card .draft-card-title {
+    padding: var(--space-4) var(--space-6) 4px var(--space-4) !important;
+    font-size: 1.1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  body.theme-dark .draft-section .draft-articles-container .article-category-tag,
+  body.theme-dark .draft-section .article-category-tag,
+  body.theme-dark .draft-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  body.theme-light .draft-section .draft-articles-container .article-category-tag,
+  body.theme-light .draft-section .article-category-tag,
+  body.theme-light .draft-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--space-4) !important;
+    margin-top: 4px !important;
+  }
+
+  /* Override draft layout to match Suns section exactly */
+  .draft-section .draft-articles-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+  }
+
+  .draft-section .draft-articles-container .draft-row {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+  }
+
+  /* Fix Top Stories cards - remove white space at top */
+  .second-secondary-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+
+  .second-secondary-card-image {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 8px 8px 0 0 !important;
+    display: block !important;
+  }
+
+  .second-secondary-card-image img {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    border-radius: 8px 8px 0 0 !important;
+  }
+
+  .second-latest-article-content {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .second-latest-article-title {
+    margin-top: 12px !important;
+  }
+
+  body.theme-dark .second-secondary-card,
+  body.theme-light .second-secondary-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.theme-dark .second-latest-article-title,
+  body.theme-light .second-latest-article-title {
+    margin-top: 12px !important;
+  }
+
+  .second-latest-author-date {
+    margin-bottom: 12px !important;
+  }
+
+  body.theme-dark .second-latest-author-date,
+  body.theme-light .second-latest-author-date {
+    margin-bottom: 12px !important;
+  }
+
+  /* Add divider between author and date in Top Stories secondary cards only */
+  .second-right-sidebar .second-latest-author-date {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .second-right-sidebar .second-latest-divider {
+    color: #999 !important;
+    margin: 0 4px !important;
+  }
+
+  body.theme-dark .second-right-sidebar .second-latest-divider {
+    color: #666 !important;
+  }
+
+  body.theme-light .second-right-sidebar .second-latest-divider {
+    color: #999 !important;
   }
 }
