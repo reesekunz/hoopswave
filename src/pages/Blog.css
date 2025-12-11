@@ -779,7 +779,7 @@ a {
 .blog-header {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #8c1d40;
+  /* No border - handled by section-border class */
 }
 
 .blog-title {
@@ -1716,7 +1716,7 @@ body.theme-light .second-featured-timestamp {
 }
 
 .left-sidebar-article:last-child {
-  border-bottom: none;
+  /* No border - handled by section-border class */
   margin-bottom: 0;
 }
 
@@ -2111,7 +2111,7 @@ body.theme-light .second-featured-timestamp {
 }
 
 .sidebar-article:last-child {
-  border-bottom: none;
+  /* No border - handled by section-border class */
 }
 
 .sidebar-category {
@@ -2526,9 +2526,138 @@ body.theme-light .second-featured-timestamp {
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
   position: relative;
   z-index: 2;
+}
+
+/* Section Border Classes - Match Title Colors */
+
+/* Content sections - match theme text color */
+.news-section-header.section-border,
+.rumors-section-header.section-border,
+.analysis-section-header.section-border,
+.recaps-section-header.section-border,
+.draft-section-header.section-border {
+  border-bottom: 1px solid var(--text-primary) !important;
+}
+
+/* Team sections - match team colors */
+.suns-section-header.section-border {
+  border-bottom: 1px solid #E56020 !important;
+}
+
+.cardinals-section-header.section-border {
+  border-bottom: 1px solid #8C1D40 !important;
+}
+
+.diamondbacks-section-header.section-border {
+  border-bottom: 1px solid #17A2B8 !important;
+}
+
+.mercury-section-header.section-border {
+  border-bottom: 1px solid #6B46C1 !important;
+}
+
+/* Draft section moved to content sections */
+
+/* Two-column sections - match theme text color */
+.trades-header.section-border,
+.freeagency-header.section-border {
+  border-bottom: 1px solid var(--text-primary) !important;
+}
+
+/* Override any conflicting orange defaults across all elements */
+.section-border {
+  border-bottom: none !important;
+}
+
+.section-border *,
+.section-border .section-header,
+.section-border .section-header *,
+.section-border .section-header::after,
+.section-border .section-header::before {
+  border-bottom: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Restore only the see-more button borders - not background colors */
+.section-border .see-more,
+.section-border .see-more-link {
+  border: 1px solid currentColor !important;
+  border-bottom: 1px solid currentColor !important;
+  background: transparent !important;
+}
+
+/* Responsive support - ensure borders work on all device sizes */
+@media (max-width: 1024px) {
+  .news-section-header.section-border,
+  .rumors-section-header.section-border,
+  .analysis-section-header.section-border,
+  .recaps-section-header.section-border,
+  .draft-section-header.section-border {
+    border-bottom: 1px solid var(--text-primary) !important;
+  }
+
+  .suns-section-header.section-border {
+    border-bottom: 1px solid #E56020 !important;
+  }
+
+  .cardinals-section-header.section-border {
+    border-bottom: 1px solid #8C1D40 !important;
+  }
+
+  .diamondbacks-section-header.section-border {
+    border-bottom: 1px solid #17A2B8 !important;
+  }
+
+  .mercury-section-header.section-border {
+    border-bottom: 1px solid #6B46C1 !important;
+  }
+
+  .draft-section-header.section-border {
+    border-bottom: 1px solid #DC2626 !important;
+  }
+
+  .trades-header.section-border,
+  .freeagency-header.section-border {
+    border-bottom: 1px solid var(--text-primary) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-section-header.section-border,
+  .rumors-section-header.section-border,
+  .analysis-section-header.section-border,
+  .recaps-section-header.section-border,
+  .draft-section-header.section-border {
+    border-bottom: 1px solid var(--text-primary) !important;
+  }
+
+  .suns-section-header.section-border {
+    border-bottom: 1px solid #E56020 !important;
+  }
+
+  .cardinals-section-header.section-border {
+    border-bottom: 1px solid #8C1D40 !important;
+  }
+
+  .diamondbacks-section-header.section-border {
+    border-bottom: 1px solid #17A2B8 !important;
+  }
+
+  .mercury-section-header.section-border {
+    border-bottom: 1px solid #6B46C1 !important;
+  }
+
+  .draft-section-header.section-border {
+    border-bottom: 1px solid #DC2626 !important;
+  }
+
+  .trades-header.section-border,
+  .freeagency-header.section-border {
+    border-bottom: 1px solid var(--text-primary) !important;
+  }
 }
 
 @media (min-width: 1025px) {
@@ -2545,7 +2674,7 @@ body.theme-light .second-featured-timestamp {
   left: 0;
   width: 80px;
   height: 3px;
-  background: transparent;
+  background: var(--text-primary);
   border-radius: 2px;
 }
 
@@ -3846,56 +3975,14 @@ body.theme-dark #news-section-specific .see-more:hover,
   border-color: #cccccc !important;
 }
 
-/* Add section border for news section in dark mode */
-body.theme-dark .news-section-header,
-.news-section-header {
-  border-bottom: 1px solid #ffffff !important;
+/* Hide orange pseudo-element for all sections */
+.section-header::after {
+  display: none !important;
 }
 
-/* Light mode border for news section */
-body.theme-light .news-section-header {
-  border-bottom: 1px solid #1a1a1a !important;
-}
+/* Light mode borders handled by section-border class */
 
-/* Add section borders for rumors, analysis, recaps, trades, and free agency in dark mode */
-body.theme-dark .rumors-section-header,
-.rumors-section-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-body.theme-dark .analysis-section-header,
-.analysis-section-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-body.theme-dark .trades-header,
-.trades-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-body.theme-dark .freeagency-header,
-.freeagency-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-/* Light mode borders for consistency */
-body.theme-light .rumors-section-header {
-  border-bottom: 1px solid #1a1a1a !important;
-}
-
-body.theme-light .analysis-section-header {
-  border-bottom: 1px solid #1a1a1a !important;
-}
-
-/* Add draft section border */
-body.theme-dark .draft-section-header,
-.draft-section-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-body.theme-light .draft-section-header {
-  border-bottom: 1px solid #1a1a1a !important;
-}
+/* Draft section border now handled in content sections group */
 /* Make RUMORS section header and see more button white in dark mode */
 body.theme-dark .rumors-section-header .section-title,
 .rumors-section-header .section-title {
@@ -3978,15 +4065,7 @@ body.theme-dark #recaps-section-specific .see-more:hover,
   border-color: #cccccc !important;
 }
 /* Add section border for recaps section in dark mode */
-body.theme-dark .recaps-section-header,
-.recaps-section-header {
-  border-bottom: 1px solid #ffffff !important;
-}
-
-/* Light mode border for recaps section */
-body.theme-light .recaps-section-header {
-  border-bottom: 1px solid #1a1a1a !important;
-}
+/* Recaps section border handled by section-border class */
 /* Make WILDCATS section header and see more button U of A red in dark mode */
 body.theme-dark #wildcats-sundevils-section .trades-column .trades-header,
 #wildcats-sundevils-section .trades-column .trades-header {
@@ -5252,14 +5331,14 @@ body:not(.theme-light) .second-secondary-section {
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e56020;
+  /* No border - handled by section-border class */
 }
 
 .suns-section-header .section-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: #97233f;
+  color: var(--text-primary);
 }
 
 .suns-section-header .see-more-link {
@@ -5588,12 +5667,12 @@ body.theme-light .sundevils-column {
 }
 
 /* Section headers */
-body.theme-light .trades-header,
-body.theme-light .freeagency-header,
 body.theme-light .wildcats-header,
 body.theme-light .sundevils-header {
-  border-bottom: 1px solid #1a1a1a !important;
+  border-bottom: none !important;
 }
+
+/* Trades and freeagency borders handled by section-border class */
 
 /* Section titles */
 body.theme-light .trades-header .section-title,
@@ -6129,14 +6208,14 @@ body.theme-light
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #8c1d40;
+  /* No border - handled by section-border class */
 }
 
 .cardinals-section-header .section-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: #97233f;
+  color: var(--text-primary);
 }
 
 .cardinals-section-header .see-more-link {
@@ -6300,14 +6379,14 @@ body.theme-light .cardinals-section-header .see-more-link {
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #30ced8;
+  /* No border - handled by section-border class */
 }
 
 .diamondbacks-section-header .section-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: #97233f;
+  color: var(--text-primary);
 }
 
 .diamondbacks-section-header .see-more-link {
@@ -6442,7 +6521,7 @@ body.theme-light .cardinals-section-header .see-more-link {
 }
 
 .recaps-section-header .see-more-link {
-  color: #97233f;
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -6452,7 +6531,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   padding: 0.5rem 1rem;
   border-radius: 0;
   background: transparent;
-  border: 1px solid #97233f;
+  border: 1px solid var(--text-primary);
   font-family: var(--font-secondary);
 }
 
@@ -6587,7 +6666,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #dc2626;
+  /* No border - handled by section-border class */
 }
 .draft-section-header .section-title {
   font-size: 1.8rem;
@@ -6614,10 +6693,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Dark mode Draft section styling - white */
-body.theme-dark .draft-section-header {
-  border-bottom: 1px solid #ffffff !important;
-}
+/* Dark mode Draft section styling - border handled by section-border class */
 body.theme-dark .draft-section-header .section-title {
   color: #ffffff !important;
 }
@@ -6741,14 +6817,14 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   margin-top: 0;
   margin-bottom: var(--space-6);
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #8b5cf6;
+  /* No border - handled by section-border class */
 }
 
 .mercury-section-header .section-title {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: #97233f;
+  color: var(--text-primary);
 }
 
 .mercury-section-header .see-more-link {
@@ -7883,14 +7959,14 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     margin-top: 0;
     margin-bottom: var(--space-6);
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #97233F;
+    /* No border - handled by section-border class */
   }
 
   .top-stories-section-header .section-title {
     font-size: 1.8rem;
     font-weight: 700;
     margin: 0;
-    color: #97233F;
+    color: var(--text-primary);
   }
 
   /* Light theme styling */

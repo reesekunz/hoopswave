@@ -217,7 +217,6 @@ export default function TeamPage() {
                     )}
                     <div>
                         <h1 className="blog-title">{team.city} {team.name}</h1>
-                        <p className="team-subtitle">Latest news and updates</p>
                     </div>
                 </div>
                 <p className="blog-count">
@@ -246,40 +245,44 @@ export default function TeamPage() {
                     {featuredPost && (
                         <div className="posts-layout">
                             {/* Featured Article */}
-                            <article className="featured-article">
-                                {featuredPost.mainImage && featuredPost.mainImage.asset && (
-                                    <img
-                                        src={featuredPost.mainImage.asset.url}
-                                        alt={featuredPost.title}
-                                        className="featured-image"
-                                    />
-                                )}
-                                <div className="featured-overlay">
-                                    <div className="featured-category">{team.city} {team.name} News</div>
-                                    <h2 className="featured-title">{featuredPost.title}</h2>
-                                    <div className="featured-meta">
-                                        {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
+                            <Link to={`/${featuredPost.slug.current}`} className="featured-article-link">
+                                <article className="featured-article">
+                                    {featuredPost.mainImage && featuredPost.mainImage.asset && (
+                                        <div className="featured-image-container">
+                                            <img
+                                                src={featuredPost.mainImage.asset.url}
+                                                alt={featuredPost.title}
+                                                className="featured-image"
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="featured-content">
+                                        <h2 className="featured-title">{featuredPost.title}</h2>
+                                        <p className="featured-excerpt">
+                                            {featuredPost.body && featuredPost.body[0] && featuredPost.body[0].children && featuredPost.body[0].children[0]
+                                                ? featuredPost.body[0].children[0].text.substring(0, 150)
+                                                : 'Read the latest Phoenix Suns news and updates covering the team\'s performance, player analysis, and game highlights.'}
+                                        </p>
+                                        <div className="featured-category">{team.city} {team.name} News</div>
+                                        <div className="featured-meta">
+                                            {featuredPost.author?.name || 'Staff'} | {formatDate(featuredPost.publishedAt) || 'Recent'}
+                                        </div>
                                     </div>
-                                    <button className="read-more-btn">
-                                        <Link to={`/${featuredPost.slug.current}`} className="read-more-link">
-                                            Read Full Article
-                                        </Link>
-                                    </button>
-                                </div>
-                            </article>
+                                </article>
+                            </Link>
 
                             {/* Sidebar Articles */}
                             {sidebarPosts.length > 0 && (
                                 <aside className="sidebar-articles">
-                                    <h3 className="sidebar-title">More {team.name} Stories</h3>
+                                    <h3 className="sidebar-title">Latest {team.name} Stories</h3>
                                     {sidebarPosts.map((post) => (
                                         <article key={post.slug.current} className="sidebar-article">
-                                            <div className="sidebar-category">{team.city} {team.name} News</div>
                                             <h4 className="sidebar-article-title">
                                                 <Link to={`/${post.slug.current}`}>
                                                     {post.title}
                                                 </Link>
                                             </h4>
+                                            <div className="sidebar-category">{team.city} {team.name} News</div>
                                             <div className="sidebar-meta">
                                                 {post.author?.name || 'Staff'} | {formatDate(post.publishedAt) || 'Recent'}
                                             </div>

@@ -782,15 +782,14 @@ export default function Blog() {
 
                     <div className="three-column-layout">
                         {/* News Section Header */}
-                        <div id="news-section-specific" className="news-section-header">
+                        <div id="news-section-specific" className="news-section-header section-border">
                             <div className="section-header">
-                                <h2 className="section-title" style={{ color: '#97233F' }}>
+                                <h2 className="section-title">
                                     News
                                 </h2>
                                 <Link
                                     to="/news"
                                     className="see-more"
-                                    style={{ color: '#97233F' }}
                                 >
                                     See more
                                 </Link>
@@ -889,7 +888,7 @@ export default function Blog() {
 
                     {/* Suns Section */}
                     <div className="suns-section">
-                        <div className="suns-section-header">
+                        <div className="suns-section-header section-border">
                             <h2 className="section-title" style={{ color: '#E56020' }}>
                                 Suns
                             </h2>
@@ -930,15 +929,14 @@ export default function Blog() {
                     {/* Rumors Section */}
                     <div className="three-column-layout">
                         {/* Rumors Section Header */}
-                        <div className="rumors-section-header">
+                        <div className="rumors-section-header section-border">
                             <div className="section-header">
-                                <h2 className="section-title" style={{ color: '#97233F' }}>
+                                <h2 className="section-title">
                                     Rumors
                                 </h2>
                                 <Link
                                     to="/rumors"
                                     className="see-more"
-                                    style={{ color: '#97233F' }}
                                 >
                                     See more
                                 </Link>
@@ -1037,7 +1035,7 @@ export default function Blog() {
 
                     {/* Cardinals Section */}
                     <div className="cardinals-section">
-                        <div className="cardinals-section-header">
+                        <div className="cardinals-section-header section-border">
                             <h2 className="section-title" style={{ color: '#8C1D40' }}>
                                 Cardinals
                             </h2>
@@ -1078,15 +1076,14 @@ export default function Blog() {
                     {/* Analysis Section */}
                     <div className="three-column-layout">
                         {/* Analysis Section Header */}
-                        <div className="analysis-section-header">
+                        <div className="analysis-section-header section-border">
                             <div className="section-header">
-                                <h2 className="section-title" style={{ color: '#97233F' }}>
+                                <h2 className="section-title">
                                     Analysis
                                 </h2>
                                 <Link
                                     to="/analysis"
                                     className="see-more"
-                                    style={{ color: '#97233F' }}
                                 >
                                     See more
                                 </Link>
@@ -1185,7 +1182,7 @@ export default function Blog() {
 
                     {/* Diamondbacks Section */}
                     <div className="diamondbacks-section">
-                        <div className="diamondbacks-section-header">
+                        <div className="diamondbacks-section-header section-border">
                             <h2 className="section-title" style={{ color: '#17A2B8' }}>
                                 Diamondbacks
                             </h2>
@@ -1225,8 +1222,8 @@ export default function Blog() {
 
                     {/* Recaps Section */}
                     <div className="recaps-section">
-                        <div className="recaps-section-header">
-                            <h2 className="section-title" style={{ color: '#97233F' }}>
+                        <div className="recaps-section-header section-border">
+                            <h2 className="section-title">
                                 Recaps
                             </h2>
                             <Link to="/gamerecaps" className="see-more-link">
@@ -1295,7 +1292,7 @@ export default function Blog() {
 
                     {/* Mercury Section */}
                     <div className="mercury-section">
-                        <div className="mercury-section-header">
+                        <div className="mercury-section-header section-border">
                             <h2 className="section-title" style={{ color: '#6B46C1' }}>
                                 Mercury
                             </h2>
@@ -1337,7 +1334,7 @@ export default function Blog() {
                     <div className="two-column-section">
                         {/* Trades Column */}
                         <div className="trades-column">
-                            <div className="trades-header">
+                            <div className="trades-header section-border">
                                 <h2 className="section-title">Trades</h2>
                                 <Link to="/trades" className="see-more-link">
                                     See more
@@ -1399,7 +1396,7 @@ export default function Blog() {
 
                         {/* Free Agency Column */}
                         <div className="freeagency-column">
-                            <div className="freeagency-header">
+                            <div className="freeagency-header section-border">
                                 <h2 className="section-title">Free Agency</h2>
                                 <Link to="/freeagency" className="see-more-link">
                                     See more
@@ -1462,7 +1459,7 @@ export default function Blog() {
 
                     {/* Draft Section */}
                     <div className="draft-section">
-                        <div className="draft-section-header">
+                        <div className="draft-section-header section-border">
                             <h2 className="section-title" style={{ color: '#DC2626' }}>
                                 Draft
                             </h2>
@@ -1534,7 +1531,7 @@ export default function Blog() {
                     <div className="two-column-section" id="wildcats-sundevils-section">
                         {/* Wildcats Column */}
                         <div className="trades-column">
-                            <div className="trades-header">
+                            <div className="trades-header section-border">
                                 <h2 className="section-title">Wildcats</h2>
                                 <Link to="/wildcats" className="see-more-link">
                                     See more
@@ -1596,7 +1593,7 @@ export default function Blog() {
 
                         {/* Sun Devils Column */}
                         <div className="freeagency-column">
-                            <div className="freeagency-header">
+                            <div className="freeagency-header section-border">
                                 <h2 className="section-title">Sun Devils</h2>
                                 <Link to="/sundevils" className="see-more-link">
                                     See more
