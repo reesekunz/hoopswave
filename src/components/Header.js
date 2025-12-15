@@ -13,7 +13,7 @@ export default function Header() {
     // Check if we're on an individual article page (any path that's not / or known category pages)
     const isArticlePage = () => {
         const path = location.pathname
-        const knownPages = ['/', '/news', '/rumors', '/analysis', '/gamerecaps', '/suns', '/diamondbacks', '/cardinals', '/mercury', '/wildcats', '/sundevils', '/trades', '/draft', '/freeagency']
+        const knownPages = ['/', '/news', '/rumors', '/gamerecaps', '/suns', '/diamondbacks', '/cardinals', '/mercury', '/wildcats', '/sundevils', '/trades', '/draft', '/freeagency']
         return !knownPages.includes(path) && path !== '/blog'
     }
 
@@ -39,7 +39,6 @@ export default function Header() {
 
     // More section items
     const moreItems = [
-        { key: 'analysis', label: 'Analysis', color: '#8C1D40' },
         { key: 'gamerecaps', label: 'Recaps', color: '#8C1D40' },
         { key: 'trades', label: 'Trades', color: '#8C1D40' },
         { key: 'freeagency', label: 'Free Agency', color: '#8C1D40' },

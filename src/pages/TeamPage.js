@@ -100,21 +100,25 @@ export default function TeamPage() {
         // Look for exact category matches first
         const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
 
-        if (categoryTitles.includes('game recaps') || categoryTitles.includes('game recap')) return 'gameRecaps'
-        if (categoryTitles.includes('analysis')) return 'analysis'
+        if (categoryTitles.includes('game recaps') || categoryTitles.includes('game recap') || categoryTitles.includes('recaps')) return 'gameRecaps'
         if (categoryTitles.includes('rumors')) return 'rumors'
+        if (categoryTitles.includes('trades') || categoryTitles.includes('trade')) return 'trades'
+        if (categoryTitles.includes('free agency') || categoryTitles.includes('free agent') || categoryTitles.includes('fa')) return 'freeAgency'
+        if (categoryTitles.includes('draft') || categoryTitles.includes('nba draft')) return 'draft'
         if (categoryTitles.includes('news')) return 'news'
 
-        // Default to news if no category matches
+        // Default to news if no category matches (including former analysis posts)
         return 'news'
     }
 
     const getCategorizedPosts = () => {
         const categorized = {
             news: [],
+            rumors: [],
             gameRecaps: [],
-            analysis: [],
-            rumors: []
+            trades: [],
+            freeAgency: [],
+            draft: []
         }
 
         posts.forEach(post => {
@@ -134,10 +138,12 @@ export default function TeamPage() {
     const categorizedPosts = getCategorizedPosts()
 
     const categories = [
-        { key: 'news', label: 'News', color: '#8C1D40' },
-        { key: 'gameRecaps', label: 'Game Recaps', color: '#8C1D40' },
-        { key: 'analysis', label: 'Analysis', color: '#8C1D40' },
-        { key: 'rumors', label: 'Rumors', color: '#8C1D40' }
+        { key: 'news', label: 'News', color: '#e56020' },
+        { key: 'rumors', label: 'Rumors', color: '#e56020' },
+        { key: 'gameRecaps', label: 'Game Recaps', color: '#e56020' },
+        { key: 'trades', label: 'Trades', color: '#e56020' },
+        { key: 'freeAgency', label: 'Free Agency', color: '#e56020' },
+        { key: 'draft', label: 'Draft', color: '#e56020' }
     ]
 
     const SectionArticle = ({ post, size = 'small', isRed = false }) => (
@@ -151,15 +157,36 @@ export default function TeamPage() {
             )}
             <div className="section-content">
                 <div className="section-category">{team.city} {team.name} News</div>
-                <Link 
-                    to={`/${post.slug.current}`} 
+                <Link
+                    to={`/${post.slug.current}`}
                     className={`section-title-link ${isRed ? 'red' : ''}`}
                 >
                     {post.title}
                 </Link>
+                {size === 'large' && (
+                    <p className="section-excerpt">
+                        {post.body && post.body[0] && post.body[0].children && post.body[0].children[0]
+                            ? (() => {
+                                const text = post.body[0].children[0].text;
+                                const sentences = text.match(/[^\.!?]+[\.!?]+/g);
+                                if (!sentences) return text.length > 150 ? text.substring(0, 150) : text;
+
+                                let result = '';
+                                for (let sentence of sentences) {
+                                    if (result.length + sentence.length <= 180) {
+                                        result += sentence;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                return result || sentences[0] || text.substring(0, 150);
+                            })()
+                            : 'Read the latest news and updates about the team.'}
+                    </p>
+                )}
                 <div className="team-card-meta">
                     <span className="team-card-author">{post.author?.name || 'Staff'}</span>
-                    <span className="team-card-divider"> | </span>
+                    <span className="team-card-divider"> • </span>
                     <span className="team-card-date">{formatDate(post.publishedAt) || 'Recent'}</span>
                 </div>
             </div>
@@ -260,7 +287,21 @@ export default function TeamPage() {
                                         <h2 className="featured-title">{featuredPost.title}</h2>
                                         <p className="featured-excerpt">
                                             {featuredPost.body && featuredPost.body[0] && featuredPost.body[0].children && featuredPost.body[0].children[0]
-                                                ? featuredPost.body[0].children[0].text.substring(0, 150)
+                                                ? (() => {
+                                                    const text = featuredPost.body[0].children[0].text;
+                                                    const sentences = text.match(/[^\.!?]+[\.!?]+/g);
+                                                    if (!sentences) return text.length > 200 ? text.substring(0, 200) : text;
+
+                                                    let result = '';
+                                                    for (let sentence of sentences) {
+                                                        if (result.length + sentence.length <= 250) {
+                                                            result += sentence;
+                                                        } else {
+                                                            break;
+                                                        }
+                                                    }
+                                                    return result || sentences[0] || text.substring(0, 200);
+                                                })()
                                                 : 'Read the latest Phoenix Suns news and updates covering the team\'s performance, player analysis, and game highlights.'}
                                         </p>
                                         <div className="featured-category">{team.city} {team.name} News</div>

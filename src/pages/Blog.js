@@ -154,7 +154,6 @@ export default function Blog() {
         if (categoryTitles.includes('draft')) return 'draft'
         if (categoryTitles.includes('rumors')) return 'rumors'
         if (categoryTitles.includes('recaps') || categoryTitles.includes('gamerecaps') || categoryTitles.includes('game recaps')) return 'gamerecaps'
-        if (categoryTitles.includes('analysis')) return 'analysis'
         if (categoryTitles.includes('news')) return 'news'
 
         // Default to news if no category matches
@@ -780,6 +779,46 @@ export default function Blog() {
                         </div>
                     )}
 
+                    {/* Suns Section */}
+                    <div className="suns-section">
+                        <div className="suns-section-header section-border">
+                            <h2 className="section-title" style={{ color: '#e56020' }}>
+                                Suns
+                            </h2>
+                            <Link to="/suns" className="see-more-link" style={{ color: '#e56020' }}>
+                                See More
+                            </Link>
+                        </div>
+                        <div className="suns-articles-container">
+                            {latestSunsArticles.slice(0, 4).map((post, index) => (
+                                <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="suns-article-card">
+                                    <article>
+                                        {post.mainImage && (
+                                            <div className="diamondbacks-card-image">
+                                                <img
+                                                    src={post.mainImage.asset.url}
+                                                    alt={post.mainImage.alt || post.title}
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="diamondbacks-card-content">
+                                            <h3 className="suns-card-title">{post.title}</h3>
+                                            <div className="suns-card-meta">
+                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
+                                                    {getCategoryLabel(post)}
+                                                </div>
+                                                <span className="suns-card-author">{post.author?.name || 'Staff'}</span>
+                                                <span className="suns-card-divider">|</span>
+                                                <span className="suns-card-date">{getTimeAgo(post.publishedAt)}</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
                     <div className="three-column-layout">
                         {/* News Section Header */}
                         <div id="news-section-specific" className="news-section-header section-border">
@@ -886,22 +925,22 @@ export default function Blog() {
                         </aside>
                     </div>
 
-                    {/* Suns Section */}
-                    <div className="suns-section">
-                        <div className="suns-section-header section-border">
-                            <h2 className="section-title" style={{ color: '#E56020' }}>
-                                Suns
+                    {/* Cardinals Section */}
+                    <div className="cardinals-section">
+                        <div className="cardinals-section-header section-border">
+                            <h2 className="section-title" style={{ color: '#17A2B8' }}>
+                                Cardinals
                             </h2>
-                            <Link to="/suns" className="see-more-link" style={{ color: '#E56020' }}>
+                            <Link to="/cardinals" className="see-more-link" style={{ color: '#17A2B8' }}>
                                 See More
                             </Link>
                         </div>
-                        <div className="suns-articles-container">
-                            {latestSunsArticles.map((post, index) => (
-                                <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="suns-article-card">
+                        <div className="cardinals-articles-container">
+                            {latestCardinalsArticles.slice(0, 4).map((post, index) => (
+                                <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="cardinals-article-card">
                                     <article>
                                         {post.mainImage && (
-                                            <div className="suns-card-image">
+                                            <div className="diamondbacks-card-image">
                                                 <img
                                                     src={post.mainImage.asset.url}
                                                     alt={post.mainImage.alt || post.title}
@@ -909,7 +948,7 @@ export default function Blog() {
                                                 />
                                             </div>
                                         )}
-                                        <div className="suns-card-content">
+                                        <div className="diamondbacks-card-content">
                                             <h3 className="suns-card-title">{post.title}</h3>
                                             <div className="suns-card-meta">
                                                 <div className={`article-category-tag ${getTeamClass(post)}`}>
@@ -1033,153 +1072,6 @@ export default function Blog() {
                         </aside>
                     </div>
 
-                    {/* Cardinals Section */}
-                    <div className="cardinals-section">
-                        <div className="cardinals-section-header section-border">
-                            <h2 className="section-title" style={{ color: '#8C1D40' }}>
-                                Cardinals
-                            </h2>
-                            <Link to="/cardinals" className="see-more-link" style={{ color: '#8C1D40' }}>
-                                See More
-                            </Link>
-                        </div>
-                        <div className="cardinals-articles-container">
-                            {latestCardinalsArticles.map((post, index) => (
-                                <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="cardinals-article-card">
-                                    <article>
-                                        {post.mainImage && (
-                                            <div className="cardinals-card-image">
-                                                <img
-                                                    src={post.mainImage.asset.url}
-                                                    alt={post.mainImage.alt || post.title}
-                                                    loading="lazy"
-                                                />
-                                            </div>
-                                        )}
-                                        <div className="cardinals-card-content">
-                                            <h3 className="cardinals-card-title">{post.title}</h3>
-                                            <div className="cardinals-card-meta">
-                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                    {getCategoryLabel(post)}
-                                                </div>
-                                                <span className="cardinals-card-author">{post.author?.name || 'Staff'}</span>
-                                                <span className="cardinals-card-divider">|</span>
-                                                <span className="cardinals-card-date">{getTimeAgo(post.publishedAt)}</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Analysis Section */}
-                    <div className="three-column-layout">
-                        {/* Analysis Section Header */}
-                        <div className="analysis-section-header section-border">
-                            <div className="section-header">
-                                <h2 className="section-title">
-                                    Analysis
-                                </h2>
-                                <Link
-                                    to="/analysis"
-                                    className="see-more"
-                                >
-                                    See more
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Left Sidebar - Team Filter */}
-                        <aside className="analysis-left-sidebar">
-                            <div className="left-sidebar-filter">
-                                <h3 className="filter-title">By Team</h3>
-                                <div className="team-filter-tabs vertical">
-                                    {teams.map((team) => (
-                                        <button
-                                            key={team.key}
-                                            className={`team-tab vertical ${selectedTeam === team.key ? 'active' : ''}`}
-                                            onClick={() => setSelectedTeam(team.key)}
-                                        >
-                                            {team.label}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        </aside>
-
-                        {/* Left Content Container */}
-                        <div className="left-content-container">
-                            {/* Center Featured Article */}
-                            <main className="center-featured">
-                                <Link to={`/${featuredTeamAnalysisPost.slug.current}`} className="featured-article-link">
-                                    <article className="featured-article">
-                                        <div className="featured-content">
-                                            <div className="featured-top-content">
-                                                <h2 className="featured-title">{featuredTeamAnalysisPost.title}</h2>
-                                                <div className="featured-description">
-                                                    {extractTwoSentences(featuredTeamAnalysisPost.body) ||
-                                                        'In-depth analysis and insights from basketball experts.'
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div className="featured-bottom-content">
-                                                <div className="article-category-tag" style={{ color: getTeamColor(featuredTeamAnalysisPost) }}>
-                                                    {getCategoryLabel(featuredTeamAnalysisPost)}
-                                                </div>
-                                                <div className="featured-meta">
-                                                    <span className="featured-author">{featuredTeamAnalysisPost.author?.name || 'Staff'}</span>
-                                                    <span className="featured-timestamp">{formatDate(featuredTeamAnalysisPost.publishedAt) || 'Recent'}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="featured-image-container">
-                                            {featuredTeamAnalysisPost.mainImage && (
-                                                <img
-                                                    src={featuredTeamAnalysisPost.mainImage.asset.url}
-                                                    alt={featuredTeamAnalysisPost.title}
-                                                    className="featured-image"
-                                                />
-                                            )}
-                                        </div>
-                                    </article>
-                                </Link>
-                            </main>
-                        </div>
-
-                        {/* Right Sidebar - Articles */}
-                        <aside className="right-sidebar">
-                            {analysisRightSidebarPosts.map((post, index) => (
-                                <Link key={post.slug.current} to={`/${post.slug.current}`} className="latest-article-link">
-                                    <article className="latest-article">
-                                        <div className="latest-article-content">
-                                            <div className="latest-article-top">
-                                                {getNewsIndicator(post, index + 2) && (
-                                                    <div className={`news-indicator-small ${getNewsIndicator(post, index + 2).toLowerCase()}`}>
-                                                        {getNewsIndicator(post, index + 2)}
-                                                    </div>
-                                                )}
-                                                <h4 className="latest-article-title">
-                                                    {post.title}
-                                                </h4>
-                                            </div>
-                                            <div className="latest-article-bottom">
-                                                <div className={`article-category-tag ${getTeamClass(post)}`}>
-                                                    {getCategoryLabel(post)}
-                                                </div>
-                                                <div className="latest-author-date">
-                                                    <span className="latest-author">{post.author?.name || 'Staff'}</span>
-                                                    <span className="latest-divider">|</span>
-                                                    <span className="latest-date">{formatDate(post.publishedAt) || 'Recent'}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </Link>
-                            ))}
-                        </aside>
-                    </div>
-
                     {/* Diamondbacks Section */}
                     <div className="diamondbacks-section">
                         <div className="diamondbacks-section-header section-border">
@@ -1191,7 +1083,7 @@ export default function Blog() {
                             </Link>
                         </div>
                         <div className="diamondbacks-articles-container">
-                            {latestDiamondbacksArticles.map((post, index) => (
+                            {latestDiamondbacksArticles.slice(0, 4).map((post, index) => (
                                 <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="diamondbacks-article-card">
                                     <article>
                                         {post.mainImage && (
@@ -1327,133 +1219,6 @@ export default function Blog() {
                                     </article>
                                 </Link>
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Trades and Free Agency Two-Column Section */}
-                    <div className="two-column-section">
-                        {/* Trades Column */}
-                        <div className="trades-column">
-                            <div className="trades-header section-border">
-                                <h2 className="section-title">Trades</h2>
-                                <Link to="/trades" className="see-more-link">
-                                    See more
-                                </Link>
-                            </div>
-                            <div className="trades-content">
-                                {tradesArticles[0] && (
-                                    <Link to={`/${tradesArticles[0].slug.current}`} className="featured-trade-article">
-                                        <article>
-                                            {tradesArticles[0].mainImage && (
-                                                <div className="featured-trade-image">
-                                                    <img
-                                                        src={tradesArticles[0].mainImage.asset.url}
-                                                        alt={tradesArticles[0].mainImage.alt || tradesArticles[0].title}
-                                                        loading="lazy"
-                                                    />
-                                                </div>
-                                            )}
-                                            <div className="featured-trade-content">
-                                                <h3 className="featured-trade-title">{tradesArticles[0].title}</h3>
-                                                <div className="featured-trade-description">
-                                                    {extractTwoSentences(tradesArticles[0].body) ||
-                                                        'Latest trades and roster moves from around the league.'
-                                                    }
-                                                </div>
-                                                <div className="featured-trade-meta-wrapper">
-                                                    <div className={`featured-trade-category ${getTeamClass(tradesArticles[0])}`}>
-                                                        {getCategoryLabel(tradesArticles[0])}
-                                                    </div>
-                                                    <div className="featured-trade-meta">
-                                                        <span>{tradesArticles[0].author?.name || 'Staff'} | {getTimeAgo(tradesArticles[0].publishedAt)}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </Link>
-                                )}
-                                <div className="trades-sidebar">
-                                    {tradesArticles.slice(1, 4).map((post, index) => (
-                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="trades-sidebar-article">
-                                            <article>
-                                                <div className="trades-sidebar-content">
-                                                    <h4 className="trades-sidebar-title">{post.title}</h4>
-                                                    <div className={`trades-sidebar-category ${getTeamClass(post)}`}>
-                                                        {getCategoryLabel(post)}
-                                                    </div>
-                                                    <div className="trades-sidebar-meta">
-                                                        <span className="trades-sidebar-author">{post.author?.name || 'Staff'}</span>
-                                                        <span className="trades-sidebar-divider">|</span>
-                                                        <span className="trades-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Free Agency Column */}
-                        <div className="freeagency-column">
-                            <div className="freeagency-header section-border">
-                                <h2 className="section-title">Free Agency</h2>
-                                <Link to="/freeagency" className="see-more-link">
-                                    See more
-                                </Link>
-                            </div>
-                            <div className="freeagency-content">
-                                {freeAgencyArticles[0] && (
-                                    <Link to={`/${freeAgencyArticles[0].slug.current}`} className="featured-freeagency-article">
-                                        <article>
-                                            {freeAgencyArticles[0].mainImage && (
-                                                <div className="featured-freeagency-image">
-                                                    <img
-                                                        src={freeAgencyArticles[0].mainImage.asset.url}
-                                                        alt={freeAgencyArticles[0].mainImage.alt || freeAgencyArticles[0].title}
-                                                        loading="lazy"
-                                                    />
-                                                </div>
-                                            )}
-                                            <div className="featured-freeagency-content">
-                                                <h3 className="featured-freeagency-title">{freeAgencyArticles[0].title}</h3>
-                                                <div className="featured-freeagency-description">
-                                                    {extractTwoSentences(freeAgencyArticles[0].body) ||
-                                                        'Latest free agency news and player signings from around the league.'
-                                                    }
-                                                </div>
-                                                <div className="featured-freeagency-meta-wrapper">
-                                                    <div className={`featured-freeagency-category ${getTeamClass(freeAgencyArticles[0])}`}>
-                                                        {getCategoryLabel(freeAgencyArticles[0])}
-                                                    </div>
-                                                    <div className="featured-freeagency-meta">
-                                                        <span>{freeAgencyArticles[0].author?.name || 'Staff'} | {getTimeAgo(freeAgencyArticles[0].publishedAt)}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </Link>
-                                )}
-                                <div className="freeagency-sidebar">
-                                    {freeAgencyArticles.slice(1, 4).map((post, index) => (
-                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="freeagency-sidebar-article">
-                                            <article>
-                                                <div className="freeagency-sidebar-content">
-                                                    <h4 className="freeagency-sidebar-title">{post.title}</h4>
-                                                    <div className={`freeagency-sidebar-category ${getTeamClass(post)}`}>
-                                                        {getCategoryLabel(post)}
-                                                    </div>
-                                                    <div className="freeagency-sidebar-meta">
-                                                        <span className="freeagency-sidebar-author">{post.author?.name || 'Staff'}</span>
-                                                        <span className="freeagency-sidebar-divider">|</span>
-                                                        <span className="freeagency-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -1633,6 +1398,133 @@ export default function Blog() {
                                 )}
                                 <div className="freeagency-sidebar">
                                     {sunDevilsArticles.slice(1, 4).map((post, index) => (
+                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="freeagency-sidebar-article">
+                                            <article>
+                                                <div className="freeagency-sidebar-content">
+                                                    <h4 className="freeagency-sidebar-title">{post.title}</h4>
+                                                    <div className={`freeagency-sidebar-category ${getTeamClass(post)}`}>
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="freeagency-sidebar-meta">
+                                                        <span className="freeagency-sidebar-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="freeagency-sidebar-divider">|</span>
+                                                        <span className="freeagency-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Trades and Free Agency Two-Column Section */}
+                    <div className="two-column-section">
+                        {/* Trades Column */}
+                        <div className="trades-column">
+                            <div className="trades-header section-border">
+                                <h2 className="section-title">Trades</h2>
+                                <Link to="/trades" className="see-more-link">
+                                    See more
+                                </Link>
+                            </div>
+                            <div className="trades-content">
+                                {tradesArticles[0] && (
+                                    <Link to={`/${tradesArticles[0].slug.current}`} className="featured-trade-article">
+                                        <article>
+                                            {tradesArticles[0].mainImage && (
+                                                <div className="featured-trade-image">
+                                                    <img
+                                                        src={tradesArticles[0].mainImage.asset.url}
+                                                        alt={tradesArticles[0].mainImage.alt || tradesArticles[0].title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="featured-trade-content">
+                                                <h3 className="featured-trade-title">{tradesArticles[0].title}</h3>
+                                                <div className="featured-trade-description">
+                                                    {extractTwoSentences(tradesArticles[0].body) ||
+                                                        'Latest trades and roster moves from around the league.'
+                                                    }
+                                                </div>
+                                                <div className="featured-trade-meta-wrapper">
+                                                    <div className={`featured-trade-category ${getTeamClass(tradesArticles[0])}`}>
+                                                        {getCategoryLabel(tradesArticles[0])}
+                                                    </div>
+                                                    <div className="featured-trade-meta">
+                                                        <span>{tradesArticles[0].author?.name || 'Staff'} | {getTimeAgo(tradesArticles[0].publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                )}
+                                <div className="trades-sidebar">
+                                    {tradesArticles.slice(1, 4).map((post, index) => (
+                                        <Link key={post.slug.current} to={`/${post.slug.current}`} className="trades-sidebar-article">
+                                            <article>
+                                                <div className="trades-sidebar-content">
+                                                    <h4 className="trades-sidebar-title">{post.title}</h4>
+                                                    <div className={`trades-sidebar-category ${getTeamClass(post)}`}>
+                                                        {getCategoryLabel(post)}
+                                                    </div>
+                                                    <div className="trades-sidebar-meta">
+                                                        <span className="trades-sidebar-author">{post.author?.name || 'Staff'}</span>
+                                                        <span className="trades-sidebar-divider">|</span>
+                                                        <span className="trades-sidebar-date">{getTimeAgo(post.publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Free Agency Column */}
+                        <div className="freeagency-column">
+                            <div className="freeagency-header section-border">
+                                <h2 className="section-title">Free Agency</h2>
+                                <Link to="/freeagency" className="see-more-link">
+                                    See more
+                                </Link>
+                            </div>
+                            <div className="freeagency-content">
+                                {freeAgencyArticles[0] && (
+                                    <Link to={`/${freeAgencyArticles[0].slug.current}`} className="featured-freeagency-article">
+                                        <article>
+                                            {freeAgencyArticles[0].mainImage && (
+                                                <div className="featured-freeagency-image">
+                                                    <img
+                                                        src={freeAgencyArticles[0].mainImage.asset.url}
+                                                        alt={freeAgencyArticles[0].mainImage.alt || freeAgencyArticles[0].title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="featured-freeagency-content">
+                                                <h3 className="featured-freeagency-title">{freeAgencyArticles[0].title}</h3>
+                                                <div className="featured-freeagency-description">
+                                                    {extractTwoSentences(freeAgencyArticles[0].body) ||
+                                                        'Latest free agency news and player signings from around the league.'
+                                                    }
+                                                </div>
+                                                <div className="featured-freeagency-meta-wrapper">
+                                                    <div className={`featured-freeagency-category ${getTeamClass(freeAgencyArticles[0])}`}>
+                                                        {getCategoryLabel(freeAgencyArticles[0])}
+                                                    </div>
+                                                    <div className="featured-freeagency-meta">
+                                                        <span>{freeAgencyArticles[0].author?.name || 'Staff'} | {getTimeAgo(freeAgencyArticles[0].publishedAt)}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                )}
+                                <div className="freeagency-sidebar">
+                                    {freeAgencyArticles.slice(1, 4).map((post, index) => (
                                         <Link key={post.slug.current} to={`/${post.slug.current}`} className="freeagency-sidebar-article">
                                             <article>
                                                 <div className="freeagency-sidebar-content">

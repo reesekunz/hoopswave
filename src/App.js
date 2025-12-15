@@ -17,7 +17,6 @@ function App() {
   <Route path="/" element={<Blog />} />
   <Route path="/news" element={<CategoryPage />} />
   <Route path="/rumors" element={<CategoryPage />} />
-  <Route path="/analysis" element={<CategoryPage />} />
   <Route path="/gamerecaps" element={<CategoryPage />} />
   <Route path="/suns" element={<TeamPage />} />
   <Route path="/diamondbacks" element={<TeamPage />} />

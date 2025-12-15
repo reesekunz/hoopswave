@@ -21,7 +21,6 @@ export default function CategoryPage() {
     const categoryMap = {
         'news': 'news',
         'rumors': 'rumors',
-        'analysis': 'analysis',
         'gamerecaps': 'game recaps'
     }
 
@@ -29,7 +28,6 @@ export default function CategoryPage() {
     const displayTitles = {
         'news': 'News',
         'rumors': 'Rumors',
-        'analysis': 'Analysis',
         'gamerecaps': 'Game Recaps'
     }
 
@@ -37,7 +35,6 @@ export default function CategoryPage() {
     const categoryColors = {
         'news': '#8C1D40',
         'rumors': '#8C1D40',
-        'analysis': '#8C1D40',
         'gamerecaps': '#8C1D40'
     }
 
@@ -46,7 +43,6 @@ export default function CategoryPage() {
         const categoryTitles = post.categories?.map(cat => cat.title?.toLowerCase()) || []
 
         if (categoryTitles.includes('game recaps') || categoryTitles.includes('game recap')) return 'gamerecaps'
-        if (categoryTitles.includes('analysis')) return 'analysis'
         if (categoryTitles.includes('rumors')) return 'rumors'
         if (categoryTitles.includes('news')) return 'news'
 
