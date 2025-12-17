@@ -824,7 +824,7 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
-  margin-top: var(--space-16);
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -835,7 +835,7 @@ a {
       "header header header"
       "left-sidebar left-content right-sidebar";
     gap: var(--space-6);
-    margin-top: var(--space-16);
+    margin-top: 0;
     align-items: start;
   }
 
@@ -896,7 +896,7 @@ a {
 
 /* NEWS SECTION - Center Featured Article (NOT the main homepage featured card) */
 .center-featured {
-  width: 100%;
+  width: 110%;
   min-height: 400px;
   height: auto;
   flex-shrink: 0;
@@ -917,7 +917,7 @@ a {
   .featured-article {
     flex-direction: column;
     height: auto;
-    max-width: 600px;
+    max-width: 700px;
   }
 }
 
@@ -3180,6 +3180,25 @@ body.theme-light .section-article {
   letter-spacing: 0.5px;
 }
 
+
+
+
+/* Add spacing between author and date in second-right-sidebar */
+.second-right-sidebar .second-latest-article-link .second-latest-author-date {
+  gap: 4px;
+}
+
+/* Dark mode border bottom for second-right-sidebar - match news sidebar style */
+body.theme-dark .second-right-sidebar .second-latest-article-link .second-latest-article {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.theme-dark aside.second-right-sidebar article.second-latest-article {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+
+
 /* Other layout horizontal section articles container */
 .sidebar-section-articles {
   display: flex;
@@ -3918,12 +3937,12 @@ body.theme-light .section-article {
 .analysis-section-header {
   grid-column: 1 / -1;
   margin-top: 0;
-  margin-bottom: var(--space-6);
+  margin-bottom: 0;
 }
 
 /* Specific extra spacing for the main NEWS section */
 #news-section-specific {
-  margin-top: 15rem;
+  margin-top: 0;
 }
 
 /* Remove white backgrounds from section headers */
@@ -4246,6 +4265,7 @@ body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(
 body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(7) {
   border-color: #8c1a4a !important; /* Sun Devils - ASU Maroon */
 }
+
 
 .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(2) {
   background: transparent !important; /* Cardinals */
@@ -4765,6 +4785,25 @@ body.theme-light .team-filter-tabs.vertical .team-tab.vertical.active:nth-child(
 .second-featured-article:hover {
   transform: none;
 }
+
+.featured-article:hover {
+  transform: none !important;
+  height: auto !important;
+  scale: none !important;
+}
+
+.center-featured .featured-article:hover {
+  transform: none !important;
+  height: auto !important;
+  scale: none !important;
+}
+
+.featured-article-link:hover .featured-article {
+  transform: none !important;
+  height: auto !important;
+  scale: none !important;
+}
+
 
 .second-featured-image {
   width: 100%;
@@ -5643,7 +5682,7 @@ body.theme-light .mercury-card-meta {
 
 
 body.theme-light .mercury-card-divider {
-  color: #666 !important;
+  color: #666666 !important;
 }
 
 body.theme-light .cardinals-card-meta {
@@ -5652,7 +5691,7 @@ body.theme-light .cardinals-card-meta {
 
 
 body.theme-light .cardinals-card-divider {
-  color: #666 !important;
+  color: #666666 !important;
 }
 
 /* ===== TRADES/FREE AGENCY SECTION LIGHT MODE OVERRIDES ===== */
@@ -5903,7 +5942,7 @@ body.theme-light .trades-sidebar-divider,
 body.theme-light .freeagency-sidebar-divider,
 body.theme-light .wildcats-sidebar-divider,
 body.theme-light .sundevils-sidebar-divider {
-  color: #999999 !important;
+  color: #666666 !important;
 }
 
 body.theme-light .trades-sidebar-date,
@@ -6095,7 +6134,68 @@ body.theme-light
   display: block !important;
   width: 100% !important;
   margin-top: auto !important;
-  order: 0 !important;
+  order: 3 !important;
+}
+
+.cardinals-card-content .cardinals-card-meta {
+  display: block !important;
+  width: 100% !important;
+  margin-top: auto !important;
+  order: 3 !important;
+}
+
+/* Force the suns meta to display like diamondbacks */
+.suns-article-card .suns-card-meta,
+.suns-articles-container .suns-card-meta {
+  display: block !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-bottom: var(--space-2) !important;
+}
+
+/* Force the cardinals meta to display like diamondbacks */
+.cardinals-article-card .cardinals-card-meta,
+.cardinals-articles-container .cardinals-card-meta {
+  display: block !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-bottom: var(--space-2) !important;
+}
+
+/* Add spacing between author, divider, and date */
+.suns-card-author {
+  margin-right: 2px !important;
+}
+
+.suns-card-divider {
+  margin: 0 2px !important;
+}
+
+.suns-card-date {
+  margin-left: 2px !important;
+}
+
+/* Add spacing between author, divider, and date for Cardinals */
+.cardinals-card-author {
+  margin-right: 2px !important;
+}
+
+.cardinals-card-divider {
+  margin: 0 2px !important;
+}
+
+.cardinals-card-date {
+  margin-left: 2px !important;
+}
+
+/* Suns category tag color */
+.suns-card-meta .article-category-tag {
+  color: #e56020 !important;
+}
+
+/* Cardinals category tag color */
+.cardinals-card-meta .article-category-tag {
+  color: #8c1d40 !important;
 }
 
 .diamondbacks-card-content {
@@ -6165,21 +6265,20 @@ body.theme-light
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
-  margin: 0;
+  margin: 0 0 var(--space-3) 0;
   color: #ffffff;
 }
 
 .suns-card-meta {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 4px;
   font-size: 0.85rem;
   color: #888;
 }
 
 .suns-card-author {
   font-weight: 500 !important;
-  margin-right: 0.25rem;
   font-family: var(--font-secondary) !important;
   color: #666 !important;
 }
@@ -6215,7 +6314,7 @@ body.theme-light
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: var(--text-primary);
+  color: #8c1d40 !important;
 }
 
 .cardinals-section-header .see-more-link {
@@ -6309,6 +6408,23 @@ body.theme-light .cardinals-section-header .see-more-link {
   justify-content: flex-start !important;
 }
 
+/* Cardinals cards - natural document flow: title, category tag, meta */
+.cardinals-card-content .cardinals-card-title {
+  margin-bottom: var(--space-2) !important;
+}
+
+.cardinals-card-content .article-category-tag {
+  display: block !important;
+  width: fit-content !important;
+  margin-bottom: var(--space-2) !important;
+}
+
+.cardinals-card-content .cardinals-card-meta {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
 /* Force vertical layout for category and meta */
 .cardinals-card-content .article-category-tag {
   display: block !important;
@@ -6386,7 +6502,7 @@ body.theme-light .cardinals-section-header .see-more-link {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: var(--text-primary);
+  color: #30ced8 !important;
 }
 
 .diamondbacks-section-header .see-more-link {
@@ -6824,7 +6940,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0;
-  color: var(--text-primary);
+  color: #8b5cf6 !important;
 }
 
 .mercury-section-header .see-more-link {
@@ -6998,7 +7114,13 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: #ffffff;
+  color: #ffffff !important;
+}
+
+/* Ensure white color in dark mode */
+body.theme-dark .trades-header .section-title,
+body.theme-dark .freeagency-header .section-title {
+  color: #ffffff !important;
 }
 
 .trades-header .see-more-link,
@@ -7081,9 +7203,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 /* Image scaling removed to match other sections */
 
 .featured-trade-content,
-.featured-freeagency-content,
-.featured-wildcats-content,
-.featured-sundevils-content {
+.featured-freeagency-content {
   padding: var(--space-4);
   flex: 1;
   display: flex;
@@ -7093,6 +7213,20 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   width: 80%;
   margin: 0 auto;
 }
+
+.featured-wildcats-content,
+.featured-sundevils-content {
+  padding: var(--space-4) 10%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 80%;
+  margin: 0 auto;
+  border: 3px solid blue !important;
+}
+
 
 .featured-trade-title,
 .featured-freeagency-title,
@@ -7445,7 +7579,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 
   /* Three column layout improvements */
   .three-column-layout {
-    margin-top: var(--space-8);
+    margin-top: 0;
     gap: var(--space-4);
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -8484,7 +8618,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   }
 
   .three-column-layout {
-    margin-top: 8rem !important;
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
   }
 
@@ -9011,7 +9145,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     font-size: 1.1rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 0 var(--space-3) 0 !important;
   }
 
   body.theme-dark .suns-section .suns-card-title,
@@ -9020,7 +9154,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     font-size: 1.1rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 0 var(--space-3) 0 !important;
   }
 
   body.theme-light .suns-section .suns-card-title,
@@ -9029,7 +9163,7 @@ body.theme-dark .draft-section-header .see-more-link:hover {
     font-size: 1.1rem !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    margin: 0 !important;
+    margin: 0 0 var(--space-3) 0 !important;
   }
 
   /* Apply exact Top Stories meta area styling to Suns cards */
@@ -9058,6 +9192,37 @@ body.theme-dark .draft-section-header .see-more-link:hover {
 
   body.theme-light .suns-section .article-category-tag,
   body.theme-light .suns-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Apply exact Top Stories meta area styling to Cardinals cards */
+  .cardinals-section .cardinals-card-meta,
+  .cardinals-article-card .cardinals-card-meta {
+    padding: 0 var(--space-6) var(--space-4) var(--space-4) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Apply Top Stories category tag styling to Cardinals cards */
+  .cardinals-section .article-category-tag,
+  .cardinals-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-dark .cardinals-section .article-category-tag,
+  body.theme-dark .cardinals-article-card .article-category-tag {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.theme-light .cardinals-section .article-category-tag,
+  body.theme-light .cardinals-article-card .article-category-tag {
     margin-left: 0 !important;
     margin-right: 0 !important;
     padding-left: 0 !important;
@@ -9679,6 +9844,20 @@ body.theme-dark .draft-section-header .see-more-link:hover {
   }
 
   body.theme-light .second-right-sidebar .second-latest-divider {
-    color: #999 !important;
+    color: #666666 !important;
   }
 }
+
+/* Light mode styling for all other dividers */
+body.theme-light .news-left-sidebar-divider,
+body.theme-light .latest-divider,
+body.theme-light .second-latest-divider,
+body.theme-light .section-divider,
+body.theme-light .team-card-divider,
+body.theme-light .suns-card-divider,
+body.theme-light .diamondbacks-card-divider,
+body.theme-light .recaps-card-divider,
+body.theme-light .draft-card-divider {
+  color: #666666 !important;
+}
+

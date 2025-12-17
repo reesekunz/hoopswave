@@ -126,7 +126,10 @@ export default function Blog() {
         // Split by periods, but be more careful about abbreviations
         const sentences = allText.split(/\.(?=\s+[A-Z])/); // Split on period followed by space and capital letter
 
-        if (sentences.length >= 1) {
+        if (sentences.length >= 2) {
+            // Take first two sentences and add the periods back
+            return sentences[0].trim() + '. ' + sentences[1].trim() + '.'
+        } else if (sentences.length >= 1) {
             // Take first sentence and add the period back
             return sentences[0].trim() + '.'
         }
@@ -417,8 +420,8 @@ export default function Blog() {
 
     // Right sidebar articles (team-filtered) - show more when "All" is selected
     const newsRightSidebarPosts = selectedTeam === 'all'
-        ? filteredNewsArticles.slice(7, 14) // Show 7 articles for "All"
-        : filteredNewsArticles.slice(1, Math.min(filteredNewsArticles.length, 7)) // Show 6 articles for specific teams, ensuring we have content
+        ? filteredNewsArticles.slice(7, 13) // Show 6 articles for "All"
+        : filteredNewsArticles.slice(1, Math.min(filteredNewsArticles.length, 6)) // Show 5 articles for specific teams, ensuring we have content
 
     // Get team-specific rumors articles
     const getTeamRumorsArticles = (teamKey) => {
@@ -928,10 +931,10 @@ export default function Blog() {
                     {/* Cardinals Section */}
                     <div className="cardinals-section">
                         <div className="cardinals-section-header section-border">
-                            <h2 className="section-title" style={{ color: '#17A2B8' }}>
+                            <h2 className="section-title" style={{ color: '#8c1d40' }}>
                                 Cardinals
                             </h2>
-                            <Link to="/cardinals" className="see-more-link" style={{ color: '#17A2B8' }}>
+                            <Link to="/cardinals" className="see-more-link" style={{ color: '#8c1d40' }}>
                                 See More
                             </Link>
                         </div>
@@ -940,7 +943,7 @@ export default function Blog() {
                                 <Link key={post.slug.current || index} to={`/${post.slug.current}`} className="cardinals-article-card">
                                     <article>
                                         {post.mainImage && (
-                                            <div className="diamondbacks-card-image">
+                                            <div className="cardinals-card-image">
                                                 <img
                                                     src={post.mainImage.asset.url}
                                                     alt={post.mainImage.alt || post.title}
@@ -948,15 +951,15 @@ export default function Blog() {
                                                 />
                                             </div>
                                         )}
-                                        <div className="diamondbacks-card-content">
-                                            <h3 className="suns-card-title">{post.title}</h3>
-                                            <div className="suns-card-meta">
+                                        <div className="cardinals-card-content">
+                                            <h3 className="cardinals-card-title">{post.title}</h3>
+                                            <div className="cardinals-card-meta">
                                                 <div className={`article-category-tag ${getTeamClass(post)}`}>
                                                     {getCategoryLabel(post)}
                                                 </div>
-                                                <span className="suns-card-author">{post.author?.name || 'Staff'}</span>
-                                                <span className="suns-card-divider">|</span>
-                                                <span className="suns-card-date">{getTimeAgo(post.publishedAt)}</span>
+                                                <span className="cardinals-card-author">{post.author?.name || 'Staff'}</span>
+                                                <span className="cardinals-card-divider">|</span>
+                                                <span className="cardinals-card-date">{getTimeAgo(post.publishedAt)}</span>
                                             </div>
                                         </div>
                                     </article>
